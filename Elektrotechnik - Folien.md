@@ -1054,6 +1054,22 @@ $$G_\text{ges} = G_1 + G_2 + \dots + G_n = \sum_{i=1}^{n} G_i$$
 
 ![bg right:25% 90%](https://upload.wikimedia.org/wikipedia/commons/a/ab/Parallelschaltung_Widerst%C3%A4nde.svg)
 
+### Parallelschaltung: Herleitung
+
+Wegen der Knotenregel gilt:
+
+$$I_\text{ges} = I_1 + I_2 + \dots + I_n = \frac{U}{R_1} + \frac{U}{R_2} + \dots + \frac{U}{R_n}$$
+
+Außerdem per Definition:
+
+$$I_\text{ges} = \frac{U}{R_\text{ges}}$$
+
+Es folgt:
+
+$$\Rightarrow\frac{U}{R_\text{ges}} = U \cdot \left(\frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}\right)$$
+
+$$\Rightarrow\frac{1}{R_\text{ges}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}$$
+
 ### Stromteilerregel
 
 Bei einer Parallelschaltung teilt sich der Gesamtstrom im umgekehrten Verhältnis der Widerstände bzw. im direkten Verhältnis der Leitwerte auf:
