@@ -4,6 +4,19 @@ This repository contains slides of courses I teach. They are written in Markdown
 
 See the [blog post](https://davidstraub.de/posts/my-new-presentation-slide-setup/) for details about my presentation slide setup.
 
+## Running slides with code blocks in Jupyter 
+
+Slides containing Python code blocks can be run interactively in Jupyter notebooks using Jupytext.
+
+First, install the Jupytext Python package:
+
+```bash
+pip install jupytext
+```
+
+Then, open Jupyter Notebook or JupyterLab in the folder where you cloned the repository content and right-click on the desired Markdown file. Select "Open With" -> "Jupytext Notebook". This will open the slides as a Jupyter notebook where you can run and modify the code blocks interactively.
+
+
 ## Credits
 
 I'm using images licensed under creative commons licenses by directly linking to them.
