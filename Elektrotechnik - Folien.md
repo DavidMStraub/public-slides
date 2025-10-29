@@ -1408,11 +1408,11 @@ wobei $\alpha$ der Winkel zwischen $\vec{B}$ und dem Flächennormalenvektor ist.
 - Ferromagnetismus: Starke Ausrichtung der Dipole ($\mu_r \gg 1$)
 
 
-### Magnetisches Feld ohne Magnetisierungsbeiträge
+### Magnetisches Feld und Magnetisierung
 
 **Magnetisierung** $\vec{M}$: magnetisches Dipolmoment pro Volumeneinheit
+
 $$\vec{B} = \mu_0(\vec{H} + \vec{M}) = \mu_0 \mu_r \vec{H}$$
-erungsbeiträge
 
 **Konvention**: Die magnetische Feldstärke $\vec{H}$ beschreibt das durch freie Ströme erzeugte Magnetfeld – ohne Beiträge der Magnetisierung des Materials.
 
