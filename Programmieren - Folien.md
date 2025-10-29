@@ -995,7 +995,7 @@ while zeile != "":
 ```python
 temp = 20.0
 ziel = 22.0
-schritt = 0.3
+schritt = 0.2
 iters = 0
 while abs(temp - ziel) > 0.1 and iters < 200:
     temp += schritt
