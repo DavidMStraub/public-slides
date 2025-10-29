@@ -9,13 +9,17 @@ jupyter:
   jupytext:
     cell_metadata_filter: -all
     formats: ipynb,md
-    main_language: python
     text_representation:
       extension: .md
       format_name: markdown
       format_version: '1.3'
       jupytext_version: 1.17.3
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
+
 # Programmieren
 
 **Ingenieurinformatik Teil 1, Wintersemester 2025/26**
@@ -28,7 +32,7 @@ David Straub
 2. [Grundlagen: Variablen, Datentypen, Verzweigungen](#grundlagen)
 3. [Funktionen](#funktionen)
 4. [Schleifen](#schleifen)
-5. Datenstrukturen
+5. [Datenstrukturen](#datenstrukturen)
 6. Module & Bibliotheken
 7. Klassen
 8. Dateien
@@ -1135,3 +1139,622 @@ Schreibe eine Funktion, die die Quersumme einer positiven Ganzzahl berechnet.
 4. Am Ende: Endspannung und Anzahl Zyklen ausgeben  
 
 ![bg right:30% 80%](https://upload.wikimedia.org/wikipedia/commons/d/d7/Oxygen480-status-battery-charging-080.svg)
+
+
+## Datenstrukturen
+
+### Warum Datenstrukturen?
+
+Bisher: einzelne Werte in Variablen
+
+```python
+messung_1 = 15.2
+messung_2 = 16.1
+messung_3 = 14.8
+messung_4 = 15.9
+# ...
+```
+
+**Problem:** Unhandlich bei vielen Werten!
+
+**Lösung:** Datenstrukturen gruppieren zusammengehörige Daten
+
+### Überblick: wichtigste Datenstrukturen in Python
+
+| Typ | Geordnet | Veränderbar | Duplikate | Verwendung |
+|-----|----------|-------------|-----------|------------|
+| **Liste** | ✅ | ✅ | ✅ | Allgemeine Sammlung |
+| **Tupel** | ✅ | ❌ | ✅ | Unveränderliche Daten |
+| **Dictionary** | ✅ | ✅ | ❌ (Keys) | Key-Value-Paare |
+| **Set** | ❌ | ✅ | ❌ | Eindeutige Elemente |
+| **NumPy-Array** | ✅ | ✅ | ✅ | Numerische Berechnungen |
+
+
+## Listen
+
+### Was sind Listen?
+
+- **Geordnete** Sammlung von Elementen
+- **Veränderbar** (mutable): Elemente können hinzugefügt, entfernt, geändert werden
+- Erlaubt **Duplikate**
+- Kann **verschiedene Datentypen** enthalten
+
+### Listen erstellen
+
+Listen werden mit eckigen Klammern `[]` erstellt und können beliebig viele Elemente enthalten.
+
+```python
+# Leere Liste
+messungen = []
+print(messungen)
+```
+
+```python
+# Liste mit Werten
+temperaturen = [20.5, 21.2, 19.8, 22.1]
+print(temperaturen)
+```
+
+### Listen aus anderen Objekten erstellen
+
+Mit `list()` können andere Objekte in Listen umgewandelt werden.
+
+```python
+# Aus range() erstellen
+gerade_zahlen = list(range(0, 10, 2))
+print(gerade_zahlen)
+```
+
+```python
+# Aus String erstellen
+buchstaben = list("Python")
+print(buchstaben)
+```
+
+### Auf Elemente zugreifen: Indexierung
+
+Der Index startet bei 0. Negative Indizes zählen vom Ende her.
+
+```python
+planeten = ["Merkur", "Venus", "Erde", "Mars"]
+print(planeten[0])  # Erstes Element
+```
+
+```python
+print(planeten[2])  # Drittes Element
+```
+
+```python
+print(planeten[-1])  # Letztes Element
+```
+
+### Slicing: Teilbereiche extrahieren
+
+Mit `[start:stop:step]` können Teillisten extrahiert werden.
+
+```python
+zahlen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(zahlen[2:5])  # Index 2 bis 4 (5 exklusiv)
+```
+
+```python
+print(zahlen[:4])  # Vom Anfang bis Index 3
+```
+
+```python
+print(zahlen[6:])  # Von Index 6 bis zum Ende
+```
+
+```python
+print(zahlen[::2])  # Jedes zweite Element
+```
+
+### Länge einer Liste
+
+Die Funktion `len()` gibt die Anzahl der Elemente zurück.
+
+```python
+sensoren = ["Temperatur", "Druck", "Beschleunigung"]
+anzahl = len(sensoren)
+print(f"Anzahl Sensoren: {anzahl}")
+```
+
+### Elemente hinzufügen
+
+`append()` fügt am Ende hinzu, `insert()` an beliebiger Position.
+
+```python
+missionen = ["Apollo 11", "Apollo 13"]
+print(f"Vorher: {missionen}")
+```
+
+```python
+missionen.append("Artemis I")
+print(f"Nach append: {missionen}")
+```
+
+```python
+missionen.insert(1, "Apollo 12")
+print(f"Nach insert: {missionen}")
+```
+
+### Elemente entfernen
+
+`remove()` entfernt nach Wert, `pop()` entfernt an Position und gibt das Element zurück.
+
+```python
+werte = [10, 20, 30, 40, 50]
+werte.remove(30)  # Entfernt das erste Vorkommen von 30
+print(f"Nach remove: {werte}")
+```
+
+```python
+letzter = werte.pop()  # Entfernt und gibt letztes Element zurück
+print(f"Entfernt: {letzter}, Übrig: {werte}")
+```
+
+
+
+### Elemente suchen
+
+Mit `in` prüfen, ob ein Element vorhanden ist.
+
+```python
+komponenten = ["Triebwerk", "Tank", "Avionik", "Tank"]
+print("Avionik" in komponenten)  # Prüfen ob Element vorhanden
+```
+
+```python
+print("Kabine" in komponenten)
+```
+
+### Listen sortieren
+
+Die Methode `sort()` sortiert die Liste direkt.
+
+```python
+hoehen = [350, 120, 280, 95, 410]
+hoehen.sort()
+print(hoehen)
+```
+
+
+
+### Über Listen iterieren
+
+Mit `for`-Schleifen können alle Elemente durchlaufen werden.
+
+```python
+treibstoffe = ["RP-1", "LOX", "LH2"]
+for treibstoff in treibstoffe:
+    print(f"Treibstoff: {treibstoff}")
+```
+
+### Aufgabe: Messdatenverarbeitung
+
+**Gegeben:** Liste mit Temperaturen einer Woche in °C
+
+```python
+temperaturen = [15.2, 16.8, 14.5, 18.3, 17.1, 16.9, 15.8]
+```
+
+**Aufgaben:**
+1. Berechne Durchschnittstemperatur
+2. Finde Minimum und Maximum
+3. Zähle Tage mit Temperatur > 16°C
+
+## Tupel
+
+### Was sind Tupel?
+
+- **Geordnete** Sammlung von Elementen
+- **Unveränderbar** (immutable): Nach Erstellung nicht mehr änderbar
+- Erlaubt **Duplikate**
+- Kann **verschiedene Datentypen** enthalten
+
+**Verwendung:**
+- Daten, die nicht geändert werden sollen
+- Rückgabe mehrerer Werte aus Funktionen
+- Dictionary-Keys (Listen nicht möglich!)
+- Speichereffizienter als Listen
+
+### Tupel erstellen
+
+Tupel werden mit runden Klammern `()` erstellt.
+
+```python
+# Mit runden Klammern
+koordinaten = (51.5, 0.1)
+print(koordinaten)
+```
+
+```python
+# Ohne Klammern (tuple packing)
+position = 10.0, 20.0, 30.0
+print(position)
+```
+
+### Auf Tupel-Elemente zugreifen
+
+Tupel verwenden die gleiche Indexierung wie Listen.
+
+```python
+launch_daten = ("Falcon 9", "2023-10-05", 70.0, True)
+print(launch_daten[0])
+```
+
+```python
+print(launch_daten[-1])
+```
+
+### Tuple Unpacking
+
+Tupel-Elemente können direkt mehreren Variablen zugewiesen werden.
+
+```python
+koordinaten = (48.1, 11.6)
+latitude, longitude = koordinaten
+print(f"Breitengrad: {latitude}, Längengrad: {longitude}")
+```
+
+```python
+# Werte tauschen (sehr elegant in Python!)
+a = 5
+b = 10
+a, b = b, a
+print(f"a={a}, b={b}")
+```
+
+### Tupel sind unveränderbar
+
+Nach der Erstellung können Tupel-Elemente nicht mehr geändert werden.
+
+```python
+punkt = (10, 20)
+# punkt[0] = 15  # TypeError: 'tuple' object does not support item assignment
+print(punkt)
+```
+
+### Tupel vs. Listen: Wann was?
+
+**Listen verwenden:**
+- Daten, die sich ändern können
+- Sammlung gleichartiger Elemente
+- Wenn Reihenfolge wichtig und veränderbar ist
+
+**Tupel verwenden:**
+- Daten, die konstant bleiben sollen
+- Unterschiedliche Datentypen gruppieren (z.B. x, y, z)
+- Rückgabe mehrerer Werte aus Funktionen
+- Als Dictionary-Keys
+- Geringfügig schneller und speichereffizienter
+
+### Funktionen mit Tupel-Rückgabe
+
+Funktionen können mehrere Werte als Tupel zurückgeben.
+
+```python
+def berechne_kreisflaeche(radius):
+    pi = 3.14159
+    flaeche = pi * radius ** 2
+    umfang = 2 * pi * radius
+    return flaeche, umfang  # Gibt Tupel zurück
+
+# Unpacking bei Funktionsaufruf
+a, u = berechne_kreisflaeche(5.0)
+print(f"Fläche: {a:.2f}, Umfang: {u:.2f}")
+```
+
+## Dictionaries
+
+### Was sind Dictionaries?
+
+- **Key-Value-Paare**: Jedem Schlüssel (Key) ist ein Wert zugeordnet
+- **Geordnet** (seit Python 3.7): Einfügereihenfolge wird beibehalten
+- **Veränderbar**: Keys und Values können hinzugefügt/entfernt werden
+- Keys müssen **eindeutig** und **unveränderbar** sein (z.B. Strings, Zahlen, Tupel)
+
+**Verwendung:**
+- Strukturierte Daten (z.B. Eigenschaften eines Objekts)
+- Schnelles Nachschlagen von Werten
+- Konfigurationen
+- Zählen von Vorkommen
+
+### Dictionary erstellen
+
+Dictionaries werden mit geschweiften Klammern `{}` und Doppelpunkt `:` erstellt.
+
+```python
+# Mit Werten
+astronaut = {
+    "name": "Neil Armstrong",
+    "mission": "Apollo 11",
+    "alter": 38,
+    "gestartet": True
+}
+print(astronaut)
+```
+
+### Auf Werte zugreifen
+
+Werte werden über ihren Schlüssel (Key) abgerufen.
+
+```python
+print(astronaut["name"])
+```
+
+```python
+# Mit get() - sicherer bei fehlenden Keys
+print(astronaut.get("mission"))
+```
+
+```python
+# Standardwert wenn Key nicht existiert
+print(astronaut.get("geburtsort", "Unbekannt"))
+```
+
+### Werte hinzufügen und ändern
+
+Neue Keys werden einfach hinzugefügt, bestehende werden überschrieben.
+
+```python
+rakete = {"name": "Falcon 9", "stufen": 2}
+# Neuen Eintrag hinzufügen
+rakete["hersteller"] = "SpaceX"
+print(rakete)
+```
+
+```python
+# Wert ändern
+rakete["stufen"] = 3
+print(rakete)
+```
+
+
+
+
+
+### Über Dictionaries iterieren
+
+Mit `.items()` können Keys und Values gleichzeitig durchlaufen werden.
+
+```python
+sensoren = {"temp": 23.5, "druck": 1015, "luftf": 45}
+# Über Key-Value-Paare
+for key, value in sensoren.items():
+    print(f"{key} = {value}")
+```
+
+### Verschachtelte Dictionaries
+
+Dictionaries können andere Dictionaries enthalten – nützlich für strukturierte Daten.
+
+```python
+flugzeuge = {
+    "A380": {
+        "hersteller": "Airbus",
+        "sitze": 853,
+        "reichweite_km": 15200
+    },
+    "B787": {
+        "hersteller": "Boeing",
+        "sitze": 242,
+        "reichweite_km": 14140
+    }
+}
+print(flugzeuge["A380"]["sitze"])
+```
+### Live-Aufgabe: Wörterbuch-Statistik
+
+Schreibe ein Programm, das zählt, wie oft jedes Wort in einem Text vorkommt.
+
+**Gegeben:**
+```python
+text = "Python ist toll Python macht Spass toll toll"
+```
+
+**Aufgabe:** Erstelle ein Dictionary mit der Worthäufigkeit.
+
+**Tipp:** Verwende `.split()` um den Text in Wörter zu teilen.
+
+**Erwartetes Ergebnis:** `{"Python": 2, "ist": 1, "toll": 3, ...}`
+
+## Sets
+
+### Was sind Sets?
+
+- **Ungeordnete** Sammlung einzigartiger Elemente
+- **Keine Duplikate**: Jedes Element kommt nur einmal vor
+
+**Verwendung:**
+- Duplikate entfernen
+- Mengenoperationen (Vereinigung, Schnitt, Differenz)
+
+### Sets erstellen
+
+Sets werden mit geschweiften Klammern `{}` erstellt und entfernen Duplikate automatisch.
+
+```python
+# Duplikate werden automatisch entfernt
+zahlen = {1, 2, 2, 3, 3, 3, 4}
+print(zahlen)
+```
+
+```python
+# Aus Liste erstellen
+liste = [1, 1, 2, 2, 3, 3]
+eindeutig = set(liste)
+print(eindeutig)
+```
+
+### Sets: Duplikate entfernen
+
+Der häufigste Anwendungsfall: Duplikate aus Listen entfernen.
+
+```python
+messungen = [15.2, 16.1, 15.2, 17.3, 16.1, 14.8]
+eindeutig = list(set(messungen))
+print(eindeutig)
+```
+
+```python
+# Sortiert
+sortiert_eindeutig = sorted(set(messungen))
+print(sortiert_eindeutig)
+```
+
+### Wann Sets verwenden?
+
+**Sets verwenden:**
+- Duplikate entfernen
+- Schnelle Mitgliedschaftstests
+- Mengenoperationen (Vereinigung, Schnitt, Differenz)
+
+**Listen verwenden:**
+- Reihenfolge wichtig
+- Duplikate erlaubt
+
+**Dictionaries verwenden:**
+- Key-Value-Zuordnungen
+
+## NumPy-Arrays
+
+### Was ist NumPy?
+
+**NumPy** (Numerical Python) ist die Standardbibliothek für numerische Berechnungen in Python.
+
+**NumPy-Arrays:**
+- Effiziente mehrdimensionale Arrays
+- Viel schneller als Python-Listen für numerische Operationen
+- Vektorisierte Operationen (keine Schleifen nötig!)
+- Basis für wissenschaftliches Rechnen in Python
+
+**Installation:** `pip install numpy`
+
+### NumPy importieren und Arrays erstellen
+
+NumPy-Arrays sind wie Listen, aber optimiert für numerische Berechnungen.
+
+```python
+import numpy as np
+# Liste zu Array
+messungen = np.array([15.2, 16.1, 14.8, 17.3])
+print(messungen)
+```
+
+```python
+print(type(messungen))
+```
+
+### Arrays vs. Listen: Der Unterschied
+
+NumPy erlaubt vektorisierte Operationen – viel einfacher und schneller!
+
+```python
+# Listen: Element für Element
+liste = [1, 2, 3, 4]
+verdoppelt_liste = [x * 2 for x in liste]
+print(f"Liste verdoppelt: {verdoppelt_liste}")
+```
+
+```python
+# NumPy: Vektorisiert (alle auf einmal!)
+array = np.array([1, 2, 3, 4])
+verdoppelt_array = array * 2
+print(f"Array verdoppelt: {verdoppelt_array}")
+```
+
+```python
+# Operationen zwischen Arrays
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(f"Summe: {a + b}")
+```
+
+### Mathematische Funktionen
+
+NumPy bietet viele mathematische Funktionen für Arrays.
+
+```python
+werte = np.array([1, 4, 9, 16, 25])
+wurzel = np.sqrt(werte)
+print(f"Wurzel: {wurzel}")
+```
+
+```python
+quadrat = werte ** 2
+print(f"Quadrat: {quadrat}")
+```
+
+### Statistische Funktionen
+
+NumPy bietet Funktionen für statistische Berechnungen.
+
+```python
+temperaturen = np.array([15.2, 16.8, 14.5, 18.3, 17.1])
+print(f"Mittelwert: {np.mean(temperaturen):.2f}")
+```
+
+```python
+print(f"Min: {np.min(temperaturen)}, Max: {np.max(temperaturen)}")
+```
+
+### Mehrdimensionale Arrays
+
+NumPy unterstützt auch mehrdimensionale Arrays (Matrizen).
+
+```python
+# 2D-Array (Matrix)
+matrix = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+print(matrix)
+```
+
+```python
+print(f"Shape: {matrix.shape}")  # (Zeilen, Spalten)
+```
+### NumPy vs. Python-Listen: Zusammenfassung
+
+|  | NumPy-Arrays | Python-Listen |
+|--|--------------|---------------|
+| **Geschwindigkeit** | ✅ Sehr schnell | ❌ Langsamer |
+| **Speicher** | ✅ Effizient | ❌ Mehr Verbrauch |
+| **Operationen** | ✅ Vektorisiert | ❌ Schleifen nötig |
+| **Datentypen** | ❌ Nur gleiche | ✅ Gemischt möglich |
+| **Größe** | ❌ Fix | ✅ Dynamisch |
+
+**Faustregel:** NumPy für numerische Berechnungen, Listen für alles andere!
+
+### Zusammenfassung: Datenstrukturen
+
+| Typ | Verwendung | Beispiel |
+|-----|------------|----------|
+| **Liste** | Geordnete, veränderbare Sammlung | `[1, 2, 3]` |
+| **Tupel** | Unveränderbare Daten, mehrere Rückgabewerte | `(x, y, z)` |
+| **Dictionary** | Key-Value-Paare, strukturierte Daten | `{"name": "ISS", "crew": 7}` |
+| **Set** | Eindeutige Elemente, Mengenoperationen | `{1, 2, 3}` |
+| **NumPy-Array** | Numerische Berechnungen | `np.array([1, 2, 3])` |
+
+**Wichtigste Entscheidung:** Welche Struktur passt zu meinen Daten?
+
+### Aufgabe: Flugdatenanalyse
+
+**Gegeben:** Messdaten von 5 Flügen
+
+```python
+fluege = {
+    "LH123": {"distanz_km": 850, "dauer_min": 95, "passagiere": 145},
+    "BA456": {"distanz_km": 1200, "dauer_min": 135, "passagiere": 180},
+    "AF789": {"distanz_km": 650, "dauer_min": 80, "passagiere": 120},
+    "KL321": {"distanz_km": 950, "dauer_min": 110, "passagiere": 155},
+    "LX654": {"distanz_km": 720, "dauer_min": 85, "passagiere": 130}
+}
+```
+
+**Aufgaben:**
+1. Berechne Durchschnittsgeschwindigkeit jedes Flugs (km/h)
+2. Finde den schnellsten Flug
+3. Erstelle Liste aller Passagierzahlen und berechne Durchschnitt
+4. Welche Flüge hatten mehr als 150 Passagiere?
