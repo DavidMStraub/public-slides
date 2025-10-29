@@ -1256,3 +1256,197 @@ Bei optimaler Leistungsanpassung ($\alpha = 1$) beträgt der Wirkungsgrad nur $\
 | Überanpassung   | $R > R_i$            | $P_0 = \frac{U_0^2}{R_i} \cdot \frac{R}{R+R_i}$      | $0 < P < P_\text{max}$          | $0{,}5 < \eta < 1$    |
 | Leerlauf        | $R \to \infty$       | $P_0 = 0$                                            | $P = 0$                         | $\eta = 1$          |
 
+
+
+## Magnetismus
+
+1. Magnetisches Feld
+2. Magnetisches Feld in Materie
+3. Kräfte im magnetischen Feld
+4. Magnetischer Kreis
+5. Induktion
+6. Energie im magnetischen Feld
+
+### Elektrizität & Magnetismus
+
+... sind untrennbar verbunden. Eine Konsistente Naturbeschreibung erfordert beide
+
+Grenzfälle:
+
+- Ruhende Ladungen -> **Elektrostatik**
+- Konstante Stromverteilungen -> **Magnetostatik**
+- Langsam bewegte Ladungen & langsam veränderliche Ströme -> **Quasistatik**
+- Allgemeiner Fall -> **Elektrodynamik**
+
+### Magnetpole
+
+- Magnete besitzen immer zwei Pole: Nordpol (N) und Südpol (S)
+    - Nordpol = Pol, der auf der Erde nach Norden zeigt
+- Gleichnamige Pole stoßen sich ab, ungleichnamige Pole ziehen sich an
+
+![bg right:40% 70%](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Geomagnetic_field_and_magnet_analogy.png/640px-Geomagnetic_field_and_magnet_analogy.png)
+
+### Kräfte zwischen elektrischen Leitern
+
+Zwei parallele, stromdurchflossene Leiter üben eine Kraft aufeinander aus
+
+$$\frac{|\vec{F_{12}}|}{l} = 2k_A \cdot \frac{I_1 I_2}{d}$$
+
+
+Magnetfelder entstehen durch bewegte elektrische Ladungen (Ströme)
+
+Im SI-System gilt $k_A = \frac{\mu_0}{4\pi}$ mit $\mu_0 \approx 4\pi \cdot 10^{-7} \frac{\text{N}}{\text{A}^2}$
+
+![bg right:30% 80%](https://upload.wikimedia.org/wikipedia/commons/b/bc/MagneticWireAttraction.svg)
+
+
+### Wichtiger Unterschied zur Elektrostatik
+
+- In der Elektrostatik haben wir die Feldstärke über die Kraft definiert: $\vec{E} = \frac{\vec{F}}{Q}$
+- In der Magnetostatik geht das nicht, da die Kraft senkrecht zur Bewegungsrichtung der Ladung wirkt
+- Wir können experimentell die Feldlinien durch die Ausrichtung eines Permanentmagneten (Kompassnadeln) sichtbar machen
+
+### Magnetische Feldlinien
+
+
+![width:20cm](https://upload.wikimedia.org/wikipedia/commons/a/af/VFPt_cylindermagnet_field-representations.svg)
+
+- Magnetische Feldlinien zeigen in die Richtung, in die sich der Nordpol eines kleinen Testmagneten ausrichten würde: N -> S außerhalb des Magneten
+- Magnetische Feldlinien sind immer geschlossen (keine magnetischen Monopole)
+- Die Dichte der Feldlinien ist ein Maß für die Stärke des Magnetfeldes
+
+### Magnetische Flussdichte $\vec{B}$
+
+Die magnetische Flussdichte $\vec{B}$ zeigt entlang der magnetischen Feldlinien. Ihr Betrag ist proportional zur Dichte der Feldlinien.
+
+![bg right:33% 70%](https://upload.wikimedia.org/wikipedia/commons/0/0c/VFPt_cylindrical_magnet_thumb.svg)
+
+### Rechte-Faust-Regel
+
+- Ein gerader, stromdurchflossener Leiter erzeugt ein ringförmiges Magnetfeld. Wenn der Daumen der Faust in Stromrichtung zeigt, zeigen die gekrümmten Finger in Feldrichtung
+- Alternativ: eindrehen einer Schraube in Stromrichtung -> Drehrichtung der Schraube entspricht der Feldlinienrichtung
+
+![bg right:40% 70%](https://upload.wikimedia.org/wikipedia/commons/3/3e/Manoderecha.svg)
+
+### Magnetische Flussdichte eines stromdurchflossenen Leiters
+
+Im Abstand $r$ von einem geraden, unendlich langen Leiter:
+
+$$|\vec{B}| = \frac{\mu_0}{2\pi} \cdot \frac{I}{r}$$
+
+Einheit: das Tesla
+
+$$[\vec{B}] = [\mu_0] \cdot \frac{[I]}{[r]} = \frac{\text{N}}{\text{A}^2} \cdot \frac{\text{A}}{\text{m}} = \frac{\text{N}}{\text{A}\cdot\text{m}}  = \frac{\text{N}}{\text{C} \cdot \frac{\text{m}}{\text{s}}} = \text{T} $$
+
+
+### Einheit Tesla: numerisches Beispiel
+
+Historische Definition des Amperes: Zwei parallele, unendlich lange Leiter im Abstand von 1 m, durch die jeweils 1 A fließen, üben eine Kraft von $2 \cdot 10^{-7} \frac{\text{N}}{\text{m}}$ aufeinander aus -> $\mu_0 = 4\pi \cdot 10^{-7} \frac{\text{N}}{\text{A}^2}$
+
+Wieviel Ampere müssen durch einen Leiter fließen, um ein Magnetfeld von 1 T in 1 m Abstand zu erzeugen?
+
+
+### Größenordnung der Magnetischen Flussdichte
+
+| Magnet                | Magnetische Flussdichte *B* |
+|-----------------------------------|------------------------------------------|
+| Erdmagnetfeld                     | 30 µT – 60 µT                            |
+| Kühlschrankmagnet                 | 1 mT – 10 mT                             |
+| Magnetstreifen (Kreditkarte)      | 10 mT – 100 mT                           |
+| Lautsprechermagnet                | 100 mT – 1 T                             |
+| MRT-Gerät            | 1 T – 3 T                             |
+| Large Hadron Collider (LHC)  | 8 T                                      |
+| Fusionskraftwerk  | 5–15 T
+
+
+### Magnetische Feldstärke $\vec{H}$
+
+Die magnetische Feldstärke $\vec{H}$ beschreibt die Fähigkeit eines elektrischen Stroms, ein Magnetfeld zu erzeugen.
+
+- Einheit: $[H] = \frac{\text{A}}{\text{m}}$
+
+**Beispiele:**
+- Gerader stromdurchflossener Leiter (Abstand $r$):
+  $$H = \frac{I}{2\pi r}$$
+- Lange Spule mit $N$ Windungen und Länge $\ell$:
+  $$H = \frac{N \cdot I}{\ell}$$
+
+### Durchflutungsgesetz (Ampèresches Gesetz)
+
+Die Summe der magnetischen Feldstärke längs eines geschlossenen Weges ist gleich der Gesamtstromdurchflutung:
+
+$$\Theta = N \cdot I = \oint \vec{H}(s) \cdot d\vec{s}$$
+
+
+
+### Magnetischer Fluss $\Phi$
+
+Der magnetische Fluss $\Phi$ durch eine Fläche $A$ ist definiert als:
+
+$$\Phi = \int_A \vec{B} \cdot d\vec{A}$$
+
+- Einheit: $[\Phi] = \text{Vs}$ (Weber)
+
+Im homogenen Feld vereinfacht zu:
+
+$$\Phi = B \cdot A \cdot \cos(\alpha)$$
+
+wobei $\alpha$ der Winkel zwischen $\vec{B}$ und dem Flächennormalenvektor ist.
+
+### Materie im magnetischen Feld
+
+Ähnlich wie bei Dielektrika im elektrischen Feld reagiert Materie im Magnetfeld durch **Magnetisierung**.
+
+**Magnetische Dipole in Atomen:**
+- Elektronen haben einen intrinsischen **Spin** (magnetischer Dipol)
+- Bahnbewegung der Elektronen erzeugt **Bahnmagnetismus**
+- Atomrümpfe können ebenfalls magnetische Momente besitzen
+
+**Reaktion auf äußeres Feld:**
+- Diamagnetismus: Dipole richten sich **gegen** das äußere Feld ($\mu_r < 1$)
+- Paramagnetismus: Dipole richten sich **mit** dem äußeren Feld ($\mu_r > 1$)
+- Ferromagnetismus: Starke Ausrichtung der Dipole ($\mu_r \gg 1$)
+
+
+### Magnetisches Feld ohne Magnetisierungsbeiträge
+
+**Magnetisierung** $\vec{M}$: magnetisches Dipolmoment pro Volumeneinheit
+$$\vec{B} = \mu_0(\vec{H} + \vec{M}) = \mu_0 \mu_r \vec{H}$$
+erungsbeiträge
+
+**Konvention**: Die magnetische Feldstärke $\vec{H}$ beschreibt das durch freie Ströme erzeugte Magnetfeld – ohne Beiträge der Magnetisierung des Materials.
+
+$$\vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M}$$
+
+**Vorteil:** Das Durchflutungsgesetz gilt unverändert für freie Ströme:
+
+$$\oint \vec{H} \cdot d\vec{s} = I_{\text{frei}}$$
+
+
+### Analogie Elektrostatik <-> Magnetostatik
+
+**Elektrostatik:**
+- Elektrische Flussdichte: $\vec{D} = \varepsilon_0 \vec{E} + \vec{P}$ (bezieht sich auf freie Ladungen)
+- Vorteil: Das Gaußsche Gesetz gilt unverändert für freie Ladungen:
+  
+  $$\oint \vec{D} \cdot d\vec{A} = Q_{\text{frei}}$$
+
+**Magnetostatik:**
+
+- Magnetische Feldstärke: $\vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M}$ (bezieht sich auf freie Ströme)
+- Vorteil: Das Durchflutungsgesetz gilt unverändert für freie Ströme:
+  
+  $$\oint \vec{H} \cdot d\vec{s} = I_{\text{frei}}$$
+
+
+### Übersicht: Größen in der Magnetostatik
+
+Größe | Definition | Einheit
+--- | --- | ---
+Magnetische Flussdichte (*magnetic flux density*) | $\vec{B}$ | $[\vec{B}] = \text{T} = \frac{\text{N}}{\text{A} \cdot \text{m}}$
+Magnetische Feldstärke (*magnetic field [strength]*) | $\vec{H} = \frac{\vec{B}}{\mu_0 \mu_r}$ | $[\vec{H}] = \frac{\text{A}}{\text{m}}$
+Magnetischer Fluss (*magnetic flux*) | $\Phi = \int_A \vec{B} \cdot d\vec{A}$ | $[\Phi] = \text{Vs} = \text{Wb}$
+Durchflutung (*magnetomotive force*) | $\Theta = N \cdot I = \oint \vec{H} \cdot d\vec{s}$ | $[\Theta] = \text{A}$
+Magnetische Feldkonstante (*magnetic constant*) = ~~Permeabilität des Vakuums (*vacuum permeability*)~~ | $\mu_0$ | $[\mu_0] = \frac{\text{N}}{\text{A}^2}$
+[Absolute] Permeabilität (*[absolute] permeability*) | $\mu$ | $[\mu] = \frac{\text{N}}{\text{A}^2}$
+Relative Permeabilität (*relative permeability*) | $\mu_r = \frac{\mu}{\mu_0}$ | dimensionslos
