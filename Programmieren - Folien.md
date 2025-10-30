@@ -953,6 +953,8 @@ Zwei Typen von Schleifen:
 
 ### while: Grundform
 
+Die Schleife läuft solange `i < 3` wahr ist und zählt dabei von 0 bis 2.
+
 ```python
 i = 0
 while i < 3:
@@ -961,6 +963,8 @@ while i < 3:
 ```
 
 ### Endlosschleife vermeiden
+
+Wenn die Zählvariable nicht verändert wird, bleibt die Bedingung immer wahr und die Schleife läuft endlos.
 
 ```python
 # Schlechte Idee: i wird nie verändert → Endlosschleife
@@ -971,6 +975,8 @@ while i < 3:
 ```
 
 ### while: Zählschleife (wenn Bedingungen flexibler sein sollen)
+
+Mehrere Bedingungen können kombiniert werden, um komplexere Abbruchkriterien zu definieren.
 
 ```python
 schritte = 0
@@ -983,6 +989,8 @@ while energie > 0 and schritte < 5:
 
 ### Sentinel-Schleife (lesen bis Ende)
 
+Die Schleife liest Werte ein, bis ein spezieller Sentinel-Wert (hier: leerer String) eingegeben wird.
+
 ```python
 zeile = input("Wert (leer beendet): ")
 while zeile != "":
@@ -991,6 +999,8 @@ while zeile != "":
 ```
 
 ### Iteration bis Toleranz (Konvergenz)
+
+Die Schleife läuft, bis ein Zielwert mit einer definierten Genauigkeit erreicht ist.
 
 ```python
 temp = 20.0
@@ -1004,6 +1014,8 @@ print(f"Endtemperatur {temp:.1f}°C nach {iters} Schritten")
 ```
 
 ### `break` und `continue` mit `while`
+
+`continue` überspringt den Rest des aktuellen Durchlaufs, `break` beendet die Schleife sofort.
 
 ```python
 # Suche die erste ungerade Zahl > 15 unter den Zahlen 1–20
@@ -1045,12 +1057,16 @@ Entwirf eine Regelung, die eine Geschwindigkeit `v` auf `v_target` bringt.
 
 ### `for`: Wiederholungen mit `range()`
 
+`range(n)` erzeugt Zahlen von 0 bis n-1 und ermöglicht damit eine feste Anzahl von Wiederholungen.
+
 ```python
 for i in range(5):  # 0, 1, 2, 3, 4
     print(f"Durchlauf {i}")
 ```
 
 ### `range()`: Integer-Folgen erzeugen
+
+`range()` ist ein spezieller Typ, der Zahlenfolgen effizient erzeugt, ohne sie alle im Speicher zu halten.
 
 ```python
 for i in range(5):  # 0,1,2,3,4
@@ -1063,6 +1079,8 @@ print(range(5))  # range ist ein spezieller Typ
 
 ### `range(start, stop)` und `range(start, stop, step)`
 
+Mit Start-, Stop- und Schrittweite können beliebige Zahlenfolgen erzeugt werden, auch rückwärts.
+
 ```python
 for i in range(2, 7):  # 2,3,4,5,6
     print(i)
@@ -1074,6 +1092,8 @@ for t in range(10, -1, -2):  # 10,8,6,4,2,0
 ```
 
 ### Über Strings iterieren
+
+Strings können direkt mit `for` durchlaufen werden, um Zeichen für Zeichen zu verarbeiten.
 
 ```python
 for ch in "ABCD":
@@ -1088,6 +1108,8 @@ for buchstabe in wort:
 
 ### Anwendung: Zeichen zählen
 
+Eine Schleife über einen String ermöglicht das Zählen bestimmter Zeichen durch bedingte Inkrementierung.
+
 ```python
 text = "Programmieren"
 anzahl_e = 0
@@ -1099,6 +1121,8 @@ print(f"Anzahl 'e': {anzahl_e}")
 
 ### `break` und `continue` in `for`-Schleifen
 
+Auch in `for`-Schleifen können `continue` und `break` verwendet werden, um die Ausführung zu steuern.
+
 ```python
 for zahl in range(1, 11):
     if zahl % 3 == 0:
@@ -1109,6 +1133,8 @@ for zahl in range(1, 11):
 ```
 
 ### Verschachtelte Schleifen: Multiplikationstabelle
+
+Schleifen können ineinander verschachtelt werden, um über mehrdimensionale Strukturen zu iterieren.
 
 ```python
 for i in range(1, 4):
