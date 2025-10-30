@@ -1303,7 +1303,7 @@ Im SI-System gilt $k_A = \frac{\mu_0}{4\pi}$ mit $\mu_0 \approx 4\pi \cdot 10^{-
 ### Wichtiger Unterschied zur Elektrostatik
 
 - In der Elektrostatik haben wir die Feldstärke über die Kraft definiert: $\vec{E} = \frac{\vec{F}}{Q}$
-- In der Magnetostatik geht das nicht, da die Kraft senkrecht zur Bewegungsrichtung der Ladung wirkt
+- In der Magnetostatik geht das nicht so einfach, da die Kraft senkrecht zur Bewegungsrichtung der Ladung wirkt
 - Wir können experimentell die Feldlinien durch die Ausrichtung eines Permanentmagneten (Kompassnadeln) sichtbar machen
 
 ### Magnetische Feldlinien
@@ -1312,7 +1312,7 @@ Im SI-System gilt $k_A = \frac{\mu_0}{4\pi}$ mit $\mu_0 \approx 4\pi \cdot 10^{-
 ![width:20cm](https://upload.wikimedia.org/wikipedia/commons/a/af/VFPt_cylindermagnet_field-representations.svg)
 
 - Magnetische Feldlinien zeigen in die Richtung, in die sich der Nordpol eines kleinen Testmagneten ausrichten würde: N -> S außerhalb des Magneten
-- Magnetische Feldlinien sind immer geschlossen (keine magnetischen Monopole)
+- Magnetische Feldlinien sind immer geschlossen (keine magnetischen Monopole) oder unendlich lang
 - Die Dichte der Feldlinien ist ein Maß für die Stärke des Magnetfeldes
 
 ### Magnetische Flussdichte $\vec{B}$
@@ -1327,6 +1327,8 @@ Die magnetische Flussdichte $\vec{B}$ zeigt entlang der magnetischen Feldlinien.
 - Alternativ: eindrehen einer Schraube in Stromrichtung -> Drehrichtung der Schraube entspricht der Feldlinienrichtung
 
 ![bg right:40% 70%](https://upload.wikimedia.org/wikipedia/commons/3/3e/Manoderecha.svg)
+
+
 
 ### Magnetische Flussdichte eines stromdurchflossenen Leiters
 
@@ -1358,25 +1360,53 @@ Wieviel Ampere müssen durch einen Leiter fließen, um ein Magnetfeld von 1 T in
 | Large Hadron Collider (LHC)  | 8 T                                      |
 | Fusionskraftwerk  | 5–15 T
 
+### Kräfte im magnetischen Feld
 
-### Magnetische Feldstärke $\vec{H}$
+**Lorentzkraft auf bewegte Ladung:**
 
-Die magnetische Feldstärke $\vec{H}$ beschreibt die Fähigkeit eines elektrischen Stroms, ein Magnetfeld zu erzeugen.
+$$\vec{F} = Q \cdot (\vec{v} \times \vec{B})$$
 
-- Einheit: $[H] = \frac{\text{A}}{\text{m}}$
+**Kraft auf stromdurchflossenen Leiter:**
 
-**Beispiele:**
-- Gerader stromdurchflossener Leiter (Abstand $r$):
-  $$H = \frac{I}{2\pi r}$$
-- Lange Spule mit $N$ Windungen und Länge $\ell$:
-  $$H = \frac{N \cdot I}{\ell}$$
+$$\vec{F} = I \cdot (\vec{\ell} \times \vec{B})$$
 
-### Durchflutungsgesetz (Ampèresches Gesetz)
+- Skalar (wenn $\vec{\ell} \perp \vec{B}$): $F = I \cdot \ell \cdot B$
+- **Rechte-Hand-Regel:** Daumen = Stromrichtung, Zeigefinger = Feldrichtung, Mittelfinger = Kraftrichtung
 
-Die Summe der magnetischen Feldstärke längs eines geschlossenen Weges ist gleich der Gesamtstromdurchflutung:
+![bg right:30% 90%](https://upload.wikimedia.org/wikipedia/commons/2/23/UVW-regel-strom-und-positive-ladung.svg)
 
-$$\Theta = N \cdot I = \oint \vec{H}(s) \cdot d\vec{s}$$
 
+
+### Bewegte Ladung im Magnetfeld
+
+
+**Kreisbewegung:**
+- Lorentzkraft wirkt als Zentripetalkraft: $Q \cdot v \cdot B = \frac{m \cdot v^2}{r}$
+- Bahnradius: $r = \frac{m \cdot v}{Q \cdot B}$
+- Umlauffrequenz: $f = \frac{Q \cdot B}{2\pi m}$ (unabhängig von $v$!)
+
+**Anwendungen:**
+- Teilchenbeschleuniger (Zyklotron)
+- Massenspektrometer
+
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3a/Circular-path-of-a-proton-in-a-homogeneous-magnetic-field.svg)
+
+
+
+
+### Vergleich: Elektrisches und Magnetisches Feld
+
+| Eigenschaft | Elektrisches Feld | Magnetisches Feld |
+|-------------|-------------------|-------------------|
+| **Feldlinien** | Beginnen/enden auf Ladungen | Enden nie |
+| **Quellen** | Ladungen | Keine (keine Monopole) |
+| **Wirbel** | Keine (wirbelfrei) | Ströme erzeugen Wirbel |
+| **Potential** | Darstellbar als Gradient | Nicht darstellbar |
+| **Arbeit** | Wegunabhängig | Wegabhängig |
+
+**Elektrostatisches Feld** = Quellenfeld, wirbelfrei
+**Magnetostatisches Feld** = Quellenfrei, Wirbelfeld
 
 
 ### Magnetischer Fluss $\Phi$
@@ -1387,13 +1417,97 @@ $$\Phi = \int_A \vec{B} \cdot d\vec{A}$$
 
 - Einheit: $[\Phi] = \text{Vs}$ (Weber)
 
-Im homogenen Feld vereinfacht zu:
+Da das magnetische Feld *quellenfrei* ist, gilt für jede geschlossene Fläche:
 
-$$\Phi = B \cdot A \cdot \cos(\alpha)$$
+$$\Phi_\text{geschl. Fl.} = \oint_A \vec{B} \cdot d\vec{A} = 0$$
 
-wobei $\alpha$ der Winkel zwischen $\vec{B}$ und dem Flächennormalenvektor ist.
+(Vergleiche: Satz von Gauß, $\oint_A \vec{D} \cdot d\vec{A} = Q_{\text{innen}}$)
 
-### Materie im magnetischen Feld
+
+
+
+### Magnetische Feldstärke $\vec{H}$
+
+Die magnetische Feldstärke $\vec{H}$ beschreibt die Fähigkeit eines elektrischen Stroms, ein Magnetfeld zu erzeugen.
+
+**Zusammenhang mit der magnetischen Flussdichte** (im Vakuum):
+
+$$\vec{B} = \mu_0 \vec{H}$$
+
+- Einheit: $[H] = \frac{[B]}{[\mu_0]} = \frac{\text{T}}{\frac{\text{N}}{\text{A}^2}} = \frac{\frac{\text{N}\cdot\text{s}}{\text{A}\cdot\text{m}}}{\frac{\text{N}}{\text{A}^2}}=\frac{\text{A}}{\text{m}}$
+
+**Beispiel:**
+- Gerader stromdurchflossener Leiter (Abstand $r$): $H = \frac{I}{2\pi r}$
+
+### Durchflutungsgesetz (Ampèresches Gesetz)
+
+Die Summe der magnetischen Feldstärke längs eines geschlossenen Weges ist gleich der Gesamtstromdurchflutung:
+
+$$\Theta = N \cdot I = \oint \vec{H}(s) \cdot d\vec{s}$$
+
+Erinnerung: in der Elektrostatik gilt aufgrund der Wegunabhängigkeit des Potentials:
+
+$$U =\int \vec{E}(s) \cdot d\vec{s} ~~\Rightarrow~~ \oint \vec{E}(s) \cdot d\vec{s} = 0$$
+
+
+### Vergleich: Gaußsches Gesetz und Ampèresches Gesetz
+
+**Berechnung von Feldern mit hoher Symmetrie:**
+
+| Elektrostatik | Magnetostatik |
+|---------------|---------------|
+| **Gaußsches Gesetz** | **Ampèresches Gesetz** |
+| $\oint_A \vec{D} \cdot d\vec{A} = Q_{\text{innen}}$ | $\oint_s \vec{H} \cdot d\vec{s} = I_{\text{umschlossen}}$ |
+| Quellenfeld | Wirbelfeld |
+| **Quellenfreiheit:** | **Wirbelfreiheit:** |
+| $\oint_s \vec{E} \cdot d\vec{s} = 0$ | $\oint_A \vec{B} \cdot d\vec{A} = 0$ |
+| (Elektrostatische Felder sind wirbelfrei) | (Magnetische Felder sind quellenfrei) |
+
+**Anwendung bei Symmetrie:**
+- Gaußsches Gesetz → Kugel-, Zylinder-, Plattensymmetrie für Ladungen
+- Ampèresches Gesetz → Zylinder-, Ebenen-, Toroidsymmetrie für Ströme
+
+### Magnetfeld einer langen Spule
+
+**Aufbau:** Lange Spule mit $N$ Windungen, Länge $\ell$, Strom $I$
+
+**Durchflutungsgesetz:**
+
+$$\oint \vec{H} \cdot d\vec{s} = N \cdot I$$
+
+**Im Inneren der Spule:**
+
+$$H = \frac{N \cdot I}{\ell} = n \cdot I \quad \text{mit } n = \frac{N}{\ell}$$
+
+$$B = \mu_0 \mu_r H = \mu_0 \mu_r n I$$
+
+**Außerhalb:** $B \approx 0$
+
+![bg right:40% 80%](https://upload.wikimedia.org/wikipedia/commons/0/05/Cylindrical_long_tightly-wound_coil2.svg)
+
+
+### Beispiel: Magnetfeld in einem Tokamak
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Schematic-of-a-tokamak-chamber-and-magnetic-profile.jpg/640px-Schematic-of-a-tokamak-chamber-and-magnetic-profile.jpg)
+
+### Beispiel: Magnetfeld in einem Tokamak
+
+Ringförmiges Fusionsreaktor-Design mit toroidalem Magnetfeld zum Plasmaeinschluss
+
+**Toroidale Feldspulen (TF):**
+- $N$ Spulen gleichmäßig um den Torus verteilt, $M$ Windungen, Strom $I$ pro Windung
+- Ampèresches Gesetz auf kreisförmigem Weg (Radius $r$):
+
+$$\oint \vec{H} \cdot d\vec{s} = H \cdot 2\pi r = N M \cdot I \Rightarrow H(r) = \frac{N M I}{2\pi r}$$
+
+**Eigenschaften:**
+- Feld nimmt mit $\frac{1}{r}$ ab (inhomogen)
+- Typische Werte: $B \approx 5{-}15 \, \text{T}$
+
+**Beispiel ITER:** 18 TF-Spulen, 134 Windungen  68 kA, B = 5,3 T bei 6,2 m Radius
+
+
+### Magnetisches Verhalten von Materie
 
 Ähnlich wie bei Dielektrika im elektrischen Feld reagiert Materie im Magnetfeld durch **Magnetisierung**.
 
@@ -1402,10 +1516,96 @@ wobei $\alpha$ der Winkel zwischen $\vec{B}$ und dem Flächennormalenvektor ist.
 - Bahnbewegung der Elektronen erzeugt **Bahnmagnetismus**
 - Atomrümpfe können ebenfalls magnetische Momente besitzen
 
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/c/c8/Elementary-magnets.png)
+
+
+### Magnetische Suszeptibilität und Permeabilität
+
+Die Magnetisierung $\vec{M}$ ist proportional zur magnetischen Feldstärke $\vec{H}$:
+
+**Magnetische Suszeptibilität** $\chi_m$:
+
+$$\vec{M} = \chi_m \vec{H} \quad \text{bzw.} \quad \mu_r = 1 + \chi_m$$
+
 **Reaktion auf äußeres Feld:**
-- Diamagnetismus: Dipole richten sich **gegen** das äußere Feld ($\mu_r < 1$)
-- Paramagnetismus: Dipole richten sich **mit** dem äußeren Feld ($\mu_r > 1$)
-- Ferromagnetismus: Starke Ausrichtung der Dipole ($\mu_r \gg 1$)
+- Diamagnetismus: Dipole richten sich **gegen** das äußere Feld ($\mu_r < 1$, $\chi_m < 0$)
+- Paramagnetismus: Dipole richten sich **mit** dem äußeren Feld ($\mu_r > 1$, $\chi_m > 0$)
+- Ferromagnetismus: Starke Ausrichtung der Dipole ($\mu_r \gg 1$, $\chi_m \gg 1$)
+
+
+### Diamagnetismus
+
+**Eigenschaften:**
+- Tritt in allen Materialien auf
+- Magnetische Suszeptibilität: $\chi_m < 0$ (sehr klein)
+- Relative Permeabilität: $\mu_r < 1$ (knapp unter 1)
+
+**Physikalischer Mechanismus:**
+- Externes Magnetfeld induziert Änderung der Elektronenbahnen
+- Erzeugt magnetisches Moment **entgegen** dem äußeren Feld
+- Effekt verschwindet, wenn Feld abgeschaltet wird
+
+**Beispiele:** Kupfer, Silber, Gold, Wasser, organische Materialien
+
+
+### Paramagnetismus
+
+**Eigenschaften:**
+- Atome besitzen permanente magnetische Dipole
+- Magnetische Suszeptibilität: $\chi_m > 0$ (klein)
+- Relative Permeabilität: $\mu_r > 1$ (knapp über 1)
+- Paramagnete werden **schwach von Magneten angezogen**
+
+**Physikalischer Mechanismus:**
+- Ohne externes Feld: zufällige Ausrichtung der Dipole (thermische Bewegung)
+- Mit externem Feld: partielle Ausrichtung **parallel** zum Feld
+- Stärker bei tiefen Temperaturen (Curie-Gesetz: $\chi_m \propto 1/T$)
+
+**Beispiele:** Aluminium, Platin, Sauerstoff
+
+
+
+### Ferromagnetismus
+
+**Eigenschaften:**
+- Sehr starke Magnetisierung
+- Magnetische Suszeptibilität: $\chi_m \gg 1$
+- Relative Permeabilität: $\mu_r \gg 1$ (bis zu $10^5$), viel größer als bei Paramagneten!
+- **Spontane Magnetisierung** auch ohne externes Feld möglich
+
+**Physikalischer Mechanismus:**
+- Starke Wechselwirkung zwischen benachbarten Atomen (**Austauschwechselwirkung**)
+- Bildung von **Weiss'schen Bezirken** (Domänen)
+- Externes Feld richtet Domänen aus
+
+**Beispiele:** Eisen, Kobalt, Nickel
+
+### Weiß’sche Bezirke
+- Bereiche mit **gleich orientierten magnetischen Dipolen**
+- Spontane Magnetisierung innerhalb der Bezirke
+
+**Ohne äußeres Feld:**
+- Bezirke sind zufällig orientiert → keine Gesamtmagnetisierung
+
+**Mit äußerem Feld:**
+- Bezirke richten sich aus
+- Bei Sättigung: einheitliche Ausrichtung
+
+![bg right:50% 100%](https://upload.wikimedia.org/wikipedia/commons/0/0a/Growing-magnetic-domains.svg)
+
+### Ferromagnetismus: Hysterese
+
+
+**Kenngrößen:**
+- **Sättigungsmagnetisierung** $M_s$: maximale Magnetisierung
+- **Remanenz** $B_r$: verbleibende Flussdichte bei $H = 0$
+- **Koerzitivfeldstärke** $H_c$: Feldstärke zum Entmagnetisieren
+
+**Anwendungen:**
+- Weichmagnetische Werkstoffe: kleine Hysterese (Transformatorkerne)
+- Hartmagnetische Werkstoffe: große Hysterese (Permanentmagnete)
+
+![bg right:40% 85%](https://upload.wikimedia.org/wikipedia/commons/e/ee/Hysteresis-from-unmagnetised-state.svg)
 
 
 ### Magnetisches Feld und Magnetisierung
@@ -1414,9 +1614,11 @@ wobei $\alpha$ der Winkel zwischen $\vec{B}$ und dem Flächennormalenvektor ist.
 
 $$\vec{B} = \mu_0(\vec{H} + \vec{M}) = \mu_0 \mu_r \vec{H}$$
 
-**Konvention**: Die magnetische Feldstärke $\vec{H}$ beschreibt das durch freie Ströme erzeugte Magnetfeld – ohne Beiträge der Magnetisierung des Materials.
+**Zusammenhang der Feldgrößen:**
 
-$$\vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M}$$
+$$\vec{H} = \frac{\vec{B}}{\mu_0 \mu_r}$$
+
+**Konvention**: Die magnetische Feldstärke $\vec{H}$ beschreibt das durch freie Ströme erzeugte Magnetfeld – ohne Beiträge der Magnetisierung des Materials.
 
 **Vorteil:** Das Durchflutungsgesetz gilt unverändert für freie Ströme:
 
@@ -1438,6 +1640,9 @@ $$\oint \vec{H} \cdot d\vec{s} = I_{\text{frei}}$$
   
   $$\oint \vec{H} \cdot d\vec{s} = I_{\text{frei}}$$
 
+### Analogie der Feldgrößen
+
+![width:18cm](https://upload.wikimedia.org/wikipedia/commons/d/d2/Gr%C3%B6%C3%9Fen_im_elektrischen_und_magnetischen_Feld.svg)
 
 ### Übersicht: Größen in der Magnetostatik
 
@@ -1450,3 +1655,4 @@ Durchflutung (*magnetomotive force*) | $\Theta = N \cdot I = \oint \vec{H} \cdot
 Magnetische Feldkonstante (*magnetic constant*) = ~~Permeabilität des Vakuums (*vacuum permeability*)~~ | $\mu_0$ | $[\mu_0] = \frac{\text{N}}{\text{A}^2}$
 [Absolute] Permeabilität (*[absolute] permeability*) | $\mu$ | $[\mu] = \frac{\text{N}}{\text{A}^2}$
 Relative Permeabilität (*relative permeability*) | $\mu_r = \frac{\mu}{\mu_0}$ | dimensionslos
+
