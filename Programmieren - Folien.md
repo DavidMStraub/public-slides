@@ -720,6 +720,8 @@ def funktionsname(parameter1, parameter2):
 
 ### Erste einfache Funktion
 
+Eine Funktion ohne Parameter führt bei jedem Aufruf denselben Code aus.
+
 ```python
 def mission_start():
     print("🚀 Mission Control: Start-Sequenz initiiert")
@@ -730,6 +732,8 @@ mission_start()
 ```
 
 ### Funktionen mit Parametern
+
+Parameter ermöglichen es, Funktionen mit unterschiedlichen Eingabewerten flexibel zu nutzen.
 
 ```python
 def mission_status(spacecraft):
@@ -742,6 +746,8 @@ mission_status("Dragon Capsule")
 ```
 
 ### Mehrere Parameter
+
+Funktionen können mehrere Parameter haben, die sowohl positionell als auch mit Namen übergeben werden können.
 
 ```python
 def flugdaten_anzeigen(flugzeug_typ, hoehe_ft, geschwindigkeit_kn):
@@ -757,6 +763,8 @@ flugdaten_anzeigen(hoehe_ft=25000, flugzeug_typ="Boeing 737", geschwindigkeit_kn
 ```
 
 ### Rückgabewerte: return
+
+Mit `return` gibt eine Funktion einen berechneten Wert zurück, der weiterverwendet werden kann.
 
 ```python
 def berechne_orbital_geschwindigkeit(hoehe_km):
@@ -776,6 +784,8 @@ print(f"ISS Orbitalgeschwindigkeit: {v_orbital:.2f} km/s")
 
 ### Mehrere Rückgabewerte
 
+Funktionen können mehrere Werte als Tupel zurückgeben, die direkt entpackt werden können.
+
 ```python
 def triebwerk_analyse(schub_newton, treibstoff_verbrauch_kg_s):
     spezifischer_impuls = schub_newton / treibstoff_verbrauch_kg_s
@@ -791,6 +801,8 @@ Mehr zu „Tupeln“ (`x, y`) in Kapitel 5 (Datenstrukturen)!
 
 
 ### Standardwerte für Parameter
+
+Parameter können Standardwerte erhalten, die verwendet werden, wenn beim Aufruf kein Wert übergeben wird.
 
 ```python
 def mission_planung(ziel, startdatum="TBD", crew_groesse=3, notfall_backup=True):
@@ -808,6 +820,9 @@ mission_planung("Europa", startdatum="2030-01-01", notfall_backup=False)
 ```
 
 ### Lokale vs. Globale Variablen
+
+Lokale Variablen in Funktionen überdecken gleichnamige globale Variablen, ohne diese zu verändern.
+
 ```python
 # Globale Variable
 temperatur = 20  # °C
