@@ -1351,12 +1351,19 @@ print("Kabine" in komponenten)
 
 ### Listen sortieren
 
-Die Methode `sort()` sortiert die Liste direkt.
+Die Methode `sort()` sortiert die Liste direkt (in-place), `sorted()` gibt eine neue sortierte Liste zurück.
 
 ```python
 hoehen = [350, 120, 280, 95, 410]
-hoehen.sort()
+hoehen.sort()  # Sortiert die Liste direkt
 print(hoehen)
+```
+
+```python
+werte = [350, 120, 280, 95, 410]
+sortiert = sorted(werte)  # Gibt neue Liste zurück
+print(f"Original: {werte}")
+print(f"Sortiert: {sortiert}")
 ```
 
 
@@ -1692,24 +1699,18 @@ print(type(messungen))
 NumPy erlaubt vektorisierte Operationen – viel einfacher und schneller!
 
 ```python
-# Listen: Element für Element
+# Listen: Element für Element mit Schleife
 liste = [1, 2, 3, 4]
-verdoppelt_liste = [x * 2 for x in liste]
-print(f"Liste verdoppelt: {verdoppelt_liste}")
+verdoppelt = []
+for x in liste:
+    verdoppelt.append(x * 2)
+print(verdoppelt)
 ```
 
 ```python
 # NumPy: Vektorisiert (alle auf einmal!)
 array = np.array([1, 2, 3, 4])
-verdoppelt_array = array * 2
-print(f"Array verdoppelt: {verdoppelt_array}")
-```
-
-```python
-# Operationen zwischen Arrays
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-print(f"Summe: {a + b}")
+print(array * 2)
 ```
 
 ### Mathematische Funktionen
