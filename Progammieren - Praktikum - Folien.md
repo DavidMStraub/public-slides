@@ -138,3 +138,22 @@ def test_negative_starthoehe():
 - Erweitern Sie die Funktion zur Berechnung der Gleitstrecke, um zusätzlich den Gleitwinkel in Grad zu berechnen und zurückzugeben.
 - Der Gleitwinkel $\theta$ kann mit der Formel $\tan(\theta) = \frac{\text{Höhenverlust}}{\text{Flugstrecke}}$ berechnet werden.
 - Passen Sie die Ausgabe-Funktion an, um auch den Gleitwinkel auszugeben.
+
+
+### Aufgabe: Primzahlbestimmung Teil 1
+
+Schreiben Sie eine Funktion `ist_prim`, die überprüft, ob eine Zahl eine Primzahl ist. Die Funktion soll `True` zurückgeben, wenn die Zahl eine Primzahl ist, und `False`, wenn nicht.
+
+Hinweise:
+
+- Eine Primzahl ist eine natürliche Zahl größer als 1, die nur durch 1 und sich selbst teilbar ist.
+- Verwenden Sie eine Schleife, um die Teilbarkeit der Zahl durch alle Zahlen ab 2 zu überprüfen. Überlegen Sie sich, bis zu welcher Zahl Sie prüfen müssen.
+- Schreiben Sie eine Testfunktion, die die Korrektheit Ihrer Primzahl-Funktion überprüft (z.B. dass sie `True` für 1, 2, 3, 5, 7 und `False` für 4, 6, 8, 9 zurückgibt).
+
+### Primzahlbestimmung Teil 2
+
+Schreiben Sie eine Funktion, die alle Primzahlen bis zu einer gegebenen Zahl `n` findet und in einer Liste zurückgibt.
+
+Hinweise:
+
+- Verwenden Sie Ihre Primzahl-Funktion aus Teil 1, um zu überprüfen, ob jede Zahl bis `n` eine Primzahl ist.
