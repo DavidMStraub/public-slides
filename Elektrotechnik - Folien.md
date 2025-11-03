@@ -1569,6 +1569,12 @@ $$\vec{M} = \chi_m \vec{H} \quad \text{bzw.} \quad \mu_r = 1 + \chi_m$$
 **Beispiele:** Kupfer, Silber, Gold, Wasser, organische Materialien
 
 
+### Levitation
+
+Diamagnetische Materialien können in starken Magnetfeldern schweben
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/7/7b/Frog_diamagnetic_levitation.jpg)
+
 ### Paramagnetismus
 
 **Eigenschaften:**
@@ -1618,15 +1624,26 @@ $$\vec{M} = \chi_m \vec{H} \quad \text{bzw.} \quad \mu_r = 1 + \chi_m$$
 
 
 **Kenngrößen:**
-- **Sättigungsmagnetisierung** $M_s$: maximale Magnetisierung
-- **Remanenz** $B_r$: verbleibende Flussdichte bei $H = 0$
-- **Koerzitivfeldstärke** $H_c$: Feldstärke zum Entmagnetisieren
-
-**Anwendungen:**
-- Weichmagnetische Werkstoffe: kleine Hysterese (Transformatorkerne)
-- Hartmagnetische Werkstoffe: große Hysterese (Permanentmagnete)
+- **Sättigungsmagnetisierung** (1): maximale Magnetisierung
+- **Remanenz** (2): verbleibende Flussdichte bei verschwindendem äußeren Feld
+- **Koerzitivfeldstärke** (3): Feldstärke zum Entmagnetisieren
 
 ![bg right:40% 85%](https://upload.wikimedia.org/wikipedia/commons/e/ee/Hysteresis-from-unmagnetised-state.svg)
+
+
+### Harte/weiche Magnete
+
+- **Weiche Magnetmaterialien:**
+    - Leicht magnetisier- und entmagnetisierbar
+    - Anwendung: Transformatoren, Elektromagnete
+
+- **Harte Magnetmaterialien:**
+    - Behalten Magnetisierung
+    - Anwendung: Permanentmagnete, Motoren, Lautsprecher
+
+
+![bg right:60% 100%](https://upload.wikimedia.org/wikipedia/commons/4/4b/Hysteresis-comparison.svg)
+
 
 
 ### Magnetisches Feld und Magnetisierung
@@ -1807,3 +1824,76 @@ $$\Phi \approx \frac{\Theta}{R_{m,L}} = \frac{N \cdot I \cdot \mu_0 \cdot A}{\de
 
 **Praktische Konsequenz:** Der Luftspalt bestimmt die magnetischen Eigenschaften!
 
+
+
+## Quiz: Das Magnetische Feld
+
+### Warum sind magnetische Feldlinien immer geschlossen oder unendlich lang?
+- A) Weil Magnetfelder nur in geschlossenen Leitern existieren  
+- B) Weil es keine magnetischen Monopole gibt  
+- C) Weil sie der Rechte-Hand-Regel folgen müssen  
+- D) Weil sie von der Lorentzkraft erzeugt werden  
+
+
+### Was ist der fundamentale Unterschied zwischen elektrischen und magnetischen Feldlinien?
+
+- A) Elektrische Feldlinien sind immer gerade, magnetische immer gekrümmt  
+- B) Elektrische Feldlinien beginnen und enden auf Ladungen, magnetische Feldlinien sind geschlossen  
+- C) Magnetische Feldlinien übertragen Energie, elektrische nicht  
+- D) Es gibt keinen fundamentalen Unterschied  
+
+
+### Welche Aussage über die Lorentzkraft ist korrekt?
+- A) Sie wirkt parallel zur Bewegungsrichtung der Ladung  
+- B) Sie verrichtet Arbeit an einer bewegten Ladung  
+- C) Sie wirkt senkrecht sowohl zur Bewegungsrichtung als auch zum Magnetfeld  
+- D) Sie ist unabhängig von der Geschwindigkeit der Ladung  
+
+### Was besagt das Durchflutungsgesetz (Ampèresches Gesetz)?
+
+- A) Die magnetische Feldstärke entlang eines geschlossenen Weges ist gleich null  
+- B) Der magnetische Fluss durch eine geschlossene Fläche ist gleich der umschlossenen Stromstärke  
+- C) Das Wegintegral der magnetischen Feldstärke entlang eines geschlossenen Weges ist gleich der umschlossenen Stromstärke  
+- D) Die magnetische Flussdichte ist proportional zum Abstand vom Leiter  
+
+### Wie unterscheidet sich das magnetische Feld im Inneren einer langen Spule vom Feld außerhalb?
+
+- A) Außen ist das Feld stärker als innen  
+- B) Innen ist das Feld homogen und stark, außen nahezu null  
+- C) Die Feldrichtung ist innen und außen entgegengesetzt  
+- D) Es gibt keinen Unterschied  
+
+### Warum nimmt die magnetische Flussdichte mit $\frac{1}{r}$ vom geraden Leiter ab?
+
+- A) Weil die magnetische Energie mit dem Abstand abnimmt  
+- B) Weil die Feldlinien kreisförmig um den Leiter verlaufen und sich auf größere Umfänge verteilen  
+- C) Weil die Permeabilität mit dem Abstand zunimmt  
+- D) Weil magnetische Monopole Energie absorbieren  
+
+### Warum ist die Umlauffrequenz einer Ladung im homogenen Magnetfeld unabhängig von ihrer Geschwindigkeit?
+
+- A) Weil die Lorentzkraft proportional zur Geschwindigkeit ist  
+- B) Weil schnellere Teilchen einen größeren Radius haben, aber die gleiche Zeit für einen Umlauf benötigen  
+- C) Weil das Magnetfeld die Energie der Ladung konstant hält  
+- D) Weil die magnetische Flussdichte mit der Geschwindigkeit skaliert  
+
+### Was ist die physikalische Bedeutung der magnetischen Feldstärke $\vec{H}$ im Vergleich zur magnetischen Flussdichte $\vec{B}$?
+
+- A) $\vec{H}$ beschreibt die Gesamtenergie des Magnetfeldes  
+- B) $\vec{H}$ beschreibt das durch freie Ströme erzeugte Feld ohne Materialbeiträge  
+- C) $\vec{H}$ und $\vec{B}$ sind immer identisch  
+- D) $\vec{H}$ existiert nur in ferromagnetischen Materialien  
+
+### Warum werden diamagnetische Materialien von Magneten abgestoßen?
+
+- A) Weil ihre Atome keine magnetischen Dipole besitzen  
+- B) Weil das externe Feld Elektronenbahnen so verändert, dass ein Gegenfeld entsteht  
+- C) Weil sie eine höhere Permeabilität als Luft haben  
+- D) Weil sie thermisch instabil sind  
+
+
+### Was ist der physikalische Ursprung des permanenten Magnetismus in Ferromagneten?
+- A) Die Bahnbewegung der Protonen im Atomkern  
+- B) Der Elektronenspin und dessen kollektive Ausrichtung  
+- C) Die Bewegung freier Elektronen im Leitungsband  
+- D) Die thermische Bewegung der Atome  
