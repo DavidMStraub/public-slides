@@ -1182,6 +1182,65 @@ Schreibe eine Funktion, die die Quersumme einer positiven Ganzzahl berechnet.
 ![bg right:30% 80%](https://upload.wikimedia.org/wikipedia/commons/d/d7/Oxygen480-status-battery-charging-080.svg)
 
 
+## Einschub: Wie fange ich an? 🤔
+
+### 🤔 Funktion oder Skript?
+
+**Erste Entscheidung:**
+
+| Funktion | Skript |
+|----------|--------|
+| Wiederverwendbarer Baustein | Vollständiges Programm |
+| Parameter → `return` | `input()` → `print()` |
+| **Beispiel:** `def quadrat(x)` | **Beispiel:** Taschenrechner |
+
+**Faustregel:**
+- Wird es **mehrfach verwendet**? → Funktion
+- Ist es ein **eigenständiges Programm**? → Skript
+
+**Hinweis:** Skripte können auch Funktionen enthalten!
+
+
+### 📋 Vorgehen: Funktion schreiben
+
+**Schritt 1: Signatur klären**
+```python
+def funktionsname(parameter1, parameter2):
+    # Was kommt rein? Was kommt raus?
+    return ergebnis
+```
+
+**Fragen:**
+- Welche Eingabewerte? → Parameter
+- Was zurückgeben? → `return`
+- Welche Datentypen?
+
+**Schritt 2: Implementieren**
+**Schirtt 3: Testen**
+
+
+### 📋 Vorgehen: Skript schreiben
+
+**Denken Sie in 3 Phasen: Eingabe → Verarbeitung → Ausgabe**
+
+```python
+# 1. EINGABE
+name = input("Name? ")
+alter = int(input("Alter? "))
+
+# 2. VERARBEITUNG
+geburtsjahr = 2024 - alter
+
+# 3. AUSGABE
+print(f"Hallo {name}!")
+print(f"Geboren ca. {geburtsjahr}")
+```
+
+- Woher kommen die Daten? (Tastatur, Datei, ...)
+- Was muss berechnet werden?
+- Wie sieht die Ausgabe aus?
+
+
 ## Datenstrukturen
 
 ### Warum Datenstrukturen?
