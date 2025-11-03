@@ -157,3 +157,13 @@ Schreiben Sie eine Funktion, die alle Primzahlen bis zu einer gegebenen Zahl `n`
 Hinweise:
 
 - Verwenden Sie Ihre Primzahl-Funktion aus Teil 1, um zu überprüfen, ob jede Zahl bis `n` eine Primzahl ist.
+
+### Primzahlbestimmung: Zusatzaufgaben
+
+- Summe der Primzahlen: Schreiben Sie eine Funktion, die die Summe aller Primzahlen bis n berechnet.
+Beispiel: Für n = 10 → 2 + 3 + 5 + 7 = 17.
+
+- Primzahldifferenzen: Erstellen Sie eine Liste mit den Abständen zwischen aufeinanderfolgenden Primzahlen bis n.
+Beispiel: Zwischen 2, 3, 5, 7 → Differenzen: `[1, 2, 2]`.
+
+- Primzahlzwillinge: Finden Sie alle Primzahlzwillinge (Paare von Primzahlen, die genau 2 auseinanderliegen, z. B. (3,5), (5,7), (11,13)) bis `n`.
