@@ -15,7 +15,7 @@ David Straub
 
 ### Sicherheitsunterweisung für Benutzer der des Verbundlabors KCA
 
- 
+
 
 - **Fluchtwege** von jedem Raum links und rechts auf den Flur in das Treppenhaus
 - an der Flurdecke sind **grüne beleuchtete Hinweisschilder** als Fluchtwegmarkierung angebracht
@@ -148,7 +148,7 @@ Hinweise:
 
 - Eine Primzahl ist eine natürliche Zahl größer als 1, die nur durch 1 und sich selbst teilbar ist.
 - Verwenden Sie eine Schleife, um die Teilbarkeit der Zahl durch alle Zahlen ab 2 zu überprüfen. Überlegen Sie sich, bis zu welcher Zahl Sie prüfen müssen.
-- Schreiben Sie eine Testfunktion, die die Korrektheit Ihrer Primzahl-Funktion überprüft (z.B. dass sie `True` für 1, 2, 3, 5, 7 und `False` für 4, 6, 8, 9 zurückgibt).
+- Schreiben Sie eine Testfunktion, die die Korrektheit Ihrer Primzahl-Funktion überprüft (z.B. dass sie `True` für 2, 3, 5, 7 und `False` für 1, 4, 6, 8, 9 zurückgibt).
 
 ### Primzahlbestimmung Teil 2
 
