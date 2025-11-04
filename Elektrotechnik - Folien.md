@@ -1417,7 +1417,7 @@ $$\vec{F} = I \cdot (\vec{\ell} \times \vec{B})$$
 | **Quellen** | Ladungen | Keine (keine Monopole) |
 | **Wirbel** | Keine (wirbelfrei) | Ströme erzeugen Wirbel |
 | **Potential** | Darstellbar als Gradient | Nicht darstellbar |
-| **Arbeit** | Wegunabhängig | Wegabhängig |
+| **Arbeit** | Wegunabhängig | keine (Magnetostatik) |
 
 **Elektrostatisches Feld** = Quellenfeld, wirbelfrei
 **Magnetostatisches Feld** = Quellenfrei, Wirbelfeld
