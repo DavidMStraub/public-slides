@@ -148,6 +148,7 @@ Hinweise:
 
 - Eine Primzahl ist eine natürliche Zahl größer als 1, die nur durch 1 und sich selbst teilbar ist.
 - Verwenden Sie eine Schleife, um die Teilbarkeit der Zahl durch alle Zahlen ab 2 zu überprüfen. Überlegen Sie sich, bis zu welcher Zahl Sie prüfen müssen.
+- Für die Teilbarkeit kann der Modulo-Operator `%` verwendet werden
 - Schreiben Sie eine Testfunktion, die die Korrektheit Ihrer Primzahl-Funktion überprüft (z.B. dass sie `True` für 2, 3, 5, 7 und `False` für 1, 4, 6, 8, 9 zurückgibt).
 
 ### Primzahlbestimmung Teil 2
