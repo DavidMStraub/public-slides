@@ -34,10 +34,11 @@ David Straub
 4. [Schleifen](#schleifen)
 5. [Datenstrukturen](#datenstrukturen)
 6. [Module & Bibliotheken](#module--bibliotheken)
-7. Klassen
-8. Dateien
-9. Visualisierung
-10. Numerik
+7. Algorithmen, Pseudocode & Struktogramme
+8. Arbeiten mit Zeichenketten
+9. Visualisierung von Funktionen
+10. Zahlensysteme
+11. Klassen
 
 ## Einführung
 
