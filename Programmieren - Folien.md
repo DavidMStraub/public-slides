@@ -33,7 +33,7 @@ David Straub
 3. [Funktionen](#funktionen)
 4. [Schleifen](#schleifen)
 5. [Datenstrukturen](#datenstrukturen)
-6. Module & Bibliotheken
+6. [Module & Bibliotheken](#module--bibliotheken)
 7. Klassen
 8. Dateien
 9. Visualisierung
@@ -1859,3 +1859,398 @@ fluege = {
 2. Finde den schnellsten Flug
 3. Erstelle Liste aller Passagierzahlen und berechne Durchschnitt
 4. Welche Flüge hatten mehr als 150 Passagiere?
+
+## Module & Bibliotheken
+
+### Wiederverwendung: Das Modul-Konzept
+
+**Problem:** Nicht alles selbst programmieren!
+
+**Lösung:** Module – vorgefertigte Sammlungen von Funktionen
+
+**Analogie:** 
+- **Bausatz** = Programm
+- **Einzelne Teile** = Funktionen
+- **Ersatzteillager** = Module/Bibliotheken
+
+**Vorteile:**
+- Code wiederverwendbar
+- Getestet und optimiert
+- Zeit sparen!
+### Was sind Module?
+Ein **Modul** ist eine Python-Datei (`.py`), die Funktionen, Klassen und Variablen enthält.
+
+**Beispiel:** Eine Datei `umrechnung.py` könnte enthalten:
+```python
+def fuss_zu_meter(fuss):
+    return fuss * 0.3048
+
+def seemeilen_zu_km(seemeilen):
+    return seemeilen * 1.852
+```
+
+Das ist ein Modul! Es kann in anderen Programmen wiederverwendet werden.
+
+**Module ermöglichen:**
+- Strukturierung großer Programme
+- Wiederverwendung von Code
+- Zusammenarbeit im Team
+
+### Die Python-Standardbibliothek
+
+Python kommt mit einer umfangreichen **Standardbibliothek** – eine Sammlung von Modulen, die direkt verfügbar sind.
+
+
+**Wichtige Module (Auswahl):**
+| Modul | Beschreibung |
+|-------|-------------|
+| `math` | Mathematische Funktionen |
+| `random` | Zufallszahlen |
+| `datetime` | Datum und Zeit |
+| `os` | Betriebssystem-Funktionen |
+| `json` | JSON-Daten verarbeiten |
+| `re` | Reguläre Ausdrücke |
+
+Dokumentation: https://docs.python.org/3/library/
+
+### Module importieren: Grundformen
+
+**Drei wichtige Import-Varianten:**
+
+```python
+# 1. Ganzes Modul importieren
+import math
+ergebnis = math.sqrt(16)
+print(ergebnis)
+```
+
+```python
+# 2. Einzelne Funktionen importieren
+from math import sqrt, pi
+ergebnis = sqrt(16)
+print(f"π = {pi:.5f}")
+```
+
+```python
+# 3. Modul mit Alias importieren
+import math as m
+ergebnis = m.sqrt(16)
+print(ergebnis)
+```
+
+### Das `math`-Modul: Mathematische Funktionen
+
+Das `math`-Modul bietet grundlegende mathematische Funktionen und Konstanten.
+
+```python
+import math
+
+# Konstanten
+print(f"π = {math.pi:.5f}")
+print(f"e = {math.e:.5f}")
+```
+
+```python
+# Grundfunktionen
+print(f"√16 = {math.sqrt(16)}")
+print(f"2³ = {math.pow(2, 3)}")
+print(f"⌊3.7⌋ = {math.floor(3.7)}")
+print(f"⌈3.2⌉ = {math.ceil(3.2)}")
+```
+
+### Trigonometrische Funktionen
+
+Das `math`-Modul enthält alle wichtigen trigonometrischen Funktionen (arbeiten mit Radiant!).
+
+```python
+import math
+
+# Umrechnung Grad → Radiant
+winkel_grad = 45
+winkel_rad = math.radians(winkel_grad)
+
+print(f"sin(45°) = {math.sin(winkel_rad):.4f}")
+print(f"cos(45°) = {math.cos(winkel_rad):.4f}")
+print(f"tan(45°) = {math.tan(winkel_rad):.4f}")
+```
+
+### Anwendung: Flugbahn berechnen
+
+Berechnung der Wurfweite bei schrägen Wurf mit `math`.
+
+```python
+import math
+
+def wurfweite(v0, winkel_grad):
+    """Wurfweite bei schrägen Wurf (ohne Luftwiderstand)"""
+    g = 9.81  # m/s²
+    winkel_rad = math.radians(winkel_grad)
+    weite = (v0**2 * math.sin(2 * winkel_rad)) / g
+    return weite
+
+# Beispiel: Kanonenkugel
+geschwindigkeit = 100  # m/s
+winkel = 45  # Grad
+weite = wurfweite(geschwindigkeit, winkel)
+print(f"Wurfweite: {weite:.1f} m")
+```
+
+### Das `random`-Modul: Zufallszahlen
+
+Das `random`-Modul erzeugt Pseudozufallszahlen – wichtig für Simulationen und Spiele.
+
+```python
+import random
+
+# Zufällige Gleitkommazahl zwischen 0 und 1
+print(random.random())
+```
+
+```python
+# Zufällige Ganzzahl in einem Bereich
+wuerfel = random.randint(1, 6)
+print(f"Würfelwurf: {wuerfel}")
+```
+
+```python
+# Zufälliges Element aus Liste
+farben = ["rot", "grün", "blau", "gelb"]
+zufall = random.choice(farben)
+print(f"Zufällige Farbe: {zufall}")
+```
+
+### Reproduzierbare Zufallszahlen
+
+Mit `seed()` können Zufallszahlen reproduzierbar gemacht werden – wichtig für Tests!
+
+```python
+import random
+
+# Mit Seed: Immer gleiche "Zufalls"-Folge
+random.seed(42)
+print(random.randint(1, 100))
+print(random.randint(1, 100))
+```
+
+```python
+# Nochmal mit gleichem Seed
+random.seed(42)
+print(random.randint(1, 100))
+print(random.randint(1, 100))
+```
+
+### Anwendung: Monte-Carlo-Simulation
+
+Schätzung von π durch zufällige Punkte im Einheitsquadrat.
+
+```python
+import random
+
+def schaetze_pi(n):
+    """Schätzt π mit Monte-Carlo-Methode"""
+    treffer = 0
+    for _ in range(n):
+        x = random.random()
+        y = random.random()
+        if x**2 + y**2 <= 1:  # Punkt im Viertelkreis?
+            treffer += 1
+    return 4 * treffer / n
+
+# Mit unterschiedlichen Stichprobengrößen
+print(f"π ≈ {schaetze_pi(1000):.4f} (1.000 Punkte)")
+print(f"π ≈ {schaetze_pi(100000):.4f} (100.000 Punkte)")
+```
+
+### Module: Best Practices
+
+**✅ Empfohlen:**
+```python
+import math
+import random
+
+# Klar, woher Funktionen kommen
+x = math.sqrt(16)
+y = random.randint(1, 10)
+```
+
+**⚠️ Vermeiden:**
+```python
+from math import *
+from random import *
+
+# Unklar, woher sqrt kommt - Namenskonflikte möglich!
+x = sqrt(16)
+```
+
+**Faustregel:** Immer explizite Imports – besser lesbar und wartbar!
+
+### Hilfe zu Modulen bekommen
+
+Python bietet eingebaute Hilfe für Module und Funktionen.
+
+```python
+import math
+
+# Alle Funktionen eines Moduls anzeigen
+print(dir(math))
+```
+
+```python
+# Hilfe zu einer Funktion
+help(math.sqrt)
+```
+
+**Tipp:** In Jupyter Notebook: `?` für Hilfe, z.B. `math.sqrt?`
+
+### Aufgabe: Raketenstart-Simulation
+
+Simuliere einen Raketenstart mit Zufallselementen.
+
+**Aufgaben:**
+1. Importiere `random` und `math`
+2. Erzeuge zufällige Startgeschwindigkeit zwischen 7500 und 8500 m/s
+3. Erzeuge zufälligen Startwinkel zwischen 85° und 90°
+4. Berechne Höhe nach 60 Sekunden: $h = v_0 \cdot t \cdot \sin(\alpha)$
+5. Führe Simulation 5× aus mit `random.seed(i)` für `i` von 0 bis 4
+6. Gib für jeden Start aus: Geschwindigkeit, Winkel, erreichte Höhe
+
+**Erwartete Ausgabe:** 5 verschiedene Szenarien mit jeweils 3 Werten
+
+### Drittanbieter-Module: Mehr als die Standardbibliothek
+
+**Standardbibliothek reicht nicht immer!**
+
+Die Python-Community hat Tausende spezialisierte Module entwickelt:
+
+| Bereich | Beispiele |
+|---------|-----------|
+| **Wissenschaft** | `numpy`, `scipy`, `pandas` |
+| **Visualisierung** | `matplotlib`, `plotly`, `seaborn` |
+| **Web** | `requests`, `flask`, `django` |
+| **Machine Learning** | `scikit-learn`, `tensorflow`, `pytorch` |
+
+**PyPI** (Python Package Index): https://pypi.org/ – über 500.000 Pakete!
+
+### Was ist pip?
+
+**pip** = "Pip Installs Packages" (rekursives Akronym)
+
+- Der Standard-Paketmanager für Python
+- Lädt Pakete von PyPI herunter
+- Installiert sie automatisch mit allen Abhängigkeiten
+- Wird mit Python mitgeliefert (seit Python 3.4)
+
+**Analogie:**
+- **App Store** für Smartphones = **PyPI** für Python
+- **App-Installation** = **pip install**
+
+### Pakete mit pip installieren
+
+**Grundlegende Befehle:**
+
+```bash
+# Paket installieren
+pip install paketname
+
+# Bestimmte Version installieren
+pip install paketname==1.2.3
+
+# Paket aktualisieren
+pip install --upgrade paketname
+
+# Paket deinstallieren
+pip uninstall paketname
+
+# Installierte Pakete auflisten
+pip list
+```
+
+
+### Eigene Module erstellen
+
+**Jede Python-Datei ist ein Modul!**
+
+Erstelle eine Datei `physik.py`:
+
+```python
+"""Physikalische Konstanten und Berechnungen"""
+
+# Konstanten
+LICHTGESCHWINDIGKEIT = 299792458  # m/s
+GRAVITATIONSKONSTANTE = 6.67430e-11  # m³/(kg·s²)
+
+def energie_masse(masse):
+    """Berechnet Energie aus Masse: E = mc²"""
+    return masse * LICHTGESCHWINDIGKEIT ** 2
+
+def freier_fall_geschwindigkeit(hoehe):
+    """Geschwindigkeit im freien Fall"""
+    g = 9.81  # m/s²
+    return (2 * g * hoehe) ** 0.5
+```
+
+### Eigenes Modul verwenden
+
+**Verwendung in einer anderen Datei (z.B. `main.py` im gleichen Verzeichnis):**
+
+```python
+import physik
+
+# Konstanten verwenden
+print(f"c = {physik.LICHTGESCHWINDIGKEIT:,} m/s")
+
+# Funktionen verwenden
+masse = 0.001  # kg (1 Gramm)
+energie = physik.energie_masse(masse)
+print(f"Energie von 1g: {energie:.2e} Joule")
+
+# Freier Fall aus 100m
+v = physik.freier_fall_geschwindigkeit(100)
+print(f"Geschwindigkeit: {v:.1f} m/s")
+```
+
+**Wichtig:** Beide Dateien müssen im gleichen Verzeichnis liegen!
+
+
+### `if __name__ == "__main__"`
+
+**Problem:** Code soll nur beim direkten Aufruf ausgeführt werden, nicht beim Import.
+
+```python
+# test_modul.py
+def berechne_etwas(x):
+    return x * 2
+
+# Dieser Block wird nur bei direktem Aufruf ausgeführt
+if __name__ == "__main__":
+    # Tests oder Beispiele hier
+    print("Teste das Modul:")
+    print(berechne_etwas(5))
+    print(berechne_etwas(10))
+```
+
+**Verwendung:**
+- `python test_modul.py` → Tests werden ausgeführt
+- `import test_modul` → Nur Funktion verfügbar, keine Ausgabe
+
+### Pakete: Mehrere Module gruppieren (Ausblick)
+
+**Für größere Projekte:** Module in Paketen organisieren
+
+```
+mein_projekt/
+├── main.py
+└── physik/
+    ├── __init__.py      # Macht physik zum Paket
+    ├── mechanik.py
+    ├── thermodynamik.py
+    └── elektrik.py
+```
+
+**Verwendung:**
+```python
+from physik.mechanik import freier_fall
+from physik.elektrik import ohmsches_gesetz
+```
+
+**Hinweis:** Pakete sind komplexer – für größere Projekte relevant!
