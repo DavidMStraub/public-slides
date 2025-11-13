@@ -34,7 +34,7 @@ David Straub
 4. [Schleifen](#schleifen)
 5. [Datenstrukturen](#datenstrukturen)
 6. [Module & Bibliotheken](#module--bibliotheken)
-7. Algorithmen, Pseudocode & Struktogramme
+7. [Algorithmen, Pseudocode & Struktogramme](#algorithmen-pseudocode--struktogramme)
 8. Arbeiten mit Zeichenketten
 9. Visualisierung von Funktionen
 10. Zahlensysteme
@@ -2255,3 +2255,378 @@ from physik.elektrik import ohmsches_gesetz
 ```
 
 **Hinweis:** Pakete sind komplexer – für größere Projekte relevant!
+
+
+
+## Algorithmen, Pseudocode & Struktogramme
+
+
+### Überblick: Algorithmen, Pseudocode & Struktogramme
+
+Zwei *sprachunabhängige* Werkzeuge zur Planung von Algorithmen
+
+1. **Pseudocode**: *Erst denken, dann coden!* Ein informelles Hilfsmittel
+2. **Struktogramme**: Grafische Darstellung von Algorithmen. Als formalisertes Hilfsmittel oder zur Dokumentation von Algorithmen
+
+**Ziel**: Systematisches Vorgehen beim Programmieren
+
+
+### Was ist ein Algorithmus?
+
+**Definition**: Eine eindeutige, schrittweise Handlungsvorschrift zur Lösung eines Problems
+
+**Eigenschaften:**
+- **Endlich**: Beschreibung hat endliche Länge
+- **Ausführbar**: Jeder Schritt ist durchführbar
+- **Determiniert**: Jeder Schritt ist eindeutig festgelegt
+- **Terminiert**: Endet nach endlich vielen Schritten
+
+### Algorithmus: einfaches Beispiel
+
+**Problem**: Finde die größte Zahl in einer Liste
+
+**Algorithmus in Alltagssprache:**
+1. Nimm die erste Zahl als „aktuelles Maximum“
+2. Gehe alle weiteren Zahlen durch
+3. Wenn eine Zahl größer ist, merk sie dir als neues Maximum
+4. Am Ende hast du die größte Zahl
+
+**Problem**: Noch nicht präzise genug für die Umsetzung in Code!
+
+
+## Pseudocode
+
+
+```
+algorithmus finde_maximum(liste):
+    maximum = erstes Element der Liste
+    
+    für jedes weitere Element in liste:
+        wenn Element größer als maximum:
+            maximum = Element
+    
+    gib maximum zurück
+```
+
+
+
+### Warum erst Pseudocode?
+
+**Das Problem beim Programmieren:**
+- Zwei Herausforderungen vermischen sich:
+    1. **Was** soll der Algorithmus tun? (Logik)
+    2. **Wie** schreibe ich das in Python? (Syntax)
+
+**Trennung der Probleme**
+- Pseudocode = **Denkwerkzeug** für die Planung
+- Erst die Logik klären, dann in Code umsetzen
+- Sprachunabhängig: funktioniert für alle Programmiersprachen
+
+### Was ist Pseudocode?
+
+
+**Pseudocode** = Zwischenschritt zwischen Alltagssprache und Programmcode
+
+**Eigenschaften:**
+- **Keine festen Regeln!** Jeder kann seinen eigenen Stil entwickeln
+- Fokus auf die **Logik**, nicht auf Syntax-Details
+- Auch auf Deutsch bzw. in der eigenen Sprache
+- Noch nicht ausführbar
+
+**Ziel**: Die **Was-Frage** beantworten, bevor man sich mit der **Wie-Frage** beschäftigt
+
+**Motto**: *Erst denken, dann coden!*
+
+### Pseudocode: Grundelemente (möglicher Stil)
+
+
+**Anweisungen:**
+```
+variable = wert
+ausgabe "Text"
+```
+
+**Verzweigungen:**
+```
+wenn bedingung:
+    anweisungen
+sonst:
+    anweisungen
+```
+
+**Schleifen:**
+```
+für i von 1 bis n:
+    anweisungen
+```
+
+### Beispiel: Maximum finden
+
+**Pseudocode:**
+```
+algorithmus finde_maximum(liste):
+    maximum = erstes Element von liste
+    
+    für jedes weitere Element in liste:
+        wenn Element größer als maximum:
+            maximum = Element
+    
+    gib maximum zurück
+```
+
+**Vorteile:** Logik ist klar, keine Syntax-Sorgen
+
+### Von Pseudocode zu Python
+
+**Pseudocode:**
+```
+algorithmus finde_maximum(liste):
+    maximum = erstes Element der Liste
+    für jedes weitere Element in liste:
+        wenn Element größer als maximum:
+            maximum = Element
+    gib maximum zurück
+```
+
+**Python:**
+```python
+def finde_maximum(liste):
+    maximum = liste[0]
+    for zahl in liste:
+        if zahl > maximum:
+            maximum = zahl
+    return maximum
+```
+
+### Ein weiteres Beispiel
+
+**Problem**: Prüfe, ob eine Zahl gerade ist
+
+**Pseudocode:**
+```
+algorithmus ist_gerade(n):
+    wenn n ohne Rest durch 2 teilbar:
+        gib True zurück
+    sonst:
+        gib False zurück
+```
+
+**Python:**
+```python
+def ist_gerade(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+```
+
+### 👥 Gruppenarbeit
+
+**Aufgabe**: Schreiben Sie Pseudocode für folgende Funktion aus dem letzten Praktikum:
+
+```python
+def ist_prim(zahl):
+    """Gibt aus, ob `zahl` eine Primzahl ist."""
+    if zahl == 1:
+        return False
+    for teiler in range(2, zahl):
+        if zahl % teiler == 0:
+            return False
+        if teiler**2 > zahl:
+            break
+    return True
+```
+
+## Struktogramme
+
+**Struktogramme**  = Grafische Darstellung von Algorithmen
+
+**Entwickelt von**: Nassi & Shneiderman (1973)
+
+**Ziel**: Strukturiertes Programmieren fördern
+
+
+![bg right:35% 90%](assets/nsd/maximum.svg)
+
+### Die drei Grundstrukturen
+
+Jeder Algorithmus besteht aus drei Grundelementen:
+
+1. **Sequenz**: Anweisungen nacheinander
+2. **Verzweigung**: Fallunterscheidung (if/else)
+3. **Wiederholung**: Schleifen (for/while)
+
+**Struktogramme** stellen diese Strukturen grafisch dar.
+
+### Grundregel: Der Kasten
+
+**Jedes Struktogramm ist ein Rechteck**
+
+
+- Von oben nach unten lesen
+- Jede Anweisung in einem horizontalen Streifen
+- Kein „Springen“ zwischen Kästen
+
+
+![bg right:30% 80%](assets/nsd/Programm.svg)
+
+
+### Struktur 1: Sequenz
+
+**Sequenz** = Anweisungen nacheinander ausführen
+
+**Beispiel in Python:**
+```python
+x = 5
+y = 3
+summe = x + y
+print(summe)
+```
+
+![bg right:30% 80%](assets/nsd/summe.svg)
+
+### Struktur 2: Verzweigung (einfach)
+
+**Einfache Verzweigung** = if ohne else
+
+**Beispiel in Python:**
+```python
+x = int(input("Gib eine Zahl ein: "))
+if x > 0:
+    print("positiv")
+```
+
+![bg right:35% 80%](assets/nsd/if.svg)
+
+**Wichtig**: Die Bedingung steht oben, der "Ja"-Zweig darunter
+
+### Struktur 2: Verzweigung (zweiseitig)
+
+**Zweiseitige Verzweigung** = if-else
+
+**Beispiel in Python:**
+```python
+if x > 0:
+    print("positiv")
+else:
+    print("nicht positiv")
+```
+
+![bg right:40% 80%](assets/nsd/if2.svg)
+
+
+### Beispiel: Gerade/Ungerade prüfen
+
+**Python:**
+```python
+n = int(input("Gib eine Zahl ein: "))
+if n % 2 == 0:
+    print("gerade")
+else:
+    print("ungerade")
+```
+
+![bg right:40% 80%](assets/nsd/if3.svg)
+
+### Verschachtelte Verzweigungen
+
+**Python:**
+```python
+temp = float(input("Temperatur in °C: "))
+if temp < 0:
+    print("Eis")
+elif temp < 100:
+    print("Wasser")
+else:
+    print("Dampf")
+```
+
+![bg right:45% 90%](assets/nsd/verschachtelt.svg)
+
+
+### Struktur 3: Wiederholung (for-Schleife)
+
+**Zählschleife** = for-Schleife mit festem Bereich
+
+**Beispiel in Python:**
+```python
+for i in range(1, 6):
+    print(i)
+```
+
+![bg right:25% 80%](assets/nsd/for.svg)
+
+### Struktur 3: Wiederholung (while-Schleife)
+
+**Bedingungsschleife** = while-Schleife
+
+**Beispiel in Python:**
+```python
+i = 1
+while i <= 5:
+    print(i)
+    i = i + 1
+```
+
+![bg right:30% 80%](assets/nsd/while.svg)
+
+### Verschachtelte Strukturen
+
+Strukturen können ineinander verschachtelt werden.
+
+Beispiel: Verzweigung in einer Schleife
+
+**Python:**
+```python
+for i in range(1, 6):
+    if i % 2 == 0:
+        print(f"{i} ist gerade")
+    else:
+        print(f"{i} ist ungerade")
+```
+
+
+![bg right:40% 90%](assets/nsd/verschachtelt2.svg)
+
+### Vollständiges Beispiel: Maximum finden
+
+**Python:**
+```python
+def finde_maximum(liste):
+    maximum = liste[0]
+    for zahl in liste:
+        if zahl > maximum:
+            maximum = zahl
+    return maximum
+```
+
+![bg right:40% 90%](assets/nsd/maximum.svg)
+
+### 👥 Gruppenarbeit
+
+**Aufgabe**: Erstellen Sie ein Struktogramm für folgende Funktion aus dem letzten Praktikum:
+
+```python
+def ist_prim(zahl):
+    """Gibt aus, ob `zahl` eine Primzahl ist."""
+    if zahl == 1:
+        return False
+    for teiler in range(2, zahl):
+        if zahl % teiler == 0:
+            return False
+        if teiler**2 > zahl:
+            break
+    return True
+```
+
+### Zusammenfassung
+
+**Pseudocode:**
+- Werkzeug zum Planen: *Erst denken, dann coden!*
+- Keine festen Regeln, aber strukturiert
+- Hilft, die Logik zu klären
+
+**Struktogramme:**
+- Grafische Darstellung von Algorithmen
+- Drei Grundstrukturen: Sequenz, Verzweigung, Wiederholung
+- Nassi-Shneiderman-Notation

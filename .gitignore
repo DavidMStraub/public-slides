@@ -5,6 +5,15 @@
 *.tmp
 *.temp
 *~
+*.pyc
+
+# Jupyter files
+.ipynb_checkpoints/
+*.ipynb
+
+# Structorizer files
+*.nsd
+*.nsd.bak
 
 # OS generated files
 .DS_Store
