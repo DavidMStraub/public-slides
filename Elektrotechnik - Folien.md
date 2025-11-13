@@ -31,7 +31,7 @@ David Straub
 1. [Einführung](#einführung) (Physikalische Größen, Einheiten)
 2. [Das elektrische Feld](#das-elektrische-feld) (Ladungen, Kräfte, Felder, Potential, Spannung, Kapazität, Kondensatoren)
 3. [Gleichstrom](#gleichstrom) (Stromstärke, Widerstand, Stromkreisberechnungen, Energie, Leistung)
-4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte, Induktion)
+4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte, [Induktion](#induktion))
 5. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Wirk- und Blindleistung)
 6. [Drehstrom](#drehstrom) (Dreiphasensystem)
 
@@ -1695,135 +1695,248 @@ Magnetische Feldkonstante (*magnetic constant*) = ~~Permeabilität des Vakuums (
 Relative Permeabilität (*relative permeability*) | $\mu_r = \frac{\mu}{\mu_0}$ | dimensionslos
 
 
-### Magnetischer Kreis: Motivation
+### Der magnetische Kreis
 
-**Problem:** Wie berechnet man das Magnetfeld in einer Spule mit Eisenkern?
+**Definition:** geschlossener Pfad aus ferromagnetischem Material, durch den magnetischer Fluss geführt wird
 
-**Beispiel:** Elektromagnet, Transformator, Elektromotor
+**Relevant in vielen Anwendungen:**
 
-**Idee:** Nutzen einer Analogie zum elektrischen Stromkreis!
+- Elektromotoren (E-Autos, Industrie)
+- Transformatoren (Energieversorgung)
+- Induktives Laden (Smartphones, E-Autos)
+- Sensoren und Aktuatoren
+- Generatoren (Windkraftanlagen)
 
-- Magnetischer Fluss $\Phi$ fließt durch geschlossenen Kreis aus ferromagnetischem Material
-- Ähnlich wie elektrischer Strom durch Leiter fließt
+**Problem:** Wie dimensioniert man diese Systeme effizient?
+
+![bg right:35% 100%](https://upload.wikimedia.org/wikipedia/commons/d/d0/Electromagnet_with_gap.svg)
+
+### Herausforderung: Komplexe Magnetfelder
+
+**Direkter Ansatz wäre kompliziert:**
+
+- Berechnung von $\vec{B}$-Feldern in 3D
+- Numerische Simulation (FEM) zeitaufwendig
 
 
-![bg right:45% 100%](https://upload.wikimedia.org/wikipedia/commons/d/d0/Electromagnet_with_gap.svg)
+**Eindimensionale Lösung: Der magnetische Kreis**
 
-### Magnetischer Kreis: Grundlagen
+Eine *mathematische Analogie* zum elektrischen Stromkreis:
+- Einfache Berechnungen wie bei Widerstandsnetzwerken
+- Gute Näherung für viele praktische Fälle
 
-**Ausgangspunkt:** Durchflutungsgesetz entlang eines geschlossenen Weges im ferromagnetischen Material:
+**Voraussetzung:** Magnetischer Fluss „fließt“ hauptsächlich durch ferromagnetisches Material
+
+![bg right:35% 100%](https://upload.wikimedia.org/wikipedia/commons/d/d0/Electromagnet_with_gap.svg)
+
+
+### Grundidee
+
+**Elektrischer Kreis:**
+- Spannung treibt Strom durch Widerstand
+- Strom „fließt“ durch Leiter
+- $U = R \cdot I$ (Ohmsches Gesetz)
+
+**Magnetischer Kreis:**
+- Durchflutung treibt magnetischen Fluss durch magnetischen Widerstand
+- Magnetischer Fluss „fließt“ durch ferromagnetisches Material
+- $\Theta = R_m \cdot \Phi$ (analoges „Ohmsches Gesetz“)
+
+**Wichtig:** Diese Analogie ist *mathematisch*, nicht physikalisch!
+- Kein echter „Fluss“ von etwas
+- Aber sehr nützlich für Berechnungen
+
+### Das Durchflutungsgesetz: Unser Ausgangspunkt
+
+**Erinnerung:** Durchflutungsgesetz (Ampèresches Gesetz) entlang eines geschlossenen Weges:
 
 $$\Theta = N \cdot I = \oint \vec{H} \cdot d\vec{s}$$
 
-Für einen homogenen magnetischen Kreis mit konstanter Querschnittsfläche $A$ und mittlerer Länge $\ell$:
+- $\Theta$: magnetische **Durchflutung**
+- $N \cdot I$: Windungszahl mal Strom in der Spule
+- $\vec{H}$: magnetische Feldstärke
 
-$$\Theta = H \cdot \ell$$
+**Interpretation:** 
+- Die Durchflutung $\Theta$ ist wie eine „treibende Kraft“ für das Magnetfeld
+- Entspricht der Spannung im elektrischen Kreis: $U = \int \vec{E} \cdot d\vec{s}$ (wichtiger Unterschied: $\int \vec{H} \cdot d\vec{s}$ ist nicht wegunabhängig!)
 
-### Magnetischer Fluss im magnetischen Kreis
+### Vereinfachung für homogene Kreise
 
-**Magnetischer Fluss:** Erinnerung an die Definition als Flächenintegral der magnetischen Flussdichte:
+**Annahme:** Homogener magnetischer Kreis
+- Konstante Querschnittsfläche $A$
+- Ein Material mit konstanter Permeabilität $\mu_r$
+- Magnetfeld folgt dem Materialweg
+
+**Dann wird das Linienintegral einfach:**
+
+$$\Theta = \oint \vec{H} \cdot d\vec{s} = H \cdot \ell$$
+
+- $H$: konstante magnetische Feldstärke im Material
+- $\ell$: mittlere Weglänge des magnetischen Pfades
+
+**Nächster Schritt:** Was hat das mit dem magnetischen Fluss zu tun?
+
+### Der magnetische Fluss $\Phi$
+
+**Definition:** Integral der magnetischen Flussdichte über eine Fläche
 
 $$\Phi = \int_A \vec{B} \cdot d\vec{A}$$
 
-Für eine konstante Flussdichte $B$ und Fläche $A$ (homogener Querschnitt):
+**Für homogene Felder und Querschnitte:**
 
 $$\Phi = B \cdot A$$
 
-**Zusammenhang der Größen:** Mit $B = \mu_0 \mu_r H$ folgt:
+**Einheit:** Weber ($\text{Wb} = \text{Vs}$)
 
-$$\Theta = H \cdot \ell = \frac{B}{\mu_0 \mu_r} \cdot \ell = \frac{\Phi}{A \cdot \mu_0 \mu_r} \cdot \ell = \frac{\ell}{\mu_0 \mu_r A} \cdot \Phi$$
-
-
-### Magnetischer Widerstand
-
-**Definition des magnetischen Widerstands:**
-
-$$R_m = \frac{\ell}{\mu_0 \cdot \mu_r \cdot A}$$
-
-- $\ell$: mittlere Länge des magnetischen Weges
-- $A$: Querschnittsfläche
-- $\mu_r$: relative Permeabilität des Materials
-
-**Einheit:** $[R_m] = \frac{\text{A}}{\text{Vs}} = \frac{\text{A}}{\text{Wb}}$
-
-**Ohmsches Gesetz des magnetischen Kreises:**
-
-$$\Theta = R_m \cdot \Phi \quad \text{bzw.} \quad \Phi = \frac{\Theta}{R_m}$$
+**Physikalische Bedeutung:**
+- Maß für die Gesamtzahl der magnetischen Feldlinien durch eine Fläche
 
 
-### Magnetischer Leitwert
+### Verbindung
 
-Analog zum elektrischen Leitwert $G = \frac{1}{R}$ definiert man:
+**Materialgleichung:** Zusammenhang zwischen $B$ und $H$
 
-**Magnetischer Leitwert (Permeanz):**
+$$B = \mu_0 \mu_r H$$
+
+- $\mu_0 \approx 4\pi \times 10^{-7} \text{H/m}$
+- $\mu_r$: relative Permeabilität (Eisen: $\mu_r \approx 1000$–$10000$)
+
+**Einsetzen in den magnetischen Fluss:**
+
+$$\Phi = B \cdot A = \mu_0 \mu_r H \cdot A$$
+
+**Umstellen nach $H$:**
+
+$$H = \frac{\Phi}{\mu_0 \mu_r A}$$
+
+### Herleitung des magnetischen Widerstands
+
+Kombinieren wir unsere Gleichungen:
+
+$$\Theta = H \cdot \ell = \frac{\Phi}{\mu_0 \mu_r A} \cdot \ell = \frac{\ell}{\mu_0 \mu_r A} \cdot \Phi$$
+
+Umschreiben in der Form $\Theta = R_m \cdot \Phi$:
+
+$$\boxed{\Theta = R_m \cdot \Phi}$$
+
+mit dem **magnetischen Widerstand**:
+
+$$\boxed{R_m = \frac{\ell}{\mu_0 \mu_r A}}$$
+
+Das ist das **„Ohmsche Gesetz“ des magnetischen Kreises**!
+
+### Der magnetische Widerstand: Interpretation
+
+$$R_m = \frac{\ell}{\mu_0 \mu_r A}$$
+
+**Einheit:** $[R_m] = \frac{\text{A}}{\text{Wb}}$ (Ampere pro Weber)
+
+**Der magnetische Widerstand wird größer, wenn:**
+- ✓ Der Weg $\ell$ länger wird (mehr „Strecke“ für den Fluss)
+- ✓ Die Querschnittsfläche $A$ kleiner wird (weniger „Platz“)
+- ✓ Die Permeabilität $\mu_r$ kleiner wird (Material „leitet“ schlechter)
+
+**Analog zum elektrischen Widerstand:** $R = \frac{\ell}{\sigma A}$
+
+### Magnetischer Leitwert (Permeanz)
+
+**Alternative Beschreibung:** Analog zum elektrischen Leitwert $G = \frac{1}{R}$
 
 $$\Lambda = \frac{1}{R_m} = \frac{\mu_0 \mu_r A}{\ell}$$
 
-**Einheit:** $[\Lambda] = \frac{\text{Vs}}{\text{A}} = \frac{\text{Wb}}{\text{A}} = \text{H}$ (Henry)
+**Einheit:** $[\Lambda] = \frac{\text{Wb}}{\text{A}} = \text{H}$ (Henry)
 
-**Alternative Formulierung:**
+**Alternative Formulierung des "Ohmschen Gesetzes":**
 
 $$\Phi = \Lambda \cdot \Theta$$
 
-Der Leitwert gibt an, wie leicht magnetischer Fluss durch ein Material fließt.
+**Interpretation:** 
+- Der Leitwert gibt an, wie *leicht* magnetischer Fluss durch ein Material fließt
+- Große Permeabilität $\mu_r$ → großer Leitwert → viel Fluss
 
-
-### Analogie: Elektrischer und magnetischer Kreis
+### Zusammenfassung: Die Analogie
 
 | Elektrischer Kreis | Magnetischer Kreis |
 |---|---|
-| Quellenspannung $U=\int \vec{E} \cdot d\vec{s}$ | Durchflutung $\Theta = \oint \vec{H} \cdot d\vec{s}$ |
+| Spannung $U=\int \vec{E} \cdot d\vec{s}$ | Durchflutung $\Theta = \oint \vec{H} \cdot d\vec{s}$ |
 | Stromstärke $I=\int \vec{j} \cdot d\vec{A}$ | Magnetischer Fluss $\Phi = \int \vec{B} \cdot d\vec{A}$ |
-| Widerstand $R$ | Magnetischer Widerstand $R_m$ |
-| Leitwert $G = \frac{1}{R}$ | Magnetischer Leitwert $\Lambda = \frac{1}{R_m}$ |
+| Widerstand $R = \frac{\ell}{\sigma A}$ | Mag. Widerstand $R_m = \frac{\ell}{\mu_0 \mu_r A}$ |
+| Leitwert $G = \frac{1}{R}$ | Mag. Leitwert $\Lambda = \frac{1}{R_m}$ |
 | $U = R \cdot I$ | $\Theta = R_m \cdot \Phi$ |
 
+**Wichtig:** Rein mathematische Analogie, aber sehr nützlich für Berechnungen!
 
+### Komplexere Kreise: Reihenschaltung
 
-### Reihenschaltung magnetischer Widerstände
+**Reale Situation:** Verschiedene Materialien im magnetischen Pfad
+- Eisenkern verschiedener Querschnitte
+- Luftspalte
+- Verschiedene Materialien (Eisen, Ferrit, ...)
 
-**Mehrere Materialien im magnetischen Kreis:**
-
-Bei unterschiedlichen Materialien addieren sich die magnetischen Widerstände wie bei elektrischen Widerständen in Reihe:
+**Verhalten wie elektrische Widerstände in Reihe:**
 
 $$R_{m,\text{ges}} = R_{m,1} + R_{m,2} + \ldots + R_{m,n}$$
 
-**Durchflutungsgesetz für inhomogenen Kreis:**
+**Durchflutungsgesetz:**
 
-$$\Theta = \Phi \cdot R_{m,\text{ges}} = \Phi \cdot (R_{m,1} + R_{m,2} + \ldots)$$
+$$\Theta = \Phi \cdot R_{m,\text{ges}}$$
 
-Der gleiche magnetische Fluss $\Phi$ durchfließt alle Abschnitte (wie Strom in Reihenschaltung).
+**Wichtig:** Der gleiche magnetische Fluss $\Phi$ durchfließt alle Abschnitte!
+(Wie Strom in elektrischer Reihenschaltung)
 
+### Praxisbeispiel: Elektromagnet mit Luftspalt
 
-### Magnetischer Kreis mit Luftspalt
+**Typische Anwendung:** Schaltschütz, Relais, Hubmagnet
 
-**Praktische Anwendung:** Elektromagnet mit einstellbarem Luftspalt
+**Aufbau:**
+- Eisenkern mit Spule ($N$ Windungen, Strom $I$)
+- Einstellbarer Luftspalt der Länge $\delta$
+- Eisenweg: Länge $\ell_E$, Querschnitt $A$
+- Luftspalt: Länge $\delta$, gleicher Querschnitt $A$
 
-**Gegeben:**
-- Eisenkern: Länge $\ell_E$, Querschnitt $A$, Permeabilität $\mu_r \gg 1$
-- Luftspalt: Länge $\delta$ (sehr klein), gleicher Querschnitt $A$
+**Frage:** Wie groß ist der magnetische Fluss $\Phi$?
 
-**Reihenschaltung:**
+![bg right:40% 100%](https://upload.wikimedia.org/wikipedia/commons/d/d0/Electromagnet_with_gap.svg)
 
-$$R_{m,\text{ges}} = R_{m,E} + R_{m,L} = \frac{\ell_E}{\mu_0 \mu_r A} + \frac{\delta}{\mu_0 \cdot 1 \cdot A}$$
+### Berechnung: Luftspalt und Eisenkern
 
-$$\Theta = N \cdot I = \Phi \cdot \left(\frac{\ell_E}{\mu_0 \mu_r A} + \frac{\delta}{\mu_0 A}\right)$$
+**Eisenkern:**
+$$R_{m,E} = \frac{\ell_E}{\mu_0 \mu_r A}$$
 
+**Luftspalt:** ($\mu_r = 1$ für Luft)
+$$R_{m,L} = \frac{\delta}{\mu_0 A}$$
 
-### Magnetischer Kreis mit Luftspalt: Vereinfachung
+**Gesamtwiderstand:**
+$$R_{m,\text{ges}} = R_{m,E} + R_{m,L} = \frac{\ell_E}{\mu_0 \mu_r A} + \frac{\delta}{\mu_0 A}$$
 
-**Wichtige Beobachtung:** Da $\mu_r \gg 1$ (z.B. $\mu_r \approx 1000$ für Eisen), gilt oft:
+**Magnetischer Fluss:**
+$$\Phi = \frac{\Theta}{R_{m,\text{ges}}} = \frac{N \cdot I}{\frac{\ell_E}{\mu_0 \mu_r A} + \frac{\delta}{\mu_0 A}}$$
 
-$$R_{m,L} = \frac{\delta}{\mu_0 A} \gg R_{m,E} = \frac{\ell_E}{\mu_0 \mu_r A}$$
+### Die überraschende Dominanz des Luftspalts
 
-Selbst bei $\delta \ll \ell_E$ dominiert der Luftspalt!
+**Zahlenwerte (typisch):**
+- Eisenweg: $\ell_E = 30$ cm, $\mu_r = 2000$
+- Luftspalt: $\delta = 1$ mm
 
-**Näherung (wenn $\delta \ll \ell_E$ und $\mu_r \gg 1$):**
+**Vergleich der Widerstände:**
 
-$$\Phi \approx \frac{\Theta}{R_{m,L}} = \frac{N \cdot I \cdot \mu_0 \cdot A}{\delta}$$
+$$\frac{R_{m,L}}{R_{m,E}} = \frac{\delta/(\mu_0 A)}{\ell_E/(\mu_0 \mu_r A)} = \frac{\delta \cdot \mu_r}{\ell_E} = \frac{0.001 \cdot 2000}{0.3} \approx 6.7$$
 
-**Praktische Konsequenz:** Der Luftspalt bestimmt die magnetischen Eigenschaften!
+**Der Luftspalt ist 7× wichtiger, obwohl er 300× kürzer ist!**
 
+**Grund:** Die sehr hohe Permeabilität von Eisen
+
+### Praktische Näherung für kleine Luftspalte
+
+Wenn $\mu_r \gg 1$ und $\delta \cdot \mu_r \gg \ell_E$, dann:
+
+$$R_{m,L} \gg R_{m,E}$$
+
+**Näherung:** Eisenwiderstand vernachlässigbar
+
+$$\Phi \approx \frac{N \cdot I}{R_{m,L}} = \frac{N \cdot I \cdot \mu_0 \cdot A}{\delta}$$
+
+Der Luftspalt bestimmt die magnetischen Eigenschaften!
 
 
 ## Quiz: Das Magnetische Feld
@@ -1897,3 +2010,5 @@ $$\Phi \approx \frac{\Theta}{R_{m,L}} = \frac{N \cdot I \cdot \mu_0 \cdot A}{\de
 - B) Der Elektronenspin und dessen kollektive Ausrichtung  
 - C) Die Bewegung freier Elektronen im Leitungsband  
 - D) Die thermische Bewegung der Atome  
+
+## Induktion
