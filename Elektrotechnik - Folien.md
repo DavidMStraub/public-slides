@@ -32,7 +32,7 @@ David Straub
 2. [Das elektrische Feld](#das-elektrische-feld) (Ladungen, Kräfte, Felder, Potential, Spannung, Kapazität, Kondensatoren)
 3. [Gleichstrom](#gleichstrom) (Stromstärke, Widerstand, Stromkreisberechnungen, Energie, Leistung)
 4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte, magnetischer Kreis)
-5. [Induktion](#induktion)
+5. [Elektromagnetische Induktion](#elektromagnetische-induktion) (Induktion, Selbstinduktion, Energie)
 6. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Wirk- und Blindleistung)
 7. [Drehstrom](#drehstrom) (Dreiphasensystem)
 
@@ -1938,76 +1938,88 @@ $$\Phi \approx \frac{N \cdot I}{R_{m,L}} = \frac{N \cdot I \cdot \mu_0 \cdot A}{
 Der Luftspalt bestimmt die magnetischen Eigenschaften!
 
 
-## Quiz: Das Magnetische Feld
+## Elektromagnetische Induktion
 
-### Warum sind magnetische Feldlinien immer geschlossen oder unendlich lang?
-- A) Weil Magnetfelder nur in geschlossenen Leitern existieren  
-- B) Weil es keine magnetischen Monopole gibt  
-- C) Weil sie der Rechte-Hand-Regel folgen müssen  
-- D) Weil sie von der Lorentzkraft erzeugt werden  
+- Bisher: el. Feld ruhender Ladungen (Elektrostatik) und mag. Feld konstanter Ströme (Magnetostatik)
+- Sobald zeitliche Änderungen auftreten → Wechselwirkung zwischen elektrischen und magnetischen Feldern
 
+**Induktion: ein zeitlich veränderliches Magnetfeld erzeugt („induziert“) ein elektrisches Feld**
 
-### Was ist der fundamentale Unterschied zwischen elektrischen und magnetischen Feldlinien?
+### Induktion: technische Anwendungen
 
-- A) Elektrische Feldlinien sind immer gerade, magnetische immer gekrümmt  
-- B) Elektrische Feldlinien beginnen und enden auf Ladungen, magnetische Feldlinien sind geschlossen  
-- C) Magnetische Feldlinien übertragen Energie, elektrische nicht  
-- D) Es gibt keinen fundamentalen Unterschied  
-
-
-### Welche Aussage über die Lorentzkraft ist korrekt?
-- A) Sie wirkt parallel zur Bewegungsrichtung der Ladung  
-- B) Sie verrichtet Arbeit an einer bewegten Ladung  
-- C) Sie wirkt senkrecht sowohl zur Bewegungsrichtung als auch zum Magnetfeld  
-- D) Sie ist unabhängig von der Geschwindigkeit der Ladung  
-
-### Was besagt das Durchflutungsgesetz (Ampèresches Gesetz)?
-
-- A) Die magnetische Feldstärke entlang eines geschlossenen Weges ist gleich null  
-- B) Der magnetische Fluss durch eine geschlossene Fläche ist gleich der umschlossenen Stromstärke  
-- C) Das Wegintegral der magnetischen Feldstärke entlang eines geschlossenen Weges ist gleich der umschlossenen Stromstärke  
-- D) Die magnetische Flussdichte ist proportional zum Abstand vom Leiter  
-
-### Wie unterscheidet sich das magnetische Feld im Inneren einer langen Spule vom Feld außerhalb?
-
-- A) Außen ist das Feld stärker als innen  
-- B) Innen ist das Feld homogen und stark, außen nahezu null  
-- C) Die Feldrichtung ist innen und außen entgegengesetzt  
-- D) Es gibt keinen Unterschied  
-
-### Warum nimmt die magnetische Flussdichte mit $\frac{1}{r}$ vom geraden Leiter ab?
-
-- A) Weil die magnetische Energie mit dem Abstand abnimmt  
-- B) Weil die Feldlinien kreisförmig um den Leiter verlaufen und sich auf größere Umfänge verteilen  
-- C) Weil die Permeabilität mit dem Abstand zunimmt  
-- D) Weil magnetische Monopole Energie absorbieren  
-
-### Warum ist die Umlauffrequenz einer Ladung im homogenen Magnetfeld unabhängig von ihrer Geschwindigkeit?
-
-- A) Weil die Lorentzkraft proportional zur Geschwindigkeit ist  
-- B) Weil schnellere Teilchen einen größeren Radius haben, aber die gleiche Zeit für einen Umlauf benötigen  
-- C) Weil das Magnetfeld die Energie der Ladung konstant hält  
-- D) Weil die magnetische Flussdichte mit der Geschwindigkeit skaliert  
-
-### Was ist die physikalische Bedeutung der magnetischen Feldstärke $\vec{H}$ im Vergleich zur magnetischen Flussdichte $\vec{B}$?
-
-- A) $\vec{H}$ beschreibt die Gesamtenergie des Magnetfeldes  
-- B) $\vec{H}$ beschreibt das durch freie Ströme erzeugte Feld ohne Materialbeiträge  
-- C) $\vec{H}$ und $\vec{B}$ sind immer identisch  
-- D) $\vec{H}$ existiert nur in ferromagnetischen Materialien  
-
-### Warum werden diamagnetische Materialien von Magneten abgestoßen?
-
-- A) Weil ihre Atome keine magnetischen Dipole besitzen  
-- B) Weil das externe Feld Elektronenbahnen so verändert, dass ein Gegenfeld entsteht  
-- C) Weil sie eine höhere Permeabilität als Luft haben  
-- D) Weil sie thermisch instabil sind  
+- Generatoren (Energieerzeugung)
+- Transformatoren (Spannungswandlung)
+- Elektromotoren (Antriebssysteme)
+- Rekuperation bei Elektrofahrzeugen
+- Induktive Ladesysteme (Smartphones, E-Autos)
+- Sensoren (z.B. induktive Näherungsschalter)
+- Induktionsherd
+- Wirbelstrombremsen (Eisenbahn)
+- ...
 
 
-### Was ist der physikalische Ursprung des permanenten Magnetismus in Ferromagneten?
-- A) Die Bahnbewegung der Protonen im Atomkern  
-- B) Der Elektronenspin und dessen kollektive Ausrichtung  
-- C) Die Bewegung freier Elektronen im Leitungsband  
-- D) Die thermische Bewegung der Atome  
+### Bewegung eines Leiterstücks im Magnetfeld
+Lorentzkraft: $\vec{F}_m = q \cdot (\vec{v} \times \vec{B})$
 
-## Induktion
+Kraft durch elektrische Feldstärke: $\vec{F}_e = q \cdot \vec{E}$
+
+Kräftegleichgewicht: $\vec{F}_e + \vec{F}_m = 0 \Longrightarrow \vec{E} = -\,\vec{v} \times \vec{B}$
+
+Spannung an den Leiterenden: Mit $U = \vec{E} \cdot \vec{\ell}$ folgt:
+
+$$U_\text{ind} = -\,(\vec{v} \times \vec{B}) \cdot \vec{\ell}$$
+
+**Induzierte Spannung durch Bewegung im Magnetfeld**
+
+![bg right:40% 100%](https://upload.wikimedia.org/wikipedia/commons/8/8f/Induction-by-motion-voltage.svg)
+
+### Das Induktionsgesetz in allgemeiner Form
+
+**Bewegtes Leiterstück:** $\vec{v}$, $\vec{B}$ und $\vec{\ell}$ jeweils senkrecht zueinander:
+
+$$U_\text{ind} = -\left(\vec{v} \times \vec{B}\right) \cdot \vec{\ell} = -B \cdot \ell \cdot v = -B \cdot \ell \cdot \frac{ds}{dt} = -B \cdot \frac{dA}{dt}$$
+
+**Allgemein gilt:**
+$$U = -\frac{d\phi}{dt}$$
+
+### Zwei Möglichkeiten der Induktion
+
+1. **Bewegungsinduktion:** Leiter und Magnetfeld bewegen sich relativ zueinander
+2. **Ruheinduktion:** Magnetischer Fluss ändert sich bei ruhendem Leiter:
+
+$$U = -\frac{d\phi}{dt} = -\frac{d(A \cdot B)}{dt} = -\frac{dB}{dt} \cdot A - \frac{dA}{dt} \cdot B$$
+
+Übergang auf N Windungen:
+$$U = -N \cdot \frac{d\phi}{dt} \tag{4.15}$$
+
+
+### Induzierter Strom
+
+Verbindet man die Enden des Leiterstücks über einen Widerstand $R$ (der sich nicht mitbewegt), so fließt ein **induzierter Strom**:
+
+$$I = \frac{U}{R} = -\frac{1}{R} \cdot \frac{d\phi}{dt}$$
+
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3d/Induction-by-motion-current.svg)
+
+### Die Lenz’sche Regel
+
+**Polarität der induzierten Spannung:**
+
+Die induzierte Spannung ist stets so gerichtet, dass ein durch sie hervorgerufener Strom der Ursache ihrer Entstehung entgegenwirkt.
+
+
+Für $\frac{d\phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgegen
+
+**Erklärung:** die Energie, die am Widerstand in Wärme umgesetzt wird, stammt aus der mechanischen Arbeit, die aufgewendet werden muss, um die Flussänderung zu erzeugen – die Lenz’sche Regel ist Ausdruck der **Energieerhaltung**.
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/4/42/Induction-by-motion-lenzs-law.svg)
+
+### Beispiel: Bewegte Leiterschleife im Magnetfeld
+
+**Situation:** Rechteckige Leiterschleife (Breite $b$, Höhe $h$) bewegt sich mit Geschwindigkeit $\vec{v}$ durch homogenes Magnetfeld $\vec{B}$
+
+**Induktionsmechanismus:**
+- Beim Eintreten: zunehmender magnetischer Fluss durch die Schleife
+- Vollständig im Feld: konstanter Fluss → keine Induktion
+- Beim Austreten: abnehmender Fluss durch die Schleife
