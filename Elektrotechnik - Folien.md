@@ -2015,6 +2015,52 @@ Für $\frac{d\phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgeg
 
 ![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/4/42/Induction-by-motion-lenzs-law.svg)
 
+### Das induzierte elektrische Wirbelfeld
+
+**Wichtige Erkenntnis:** Bei der Ruheinduktion ist die „Spannung“ $U_\text{ind}$ **keine Potentialdifferenz**!
+
+**Grund:** 
+- Das zeitlich veränderliche Magnetfeld erzeugt ein elektrisches **Wirbelfeld**
+- Dieses Wirbelfeld ist **nicht konservativ** (im Gegensatz zum elektrostatischen Feld)
+- Es existiert kein Potential $\varphi$ mit $U = \varphi_1 - \varphi_2$
+
+**Die induzierte „Spannung“ ist vielmehr:**
+$$U_\text{ind} = \oint \vec{E}_\text{ind} \cdot d\vec{s}$$
+
+Ein Umlaufintegral entlang der Leiterschleife – das Integral über einen geschlossenen Weg ist **nicht Null**!
+
+### Vergleich: Elektrostatik vs. Induktion
+
+**Elektrostatik (statische Ladungen):**
+
+Wirbelfreiheit des elektrischen Felds:
+$$\oint \vec{E}_\text{stat} \cdot d\vec{s} = 0$$
+
+Das elektrostatische Feld ist konservativ → es existiert ein Potential $\varphi$
+
+
+**Elektromagnetische Induktion (zeitlich veränderliches Magnetfeld):**
+
+Das induzierte elektrische Feld ist **nicht wirbelfrei**:
+$$\oint \vec{E}_\text{ind} \cdot d\vec{s} = -\frac{d\Phi_B}{dt} = -\frac{d}{dt} \int \vec{B} \cdot d\vec{A}$$
+
+Dies ist das **Faraday’sche Induktionsgesetz**
+
+### Die fundamentalen Integralgleichungen der Elektrodynamik
+| **Größe** | **Elektro-/Magnetostatik** | **Elektrodynamik** |
+|-----------|-------------------|-------------------|
+| **Elektrische Flussdichte $\vec{D}$** | $\oint_A \vec{D} \cdot d\vec{A} = Q$ | $\oint_A \vec{D} \cdot d\vec{A} = Q$ |
+| | Gauß’sches Gesetz | Gauß’sches Gesetz |
+| **Elektrische Feldstärke $\vec{E}$** | $\oint_s \vec{E} \cdot d\vec{s} = 0$ | $\oint_s \vec{E} \cdot d\vec{s} = -\frac{d\Phi_B}{dt}$ |
+| | Wirbelfreiheit | **Induktionsgesetz** |
+| **Magnetische Flussdichte $\vec{B}$** | $\oint_A \vec{B} \cdot d\vec{A} = 0$ | $\oint_A \vec{B} \cdot d\vec{A} = 0$ |
+| | Keine magn. Monopole | Keine magn. Monopole |
+| **Magnetische Feldstärke $\vec{H}$** | $\oint_s \vec{H} \cdot d\vec{s} = I$ | (noch nicht behandelt) |
+| | Durchflutungsgesetz |  |
+
+**Fazit:** Zeitlich veränderliche Felder koppeln elektrische und magnetische Phänomene!
+
+
 ### Beispiel: Bewegte Leiterschleife im Magnetfeld
 
 **Situation:** Rechteckige Leiterschleife (Breite $b$, Höhe $h$) bewegt sich mit Geschwindigkeit $\vec{v}$ durch homogenes Magnetfeld $\vec{B}$
