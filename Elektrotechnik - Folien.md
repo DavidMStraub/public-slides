@@ -31,7 +31,7 @@ David Straub
 1. [Einführung](#einführung) (Physikalische Größen, Einheiten)
 2. [Das elektrische Feld](#das-elektrische-feld) (Ladungen, Kräfte, Felder, Potential, Spannung, Kapazität, Kondensatoren)
 3. [Gleichstrom](#gleichstrom) (Stromstärke, Widerstand, Stromkreisberechnungen, Energie, Leistung)
-4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte)
+4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte, magnetischer Kreis)
 5. [Induktion](#induktion)
 6. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Wirk- und Blindleistung)
 7. [Drehstrom](#drehstrom) (Dreiphasensystem)
@@ -1264,9 +1264,7 @@ Bei optimaler Leistungsanpassung ($\alpha = 1$) beträgt der Wirkungsgrad nur $\
 1. Magnetisches Feld
 2. Magnetisches Feld in Materie
 3. Kräfte im magnetischen Feld
-4. Magnetischer Kreis
-5. Induktion
-6. Energie im magnetischen Feld
+4. [Magnetischer Kreis](#der-magnetische-kreis)
 
 ### Elektrizität & Magnetismus
 
