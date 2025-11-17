@@ -882,7 +882,7 @@ $$\vec{J} = \sigma \cdot \vec{E}$$
 - Stromdichte muss konstant sein
 - Elektrisches Feld muss konstant sein
 - Potential $\varphi$ muss linear abfallen
-    - $\phi(l) = \phi(0) - E \cdot l$
+    - $\Phi(l) = \phi(0) - E \cdot l$
     - $U = \phi(0) - \phi(l) = E \cdot l$
 
 $$I = J \cdot A = \sigma \cdot E \cdot A = \sigma \cdot \frac{U}{l} \cdot A = \frac{U}{R}$$
@@ -1980,24 +1980,24 @@ $$U_\text{ind} = -\,(\vec{v} \times \vec{B}) \cdot \vec{\ell}$$
 $$U_\text{ind} = -\left(\vec{v} \times \vec{B}\right) \cdot \vec{\ell} = -B \cdot \ell \cdot v = -B \cdot \ell \cdot \frac{ds}{dt} = -B \cdot \frac{dA}{dt}$$
 
 **Allgemein gilt:**
-$$U = -\frac{d\phi}{dt}$$
+$$U = -\frac{d\Phi}{dt}$$
 
 ### Zwei Möglichkeiten der Induktion
 
 1. **Bewegungsinduktion:** Leiter und Magnetfeld bewegen sich relativ zueinander
 2. **Ruheinduktion:** Magnetischer Fluss ändert sich bei ruhendem Leiter:
 
-$$U = -\frac{d\phi}{dt} = -\frac{d(A \cdot B)}{dt} = -\frac{dB}{dt} \cdot A - \frac{dA}{dt} \cdot B$$
+$$U = -\frac{d\Phi}{dt} = -\frac{d(A \cdot B)}{dt} = -\frac{dB}{dt} \cdot A - \frac{dA}{dt} \cdot B$$
 
 Übergang auf N Windungen:
-$$U = -N \cdot \frac{d\phi}{dt} \tag{4.15}$$
+$$U = -N \cdot \frac{d\Phi}{dt} \tag{4.15}$$
 
 
 ### Induzierter Strom
 
 Verbindet man die Enden des Leiterstücks über einen Widerstand $R$ (der sich nicht mitbewegt), so fließt ein **induzierter Strom**:
 
-$$I = \frac{U}{R} = -\frac{1}{R} \cdot \frac{d\phi}{dt}$$
+$$I = \frac{U}{R} = -\frac{1}{R} \cdot \frac{d\Phi}{dt}$$
 
 
 ![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3d/Induction-by-motion-current.svg)
@@ -2009,7 +2009,7 @@ $$I = \frac{U}{R} = -\frac{1}{R} \cdot \frac{d\phi}{dt}$$
 Die induzierte Spannung ist stets so gerichtet, dass ein durch sie hervorgerufener Strom der Ursache ihrer Entstehung entgegenwirkt.
 
 
-Für $\frac{d\phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgegen
+Für $\frac{d\Phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgegen
 
 **Erklärung:** die Energie, die am Widerstand in Wärme umgesetzt wird, stammt aus der mechanischen Arbeit, die aufgewendet werden muss, um die Flussänderung zu erzeugen – die Lenz’sche Regel ist Ausdruck der **Energieerhaltung**.
 
@@ -2017,7 +2017,7 @@ Für $\frac{d\phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgeg
 
 ### Das induzierte elektrische Wirbelfeld
 
-**Wichtige Erkenntnis:** Bei der Ruheinduktion ist die „Spannung“ $U_\text{ind}$ **keine Potentialdifferenz**!
+**Wichtige Erkenntnis:** Bei Induktion ist die Spannung $U_\text{ind}$ **keine Potentialdifferenz**!
 
 **Grund:** 
 - Das zeitlich veränderliche Magnetfeld erzeugt ein elektrisches **Wirbelfeld**
@@ -2042,7 +2042,7 @@ Das elektrostatische Feld ist konservativ → es existiert ein Potential $\varph
 **Elektromagnetische Induktion (zeitlich veränderliches Magnetfeld):**
 
 Das induzierte elektrische Feld ist **nicht wirbelfrei**:
-$$\oint \vec{E}_\text{ind} \cdot d\vec{s} = -\frac{d\Phi_B}{dt} = -\frac{d}{dt} \int \vec{B} \cdot d\vec{A}$$
+$$\oint \vec{E}_\text{ind} \cdot d\vec{s} = -\frac{d\Phi}{dt} = -\frac{d}{dt} \int \vec{B} \cdot d\vec{A}$$
 
 Dies ist das **Faraday’sche Induktionsgesetz**
 
@@ -2051,7 +2051,7 @@ Dies ist das **Faraday’sche Induktionsgesetz**
 |-----------|-------------------|-------------------|
 | **Elektrische Flussdichte $\vec{D}$** | $\oint_A \vec{D} \cdot d\vec{A} = Q$ | $\oint_A \vec{D} \cdot d\vec{A} = Q$ |
 | | Gauß’sches Gesetz | Gauß’sches Gesetz |
-| **Elektrische Feldstärke $\vec{E}$** | $\oint_s \vec{E} \cdot d\vec{s} = 0$ | $\oint_s \vec{E} \cdot d\vec{s} = -\frac{d\Phi_B}{dt}$ |
+| **Elektrische Feldstärke $\vec{E}$** | $\oint_s \vec{E} \cdot d\vec{s} = 0$ | $\oint_s \vec{E} \cdot d\vec{s} = -\frac{d\Phi}{dt}$ |
 | | Wirbelfreiheit | **Induktionsgesetz** |
 | **Magnetische Flussdichte $\vec{B}$** | $\oint_A \vec{B} \cdot d\vec{A} = 0$ | $\oint_A \vec{B} \cdot d\vec{A} = 0$ |
 | | Keine magn. Monopole | Keine magn. Monopole |
