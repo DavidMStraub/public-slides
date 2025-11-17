@@ -264,7 +264,7 @@ Standardabweichung: X.X
 
 
 
-### Aufgabe 4: Zusatzaufgaben
+### Würfelspiel-Simulator: Zusatzaufgaben
 
 **Zusatz 1: Optimale Strategie finden**
 
