@@ -169,3 +169,111 @@ Beispiel: Für n = 10 → 2 + 3 + 5 + 7 = 17.
 Beispiel: Zwischen 2, 3, 5, 7 → Differenzen: `[1, 2, 2]`.
 
 - Primzahlzwillinge: Finden Sie alle Primzahlzwillinge (Paare von Primzahlen, die genau 2 auseinanderliegen, z. B. (3,5), (5,7), (11,13)) bis `n`.
+
+### Würfelspiel-Simulator
+
+In dieser Aufgabe programmieren Sie einen Simulator für ein Würfelspiel und analysieren verschiedene Strategien.
+
+**Das Spiel „Pig“ oder „Böse Eins“**: 
+- Ein Spieler würfelt mehrmals hintereinander
+- Nach jedem Wurf werden die Augen zur Rundenpunktzahl addiert
+- Der Spieler kann jederzeit aufhören und die Punkte "sichern"
+- **Aber**: Bei einer 1 verliert man alle Punkte der aktuellen Runde!
+- Wer zuerst 100 Punkte erreicht, gewinnt
+
+**Ihre Aufgabe**: Testen Sie verschiedene Strategien durch Simulation!
+
+![bg right:25%](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/640px-6sided_dice.jpg)
+### Würfelspiel-Simulator (Teil 1)
+
+**Teil 1: Grundfunktionen**
+
+Schreiben Sie folgende Funktionen:
+
+**a)** `wuerfle()`: 
+- Gibt eine Zufallszahl zwischen 1 und 6 zurück
+- Verwenden Sie die passende Funktion aus dem Modul `random`
+
+**b)** `spiele_runde(anzahl_wuerfe)`:
+- Würfelt `anzahl_wuerfe` mal und speichert alle Würfe in einer **Liste**
+- Wenn eine 1 dabei ist: gibt 0 zurück
+- Sonst: gibt die Summe aller Würfe zurück
+- Gibt außerdem die Liste der Würfe zurück (Tupel-Rückgabe!)
+
+**Testen Sie** beide Funktionen mit `random.seed` für reproduzierbare Ergebnisse.
+
+### Würfelspiel-Simulator (Teil 2)
+**Teil 2: Strategien implementieren**
+
+Eine Strategie legt fest, wie oft man maximal würfelt, bevor man aufhört.
+
+Schreiben Sie eine Funktion `spiele_strategie(max_wuerfe, ziel_punkte)`:
+- `max_wuerfe`: Anzahl Würfe pro Runde (die "Strategie")
+- `ziel_punkte`: Punkte, die zum Gewinnen nötig sind (z.B. 100)
+- Die Funktion spielt das Spiel bis zum Erreichen der Zielpunkte:
+    - Speichert die Gesamtpunktzahl in Variable `gesamt`, zählt Runden in `runden`
+    - Ruft in jeder Runde `spiele_runde(max_wuerfe)` auf
+    - Addiert die Rundenpunkte zu `gesamt`
+- Gibt zurück: Anzahl der benötigten Runden
+
+**Testen Sie** mit `max_wuerfe=3` und `ziel_punkte=100`.
+
+### Würfelspiel-Simulator (Teil 2, Fortsetzung)
+
+Erstellen Sie ein **Struktogramm** für die Funktion `spiele_strategie`.
+
+
+### Würfelspiel-Simulator (Teil 3)
+
+**Teil 3: Mehrfache Simulation**
+
+Schreiben Sie eine Funktion `simuliere_strategie(max_wuerfe, ziel_punkte, anzahl_spiele)`:
+- Spielt das Spiel `anzahl_spiele` mal
+- Speichert die Anzahl benötigter Runden in einer **Liste**
+- Verwendet `random.seed(i)` vor jedem Spiel (mit `i` als Schleifenvariable)
+- Gibt die Liste aller Rundenanzahlen zurück
+
+**Führen Sie durch**:
+- Simulieren Sie 1000 Spiele für die Strategien "2 Würfe", "3 Würfe", "4 Würfe" und "5 Würfe"
+- Speichern Sie die Ergebnisse in verschiedenen Variablen
+### Würfelspiel-Simulator (Teil 4)
+
+**Teil 4: Statistische Auswertung**
+
+Schreiben Sie eine Funktion `analysiere_strategie(runden_liste, strategie_name)`:
+- Berechnet aus der Liste die folgenden Werte:
+    - Durchschnittliche Anzahl Runden (Mittelwert)
+    - Minimale Anzahl Runden
+    - Maximale Anzahl Runden
+    - Standardabweichung: $\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2}$
+- Verwenden Sie `math.sqrt()` für die Wurzel
+
+### Würfelspiel-Simulator (Teil 4, Fortsetzung)
+
+Die Funktion `analysiere_strategie` gibt die Ergebnisse formatiert aus:
+
+```
+Strategie: [strategie_name]
+Durchschnitt: X.X Runden
+Min: X Runden, Max: X Runden  
+Standardabweichung: X.X
+```
+
+**Analysieren Sie** alle vier Strategien. Welche ist am effizientesten?
+
+
+
+
+### Aufgabe 4: Zusatzaufgaben
+
+**Zusatz 1: Optimale Strategie finden**
+
+Schreiben Sie eine Schleife, die alle Strategien von 1 bis 10 Würfen testet (jeweils 1000 Spiele) und die durchschnittliche Rundenanzahl in einer Liste speichert. Finden Sie die optimale Strategie (kleinste durchschnittliche Rundenanzahl).
+
+**Zusatz 2: Risiko-Analyse**
+
+Berechnen Sie für jede Strategie: Wie oft (in Prozent) wird in einer Runde eine 1 gewürfelt und damit die Runde verloren? Verwenden Sie dafür die Wahrscheinlichkeitsrechnung: $P(\text{keine 1}) = (5/6)^n$
+
+**Zusatz 3: Detaillierte Ausgabe**
+
+Erweitern Sie `spiele_runde()` so, dass bei gesetztem optionalen Parameter `debug=True` jeder einzelne Wurf ausgegeben wird, z.B.: "Wurf 1: 4, Wurf 2: 6, Wurf 3: 1 → Runde verloren!"
