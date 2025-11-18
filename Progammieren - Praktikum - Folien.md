@@ -198,7 +198,7 @@ Schreiben Sie folgende Funktionen:
 - Würfelt `anzahl_wuerfe` mal und speichert alle Würfe in einer **Liste**
 - Wenn eine 1 dabei ist: gibt 0 zurück
 - Sonst: gibt die Summe aller Würfe zurück
-- Gibt außerdem die Liste der Würfe zurück (Tupel-Rückgabe!)
+- Gibt außerdem die Liste der Würfe zurück (Rückgabe eines Tupels aus Zahl und Liste)
 
 **Testen Sie** beide Funktionen mit `random.seed` für reproduzierbare Ergebnisse.
 
