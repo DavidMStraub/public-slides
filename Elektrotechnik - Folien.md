@@ -2069,3 +2069,170 @@ Dies ist das **Faraday’sche Induktionsgesetz**
 - Beim Eintreten: zunehmender magnetischer Fluss durch die Schleife
 - Vollständig im Feld: konstanter Fluss → keine Induktion
 - Beim Austreten: abnehmender Fluss durch die Schleife
+
+
+## Selbstinduktion
+
+### Wiederholung: Elektromagnetische Induktion
+
+**Faraday'sches Induktionsgesetz:**
+$$U_\text{ind} = -N \cdot \frac{d\Phi}{dt}$$
+
+Magnetischer Fluss $\Phi=\int \vec{B} \cdot d\vec{A}$ durch eine Leiterschleife mit $N$ Windungen (Spule)
+
+**Zwei Mechanismen der Induktion:**
+
+1. **Bewegungsinduktion:** Leiter bewegt sich relativ zum Magnetfeld
+   - $U_\text{ind} = -(\vec{v} \times \vec{B}) \cdot \vec{\ell} = -B \cdot \frac{dA}{dt}$
+
+2. **Ruheinduktion:** Magnetfeld ändert sich bei ruhendem Leiter
+   - $U_\text{ind} = -A \cdot \frac{dB}{dt}$
+
+**Lenz'sche Regel:** Die induzierte Spannung wirkt ihrer Ursache entgegen (Energieerhaltung)
+
+### Von der Induktion zur Selbstinduktion
+
+**Bisher:** Externes Magnetfeld induziert Spannung: $U_\text{ind} = -N \cdot \frac{d\Phi}{dt}$
+
+**Neu:** Stromfluss durch Spule → eigenes Magnetfeld $\Phi \propto I$
+
+Bei Stromänderung ändert sich auch $\Phi$ → Induktion **in derselben Spule**!
+
+
+**Selbstinduktion:** Die Spule induziert eine Spannung in sich selbst
+
+
+### Herleitung der Selbstinduktivität
+
+**Ohmsches Gesetz des magnetischen Kreises:**
+$$\Phi = \frac{\Theta}{R_m} = \frac{I \cdot N}{\frac{\ell_E}{\mu_0 \cdot \mu_r \cdot A}} = I \cdot N \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E}$$
+
+Mit  $U_\text{ind} = -N \cdot \frac{d\Phi}{dt}$ folgt:
+
+$$U_\text{ind} = -N \cdot \frac{d}{dt} \left( I \cdot N \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \right) = -N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \cdot \frac{dI}{dt} = -L \cdot \frac{dI}{dt}$$
+
+**Proportionalitätskonstante $L$:** Induktivität (Selbstinduktivität)
+
+
+### Vorzeichen: Klemmenspannung vs. induzierte Spannung
+
+**Wichtige Unterscheidung:**
+
+- **Induzierte Spannung** $U_\text{ind}$: Umlaufintegral des elektrischen Wirbelfelds
+    $$U_\text{ind} = \oint \vec{E}_\text{ind} \cdot d\vec{r} = -\frac{d\Phi}{dt}$$
+
+- **Klemmenspannung** $U$: Messbare Spannung zwischen den Anschlüssen
+
+Das Ringintegral wird entgegen der Pfeilrichtung der Klemmenspannung durchlaufen → **Vorzeichenwechsel!**
+
+**Vorzeichenkonvention:** $U = -U_\text{ind} = +L \cdot \frac{dI}{dt}$
+
+![bg right:25% 80%](https://upload.wikimedia.org/wikipedia/commons/3/30/Integration_Coil_modified.svg)
+
+
+### Induktivität (*inductance*) einer Spule
+
+$$L = \frac{N^2}{R_m} = N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E}$$
+
+**Zusammenhang zwischen Strom und induzierter Spannung:**
+$$U = L \cdot \frac{dI}{dt}$$
+
+**Bei ferromagnetischen Stoffen:**
+- $\mu_r$ ist abhängig von $I$ → $L$ ist nicht konstant
+- Effekt wird reduziert durch Spule mit **Luftspalt**
+- Linearisierung der Kennlinie durch Aufteilen des magnetischen Widerstands
+
+### Zusammenschaltung von Induktivitäten
+
+**Reihenschaltung:**
+$$L_{\text{ges}} = L_1 + L_2 + \dots + L_n = \sum_i L_i$$
+
+Die induzierten Spannungen addieren sich, der Strom ist überall gleich
+
+**Parallelschaltung:**
+$$\frac{1}{L_{\text{ges}}} = \frac{1}{L_1} + \frac{1}{L_2} + \dots + \frac{1}{L_n} = \sum_i \frac{1}{L_i}$$
+Die Spannung ist überall gleich, die Ströme teilen sich auf
+
+## Energie des magnetischen Feldes
+
+### Energiebilanz einer RL-Schaltung
+
+**Schaltung:** Spannungsquelle $U_0$, Widerstand $R$ und Induktivität $L$ in Reihe
+
+**Maschengleichung:** 
+$$U_0 = U_R + U_L = I \cdot R + L \cdot \frac{dI}{dt}$$
+
+**Energie:** $dW = U \cdot I \cdot dt$
+
+$$dW = U_0 \cdot I \cdot dt = I^2 \cdot R \cdot dt + L \cdot I \cdot \frac{dI}{dt} \cdot dt$$
+
+**Interpretation:** Energie wird teils am Widerstand $R$ in Wärme umgesetzt, teils im Magnetfeld der Spule gespeichert
+
+**Gespeicherte Energie in einer Induktivität:**
+$$W_m = \int_0^I L \cdot I \, dI = \frac{1}{2} \cdot L \cdot I^2$$
+
+### Alternative Berechnung der magnetischen Energie
+
+Falls die Induktivität $L$ nicht bekannt oder nicht konstant ist:
+
+**Gespeicherte Energie des Magnetfeldes:**
+$$W_m = \frac{1}{2} \cdot H \cdot B \cdot V = \frac{1}{2} \cdot \frac{B^2}{\mu_0 \cdot \mu_r} \cdot V$$
+
+**Interpretation:** Die Energiedichte $w_m = \frac{W_m}{V} = \frac{1}{2} \cdot H \cdot B$ beschreibt die im Magnetfeld gespeicherte Energie pro Volumeneinheit
+
+**Anwendung:** Bei ferromagnetischen Materialien mit nichtlinearer Kennlinie
+
+### Beispiel: Energieerhaltung bei zwei Permanentmagneten
+
+**Situation:** Zwei Permanentmagnete mit gleicher Magnetisierung $M$ nähern sich an
+
+Bei unendlicher Entfernung:
+
+$$W_{m,\infty} = 2 \cdot W_\text{Magnet}\,, \qquad W_\text{Magnet} = \frac{1}{2} \cdot \mu_0 \cdot M^2 \cdot V$$
+
+Bei Annäherung auf Abstand $d$:
+
+$$W_{m,d} = 2 \cdot W_\text{Magnet} + W_{\text{Wechselwirkung}}$$
+**Zusammenhang zwischen Arbeit und Kraft**
+
+$$W_{\text{Wechselwirkung}} = \int_\infty^d F \, ds$$
+
+### Hinweis: Energieerhaltung bei zwei Permanentmagneten
+
+Die Änderung der Feldenergie kann als Potential interpretiert werden.
+
+Dies gilt aber nur unter folgenden Bedingungen:
+
+- Magnetisierung der Magnete bleibt konstant
+- Keine Wirbelströme oder sonstige Verluste
+- Keine elektromagnetischen Wellen werden abgestrahlt
+
+## Kräfte an Grenzflächen
+
+### Herleitung der Maxwell'schen Zugspannung
+
+**Situation:** Eisenjoch mit Luftspalt der Länge $\ell$ und Querschnittsfläche $A$
+
+**Energieänderung bei Spaltvergrößerung:**
+$$dW = \frac{B^2}{2 \cdot \mu_0} \cdot dV = \frac{B^2}{2 \cdot \mu_0} \cdot 2 \cdot A \cdot d\ell$$
+
+(Faktor 2: Energie in beiden Luftspalten)
+
+**Mit $dW = F' \cdot d\ell$ folgt:**
+$$F' = \frac{dW}{d\ell} = \frac{B^2}{\mu_0} \cdot A$$
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/1/13/EisenkernMitLuftspalt.svg)
+
+
+### Maxwell'sche Zugspannung
+
+**Kraft auf einer Seite des Luftspalts:**
+$$F = \frac{B^2}{2 \cdot \mu_0} \cdot A$$
+
+**Mechanische Spannung (Kraft pro Fläche):**
+$$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
+
+**Anwendungen:**
+- Hubmagnete (Kräne, Magnetventile)
+- Elektromagnetische Relais
+- Magnetische Verriegelungen
