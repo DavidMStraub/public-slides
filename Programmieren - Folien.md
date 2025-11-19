@@ -35,7 +35,7 @@ David Straub
 5. [Datenstrukturen](#datenstrukturen)
 6. [Module & Bibliotheken](#module--bibliotheken)
 7. [Algorithmen, Pseudocode & Struktogramme](#algorithmen-pseudocode--struktogramme)
-8. Arbeiten mit Zeichenketten
+8. [Arbeiten mit Zeichenketten](#arbeiten-mit-zeichenketten)
 9. Visualisierung von Funktionen
 10. Zahlensysteme
 11. Klassen
@@ -2630,3 +2630,497 @@ def ist_prim(zahl):
 - Grafische Darstellung von Algorithmen
 - Drei Grundstrukturen: Sequenz, Verzweigung, Wiederholung
 - Nassi-Shneiderman-Notation
+
+## Arbeiten mit Zeichenketten
+
+### Überblick: Strings in der Praxis
+
+**Wiederholung aus Kapitel 2:**
+- Strings mit `""`, `''` oder `""""""` erstellen
+- f-Strings für Formatierung: `f"{variable}"`
+- Unicode-Unterstützung, Escape Sequences
+
+**Neu in dieser Vorlesung:**
+1. String-Indizierung & Slicing (Zugriff auf Teile)
+2. String-Methoden (über 40 eingebaute Methoden!)
+3. Praxisanwendungen: Validierung, Textverarbeitung, Verschlüsselung
+
+### Wiederholung: Strings sind Sequenzen
+
+Strings sind **unveränderbare Sequenzen** von Zeichen – man kann auf einzelne Zeichen zugreifen.
+
+```python
+text = "Python"
+print(f"Länge: {len(text)}")
+print(f"Erstes Zeichen: {text[0]}")
+print(f"Letztes Zeichen: {text[-1]}")
+```
+
+```python
+# Strings sind unveränderbar!
+text = "Python"
+# text[0] = "J"  # TypeError!
+# Stattdessen: neuen String erzeugen
+text = "J" + text[1:]
+print(text)
+```
+
+### String-Indizierung: Positive und negative Indizes
+
+```python
+wort = "Python"
+#       012345    (positive Indizes)
+#      -6-5-4-3-2-1 (negative Indizes)
+
+print(wort[0])    # P
+print(wort[5])    # n
+print(wort[-1])   # n (letztes Zeichen)
+print(wort[-2])   # o (vorletztes Zeichen)
+```
+
+**Merke:** Negative Indizes zählen von hinten – genau wie in Listen!
+
+
+
+### String-Iteration: Zeichen durchlaufen
+
+```python
+# Mit for-Schleife durch String iterieren
+for zeichen in "Python":
+    print(zeichen)
+```
+
+```python
+# Mit Index und enumerate()
+for i, zeichen in enumerate("Python"):
+    print(f"Index {i}: {zeichen}")
+```
+
+### String-Slicing: Teilstrings extrahieren
+
+**Syntax:** `string[start:stop:step]` – alle drei Teile optional. Genau wie bei Listen!
+
+```python
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+print(alphabet[0:5])    # ABCDE
+print(alphabet[5:10])   # FGHIJ
+print(alphabet[:5])     # ABCDE (start fehlt = 0)
+print(alphabet[20:])    # UVWXYZ (stop fehlt = Ende)
+print(alphabet[::2])    # ACEGIKMOQSUWY (jedes 2. Zeichen)
+print(alphabet[::-1])   # Umkehrung!
+```
+
+### Slicing-Beispiel: String umkehren
+
+```python
+nachricht = "Hallo Welt"
+umgekehrt = nachricht[::-1]
+print(umgekehrt)
+```
+
+**Praktische Anwendung:** Palindrom-Check
+
+```python
+def ist_palindrom(text):
+    text = text.lower()  # wandle in Kleinbuchstaben um – Details im nächsten Abschnitt
+    return text == text[::-1]
+
+print(ist_palindrom("Anna"))
+print(ist_palindrom("Lagerregal"))
+print(ist_palindrom("Hallo"))
+```
+
+
+### Wichtige String-Methoden: Übersicht
+
+| Methode | Beschreibung |
+|---------|-------------|
+| `upper()`, `lower()` | Groß-/Kleinschreibung |
+| `strip()`, `lstrip()`, `rstrip()` | Whitespace entfernen |
+| `split()`, `join()` | Trennen und Verbinden |
+| `replace()` | Text ersetzen |
+| `startswith()`, `endswith()` | Präfix/Suffix prüfen |
+| `find()`, `count()` | Suchen und Zählen |
+| `isdigit()`, `isalpha()` | Zeichentyp prüfen |
+
+### Groß- und Kleinschreibung
+
+```python
+text = "Python Programmierung"
+
+print(text.upper())      # PYTHON PROGRAMMIERUNG
+print(text.lower())      # python programmierung
+print(text.capitalize()) # Python programmierung
+print(text.title())      # Python Programmierung
+```
+
+```python
+# Case-insensitiver Vergleich
+email1 = "Max.Mustermann@Gmail.COM"
+email2 = "max.mustermann@gmail.com"
+print(email1.lower() == email2.lower())
+```
+### Sonderfall: ß und `casefold()`
+
+**Problem:** `lower()` wandelt nur in Kleinbuchstaben um, entfernt aber nicht alle Fallunterscheidungen
+
+```python
+# Beispiel: Deutsches ß
+print("Straße".upper())    # STRASSE (ß → SS)
+print("STRASSE".lower())  # strasse (SS → ss)
+print("Straße".lower())    # straße (ß bleibt ß)
+print("Straße".lower() == "STRASSE".lower())      # False (straße ≠ strasse)
+```
+
+**`casefold()` ist aggressiver:** entfernt *alle* Fallunterscheidungen (z.B. ß → ss)
+
+```python
+print("Straße".casefold())    # strasse
+print("STRASSE".casefold())   # strasse
+print("Straße".casefold() == "STRASSE".casefold())  # True
+```
+
+**Faustregel:** Für case-insensitive Vergleiche immer `casefold()` verwenden!
+
+### Whitespace entfernen
+
+```python
+# strip() entfernt Leerzeichen, Tabs, Newlines am Anfang/Ende
+eingabe = "   Hallo Welt   \n"
+print(f"'{eingabe}'")
+print(f"'{eingabe.strip()}'")
+```
+
+```python
+# lstrip() und rstrip()
+pfad = "///home/user/file.txt"
+print(pfad.lstrip("/"))    # home/user/file.txt
+```
+
+```python
+# Bestimmte Zeichen entfernen
+url = "https://example.com/"
+print(url.strip("https://").rstrip("/"))
+```
+
+### Split und Join: Text zerlegen und zusammenfügen
+
+```python
+# split() zerlegt String in Liste
+satz = "Python ist eine tolle Sprache"
+woerter = satz.split()
+print(woerter)
+```
+
+```python
+# Mit Trennzeichen
+csv_zeile = "Max,Mustermann,25,Berlin"
+daten = csv_zeile.split(",")
+print(daten)
+```
+
+```python
+# join() fügt Liste zu String zusammen
+woerter = ["Python", "ist", "toll"]
+satz = " ".join(woerter)
+print(satz)
+```
+
+### Split/Join Anwendung: Wörter umkehren
+
+```python
+def umgekehrte_woerter(satz):
+    """Kehrt die Reihenfolge der Wörter um."""
+    woerter = satz.split()
+    return " ".join(reversed(woerter))
+
+satz = "Hallo Welt wie geht es dir"
+print(umgekehrte_woerter(satz))
+```
+
+### Text ersetzen
+
+```python
+# Datenpfade normalisieren
+pfad = "C:\\Users\\David\\Documents\\data.txt"
+unix_pfad = pfad.replace("\\", "/")
+print(unix_pfad)
+```
+
+```python
+# Telefonnummern normalisieren
+telefon = "+49 (89) 123-456"
+normalisiert = telefon.replace(" ", "").replace("(", "").replace(")", "").replace("-", "")
+print(normalisiert)
+```
+
+```python
+# URL-Parameter entfernen
+url = "https://example.com/seite.html?ref=123&utm=abc"
+saubere_url = url.split("?")[0]
+print(saubere_url)
+```
+
+### Präfix und Suffix prüfen
+
+```python
+dateiname = "bericht_2025.pdf"
+
+if dateiname.endswith(".pdf"):
+    print("PDF-Datei gefunden")
+```
+
+```python
+url = "https://www.example.com"
+
+if url.startswith("https://"):
+    print("Sichere Verbindung")
+elif url.startswith("http://"):
+    print("Unsichere Verbindung")
+```
+
+```python
+# Mehrere Möglichkeiten prüfen (Tupel!)
+bild = "foto.jpg"
+if bild.endswith((".jpg", ".png", ".gif")):
+    print("Bilddatei")
+```
+
+### Suchen in Strings
+
+```python
+# Textanalyse: Finde Position eines Keywords in einem Artikel
+artikel = """Machine Learning revolutioniert die Industrie.
+Deep Learning ermöglicht neue Anwendungen."""
+
+# find() gibt Index zurück (oder -1 wenn nicht gefunden)
+pos = artikel.find("Learning")
+print(f"Erste Position von 'Learning': {pos}")
+```
+
+```python
+# count() zählt Vorkommen - praktisch für Keyword-Analyse
+anzahl = artikel.count("Learning")
+print(f"'Learning' kommt {anzahl}× vor")
+```
+
+```python
+# Praktisches Beispiel: Prüfe ob API-Response erfolgreich war
+response = '{"status": "success", "data": {...}}'
+if response.find('"status": "success"') != -1:
+    print("API-Aufruf erfolgreich")
+```
+
+### Zeichentyp prüfen
+
+```python
+# Verschiedene is*-Methoden
+print("123".isdigit())      # True
+print("12.3".isdigit())     # False (Punkt ist keine Ziffer!)
+print("abc".isalpha())      # True
+print("abc123".isalnum())   # True (Buchstaben oder Ziffern)
+print("   ".isspace())      # True
+```
+
+```python
+# Praktisch für Validierung
+alter = input("Alter: ")
+if alter.isdigit():
+    print(f"Alter: {int(alter)}")
+else:
+    print("Ungültige Eingabe")
+```
+
+### Anwendung: E-Mail-Validierung (vereinfacht)
+
+```python
+def ist_gueltige_email(email):
+    """Einfache E-Mail-Validierung (nicht vollständig!)."""
+    # Grundlegende Checks
+    if email.count("@") != 1:
+        return False
+    
+    lokaler_teil, domain = email.split("@")
+    
+    # Lokaler Teil und Domain dürfen nicht leer sein
+    if not lokaler_teil or not domain:
+        return False
+    
+    # Domain muss einen Punkt enthalten
+    if "." not in domain:
+        return False
+    
+    # Domain-Endung muss mindestens 2 Zeichen haben
+    endung = domain.split(".")[-1]
+    if len(endung) < 2:
+        return False
+    
+    return True
+
+# Tests
+print(ist_gueltige_email("max@example.com"))
+print(ist_gueltige_email("max@example"))
+print(ist_gueltige_email("max.com"))
+```
+
+
+### Anwendung: Dateinamen verarbeiten
+
+```python
+def parse_dateiname(pfad):
+    """Extrahiert Informationen aus einem Dateipfad."""
+    # Letzten Teil des Pfads nehmen (Dateiname)
+    dateiname = pfad.split("/")[-1]
+    
+    # Name und Erweiterung trennen
+    if "." in dateiname:
+        name, erweiterung = dateiname.rsplit(".", 1)
+    else:
+        name, erweiterung = dateiname, ""
+    
+    return {
+        "pfad": pfad,
+        "dateiname": dateiname,
+        "name": name,
+        "erweiterung": erweiterung
+    }
+
+info = parse_dateiname("/home/user/dokumente/bericht_2025.pdf")
+print(info)
+```
+
+### String-Methoden verketten
+
+```python
+# Methoden können verkettet werden
+text = "  Python Programmierung  "
+
+# Mehrere Operationen hintereinander
+ergebnis = text.strip().lower().replace(" ", "_")
+print(ergebnis)
+```
+
+```python
+# Praktisch für Datenbereinigung
+email = "  Max.Mustermann@GMAIL.COM  "
+sauber = email.strip().lower()
+print(sauber)
+```
+
+
+
+### f-Strings: Tabellen formatieren
+
+Anwendung für tabellarische Ausgaben:
+
+```python
+studenten = [
+    ("Alice", 23, 1.7),
+    ("Bob", 25, 2.3),
+    ("Charlie", 22, 1.9)
+]
+
+# Header
+print(f"{'Name':<10} {'Alter':>5} {'Note':>5}")
+print("-" * 25)
+
+# Daten
+for name, alter, note in studenten:
+    print(f"{name:<10} {alter:>5} {note:>5.1f}")
+```
+
+
+### Caesar-Verschlüsselung: Einführung
+
+**Historischer Kontext:**
+- Von Julius Caesar verwendet (100-44 v. Chr.)
+- Einfache Substitutions-Verschlüsselung
+- Jeder Buchstabe wird um n Positionen verschoben
+
+**Beispiel (Verschiebung = 3):**
+```
+A B C D E F G ... X Y Z
+↓ ↓ ↓ ↓ ↓ ↓ ↓     ↓ ↓ ↓
+D E F G H I J ... A B C
+```
+
+**Klartext:** `HALLO`
+**Geheimtext:** `KDOOR`
+
+### Caesar-Verschlüsselung: Algorithmus
+
+**Idee:**
+1. Für jeden Buchstaben:
+   - Finde Position im Alphabet (A=0, B=1, ..., Z=25)
+   - Addiere Verschiebung
+   - Rechne Modulo 26 (zurück zum Anfang bei Überlauf)
+   - Wandle zurück in Buchstaben
+
+**Beispiel (Verschiebung = 3):**
+- H → Position 7 → 7+3=10 → K
+- A → Position 0 → 0+3=3 → D
+- L → Position 11 → 11+3=14 → O
+### Aufgabe: Caesar-Verschlüsselung implementieren
+
+**Teil 1: Verschlüsselung**
+
+Schreibe eine Funktion `caesar_verschluesseln(text, verschiebung)`, die einen Text verschlüsselt.
+
+**Anforderungen:**
+- Wandle Text in Großbuchstaben um
+- Verschiebe jeden Buchstaben um `verschiebung` Positionen
+- Verwende Modulo 26 für Überlauf (Z+1 = A)
+- Nicht-Buchstaben bleiben unverändert
+
+**Beispiel:**
+```python
+print(caesar_verschluesseln("HALLO WELT", 3))  # KDOOR ZHOW
+```
+
+**Hinweise:** `alphabet.find(zeichen)` für Position, `text.upper()` für Großbuchstaben
+
+
+### Aufgabe: Caesar-Entschlüsselung
+
+**Teil 2: Entschlüsselung**
+
+Schreibe eine Funktion `caesar_entschluesseln(text, verschiebung)`, die einen Caesar-verschlüsselten Text entschlüsselt.
+
+**Tipp:** Überlege, wie Entschlüsselung und Verschlüsselung zusammenhängen!
+- Verschiebung um +3 verschlüsselt
+- Verschiebung um -3 entschlüsselt
+
+**Beispiel:**
+```python
+geheimtext = "KDOOR ZHOW"
+klartext = caesar_entschluesseln(geheimtext, 3)
+print(klartext)  # HALLO WELT
+```
+
+### Aufgabe: Brute-Force-Angriff
+
+**Teil 3: Alle Schlüssel ausprobieren**
+
+Schreibe eine Funktion `caesar_brechen(geheimtext)`, die alle 26 möglichen Verschiebungen ausprobiert.
+
+**Anforderungen:**
+- Probiere Verschiebungen von 0 bis 25
+- Gib für jede Verschiebung das Ergebnis aus
+- Format: `"Verschiebung  3: HALLO WELT"`
+
+**Erkenntnis:** Caesar-Verschlüsselung ist unsicher – nur 26 mögliche Schlüssel!
+
+
+### Zusammenfassung: Arbeiten mit Zeichenketten
+
+**String-Grundlagen:**
+- Indizierung, Slicing, Iteration
+- Strings sind unveränderbar
+
+**Wichtige Methoden:**
+- Groß-/Kleinschreibung: `upper()`, `lower()`
+- Bereinigung: `strip()`, `replace()`
+- Zerlegen/Verbinden: `split()`, `join()`
+- Suchen: `find()`, `count()`, `startswith()`, `endswith()`
+- Prüfen: `isdigit()`, `isalpha()`, etc.
