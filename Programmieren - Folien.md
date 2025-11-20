@@ -2636,13 +2636,13 @@ def ist_prim(zahl):
 ### Überblick: Strings in der Praxis
 
 **Wiederholung aus Kapitel 2:**
-- Strings mit `""`, `''` oder `""""""` erstellen
-- f-Strings für Formatierung: `f"{variable}"`
-- Unicode-Unterstützung, Escape Sequences
+- Strings mit `"..."`, `'...'` oder `"""..."""` erstellen
+- f-Strings für Formatierung: `f"{variable}"`, `f"{wert:.2f}"`
+- Unicode-Unterstützung `"🤩"`, Escape Sequences `"\n"`, `"\t"`, `"\\"`, `"\""`, `"\'"`
 
-**Neu in dieser Vorlesung:**
+**Heute:**
 1. String-Indizierung & Slicing (Zugriff auf Teile)
-2. String-Methoden (über 40 eingebaute Methoden!)
+2. String-Methoden (Bearbeitung & Analyse)
 3. Praxisanwendungen: Validierung, Textverarbeitung, Verschlüsselung
 
 ### Wiederholung: Strings sind Sequenzen
@@ -2782,7 +2782,6 @@ print("Straße".casefold() == "STRASSE".casefold())  # True
 ```
 
 **Faustregel:** Für case-insensitive Vergleiche immer `casefold()` verwenden!
-
 ### Whitespace entfernen
 
 ```python
@@ -2793,15 +2792,15 @@ print(f"'{eingabe.strip()}'")
 ```
 
 ```python
-# lstrip() und rstrip()
-pfad = "///home/user/file.txt"
-print(pfad.lstrip("/"))    # home/user/file.txt
+# strip() kann auch andere Zeichen entfernen
+url = "https://example.com/"
+print(url.strip("/"))    # https://example.com (nur / wird entfernt)
 ```
 
 ```python
-# Bestimmte Zeichen entfernen
-url = "https://example.com/"
-print(url.strip("https://").rstrip("/"))
+# lstrip() und rstrip() für links/rechts
+pfad = "///home/user/file.txt"
+print(pfad.lstrip("/"))    # home/user/file.txt
 ```
 
 ### Split und Join: Text zerlegen und zusammenfügen
