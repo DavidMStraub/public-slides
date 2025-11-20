@@ -3007,6 +3007,21 @@ sauber = email.strip().lower()
 print(sauber)
 ```
 
+### f-Strings: Formatierungsmöglichkeiten
+
+
+| Format | Bedeutung | Beispiel | Ergebnis |
+|--------|-----------|----------|----------|
+| `.2f` | Fließkommazahl mit 2 Nachkommastellen | `f"{3.14159:.2f}"` | `3.14` |
+| `.0f` | Fließkommazahl ohne Nachkommastellen | `f"{3.14159:.0f}"` | `3` |
+| `d` | Ganzzahl (Integer) | `f"{42:d}"` | `42` |
+| `>10` | Rechtsbündig, Breite 10 | `f"{42:>10}"` | `        42` |
+| `<10` | Linksbündig, Breite 10 | `f"{'Hi':<10}"` | `Hi        ` |
+| `^10` | Zentriert, Breite 10 | `f"{'Hi':^10}"` | `    Hi    ` |
+| `05d` | Mit Nullen auffüllen, Breite 5 | `f"{42:05d}"` | `00042` |
+| `,` | Tausendertrennzeichen | `f"{1000000:,}"` | `1,000,000` |
+| `.2%` | Prozent mit 2 Nachkommastellen | `f"{0.1234:.2%}"` | `12.34%` |
+
 
 
 ### f-Strings: Tabellen formatieren
@@ -3046,6 +3061,8 @@ D E F G H I J ... A B C
 
 **Klartext:** `HALLO`
 **Geheimtext:** `KDOOR`
+
+![bg right:30% 80%](https://upload.wikimedia.org/wikipedia/commons/b/b4/Bust_of_Julius_Caesar_from_History_of_the_World_%281902%29.png)
 
 ### Caesar-Verschlüsselung: Algorithmus
 
