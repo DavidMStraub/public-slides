@@ -1940,6 +1940,15 @@ Der Luftspalt bestimmt die magnetischen Eigenschaften!
 
 ## Elektromagnetische Induktion
 
+1. Induktionsgesetz
+2. [Selbstinduktion](#selbstinduktion)
+3. [Energie des magnetischen Feldes](#energie-des-magnetischen-feldes)
+4. [Kräfte an Grenzflächen](#kräfte-an-grenzflächen)
+
+
+## Elektromagnetische Induktion: Grundprinzipien
+
+
 - Bisher: el. Feld ruhender Ladungen (Elektrostatik) und mag. Feld konstanter Ströme (Magnetostatik)
 - Sobald zeitliche Änderungen auftreten → Wechselwirkung zwischen elektrischen und magnetischen Feldern
 
@@ -2094,13 +2103,14 @@ Magnetischer Fluss $\Phi=\int \vec{B} \cdot d\vec{A}$ durch eine Leiterschleife 
 
 **Bisher:** Externes Magnetfeld induziert Spannung: $U_\text{ind} = -N \cdot \frac{d\Phi}{dt}$
 
-**Neu:** Stromfluss durch Spule → eigenes Magnetfeld $\Phi \propto I$
+**Jetzt:** Stromfluss durch Spule → eigenes Magnetfeld $\Phi \propto I$
 
 Bei Stromänderung ändert sich auch $\Phi$ → Induktion **in derselben Spule**!
 
 
 **Selbstinduktion:** Die Spule induziert eine Spannung in sich selbst
 
+![bg right:35% 80%](https://upload.wikimedia.org/wikipedia/commons/5/5b/Coil_right-hand_rule3.svg)
 
 ### Herleitung der Selbstinduktivität
 
@@ -2109,10 +2119,13 @@ $$\Phi = \frac{\Theta}{R_m} = \frac{I \cdot N}{\frac{\ell_E}{\mu_0 \cdot \mu_r \
 
 Mit  $U_\text{ind} = -N \cdot \frac{d\Phi}{dt}$ folgt:
 
-$$U_\text{ind} = -N \cdot \frac{d}{dt} \left( I \cdot N \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \right) = -N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \cdot \frac{dI}{dt} = -L \cdot \frac{dI}{dt}$$
+$$U_\text{ind} = -N \cdot \frac{d}{dt} \left( I \cdot N \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \right) $$
 
-**Proportionalitätskonstante $L$:** Induktivität (Selbstinduktivität)
+$$= -N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E} \cdot \frac{dI}{dt} = -L \cdot \frac{dI}{dt}$$
 
+Proportionalitätskonstante $L$: **Induktivität** (Selbstinduktivität)
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/d/d1/EisenkernOhneLuftspalt.svg)
 
 ### Vorzeichen: Klemmenspannung vs. induzierte Spannung
 
@@ -2134,30 +2147,63 @@ Das Ringintegral wird entgegen der Pfeilrichtung der Klemmenspannung durchlaufen
 
 $$L = \frac{N^2}{R_m} = N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E}$$
 
+Einheit: $[L] =[\Lambda] = \frac{\text{Wb}}{\text{A}} = \text{H}$ (Henry)
+
+
 **Zusammenhang zwischen Strom und induzierter Spannung:**
 $$U = L \cdot \frac{dI}{dt}$$
 
-**Bei ferromagnetischen Stoffen:**
+
+### Induktivität bei ferromagnetischen Materialien
+
+$$L = \frac{N^2}{R_m} = N^2 \cdot \frac{\mu_0 \cdot \mu_r \cdot A}{\ell_E}$$
+
 - $\mu_r$ ist abhängig von $I$ → $L$ ist nicht konstant
 - Effekt wird reduziert durch Spule mit **Luftspalt**
-- Linearisierung der Kennlinie durch Aufteilen des magnetischen Widerstands
 
-### Zusammenschaltung von Induktivitäten
+$$L = N^2 \cdot \frac{\mu_0 \cdot A}{\frac{\ell_E}{\mu_r} + \delta} \approx  N^2 \cdot  \frac{\mu_0 \cdot A}{\delta}$$
 
-**Reihenschaltung:**
+-> $\mu_r$ hat kaum einen Einfluss auf $L$ bei kleinem Luftspalt $\delta$
+
+
+
+### Reihenschaltung von Induktivitäten
+
 $$L_{\text{ges}} = L_1 + L_2 + \dots + L_n = \sum_i L_i$$
 
-Die induzierten Spannungen addieren sich, der Strom ist überall gleich
+Die induzierten Spannungen addieren sich, der Strom ist überall  gleich
 
-**Parallelschaltung:**
+Intuition: Spulen verhalten sich wie eine einzige große Spule
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/f/ff/Inductors_in_series.svg)
+
+
+
+### Parallelschaltung von Induktivitäten
+
 $$\frac{1}{L_{\text{ges}}} = \frac{1}{L_1} + \frac{1}{L_2} + \dots + \frac{1}{L_n} = \sum_i \frac{1}{L_i}$$
 Die Spannung ist überall gleich, die Ströme teilen sich auf
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/e/e8/Inductors_in_parallel.svg)
+
+
+### Herleitung: Parallelschaltung von Induktivitäten
+$$U_\mathrm{ges} = L_\mathrm{ges} \cdot \frac{\Delta I_\mathrm{ges}}{\Delta t}$$
+
+$$\frac{U_\mathrm{ges}}{L_\mathrm{ges}} = \frac{\Delta (I_1 + I_2 + \ldots + I_n)}{\Delta t}$$
+
+$$= \frac{\Delta I_1}{\Delta t} + \frac{\Delta I_2}{\Delta t} + \ldots + \frac{\Delta I_n}{\Delta t}$$
+
+$$= \frac{U_\mathrm{ges}}{L_1} + \frac{U_\mathrm{ges}}{L_2} + \ldots + \frac{U_\mathrm{ges}}{L_n}$$
+
+$$= U_\mathrm{ges} \cdot \left(\frac{1}{L_1} + \frac{1}{L_2} + \ldots + \frac{1}{L_n}\right)$$
+
+$$\frac{1}{L_\mathrm{ges}} = \frac{1}{L_1} + \frac{1}{L_2} + \ldots + \frac{1}{L_n}$$
 
 ## Energie des magnetischen Feldes
 
 ### Energiebilanz einer RL-Schaltung
 
-**Schaltung:** Spannungsquelle $U_0$, Widerstand $R$ und Induktivität $L$ in Reihe
 
 **Maschengleichung:** 
 $$U_0 = U_R + U_L = I \cdot R + L \cdot \frac{dI}{dt}$$
@@ -2170,6 +2216,9 @@ $$dW = U_0 \cdot I \cdot dt = I^2 \cdot R \cdot dt + L \cdot I \cdot \frac{dI}{d
 
 **Gespeicherte Energie in einer Induktivität:**
 $$W_m = \int_0^I L \cdot I \, dI = \frac{1}{2} \cdot L \cdot I^2$$
+
+![bg right:30% 90%](https://upload.wikimedia.org/wikipedia/commons/0/0e/RLCircuitWithSwitch.svg)
+
 
 ### Alternative Berechnung der magnetischen Energie
 
@@ -2236,3 +2285,4 @@ $$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
 - Hubmagnete (Kräne, Magnetventile)
 - Elektromagnetische Relais
 - Magnetische Verriegelungen
+
