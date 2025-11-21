@@ -2286,3 +2286,223 @@ $$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
 - Elektromagnetische Relais
 - Magnetische Verriegelungen
 
+
+
+## Wechselstrom
+
+- Grundlegende Begriffe und Definitionen
+- Komplexe Wechselstromrechnung
+- Komplexe Widerstände
+- Grundschaltungen linearer Wechselstromwiderstände
+- Leistung im Wechselstromkreis (Blindleistung, Wirkleistung, Scheinleistung)
+
+### Wechselstrom: Grundlagen
+
+**Periodische Größen:**
+
+- Sich zeitlich wiederholende physikalische Größen
+- Periodendauer $T$ -> $u(t) = u(t + T)$
+- Frequenz: $f = \frac{1}{T}$, Kreisfrequenz: $\omega = 2\pi f$
+
+**Wechselgrößen:**
+
+Periodische elektrische Größen mit verschwindendem arithmetischem Mittelwert 
+
+
+![bg right:30% fit](https://upload.wikimedia.org/wikipedia/commons/5/54/Wechselspannungsformen.svg)
+
+
+### Wechselgrößen: Eigenschaften
+
+**Fourier-Analyse:** Jede Wechselgröße kann als Überlagerung von Sinusvorgängen dargestellt werden
+
+
+$$a(t) = \sum_{n=1}^{\infty} \hat{A}_n \cdot \sin(n \cdot \omega t + \varphi_n)$$
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/6/6f/Fourier_d%27un_carr%C3%A9.svg)
+
+### Arithmetischer Mittelwert
+
+**Definition:**
+$$\overline{a} = \frac{1}{T} \cdot \int_{t_0}^{t_0 + T} a(t) \, dt$$
+
+**Für sinusförmige Wechselgrößen:**
+$$a(t) = \hat{A} \cdot \sin(\omega \cdot t + \varphi_a)$$
+
+**Gilt:**
+$$\overline{a} = 0$$
+
+Der arithmetische Mittelwert einer sinusförmigen Wechselgröße ist immer null.
+
+### Gleichrichtwert
+
+**Definition:**
+$$\overline{|a|} = \frac{1}{T} \cdot \int_{t_0}^{t_0+T} |a(t)| \, dt$$
+
+**Für sinusförmige Wechselgrößen:**
+
+$$\overline{|a|} = \frac{2}{\pi} \cdot \hat{A} \approx 0{,}637 \cdot \hat{A}$$
+
+Der Gleichrichtwert entspricht dem Mittelwert des Betrags der Wechselgröße.
+
+### Effektivwert: Definition
+
+**Physikalischer Hintergrund:**
+- Derjenige Wert einer Wechselgröße, der in seiner Wirkung bei Energieumformung einem Gleichstrom entspricht
+
+**Beispiel:**
+$$W_\text{el} = I^2 \cdot R \cdot T \stackrel{!}{=} \int_{0}^{T} i^2(t) \cdot R \, dt$$
+
+$$\Rightarrow I \equiv I_\text{eff} = \sqrt{\frac{1}{T} \cdot \int_{0}^{T} i^2(t) \, dt}$$
+
+**Allgemeine Definition:**
+$$A_\text{eff} = \sqrt{\frac{1}{T} \cdot \int_{t_0}^{t_0 + T} a^2(t) \, dt}$$
+
+### Effektivwert für Sinusschwingungen
+
+**Für sinusförmige Wechselgrößen:**
+$$a(t) = \hat{A} \cdot \sin(\omega \cdot t + \varphi_a)$$
+
+**Herleitung:**
+$$A_\text{eff} = \sqrt{\frac{1}{T} \cdot \int_{0}^{T} \hat{A}^{2} \cdot \sin^{2}(\omega \cdot t) \, dt}$$
+
+**Ergebnis:**
+$$A_\text{eff} = \frac{\hat{A}}{\sqrt{2}} \approx 0{,}707 \cdot \hat{A}$$
+
+### Effektivwert: Beispiele
+
+**Netzspannung:**
+- $U_\text{eff} = 230\text{ V}$ ②
+- $\hat{U} = \sqrt{2} \cdot U_\text{eff} = 325\text{ V}$ ①
+
+**Haushaltssicherung:**
+- $I_\text{eff} = 16\text{ A}$ ②
+- $\hat{I} = \sqrt{2} \cdot I_\text{eff} = 22{,}6\text{ A}$ ①
+
+Der Effektivwert wird von Messgeräten angezeigt!
+
+![bg right:35% 90%](https://upload.wikimedia.org/wikipedia/commons/8/83/Sinusspannung.svg)
+
+### Notationskonvention
+
+In diesem Kapitel werden die zeitabhängigen Wechselgrößen mit Kleinbuchstaben bezeichnet:
+- $u(t)$: Spannung
+- $i(t)$: Strom
+
+Großbuchstaben stehen für die zugehörigen Amplituden:
+- $\hat{U}$: Spannungsamplitude
+- $\hat{I}$: Stromamplitude
+
+### Zeigerdarstellung
+
+**Sinusförmige Wechselgrößen** können als rotierende Zeiger in der komplexen Ebene dargestellt werden.
+
+**Zeigereigenschaften:**
+- Winkelgeschwindigkeit: $\omega = 2\pi f$
+- Länge: $\hat{U}=U_\text{max}$ (Amplitude)
+- zum Zeitpunkt $t=0$: $\varphi_u$
+
+![bg right:50% 100%](https://physikbuch.schule/media/ac-inductor-phasor-diagram.svg)
+
+
+### Komplexe Darstellung
+
+Um Berechnungen zu vereinfachen, können Wechselgrößen als komplexe Größen dargestellt werden. Anstatt mit trigonometischen Funktionen zu rechnen, kann dann die Exponentialfunktion verwendet werden.
+
+**Zeitabhängige komplexe Spannung:**
+$$\underline{u}(t) = \hat{U} \cdot e^{j(\omega t + \varphi_u)}=\hat{U} \cdot e^{j\omega t} \cdot e^{j\varphi_u}$$
+
+**Reale Zeitfunktion:**
+$$u(t) = \text{Re}\,\underline{u}(t) = \hat{U} \cdot \cos(\omega t + \varphi_u)$$
+
+### Komplexe Zahlen: Grundlagen
+
+
+**Imaginäre Einheit** (in der Elektrotechnik zur Unterscheidung von Strom $i(t)$ als $j$ notiert):
+$$j = \sqrt{-1}, \quad j^2 = -1$$
+
+**Komplexe Zahl:**
+$$\underline{z} = a + jb$$
+
+mit Realteil $a = \text{Re}\, \underline{z}$ und Imaginärteil $b = \text{Im}\,\underline{z}$
+
+![bg right:50% 90%](https://upload.wikimedia.org/wikipedia/commons/c/c6/Komplexe_zahlenebene.svg)
+
+### Euler’sche Formel
+
+**Euler’scher Satz:**
+$$e^{j\varphi} = \cos(\varphi) + j\sin(\varphi)$$
+
+**Wichtige Spezialfälle:**
+- $e^{j0} = 1$
+- $e^{j\pi/2} = j$
+- $e^{j\pi} = -1$
+- $e^{j3\pi/2} = -j$
+- $e^{j2\pi} = 1$
+
+![bg right:45% 80%](https://upload.wikimedia.org/wikipedia/commons/7/71/Euler%27s_formula.svg)
+
+### Darstellungsformen
+
+**Komponentenform (kartesisch):**
+$$\underline{Z} = R + j X$$
+
+**Polarform (Exponentialform):**
+$$\underline{Z} = |\underline{Z}| \cdot e^{j\varphi} = Z \cdot e^{j\varphi}$$
+
+**Umrechnung:**
+- Betrag: $Z = |\underline{Z}| = \sqrt{R^2 + X^2}$
+- Phase: $\varphi = \arctan\left(\frac{X}{R}\right)$
+- Realteil: $R = Z \cdot \cos(\varphi)$
+- Imaginärteil: $X = Z \cdot \sin(\varphi)$
+
+### Konjugiert komplexe Zahl
+
+**Konjugiert komplexe Zahl** $\underline{Z}^*$:
+
+$$\underline{Z} = R + jX \quad \Rightarrow \quad \underline{Z}^* = R - jX$$
+
+$$\underline{Z} = Z \cdot e^{j\varphi} \quad \Rightarrow \quad \underline{Z}^* = Z \cdot e^{-j\varphi}$$
+
+**Eigenschaften:**
+- $\underline{Z} \cdot \underline{Z}^* = |\underline{Z}|^2 = Z^2$
+- $\text{Re}\,\underline{Z} = \dfrac{\underline{Z} + \underline{Z}^*}{2}$
+
+### Addition und Subtraktion
+
+**In Komponentenform:**
+$$\underline{Z} = \underline{Z}_1 \pm \underline{Z}_2 = (R_1 \pm R_2) + j(X_1 \pm X_2)$$
+
+**In Polarform:** Umrechnung in Komponentenform notwendig
+$$\underline{Z} = (Z_1 \cos\varphi_1 \pm Z_2 \cos\varphi_2) + j(Z_1 \sin\varphi_1 \pm Z_2 \sin\varphi_2)$$
+
+Addition und Subtraktion erfolgen am einfachsten in Komponentenform!
+
+### Multiplikation
+
+**In Polarform:**
+$$\underline{Z} = \underline{Z}_1 \cdot \underline{Z}_2 = Z_1 \cdot Z_2 \cdot e^{j(\varphi_1 + \varphi_2)}$$
+
+Beträge multiplizieren, Phasen addieren!
+
+**In Komponentenform:**
+$$\underline{Z} = (R_1 + jX_1) \cdot (R_2 + jX_2)$$
+$$= (R_1 R_2 - X_1 X_2) + j(R_1 X_2 + R_2 X_1)$$
+
+### Division
+
+**In Polarform:**
+$$\underline{Z} = \frac{\underline{Z}_1}{\underline{Z}_2} = \frac{Z_1}{Z_2} \cdot e^{j(\varphi_1 - \varphi_2)}$$
+
+Beträge dividieren, Phasen subtrahieren!
+
+**In Komponentenform:** Erweitern mit konjugiert komplexem Nenner
+$$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot \frac{R_2 - jX_2}{R_2 - jX_2} = \frac{(R_1 R_2 + X_1 X_2) + j(R_2 X_1 - R_1 X_2)}{R_2^2 + X_2^2}$$
+
+### Beispiel: Spannungsaddition
+
+**Aufgabe:** Zwei Generatoren liefern Wechselspannungen:
+- $U_1 = 6\text{ V}$, $\varphi_1 = 0°$
+- $U_2 = 4\text{ V}$, $\varphi_2 = 45°$
+
+Berechnen Sie die Summenspannung $U_\text{ges}$!
