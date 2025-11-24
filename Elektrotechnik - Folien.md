@@ -2273,7 +2273,7 @@ $$F' = \frac{dW}{d\ell} = \frac{B^2}{\mu_0} \cdot A$$
 
 ### Maxwell'sche Zugspannung
 
-**Kraft auf einer Seite des Luftspalts:**
+**Kraft am einzelnen Luftspalt:**
 $$F = \frac{B^2}{2 \cdot \mu_0} \cdot A$$
 
 **Mechanische Spannung (Kraft pro Fläche):**
