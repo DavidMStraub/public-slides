@@ -3140,3 +3140,81 @@ Schreibe eine Funktion `caesar_brechen(geheimtext)`, die alle 26 möglichen Vers
 - Zerlegen/Verbinden: `split()`, `join()`
 - Suchen: `find()`, `count()`, `startswith()`, `endswith()`
 - Prüfen: `isdigit()`, `isalpha()`, etc.
+
+
+### Reverse Words: Wörter eines Satzes umkehren
+
+Gegeben ist ein Satz – kehre die **Reihenfolge der Wörter** um.
+
+```python
+satz = "Leise rieselt der Schnee"
+
+# Ziel:
+# "Schnee der rieselt Leise"
+```
+
+**Hinweise:**
+
+* Satz in Wörter zerlegen
+* Reihenfolge umkehren
+* Wörter wieder zusammensetzen
+
+
+### Richtig oder Falsch?
+
+Bewerte die folgenden Aussagen zu Strings:
+
+1. `text[0] = "A"` verändert das erste Zeichen eines Strings.
+2. `"42".isdigit()` liefert `True`.
+3. `"  Hallo  ".strip()` entfernt Leerzeichen am Anfang und am Ende.
+4. `"Python".find("x")` liefert `-1`.
+5. `"abc123".isalpha()` ergibt `True`.
+6. `"ABCDEF"[1:4]` ergibt `"BCD"`.
+7. `"Hallo Welt".split()` erzeugt `["Hallo", "Welt"]`.
+8. `"Straße".casefold() == "STRASSE".casefold()` ergibt `True`.
+9. `"abcdef"[::2]` liefert `"ace"`.
+10. `"Hallo".replace("l", "")` ergibt `"Halo"`.
+
+### Richtig oder Falsch? Lösungen
+
+
+```python
+text = "Hallo"
+text[0] = "A"
+```
+
+```python
+"42".isdigit()
+```
+
+```python
+"Hallo\nWelt".split()
+```
+
+```python
+"Python".find("x")
+```
+
+```python
+"abc123".isalpha()
+```
+
+```python
+"ABCDEFG"[2:5]
+```
+
+```python
+"  Test  ".strip()
+```
+
+```python
+"Straße".casefold() == "STRASSE".casefold()
+```
+
+```python
+"abcdef"[::-1]
+```
+
+```python
+"Hallo".replace("l", "LL")
+```
