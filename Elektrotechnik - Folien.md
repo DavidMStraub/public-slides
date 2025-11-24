@@ -2270,8 +2270,6 @@ $$dW = \frac{B^2}{2 \cdot \mu_0} \cdot dV = \frac{B^2}{2 \cdot \mu_0} \cdot 2 \c
 **Mit $dW = F' \cdot d\ell$ folgt:**
 $$F' = \frac{dW}{d\ell} = \frac{B^2}{\mu_0} \cdot A$$
 
-![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/1/13/EisenkernMitLuftspalt.svg)
-
 
 ### Maxwell'sche Zugspannung
 
