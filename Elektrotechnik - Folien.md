@@ -831,7 +831,7 @@ Strom ist der gerichtete Fluss von elektrischer Ladung
 
 ### Stromrichtung & Ladungsträger
 
-![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3f/ElectricCurrent.gif)
+<!-- ![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3f/ElectricCurrent.gif) -->
 
 - $\vec{J} = \rho \cdot \vec{v}$ zeigt in die Richtung, in die sich *positive* Ladung bewegt – egal ob die tatsächlichen Ladungsträger positiv oder negativ sind!
 - Das ist auch die *Zählrichtung* der Stromstärke $I$
@@ -2498,6 +2498,25 @@ Beträge dividieren, Phasen subtrahieren!
 
 **In Komponentenform:** Erweitern mit konjugiert komplexem Nenner
 $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot \frac{R_2 - jX_2}{R_2 - jX_2} = \frac{(R_1 R_2 + X_1 X_2) + j(R_2 X_1 - R_1 X_2)}{R_2^2 + X_2^2}$$
+
+---
+
+<!-- _class: white -->
+
+## 📝 Gruppenarbeit: Spannung × Strom
+
+**Gegeben:**
+- Spannung: $u(t) = 230\,\text{V} \cdot \cos(\omega t)$
+- Strom: $i(t) = 10\,\text{A} \cdot \sin(\omega t)$
+
+**Aufgaben:**
+1. Zeichnen Sie beide Größen als **Zeiger** im Zeigerdiagramm
+2. Wandeln Sie beide um in **kartesische Form** ($a + jb$)
+3. Wandeln Sie beide um in **Polarform** ($Z \cdot e^{j\varphi}$)
+4. Berechnen Sie das Produkt $\underline{U} \cdot \underline{I}^*$ in **beiden Darstellungen**
+5. Vergleichen Sie die Ergebnisse und diskutieren Sie: Was fällt auf?
+
+**Hinweis:** $\sin(\omega t) = \cos(\omega t - 90°)$
 
 ### Beispiel: Spannungsaddition
 
