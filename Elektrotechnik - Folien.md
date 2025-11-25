@@ -2231,20 +2231,21 @@ $$W_m = \frac{1}{2} \cdot H \cdot B \cdot V = \frac{1}{2} \cdot \frac{B^2}{\mu_0
 
 **Anwendung:** Bei ferromagnetischen Materialien mit nichtlinearer Kennlinie
 
-### Beispiel: Energieerhaltung bei zwei Permanentmagneten
+### Hinweis: Energieerhaltung bei zwei Permanentmagneten
 
 **Situation:** Zwei Permanentmagnete mit gleicher Magnetisierung $M$ nähern sich an
 
 Bei unendlicher Entfernung:
 
-$$W_{m,\infty} = 2 \cdot W_\text{Magnet}\,, \qquad W_\text{Magnet} = \frac{1}{2} \cdot \mu_0 \cdot M^2 \cdot V$$
+$$W_{\text{tot},\infty} = 2 \cdot W_m$$
 
 Bei Annäherung auf Abstand $d$:
 
-$$W_{m,d} = 2 \cdot W_\text{Magnet} + W_{\text{Wechselwirkung}}$$
+$$W_{\text{tot},d} = 2 \cdot W_m + W_{\text{Wechselwirkung}}$$
+
 **Zusammenhang zwischen Arbeit und Kraft**
 
-$$W_{\text{Wechselwirkung}} = \int_\infty^d F \, ds$$
+$$W_{\text{Wechselwirkung}} = -\int_\infty^d F \, ds$$
 
 ### Hinweis: Energieerhaltung bei zwei Permanentmagneten
 
