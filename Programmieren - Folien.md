@@ -36,9 +36,10 @@ David Straub
 6. [Module & Bibliotheken](#module--bibliotheken)
 7. [Algorithmen, Pseudocode & Struktogramme](#algorithmen-pseudocode--struktogramme)
 8. [Arbeiten mit Zeichenketten](#arbeiten-mit-zeichenketten)
-9. Visualisierung von Funktionen
-10. Zahlensysteme
-11. Klassen
+9. [List Comprehensions](#list-comprehensions)
+10. [Visualisierung mit matplotlib](#visualisierung-mit-matplotlib)
+11. Zahlensysteme
+12. Klassen
 
 ## Einführung
 
@@ -3159,62 +3160,429 @@ satz = "Leise rieselt der Schnee"
 * Reihenfolge umkehren
 * Wörter wieder zusammensetzen
 
+## List Comprehensions
 
-### Richtig oder Falsch?
+### Was sind List Comprehensions?
 
-Bewerte die folgenden Aussagen zu Strings:
+**Kompakte Syntax** zum Erstellen von Listen aus bestehenden Sequenzen.
 
-1. `text[0] = "A"` verändert das erste Zeichen eines Strings.
-2. `"42".isdigit()` liefert `True`.
-3. `"  Hallo  ".strip()` entfernt Leerzeichen am Anfang und am Ende.
-4. `"Python".find("x")` liefert `-1`.
-5. `"abc123".isalpha()` ergibt `True`.
-6. `"ABCDEF"[1:4]` ergibt `"BCD"`.
-7. `"Hallo Welt".split()` erzeugt `["Hallo", "Welt"]`.
-8. `"Straße".casefold() == "STRASSE".casefold()` ergibt `True`.
-9. `"abcdef"[::2]` liefert `"ace"`.
-10. `"Hallo".replace("l", "")` ergibt `"Halo"`.
-
-### Richtig oder Falsch? Lösungen
-
+Vergleich:
 
 ```python
-text = "Hallo"
-text[0] = "A"
+# Mit for-Schleife:
+quadrate = []
+for x in range(5):
+    quadrate.append(x ** 2)
+print(quadrate)
 ```
 
 ```python
-"42".isdigit()
+# Mit List Comprehension:
+quadrate = [x ** 2 for x in range(5)]
+print(quadrate)
+```
+
+Viel kürzer und lesbarer!
+
+### Grundstruktur
+
+**Syntax:**
+```python
+neue_liste = [ausdruck for element in sequenz]
+```
+
+Weitere Beispiele:
+
+```python
+# Buchstaben aus String extrahieren
+buchstaben = [zeichen for zeichen in "Python"]
+print(buchstaben)
 ```
 
 ```python
-"Hallo\nWelt".split()
+# Celsius zu Fahrenheit
+celsius = [0, 10, 20, 30]
+fahrenheit = [c * 9/5 + 32 for c in celsius]
+print(fahrenheit)
+```
+
+### Wann List Comprehensions verwenden?
+
+**Vorteile:**
+- Kompakter und lesbarer Code
+
+**Verwenden für:**
+- Einfache Transformationen
+- Abbildungen (mapping)
+
+**Vermeiden wenn:**
+- Zu komplex
+- Nebeneffekte nötig (z.B. `print()`)
+- Mehrere Schritte pro Element
+
+**Faustregel:** Wenn die Comprehension mehr als eine Zeile braucht, verwende eine normale Schleife!
+
+## Visualisierung mit matplotlib
+
+### Was ist matplotlib?
+
+**matplotlib** ist die Standard-Bibliothek für Datenvisualisierung in Python.
+
+**Hauptmerkmale:**
+- Erstellen von Plots, Diagrammen, Grafiken
+- Publikationsreife Qualität
+- Hochgradig anpassbar
+- Integration mit NumPy
+
+**Installation:**
+```bash
+pip install matplotlib
+```
+
+![bg right:25% 90%](https://matplotlib.org/_static/logo_light.svg)
+
+[Beispiele](https://matplotlib.org/stable/plot_types/index.html)
+
+### pyplot: Die zentrale Schnittstelle
+
+`pyplot` ist das Hauptmodul für die Erstellung von Plots – ähnlich wie MATLAB.
+
+```python
+import matplotlib.pyplot as plt
+
+# Einfachster Plot
+plt.plot([1, 2, 3, 4])
+plt.show()
+```
+
+**Konvention:** Import als `plt`
+
+### Mehr zu `plt.show()`
+
+**In Python-Skripten (Terminal):**
+- `plt.show()` ist **erforderlich**
+- Öffnet den Plot in einem neuen Fenster
+- Programm wartet, bis Fenster geschlossen wird
+
+**In Jupyter Notebooks:**
+- `plt.show()` ist **nicht nötig**
+- Plots werden automatisch angezeigt
+
+### Erster einfacher Plot
+
+Ein Plot zeigt die Beziehung zwischen x- und y-Werten.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4]
+y = [0, 1, 4, 9, 16]
+
+plt.plot(x, y)
+plt.show()
+```
+
+### Titel und Achsenbeschriftungen
+
+Mit `title()`, `xlabel()` und `ylabel()` wird der Plot beschriftet.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+plt.plot(x, y)
+plt.title("Quadratfunktion")
+plt.xlabel("x-Werte")
+plt.ylabel("y-Werte")
+plt.show()
+```
+
+### Gitter hinzufügen
+
+Mit `grid()` wird ein Gitter zum besseren Ablesen angezeigt.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+plt.plot(x, y)
+plt.title("Quadratfunktion")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+### Mehrere Linien in einem Plot
+
+Mehrere `plot()`-Aufrufe zeichnen mehrere Linien in denselben Plot.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y1 = [0, 1, 4, 9, 16, 25]
+y2 = [0, 2, 8, 18, 32, 50]
+
+plt.plot(x, y1)
+plt.plot(x, y2)
+plt.title("Zwei Funktionen")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+### Linien-Stile
+
+Mit dem dritten Parameter können verschiedene Linien-Stile gewählt werden.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+plt.plot(x, y, '--')  # Gestrichelte Linie
+plt.title("Gestrichelte Linie")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+**Wichtige Stile:** `'-'` (durchgezogen), `'--'` (gestrichelt), `'-.'` (Strich-Punkt), `':'` (gepunktet)
+
+### Marker-Stile: Punkte anzeigen
+
+Mit Markern werden die Datenpunkte sichtbar gemacht.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+plt.plot(x, y, 'o')  # Nur Kreise, keine Linie
+plt.title("Datenpunkte")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+**Wichtige Marker:** `'o'` (Kreis), `'s'` (Quadrat), `'^'` (Dreieck), `'*'` (Stern), `'+'` (Plus), `'x'` (Kreuz)
+
+### Linien und Marker kombinieren
+
+Linien-Stil und Marker können kombiniert werden.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+plt.plot(x, y, 'o-')  # Kreise verbunden mit Linie
+plt.title("Linie mit Markern")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+### Farben festlegen
+
+Farben können mit Buchstaben oder Namen angegeben werden.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y1 = [0, 1, 4, 9, 16, 25]
+y2 = [0, 2, 8, 18, 32, 50]
+
+plt.plot(x, y1, 'r-')    # Rot, durchgezogen
+plt.plot(x, y2, 'b--')   # Blau, gestrichelt
+plt.title("Farbige Linien")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+**Wichtige Farbcodes:** `'r'` (rot), `'g'` (grün), `'b'` (blau), `'c'` (cyan), `'m'` (magenta), `'y'` (gelb), `'k'` (schwarz)
+
+### Farben mit Namen
+
+Farben können auch mit vollständigen Namen angegeben werden.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4]
+y = [0, 1, 4, 9, 16]
+
+plt.plot(x, y, color='orange', linestyle='-', marker='o')
+plt.title("Orangene Linie")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+Beispiele: `'orange'`, `'purple'`, `'brown'`, `'pink'`, `'gray'`
+
+### Stil-String kompakt
+
+Farbe, Linien-Stil und Marker können in einem String kombiniert werden.
+
+```python
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4, 5]
+y1 = [0, 1, 4, 9, 16, 25]
+y2 = [0, 2, 8, 18, 32, 50]
+
+plt.plot(x, y1, 'ro-')   # Rot, Kreise, durchgezogen
+plt.plot(x, y2, 'bs--')  # Blau, Quadrate, gestrichelt
+plt.title("Kombinierte Stile")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.grid(True)
+plt.show()
+```
+
+**Format:** `'[farbe][marker][linie]'`, z.B. `'ro-'`, `'gs--'`, `'b^:'`
+
+### List Comprehensions für Datenreihen
+
+**Wozu sind List Comprehensions nützlich beim Plotten?**
+
+Beim Erstellen von Plots brauchen wir oft Datenreihen (x- und y-Werte).
+
+```python
+# x-Werte von 0 bis 10 in 0.5er-Schritten
+x = [i * 0.5 for i in range(21)]
+print(x)  # [0.0, 0.5, 1.0, 1.5, ..., 10.0]
 ```
 
 ```python
-"Python".find("x")
+# y-Werte als Quadrate der x-Werte
+y = [xi ** 2 for xi in x]
+print(y)  # [0.0, 0.25, 1.0, 2.25, ..., 100.0]
 ```
 
-```python
-"abc123".isalpha()
-```
+**Vorteil:** Kompakt, lesbar und schnell!
+
+### Funktionen plotten: Vollständiges Beispiel
+
+Mit List Comprehensions können wir elegant mathematische Funktionen plotten.
 
 ```python
-"ABCDEFG"[2:5]
+import matplotlib.pyplot as plt
+
+# x-Werte generieren
+x = [i * 0.1 for i in range(101)]  # 0.0 bis 10.0 in 0.1er-Schritten
+
+# y-Werte mit Funktion berechnen
+def f(x):
+    return x ** 2
+
+y = [f(xi) for xi in x]  # Mapping: Funktion auf jedes x anwenden
+
+# Plotten
+plt.plot(x, y, 'b-')
+plt.title("Funktion f(x) = x²")
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.grid(True)
+plt.show()
 ```
 
-```python
-"  Test  ".strip()
-```
+
+### Anwendung: Flugbahn darstellen
+
+Darstellung einer Wurfparabel mit berechneten Werten.
 
 ```python
-"Straße".casefold() == "STRASSE".casefold()
+import matplotlib.pyplot as plt
+
+# Flugbahn berechnen (vereinfacht)
+t_werte = [i * 0.5 for i in range(11)]  # Zeit in Sekunden
+x_werte = [t * 50 for t in t_werte]     # Horizontale Distanz
+y_werte = [t * 30 - 5 * t**2 for t in t_werte]  # Höhe
+
+plt.plot(x_werte, y_werte, 'b-o')
+plt.title("Flugbahn eines geworfenen Balls")
+plt.xlabel("Distanz (m)")
+plt.ylabel("Höhe (m)")
+plt.grid(True)
+plt.show()
 ```
 
-```python
-"abcdef"[::-1]
-```
+### Besondere Punkte hervorheben
+
+**Wie hebt man einzelne Punkte hervor?**
+
+Einfach einen zweiten `plot()`-Aufruf mit nur den speziellen Punkten:
 
 ```python
-"Hallo".replace("l", "LL")
+# Funktion als Linie
+plt.plot(x, y, 'b-', label='Funktion')
+
+# Spezielle Punkte als Marker
+plt.plot([x1, x2], [y1, y2], 'ro', markersize=10, label='Nullstellen')
 ```
+
+**Wichtig:**
+- Zweiter `plot()`-Aufruf mit nur den Punktkoordinaten
+- Größere Marker mit `markersize` Parameter
+- Andere Farbe zur Unterscheidung
+
+### Aufgabe: Funktionen visualisieren
+
+Erstelle einen Plot mit drei mathematischen Funktionen für x-Werte von 0 bis 10.
+
+**Funktionen:**
+1. Linear: $f(x) = 2x$
+2. Quadratisch: $g(x) = x^2$
+3. Kubisch: $h(x) = 0.1x^3$
+
+**Anforderungen:**
+- Verwende List Comprehensions für die y-Werte
+- Verschiedene Farben und Linien-Stile
+- Titel, Achsenbeschriftungen und Legende
+- Gitter aktivieren
+
+### Zusatzaufgabe: Nullstellen markieren
+
+Plotte die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
+
+**Aufgaben:**
+1. Plotte die Funktion als blaue durchgezogene Linie
+2. Markiere die beiden Nullstellen ($x = -2$ und $x = 2$) als große rote Punkte
+3. Füge eine Legende hinzu
+4. Vergiss Titel, Achsenbeschriftungen und Gitter nicht
+
+**Tipp:** Die Nullstellen liegen bei $y = 0$!
+
+### Zusammenfassung: matplotlib-Grundlagen
+
+**Wichtigste Funktionen:**
+- `plt.plot(x, y)` – Linie zeichnen
+- `plt.title()` – Titel setzen
+- `plt.xlabel()`, `plt.ylabel()` – Achsen beschriften
+- `plt.grid()` – Gitter anzeigen
+- `plt.show()` – Plot anzeigen
+
+**Stile:**
+- Linien: `'-'`, `'--'`, `'-.'`, `':'`
+- Marker: `'o'`, `'s'`, `'^'`, `'*'`, `'+'`, `'x'`
+- Farben: `'r'`, `'g'`, `'b'`, `'c'`, `'m'`, `'y'`, `'k'` oder Namen
+
+**Kombination:** `'ro-'` = rot, Kreise, durchgezogen
