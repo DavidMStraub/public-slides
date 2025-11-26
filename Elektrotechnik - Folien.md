@@ -2290,9 +2290,9 @@ $$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
 ## Wechselstrom
 
 - Grundlegende Begriffe und Definitionen
-- Komplexe Wechselstromrechnung
-- Komplexe Widerstände
-- Grundschaltungen linearer Wechselstromwiderstände
+- [Komplexe Wechselstromrechnung](#komplexe-darstellung)
+- [Wechselstromwiderstände](#wechselstromwiderstände)
+- [Grundschaltungen linearer Wechselstromwiderstände](#grundschaltungen-linearer-wechselstromwiderstände)
 - Leistung im Wechselstromkreis (Blindleistung, Wirkleistung, Scheinleistung)
 
 ### Wechselstrom: Grundlagen
@@ -2381,6 +2381,16 @@ $$A_\text{eff} = \frac{\hat{A}}{\sqrt{2}} \approx 0{,}707 \cdot \hat{A}$$
 Der Effektivwert wird von Messgeräten angezeigt!
 
 ![bg right:35% 90%](https://upload.wikimedia.org/wikipedia/commons/8/83/Sinusspannung.svg)
+
+
+### Zusammenfassung: Kennwerte von Wechselgrößen
+| Kennwert | Definition | Formel | Für Sinusfunktion |
+|----------|------------|--------|-------------------|
+| **Arithmetischer Mittelwert** | Zeitlicher Mittelwert über eine Periode | $\overline{a} = \frac{1}{T} \cdot \int_{t_0}^{t_0 + T} a(t) \, dt$ | $\overline{a} = 0$ |
+| **Gleichrichtwert** | Mittelwert des Betrags | $\overline{\|a\|} = \frac{1}{T} \cdot \int_{t_0}^{t_0+T} \|a(t)\| \, dt$ | $\overline{\|a\|} = \frac{2}{\pi} \cdot \hat{A} \approx 0{,}637 \cdot \hat{A}$ |
+| **Effektivwert** | Quadratischer Mittelwert | $A_\text{eff} = \sqrt{\frac{1}{T} \cdot \int_{t_0}^{t_0 + T} a^2(t) \, dt}$ | $A_\text{eff} = \frac{\hat{A}}{\sqrt{2}} \approx 0{,}707 \cdot \hat{A}$ |
+
+
 
 ### Notationskonvention
 
@@ -2473,14 +2483,14 @@ $$\underline{Z} = Z \cdot e^{j\varphi} \quad \Rightarrow \quad \underline{Z}^* =
 $$\underline{Z} = \underline{Z}_1 \pm \underline{Z}_2 = (R_1 \pm R_2) + j(X_1 \pm X_2)$$
 
 **In Polarform:** Umrechnung in Komponentenform notwendig
-$$\underline{Z} = (Z_1 \cos\varphi_1 \pm Z_2 \cos\varphi_2) + j(Z_1 \sin\varphi_1 \pm Z_2 \sin\varphi_2)$$
+$$\underline{Z} = Z_1 \cdot e^{j\varphi_1} \pm Z_2 \cdot e^{j\varphi_2}=(Z_1 \cos\varphi_1 \pm Z_2 \cos\varphi_2) + j(Z_1 \sin\varphi_1 \pm Z_2 \sin\varphi_2)$$
 
 Addition und Subtraktion erfolgen am einfachsten in Komponentenform!
 
 ### Multiplikation
 
 **In Polarform:**
-$$\underline{Z} = \underline{Z}_1 \cdot \underline{Z}_2 = Z_1 \cdot Z_2 \cdot e^{j(\varphi_1 + \varphi_2)}$$
+$$\underline{Z} = \underline{Z}_1 \cdot \underline{Z}_2 = Z_1 \cdot e^{j\varphi_1} \cdot Z_2 \cdot e^{j\varphi_2} = Z_1 \cdot Z_2 \cdot e^{j(\varphi_1 + \varphi_2)}$$
 
 Beträge multiplizieren, Phasen addieren!
 
@@ -2491,16 +2501,14 @@ $$= (R_1 R_2 - X_1 X_2) + j(R_1 X_2 + R_2 X_1)$$
 ### Division
 
 **In Polarform:**
-$$\underline{Z} = \frac{\underline{Z}_1}{\underline{Z}_2} = \frac{Z_1}{Z_2} \cdot e^{j(\varphi_1 - \varphi_2)}$$
+$$\underline{Z} = \frac{\underline{Z}_1}{\underline{Z}_2} = \frac{Z_1 \cdot e^{j\varphi_1}}{Z_2 \cdot e^{j\varphi_2}} =
+ \frac{Z_1}{Z_2} \cdot e^{j(\varphi_1 - \varphi_2)}$$
 
 Beträge dividieren, Phasen subtrahieren!
 
 **In Komponentenform:** Erweitern mit konjugiert komplexem Nenner
 $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot \frac{R_2 - jX_2}{R_2 - jX_2} = \frac{(R_1 R_2 + X_1 X_2) + j(R_2 X_1 - R_1 X_2)}{R_2^2 + X_2^2}$$
 
----
-
-<!-- _class: white -->
 
 ## 📝 Gruppenarbeit: Spannung × Strom
 
@@ -2517,10 +2525,323 @@ $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot 
 
 **Hinweis:** $\sin(\omega t) = \cos(\omega t - 90°)$
 
-### Beispiel: Spannungsaddition
 
-**Aufgabe:** Zwei Generatoren liefern Wechselspannungen:
-- $U_1 = 6\text{ V}$, $\varphi_1 = 0°$
-- $U_2 = 4\text{ V}$, $\varphi_2 = 45°$
 
-Berechnen Sie die Summenspannung $U_\text{ges}$!
+## Wechselstromwiderstände
+
+### Grundelemente im Wechselstromkreis
+
+Die drei Grundelemente im Wechselstromkreis sind:
+- Ohmscher Widerstand R ![](https://upload.wikimedia.org/wikipedia/commons/c/c3/Resistor_symbol_IEC.svg)
+- Kapazität C ![](https://upload.wikimedia.org/wikipedia/commons/6/6d/Capacitor_Symbol_alternative.svg)
+- Induktivität L ![](https://upload.wikimedia.org/wikipedia/commons/4/4b/Inductor.svg)
+
+### Ohmscher Widerstand
+
+**Grundgleichung:**
+$$u = R \cdot i$$
+
+**Spannungs- und Stromverlauf:**
+$$u = \hat{U} \cdot \sin(\omega \cdot t + \varphi_u)$$
+$$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+
+Mit $u = R \cdot i$ folgt:
+$$\hat{U} \cdot \sin(\omega \cdot t + \varphi_u) = R \cdot \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+
+
+$$ \Rightarrow \hat{U} = R \cdot \hat{I} \,, \qquad \varphi_u = \varphi_i$$
+
+**Bei ohmschen Widerständen sind Strom und Spannung in Phase.**
+
+![bg right:50% 90%](https://physikbuch.schule/media/ac-resistor-phasor-diagram.svg)
+
+### Leistung am ohmschen Widerstand
+
+Momentanleistung (für $\varphi_u = \varphi_i = 0$):
+
+$$p(t) = u(t) \cdot i(t)= \hat{U} \cdot \sin(\omega t) \cdot \hat{I} \cdot \sin(\omega t)$$
+$$= \hat{U} \cdot \hat{I} \cdot \sin^{2}(\omega t)= \hat{U} \cdot \hat{I} \cdot \frac{1}{2} \cdot (1 - \cos(2\omega t)) \geq 0$$
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-resistor.svg)
+
+### Mittlere Leistung am ohmschen Widerstand
+
+Berechnung:
+$$\overline{p} = \frac{1}{T} \cdot \int_{0}^{T} p(t) \, dt$$
+$$= \frac{1}{T} \cdot \frac{1}{2} \cdot \hat{U} \cdot \hat{I} \cdot \int_{0}^{T} (1 - \cos(2\omega t)) \, dt$$
+$$= \frac{\hat{U} \cdot \hat{I}}{2 \cdot T} \cdot \left[ t - \frac{1}{2 \cdot \omega} \cdot \sin(2\omega t) \right]_{0}^{T}$$
+$$= \frac{\hat{U} \cdot \hat{I}}{2} = \frac{\hat{U}}{\sqrt{2}} \cdot \frac{\hat{I}}{\sqrt{2}} = U_\text{eff} \cdot I_\text{eff}$$
+
+
+**Leistung wird ständig verbraucht → Wirkwiderstand**
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-resistor.svg)
+
+### Wirkleistung und Effektivwerte
+
+**Beispiel einphasiges Laden von E-Autos**
+
+Ein Elektrofahrzeug wird mit (einphasigem) Wechselstrom bei $U_\text{eff}=230\,\text{V}$ und $I_\text{eff}=16\,\text{A}$ geladen.
+
+**Berechnung der Wirkleistung:**
+$$P = U_\text{eff} \cdot I_\text{eff} = 230\,\text{V} \cdot 16\,\text{A} = 3680\,\text{W} = 3{,}7\,\text{kW}$$
+
+
+- Ladedauer für 40-kWh-Akku: ca. 11 Stunden
+- Falls $I_\text{eff}=32\,\text{A}$ -> $P \approx 7{,}4\,\text{kW}$
+
+![bg right:40% cover](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Home_charging_110v_BMW_i3_CRI_04_2021_8162.jpg/960px-Home_charging_110v_BMW_i3_CRI_04_2021_8162.jpg)
+
+### Kondensator
+
+**Wiederholung**
+
+Kapazität $C$ definiert als:
+
+$$C = \frac{Q}{U}$$
+
+**Kondensator als Bauteil im Wechselstromkreis**
+
+Die Änderung der Ladung $Q$ ist gegeben durch den Strom $i$:
+$$i = \frac{dQ}{dt} = C \cdot \frac{du}{dt}$$
+
+![bg right:30% 90%](https://upload.wikimedia.org/wikipedia/commons/6/6d/Ac-capacitor-circuit.svg)
+
+### Kapazität
+
+**Grundgleichung:**
+$$i = C \cdot \frac{du}{dt}$$
+
+**Spannungs- und Stromverlauf:**
+$$u = \hat{U} \cdot \sin(\omega \cdot t + \varphi_u)$$
+$$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+
+
+Mit $i = C \cdot \frac{du}{dt}$ folgt:
+$$\hat{I} \cdot \sin(\omega \cdot t + \varphi_i) = C \cdot \frac{d(\hat{U} \cdot \sin(\omega \cdot t + \varphi_u))}{dt}$$
+$$= C \cdot \omega \cdot \hat{U} \cdot \cos(\omega \cdot t + \varphi_u)$$
+$$= C \cdot \omega \cdot \hat{U} \cdot \sin\left(\omega \cdot t + \frac{\pi}{2} + \varphi_u\right)$$
+
+### Kapazität - Eigenschaften
+
+$$u = \hat{U} \cdot \sin(\omega \cdot t + \varphi_u)$$
+$$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+$$= C \cdot \omega \cdot \hat{U} \cdot \sin\left(\omega \cdot t + \frac{\pi}{2} + \varphi_u\right)$$
+
+**Bedingungen für die Gleichheit:**
+
+- Amplituden: $\hat{I} = C \cdot \omega \cdot \hat{U}$ bzw. $\frac{\hat{U}}{\hat{I}} = \frac{1}{\omega \cdot C}$
+
+- Phasen: $\varphi_i = \frac{\pi}{2} + \varphi_u$ bzw. $\varphi_u - \varphi_i = -\frac{\pi}{2}$
+
+**→ Am Kondensator eilt der Strom der Spannung um $\frac{\pi}{2}$ voraus.**
+
+![bg right:50% 90%](https://physikbuch.schule/media/ac-capacitor-phasor-diagram.svg)
+
+### Leistung am Kondensator
+
+**Momentanleistung** (mit $\varphi_u = 0$ und $\varphi_i = \frac{\pi}{2}$):
+$$p(t) = u(t) \cdot i(t) = \hat{U} \cdot \sin(\omega t) \cdot \hat{I} \cdot \sin\left(\omega t + \frac{\pi}{2}\right)$$
+$$= \hat{U} \cdot \hat{I} \cdot \sin(\omega t) \cdot \cos(\omega t) = \frac{\hat{U} \cdot \hat{I}}{2} \cdot \sin(2\omega t)$$
+$$= U_\text{eff} \cdot I_\text{eff} \cdot \sin(2\omega t)$$
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-capacitor.svg)
+
+
+### Leistung am Kondensator - Interpretation
+
+**Energiefluss:**
+- Positive Leistung: Aufladen des Kondensators
+- Negative Leistung: Entladung des Kondensators
+
+**Mittlere Leistung:**
+$$\overline{p} = \frac{1}{T} \cdot \int_{0}^{T} p(t) \, dt = 0$$
+
+→ **Blindwiderstand** mit kapazitiver **Blindleistung**:
+$$Q_C = U_\text{eff} \cdot I_\text{eff}$$
+
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-capacitor.svg)
+
+
+### Induktivität
+
+**Grundgleichung** (Selbstinduktion!):
+$$u = L \cdot \frac{di}{dt}$$
+
+**Spannungs- und Stromverlauf:**
+$$u = \hat{U} \cdot \sin(\omega \cdot t + \varphi_u)$$
+$$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+
+
+Mit $u = L \cdot \frac{di}{dt}$ folgt:
+$$\hat{U} \cdot \sin(\omega \cdot t + \varphi_u) = L \cdot \omega \cdot \hat{I} \cdot \cos(\omega \cdot t + \varphi_i)$$
+$$= L \cdot \omega \cdot \hat{I} \cdot \sin\left(\omega \cdot t + \frac{\pi}{2} + \varphi_i\right)$$
+
+### Induktivität - Eigenschaften
+
+$$u = \hat{U} \cdot \sin(\omega \cdot t + \varphi_u)$$
+$$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
+$$= L \cdot \omega \cdot \hat{I} \cdot \sin\left(\omega \cdot t + \frac{\pi}{2} + \varphi_i\right)$$
+
+**Bedingungen für Gleichheit:**
+- Amplituden: $\hat{U} = L \cdot \omega \cdot \hat{I}$ bzw. $\frac{\hat{U}}{\hat{I}} = \omega \cdot L$
+- Phasen: $\varphi_u = \frac{\pi}{2} + \varphi_i$ bzw. $\varphi_u - \varphi_i = \frac{\pi}{2}$
+
+**→ An der Induktivität eilt die Spannung dem Strom um $\frac{\pi}{2}$ voraus.**
+![bg right:50% 90%](https://physikbuch.schule/media/ac-inductor-phasor-diagram.svg)
+
+### Leistung an der Induktivität
+
+**Momentanleistung** (mit $\varphi_u = \frac{\pi}{2}$ und $\varphi_i = 0$):
+$$p(t) = u(t) \cdot i(t) = \hat{U} \cdot \sin\left(\omega t + \frac{\pi}{2}\right) \cdot \hat{I} \cdot \sin(\omega t)$$
+$$= \hat{U} \cdot \hat{I} \cdot \cos(\omega t) \cdot \sin(\omega t) = \frac{\hat{U} \cdot \hat{I}}{2} \cdot \sin(2\omega t)$$
+$$= U_\text{eff} \cdot I_\text{eff} \cdot \sin(2\omega t)$$
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-inductance.svg)
+
+
+### Leistung an der Induktivität – Interpretation
+
+**Energiefluss:**
+- Positive Leistung: Energie zum Aufbau des magnetischen Feldes
+- Negative Leistung: Energie durch Abbau des magnetischen Feldes
+
+**Mittlere Leistung:**
+$$\overline{p} = \frac{1}{T} \cdot \int_{0}^{T} p(t) \, dt = 0$$
+
+→ **Blindwiderstand** mit induktiver **Blindleistung:**
+$$Q_L = U_\text{eff} \cdot I_\text{eff}$$
+
+![bg right:40% 90%](https://physikbuch.schule/media/ac-power-inductance.svg)
+
+
+## Komplexe Darstellung der Wechselstromwiderstände
+
+### Impedanz & Admittanz
+
+**Impedanz** (komplexer Widerstand):
+$$\underline{Z} = \frac{\underline{U}}{\underline{I}} = \frac{U}{I} \cdot e^{j \cdot (\varphi_u - \varphi_i)}$$
+
+**Admittanz** (komplexer Leitwert):
+$$\underline{Y} = \frac{\underline{I}}{\underline{U}} = \frac{I}{U} \cdot e^{-j \cdot (\varphi_u - \varphi_i)} = \frac{1}{\underline{Z}}$$
+
+![bg right:40% fit](https://upload.wikimedia.org/wikipedia/commons/c/c2/Widerstand_Zeiger.svg)
+
+### Impedanz des ohmschen Widerstands
+
+$$\underline{U}= \hat{U} \cdot e^{j\omega t}$$
+$$\underline{I}= \hat{I} \cdot e^{j\omega t}$$
+
+$$\underline{Z}_R = \frac{\hat{U}}{\hat{I}} =R$$
+
+### Impedanz der Kapazität
+
+Strom eilt der Spannung um $\frac{\pi}{2}$ voraus:
+
+$$\underline{U}= \hat{U} \cdot e^{j\omega t}$$
+$$\underline{I}= \hat{I} \cdot e^{j\left(\omega t + \frac{\pi}{2}\right)} = \hat{I} \cdot e^{j\omega t} \cdot e^{j \frac{\pi}{2}}$$
+$$\hat I = \omega \cdot C \cdot \hat U$$
+
+$$\underline{Z}_{C} = \frac{\underline{U}}{\underline{I}}  =\frac{1}{\omega \cdot C} \cdot e^{-j \frac{\pi}{2}} = -j \frac{1}{\omega \cdot C} = j X_{C}$$
+
+$X_C$: kapazitiver Blindwiderstand
+
+$$\underline{Y}_C = \omega \cdot C \cdot e^{j \frac{\pi}{2}} = j \omega \cdot C = j B_C$$
+
+$B_C$: kapazitiver Blindleitwert
+
+
+### Impedanz der Induktivität
+
+Spannung eilt dem Strom um $\frac{\pi}{2}$ voraus:
+
+$$\underline{U}= \hat{U} \cdot e^{j\left(\omega t + \frac{\pi}{2}\right)} = \hat{U} \cdot e^{j\omega t} \cdot e^{j \frac{\pi}{2}}$$
+$$\underline{I}= \hat{I} \cdot e^{j\omega t}$$
+$$\hat U = \omega \cdot L \cdot \hat I$$
+
+$$\underline{Z}_{L} = \frac{\underline{U}}{\underline{I}}  =\omega \cdot L \cdot e^{j \frac{\pi}{2}} = j \omega \cdot L = j X_{L}$$
+
+$X_L$: induktiver Blindwiderstand
+
+$$\underline{Y}_L = \frac{1}{\omega \cdot L} \cdot e^{-j \frac{\pi}{2}} = -j \frac{1}{\omega \cdot L} = j B_L$$
+
+$B_L$: induktiver Blindleitwert
+
+### Zusammenfassung: Impedanzen und Admittanzen der Grundelemente
+
+|   | o. Widerstand R | Kapazität C | Induktivität L |
+|---|---|---|---|
+| **Impedanz Z** | $R$ | $\frac{1}{j\omega C} = j X_C$ | $j\omega L = j X_L$ |
+| **Admittanz Y** | $\frac{1}{R} = G$ | $j\omega C = j B_C$ | $\frac{1}{j\omega L} = j B_L$ |
+
+## Grundschaltungen linearer Wechselstromwiderstände
+
+### Serienschaltung R und L
+
+**Komplexe Maschenregel:**
+$$\underline{U} = \underline{U}_R + \underline{U}_L = R \cdot \underline{I} + j  \omega L \cdot \underline{I}=\underline{Z} \cdot \underline{I}$$
+
+**Impedanz:**
+$$\underline{Z} = R + j \omega L$$
+
+**Admittanz:**
+$$\underline{Y} = \frac{1}{\underline{Z}}  = \frac{R - j\omega L}{R^2 + \omega^2 L^2}$$
+
+**Betrag und Phase:**
+$$Z = \sqrt{R^2 + (\omega L)^2}$$
+$$\varphi = \arctan \frac{\omega L}{R}$$
+
+![bg right:30% 80%](https://upload.wikimedia.org/wikipedia/commons/c/c0/Ac-inductor-circuit.svg)
+
+### Parallelschaltung R und L
+
+**Komplexe Knotenregel:**
+
+$$\underline{I} = \underline{I}_R + \underline{I}_L = \left(\frac{1}{R} + \frac{1}{j \cdot \omega \cdot L}\right) \cdot \underline{U} = \underline{Y} \cdot \underline{U}$$
+
+**Admittanz:**
+$$\underline{Y} = \frac{1}{R} + \frac{1}{j \cdot \omega \cdot L} = \frac{1}{R} - j \cdot \frac{1}{\omega \cdot L}$$
+
+**Impedanz:**
+$$\underline{Z} = \frac{1}{\underline{Y}} = \frac{\omega \cdot L \cdot R \cdot (\omega \cdot L + j \cdot R)}{R^2 + \omega^2 \cdot L^2}$$
+
+
+**Betrag und Phase:**
+$$Z = \frac{1}{\sqrt{\frac{1}{R^2} + \frac{1}{(\omega \cdot L)^2}}} \,,\qquad \varphi = \arctan\left(\frac{R}{\omega \cdot L}\right)$$
+
+### Serienschaltung R und C
+
+$$\underline{U} = \underline{U}_R + \underline{U}_C = R \cdot \underline{I} + \frac{1}{j \cdot \omega \cdot C} \cdot \underline{I}=\underline{Z} \cdot \underline{I}$$
+
+**Impedanz:**
+$$\underline{Z} = R - j \frac{1}{\omega C}$$
+
+**Admittanz:**
+$$\underline{Y} = \frac{\omega C (\omega C R + j)}{1 + \omega^2 C^2 R^2}$$
+
+**Betrag und Phase:**
+$$Z = \sqrt{R^2 + \left(\frac{1}{\omega C}\right)^2}\,,\qquad \varphi = -\arctan\frac{1}{\omega CR}$$
+
+### Parallelschaltung R und C
+
+$$\underline{I} = \underline{I}_R + \underline{I}_C = \left(\frac{1}{R} + j \cdot \omega \cdot C\right) \cdot \underline{U}$$
+
+**Admittanz:**
+$$\underline{Y} = \frac{1}{R} + j \cdot \omega \cdot C$$
+
+
+**Impedanz:**
+$$\underline{Z} = \frac{1}{\underline{Y}} = \frac{R \cdot (1 - j \cdot \omega \cdot C \cdot R)}{1 + \omega^2 \cdot C^2 \cdot R^2}$$
+
+**Betrag und Phase:**
+$$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\arctan(\omega \cdot C \cdot R)$$
+
+### Übersichtstabelle Grundschaltungen
+
+| Schaltung | $\underline{Z}$ | $\underline{Y}$ | $\|Z\|$ | $\varphi$ |
+|----------------------|-------------------|--------------------|-------------------|----------------|
+| R-L Serie | $\underline{Z} = R + j\omega L$ | $\underline{Y} = \frac{R - j\omega L}{R^2 + \omega^2 L^2}$ | $Z = \sqrt{R^2 + (\omega L)^2}$ | $\varphi = \arctan \frac{\omega L}{R}$ |
+| R-L Parallel | $\underline{Z} = \frac{\omega LR(\omega L + jR)}{R^2 + \omega^2 L^2}$ | $\underline{Y} = \frac{1}{R} - j \frac{1}{\omega L}$ | $Z = \frac{1}{\sqrt{\frac{1}{R^2} + \frac{1}{(\omega L)^2}}}$ | $\varphi = \arctan \frac{R}{\omega L}$ |
+| R-C Serie | $\underline{Z} = R - j \frac{1}{\omega C}$ | $\underline{Y} = \frac{\omega C (\omega CR + j)}{1 + \omega^2 C^2 R^2}$ | $Z = \sqrt{R^2 + \left(\frac{1}{\omega C}\right)^2}$ | $\varphi = -\arctan\frac{1}{\omega CR}$ |
+| R-C Parallel | $\underline{Z} = \frac{R(1 - j\omega CR)}{1 + \omega^2 C^2 R^2}$ | $\underline{Y} = \frac{1}{R} + j\omega C$ | $Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega C)^2}}$ | $\varphi = -\arctan\omega CR$ |
