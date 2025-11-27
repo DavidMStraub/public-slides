@@ -277,3 +277,79 @@ Berechnen Sie für jede Strategie: Wie oft (in Prozent) wird in einer Runde eine
 **Zusatz 3: Detaillierte Ausgabe**
 
 Erweitern Sie `spiele_runde()` so, dass bei gesetztem optionalen Parameter `debug=True` jeder einzelne Wurf ausgegeben wird, z.B.: "Wurf 1: 4, Wurf 2: 6, Wurf 3: 1 → Runde verloren!"
+
+### Aufgabe: Visualisierung von Wechselstromgrößen
+
+Visualisieren Sie den zeitlichen Verlauf von Spannung und Strom an verschiedenen Wechselstromwiderständen.
+
+**Formeln**: 
+- Spannung: $u(t) = U_0 \sin(\omega t)$
+- Strom: $i(t) = I_0 \sin(\omega t + \varphi)$
+
+**Konstanten**: $U_0 = 325$ V, $I_0 = 32$ A, $f = 50$ Hz, $\omega = 2\pi f$
+
+Importieren Sie `matplotlib.pyplot` und `math`.
+
+![bg right:25%](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wechselstrom.svg/640px-Wechselstrom.svg.png)
+
+### Visualisierung Teil 1: Daten vorbereiten
+
+**a)** Definieren Sie die Konstanten $U_0$, $I_0$, $f$ und $\omega$.
+
+**b)** Schreiben Sie zwei **Funktionen** `spannung(t, phi)` und `strom(t, phi)`, die die Formeln für $u(t)$ und $i(t)$ implementieren und jeweils einen Wert zurückgeben.
+
+**c)** Erstellen Sie mit einer **List Comprehension** eine Liste `t_werte` mit 200 Zeitpunkten von 0 bis 0.04 s (zwei Perioden).
+
+Hinweis: Formel für den i-ten Zeitpunkt: $t_i = i \cdot \frac{0{,}04}{200}$ für $i = 0, 1, \ldots, 199$
+
+### Visualisierung Teil 2: Ohmscher Widerstand
+
+Erstellen Sie einen Plot für den **ohmschen Widerstand** ($\varphi = 0$):
+
+**a)** Berechnen Sie `u_werte` und `i_werte` mit **List Comprehensions**, die Ihre Funktionen aufrufen.
+
+**b)** Plotten Sie beide Kurven in einem Diagramm:
+- Spannung: rote durchgezogene Linie
+- Strom: blaue gestrichelte Linie
+
+**c)** Fügen Sie hinzu: Gitter, Achsenbeschriftungen, Titel
+
+**d)** Zeigen Sie den Plot an oder speichern Sie ihn.
+
+### Visualisierung Teil 3: Spule
+
+Erstellen Sie einen Plot für eine **Spule** ($\varphi = -\pi/2$):
+
+**a)** Berechnen Sie `u_werte` und `i_werte` mit den Funktionen und der neuen Phasenverschiebung.
+
+**b)** Plotten Sie beide Kurven:
+- Spannung: rote durchgezogene Linie
+- Strom: grüne gepunktete Linie
+
+**c)** Markieren Sie den Punkt bei $t = 0{,}005$ s auf der Spannungskurve mit einem roten Kreis.
+
+**d)** Fügen Sie Gitter, Beschriftungen und Titel hinzu.
+
+### Visualisierung Teil 4: Kondensator
+
+Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
+
+**a)** Berechnen Sie `u_werte` und `i_werte` mit den Funktionen und der neuen Phasenverschiebung.
+
+**b)** Plotten Sie beide Kurven:
+- Spannung: rote durchgezogene Linie
+- Strom: orange durchgezogene Linie
+
+**c)** Markieren Sie den Punkt bei $t = 0{,}010$ s auf der Stromkurve mit einem schwarzen Quadrat.
+
+**d)** Fügen Sie Gitter, Beschriftungen und Titel hinzu.
+
+### Visualisierung: Zusatzaufgaben
+
+**Zusatz 1**: Erstellen Sie eine Figur mit drei Subplots (1 Zeile, 3 Spalten), die alle drei Fälle nebeneinander zeigt. Verwenden Sie `plt.subplots()` ([-> Dokumentation](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html)).
+
+**Zusatz 2**: Fügen Sie den einzelnen Plots Legenden hinzu. Verwenden Sie `plt.legend()` ([-> Dokumentation](https://matplotlib.org/stable/users/explain/axes/legend_guide.html)).
+
+**Zusatz 2**: Die Momentanleistung ist $p(t) = u(t) \cdot i(t)$. Berechnen Sie und visualisieren Sie die Leistung für alle drei Fälle in separaten Plots. Was fällt bei der Spule und beim Kondensator auf?
+
+**Zusatz 3**: Schreiben Sie eine Funktion `plot_phasenverschiebung(phi_grad)`, die Spannung und Strom für eine beliebige Phasenverschiebung in Grad plottet. Testen Sie mit verschiedenen Werten.
