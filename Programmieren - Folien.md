@@ -36,10 +36,9 @@ David Straub
 6. [Module & Bibliotheken](#module--bibliotheken)
 7. [Algorithmen, Pseudocode & Struktogramme](#algorithmen-pseudocode--struktogramme)
 8. [Arbeiten mit Zeichenketten](#arbeiten-mit-zeichenketten)
-9. [List Comprehensions](#list-comprehensions)
-10. [Visualisierung mit matplotlib](#visualisierung-mit-matplotlib)
-11. Zahlensysteme
-12. Klassen
+9. [Visualisierung von Funktionen](#visualisierung-von-funktionen)
+10. Zahlensysteme
+11. Klassen
 
 ## Einführung
 
@@ -3160,69 +3159,8 @@ satz = "Leise rieselt der Schnee"
 * Reihenfolge umkehren
 * Wörter wieder zusammensetzen
 
-## List Comprehensions
 
-### Was sind List Comprehensions?
-
-**Kompakte Syntax** zum Erstellen von Listen aus bestehenden Sequenzen.
-
-Vergleich:
-
-```python
-# Mit for-Schleife:
-quadrate = []
-for x in range(5):
-    quadrate.append(x ** 2)
-print(quadrate)
-```
-
-```python
-# Mit List Comprehension:
-quadrate = [x ** 2 for x in range(5)]
-print(quadrate)
-```
-
-Viel kürzer und lesbarer!
-
-### Grundstruktur
-
-**Syntax:**
-```python
-neue_liste = [ausdruck for element in sequenz]
-```
-
-Weitere Beispiele:
-
-```python
-# Buchstaben aus String extrahieren
-buchstaben = [zeichen for zeichen in "Python"]
-print(buchstaben)
-```
-
-```python
-# Celsius zu Fahrenheit
-celsius = [0, 10, 20, 30]
-fahrenheit = [c * 9/5 + 32 for c in celsius]
-print(fahrenheit)
-```
-
-### Wann List Comprehensions verwenden?
-
-**Vorteile:**
-- Kompakter und lesbarer Code
-
-**Verwenden für:**
-- Einfache Transformationen
-- Abbildungen (mapping)
-
-**Vermeiden wenn:**
-- Zu komplex
-- Nebeneffekte nötig (z.B. `print()`)
-- Mehrere Schritte pro Element
-
-**Faustregel:** Wenn die Comprehension mehr als eine Zeile braucht, verwende eine normale Schleife!
-
-## Visualisierung mit matplotlib
+## Visualisierung von Funktionen
 
 ### Was ist matplotlib?
 
@@ -3233,11 +3171,9 @@ print(fahrenheit)
 - Publikationsreife Qualität
 - Hochgradig anpassbar
 - Integration mit NumPy
+- Open Source
 
-**Installation:**
-```bash
-pip install matplotlib
-```
+**Installation:** `pip install matplotlib`
 
 ![bg right:25% 90%](https://matplotlib.org/_static/logo_light.svg)
 
@@ -3347,7 +3283,7 @@ import matplotlib.pyplot as plt
 x = [0, 1, 2, 3, 4, 5]
 y = [0, 1, 4, 9, 16, 25]
 
-plt.plot(x, y, '--')  # Gestrichelte Linie
+plt.plot(x, y, "--")  # Gestrichelte Linie
 plt.title("Gestrichelte Linie")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3355,7 +3291,7 @@ plt.grid(True)
 plt.show()
 ```
 
-**Wichtige Stile:** `'-'` (durchgezogen), `'--'` (gestrichelt), `'-.'` (Strich-Punkt), `':'` (gepunktet)
+**Wichtige Stile:** `"-"` (durchgezogen), `"--"` (gestrichelt), `"-."` (Strich-Punkt), `":"` (gepunktet)
 
 ### Marker-Stile: Punkte anzeigen
 
@@ -3367,7 +3303,7 @@ import matplotlib.pyplot as plt
 x = [0, 1, 2, 3, 4, 5]
 y = [0, 1, 4, 9, 16, 25]
 
-plt.plot(x, y, 'o')  # Nur Kreise, keine Linie
+plt.plot(x, y, "o")  # Nur Kreise, keine Linie
 plt.title("Datenpunkte")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3375,7 +3311,7 @@ plt.grid(True)
 plt.show()
 ```
 
-**Wichtige Marker:** `'o'` (Kreis), `'s'` (Quadrat), `'^'` (Dreieck), `'*'` (Stern), `'+'` (Plus), `'x'` (Kreuz)
+**Wichtige Marker:** `"o"` (Kreis), `"s"` (Quadrat), `"^"` (Dreieck), `"*"` (Stern), `"+"` (Plus), `"x"` (Kreuz)
 
 ### Linien und Marker kombinieren
 
@@ -3387,7 +3323,7 @@ import matplotlib.pyplot as plt
 x = [0, 1, 2, 3, 4, 5]
 y = [0, 1, 4, 9, 16, 25]
 
-plt.plot(x, y, 'o-')  # Kreise verbunden mit Linie
+plt.plot(x, y, "o-")  # Kreise verbunden mit Linie
 plt.title("Linie mit Markern")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3406,8 +3342,8 @@ x = [0, 1, 2, 3, 4, 5]
 y1 = [0, 1, 4, 9, 16, 25]
 y2 = [0, 2, 8, 18, 32, 50]
 
-plt.plot(x, y1, 'r-')    # Rot, durchgezogen
-plt.plot(x, y2, 'b--')   # Blau, gestrichelt
+plt.plot(x, y1, "r-")    # Rot, durchgezogen
+plt.plot(x, y2, "b--")   # Blau, gestrichelt
 plt.title("Farbige Linien")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3415,7 +3351,7 @@ plt.grid(True)
 plt.show()
 ```
 
-**Wichtige Farbcodes:** `'r'` (rot), `'g'` (grün), `'b'` (blau), `'c'` (cyan), `'m'` (magenta), `'y'` (gelb), `'k'` (schwarz)
+**Wichtige Farbcodes:** `"r"` (rot), `"g"` (grün), `"b"` (blau), `"c"` (cyan), `"m"` (magenta), `"y"` (gelb), `"k"` (schwarz)
 
 ### Farben mit Namen
 
@@ -3427,7 +3363,7 @@ import matplotlib.pyplot as plt
 x = [0, 1, 2, 3, 4]
 y = [0, 1, 4, 9, 16]
 
-plt.plot(x, y, color='orange', linestyle='-', marker='o')
+plt.plot(x, y, color="orange", linestyle="-", marker="o")
 plt.title("Orangene Linie")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3435,7 +3371,7 @@ plt.grid(True)
 plt.show()
 ```
 
-Beispiele: `'orange'`, `'purple'`, `'brown'`, `'pink'`, `'gray'`
+Beispiele: `"orange"`, `"purple"`, `"brown"`, `"pink"`, `"gray"`
 
 ### Stil-String kompakt
 
@@ -3448,8 +3384,8 @@ x = [0, 1, 2, 3, 4, 5]
 y1 = [0, 1, 4, 9, 16, 25]
 y2 = [0, 2, 8, 18, 32, 50]
 
-plt.plot(x, y1, 'ro-')   # Rot, Kreise, durchgezogen
-plt.plot(x, y2, 'bs--')  # Blau, Quadrate, gestrichelt
+plt.plot(x, y1, "ro-")   # Rot, Kreise, durchgezogen
+plt.plot(x, y2, "bs--")  # Blau, Quadrate, gestrichelt
 plt.title("Kombinierte Stile")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -3457,7 +3393,74 @@ plt.grid(True)
 plt.show()
 ```
 
-**Format:** `'[farbe][marker][linie]'`, z.B. `'ro-'`, `'gs--'`, `'b^:'`
+**Format:** `"[farbe][marker][linie]"`, z.B. `"ro-"`, `"gs--"`, `"b^:"`
+
+
+
+
+## List Comprehensions
+
+### Was sind List Comprehensions?
+
+**Kompakte Syntax** zum Erstellen von Listen aus bestehenden Sequenzen.
+
+Vergleich:
+
+```python
+# Mit for-Schleife:
+quadrate = []
+for x in range(5):
+    quadrate.append(x ** 2)
+print(quadrate)
+```
+
+```python
+# Mit List Comprehension:
+quadrate = [x ** 2 for x in range(5)]
+print(quadrate)
+```
+
+Viel kürzer und lesbarer!
+
+### Grundstruktur
+
+**Syntax:**
+```python
+neue_liste = [ausdruck for element in sequenz]
+```
+
+Weitere Beispiele:
+
+```python
+# Buchstaben aus String extrahieren
+buchstaben = [zeichen for zeichen in "Python"]
+print(buchstaben)
+```
+
+```python
+# Celsius zu Fahrenheit
+celsius = [0, 10, 20, 30]
+fahrenheit = [c * 9/5 + 32 for c in celsius]
+print(fahrenheit)
+```
+
+### Wann List Comprehensions verwenden?
+
+**Vorteile:**
+- Kompakter und lesbarer Code
+
+**Verwenden für:**
+- Einfache Transformationen
+- Abbildungen (mapping)
+
+**Vermeiden wenn:**
+- Zu komplex
+- Nebeneffekte nötig (z.B. `print()`)
+- Mehrere Schritte pro Element
+
+**Faustregel:** Wenn die Comprehension mehr als eine Zeile braucht, verwende eine normale Schleife!
+
+
 
 ### List Comprehensions für Datenreihen
 
@@ -3543,10 +3546,9 @@ plt.plot([x1, x2], [y1, y2], 'ro', markersize=10, label='Nullstellen')
 - Zweiter `plot()`-Aufruf mit nur den Punktkoordinaten
 - Größere Marker mit `markersize` Parameter
 - Andere Farbe zur Unterscheidung
-
 ### Aufgabe: Funktionen visualisieren
 
-Erstelle einen Plot mit drei mathematischen Funktionen für x-Werte von 0 bis 10.
+Erstellen Sie einen Plot mit drei mathematischen Funktionen für x-Werte von 0 bis 10.
 
 **Funktionen:**
 1. Linear: $f(x) = 2x$
@@ -3554,20 +3556,20 @@ Erstelle einen Plot mit drei mathematischen Funktionen für x-Werte von 0 bis 10
 3. Kubisch: $h(x) = 0.1x^3$
 
 **Anforderungen:**
-- Verwende List Comprehensions für die y-Werte
+- Verwenden Sie List Comprehensions für die y-Werte
 - Verschiedene Farben und Linien-Stile
-- Titel, Achsenbeschriftungen und Legende
+- Titel und Achsenbeschriftungen
 - Gitter aktivieren
 
 ### Zusatzaufgabe: Nullstellen markieren
 
-Plotte die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
+Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 
 **Aufgaben:**
-1. Plotte die Funktion als blaue durchgezogene Linie
-2. Markiere die beiden Nullstellen ($x = -2$ und $x = 2$) als große rote Punkte
-3. Füge eine Legende hinzu
-4. Vergiss Titel, Achsenbeschriftungen und Gitter nicht
+1. Plotten Sie die Funktion als blaue durchgezogene Linie
+2. Markieren Sie die beiden Nullstellen ($x = -2$ und $x = 2$) als große rote Punkte
+3. Fügen Sie eine Legende hinzu
+4. Vergessen Sie nicht Titel, Achsenbeschriftungen und Gitter
 
 **Tipp:** Die Nullstellen liegen bei $y = 0$!
 
