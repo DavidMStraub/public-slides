@@ -39,6 +39,7 @@ David Straub
 9. [Visualisierung von Funktionen](#visualisierung-von-funktionen)
 10. Zahlensysteme
 11. Klassen
+12. Numerisches Programmieren in Python
 
 ## Einführung
 
