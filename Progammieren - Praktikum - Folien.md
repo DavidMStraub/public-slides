@@ -286,11 +286,9 @@ Visualisieren Sie den zeitlichen Verlauf von Spannung und Strom an verschiedenen
 - Spannung: $u(t) = U_0 \sin(\omega t)$
 - Strom: $i(t) = I_0 \sin(\omega t + \varphi)$
 
-**Konstanten**: $U_0 = 325$ V, $I_0 = 32$ A, $f = 50$ Hz, $\omega = 2\pi f$
+**Konstanten**: $U_0 = 325$ V, $I_0=32$ A, $f = 50$ Hz, $\omega = 2\pi f$
 
 Importieren Sie `matplotlib.pyplot` und `math`.
-
-![bg right:25%](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wechselstrom.svg/640px-Wechselstrom.svg.png)
 
 ### Visualisierung Teil 1: Daten vorbereiten
 
