@@ -33,7 +33,7 @@ David Straub
 3. [Gleichstrom](#gleichstrom) (Stromstärke, Widerstand, Stromkreisberechnungen, Energie, Leistung)
 4. [Magnetismus](#magnetismus) (Feld in Vakuum und Materie, Kräfte, magnetischer Kreis)
 5. [Elektromagnetische Induktion](#elektromagnetische-induktion) (Induktion, Selbstinduktion, Energie)
-6. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Wirk- und Blindleistung)
+6. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Schaltungen, Leistung)
 7. [Drehstrom](#drehstrom) (Dreiphasensystem)
 
 
@@ -2293,7 +2293,7 @@ $$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
 - [Komplexe Wechselstromrechnung](#komplexe-darstellung)
 - [Wechselstromwiderstände](#wechselstromwiderstände)
 - [Grundschaltungen linearer Wechselstromwiderstände](#grundschaltungen-linearer-wechselstromwiderstände)
-- Leistung im Wechselstromkreis (Blindleistung, Wirkleistung, Scheinleistung)
+- [Leistung im Wechselstromkreis](#leistung-bei-wechselstromverbrauchern) (Blindleistung, Wirkleistung, Scheinleistung)
 
 ### Wechselstrom: Grundlagen
 
@@ -2419,7 +2419,8 @@ Großbuchstaben stehen für die zugehörigen Amplituden:
 Um Berechnungen zu vereinfachen, können Wechselgrößen als komplexe Größen dargestellt werden. Anstatt mit trigonometischen Funktionen zu rechnen, kann dann die Exponentialfunktion verwendet werden.
 
 **Zeitabhängige komplexe Spannung:**
-$$\underline{u}(t) = \hat{U} \cdot e^{j(\omega t + \varphi_u)}=\hat{U} \cdot e^{j\omega t} \cdot e^{j\varphi_u}$$
+$$\underline{u}(t) = \hat{U} \cdot e^{j(\omega t + \varphi_u)}=\hat{U} \cdot e^{j\omega t} \cdot e^{j\varphi_u}= \underbrace{\underbrace{\hat{U} \, e^{j\varphi_u}}_{\text{Festzeiger } \underline{U}} \;e^{j\omega t}}_{\text{Drehzeiger}}=\underline{U} \;e^{j\omega t}$$
+
 
 **Reale Zeitfunktion:**
 $$u(t) = \text{Re}\,\underline{u}(t) = \hat{U} \cdot \cos(\omega t + \varphi_u)$$
@@ -2518,7 +2519,7 @@ $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot 
 
 **Aufgaben:**
 1. Zeichnen Sie beide Größen als **Zeiger** im Zeigerdiagramm
-2. Wandeln Sie beide um in **kartesische Form** ($a + jb$)
+2. Stellen Sie $\underline{U}$ und $\underline{I}$ in **kartesischer Form** ($a + jb$) dar
 3. Wandeln Sie beide um in **Polarform** ($Z \cdot e^{j\varphi}$)
 4. Berechnen Sie das Produkt $\underline{U} \cdot \underline{I}^*$ in **beiden Darstellungen**
 5. Vergleichen Sie die Ergebnisse und diskutieren Sie: Was fällt auf?
@@ -2845,3 +2846,52 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 | R-L Parallel | $\underline{Z} = \frac{\omega LR(\omega L + jR)}{R^2 + \omega^2 L^2}$ | $\underline{Y} = \frac{1}{R} - j \frac{1}{\omega L}$ | $Z = \frac{1}{\sqrt{\frac{1}{R^2} + \frac{1}{(\omega L)^2}}}$ | $\varphi = \arctan \frac{R}{\omega L}$ |
 | R-C Serie | $\underline{Z} = R - j \frac{1}{\omega C}$ | $\underline{Y} = \frac{\omega C (\omega CR + j)}{1 + \omega^2 C^2 R^2}$ | $Z = \sqrt{R^2 + \left(\frac{1}{\omega C}\right)^2}$ | $\varphi = -\arctan\frac{1}{\omega CR}$ |
 | R-C Parallel | $\underline{Z} = \frac{R(1 - j\omega CR)}{1 + \omega^2 C^2 R^2}$ | $\underline{Y} = \frac{1}{R} + j\omega C$ | $Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega C)^2}}$ | $\varphi = -\arctan\omega CR$ |
+
+
+## Leistung bei Wechselstromverbrauchern
+
+### Leistungsarten
+
+Für eine RL-Reihenschaltung:
+$$\underline{Z} = R + j \cdot \omega \cdot L = Z \cdot e^{j \cdot \varphi}$$
+
+mit: $\varphi = \varphi_u - \varphi_i$
+
+### Wirkleistung und Blindleistung
+
+**Wirkleistung an R:**
+$$P = U_R \cdot I = R \cdot I^2$$
+
+**Induktive Blindleistung:**
+$$Q_L = U_L \cdot I = \omega \cdot L \cdot I^2$$
+
+### Scheinleistung
+
+**Komplexe Scheinleistung:**
+$$\underline{S} = P + j \cdot Q_L = I^2 \cdot (R + j \cdot \omega \cdot L)$$
+$$= I^2 \cdot Z \cdot e^{j \cdot \varphi} = \underline{U} \cdot \underline{I}^*$$
+
+**Betragsgleichung:**
+$$S = \sqrt{P^2 + Q^2}$$
+
+### Leistungsdreieck
+
+**Größen:**
+- $\underline{S}$: komplexe Scheinleistung [VA]
+- $P$: Wirkleistung [W]
+- $Q$: Blindleistung [var]
+
+**Zusammenhang:**
+$$\underline{S} = P + jQ = S \cdot e^{j\varphi}$$
+
+### Leistungsfaktoren
+
+**Leistungsfaktor (Wirkfaktor):**
+$$\lambda = \frac{P}{S} = \cos \varphi$$
+
+**Blindfaktor:**
+$$\beta = \frac{Q}{S} = \sin \varphi$$
+
+**Zusammenhang:**
+$$\lambda^2 + \beta^2 = 1$$
+
