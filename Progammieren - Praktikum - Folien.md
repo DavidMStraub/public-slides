@@ -344,7 +344,7 @@ Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
 
 ### Visualisierung: Zusatzaufgaben
 
-**Zusatz 1**: Erstellen Sie eine Figur mit drei Subplots (1 Zeile, 3 Spalten), die alle drei Fälle nebeneinander zeigt. Verwenden Sie `plt.subplots()` ([-> Dokumentation](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html)).
+**Zusatz 1**: Erstellen Sie eine Figur mit drei Subplots (1 Zeile, 3 Spalten), die alle drei Fälle nebeneinander zeigt. Verwenden Sie `plt.subplot()` ([-> Dokumentation](https://matplotlib.org/stable/gallery/pyplots/pyplot_two_subplots.html#sphx-glr-gallery-pyplots-pyplot-two-subplots-py)).
 
 **Zusatz 2**: Fügen Sie den einzelnen Plots Legenden hinzu. Verwenden Sie `plt.legend()` ([-> Dokumentation](https://matplotlib.org/stable/users/explain/axes/legend_guide.html)).
 
