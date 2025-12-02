@@ -2514,7 +2514,7 @@ $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot 
 ## 📝 Gruppenarbeit: Spannung × Strom
 
 **Gegeben:**
-- Spannung: $u(t) = 230\,\text{V} \cdot \cos(\omega t)$
+- Spannung: $u(t) = 325\,\text{V} \cdot \cos(\omega t)$
 - Strom: $i(t) = 10\,\text{A} \cdot \sin(\omega t)$
 
 **Aufgaben:**
