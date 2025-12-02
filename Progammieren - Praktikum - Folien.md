@@ -286,19 +286,19 @@ Visualisieren Sie den zeitlichen Verlauf von Spannung und Strom an verschiedenen
 - Spannung: $u(t) = U_0 \sin(\omega t)$
 - Strom: $i(t) = I_0 \sin(\omega t + \varphi)$
 
-**Konstanten**: $U_0 = 325$ V, $I_0=32$ A, $f = 50$ Hz, $\omega = 2\pi f$
+**Konstanten**: $U_0 = 325$ V, $I_0=23$ A, $f = 50$ Hz, $\omega = 2\pi f$
 
 Importieren Sie `matplotlib.pyplot` und `math`.
 
-### Visualisierung Teil 1: Daten vorbereiten
+### Visualisierung Teil 1: Daten vorbereiten325
 
 **a)** Definieren Sie die Konstanten $U_0$, $I_0$, $f$ und $\omega$.
 
-**b)** Schreiben Sie zwei **Funktionen** `spannung(t, phi)` und `strom(t, phi)`, die die Formeln für $u(t)$ und $i(t)$ implementieren und jeweils einen Wert zurückgeben.
+**b)** Schreiben Sie zwei **Funktionen** `spannung(t)` und `strom(t, phi)`, die die Formeln für $u(t)$ und $i(t)$ implementieren und jeweils einen Wert zurückgeben.
 
-**c)** Erstellen Sie mit einer **List Comprehension** eine Liste `t_werte` mit 200 Zeitpunkten von 0 bis 0.04 s (zwei Perioden).
+**c)** Erstellen Sie mit einer **List Comprehension** eine Liste `t_werte` mit 200 Intervallen von 0 bis 0.04 s (zwei Perioden).
 
-Hinweis: Formel für den i-ten Zeitpunkt: $t_i = i \cdot \frac{0{,}04}{200}$ für $i = 0, 1, \ldots, 199$
+Hinweis: Formel für den i-ten Zeitpunkt: $t_i = i \cdot \frac{0{,}04}{200}$ für $i = 0, 1, \ldots, 200$
 
 ### Visualisierung Teil 2: Ohmscher Widerstand
 
