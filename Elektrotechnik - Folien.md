@@ -2371,11 +2371,11 @@ $$A_\text{eff} = \frac{\hat{A}}{\sqrt{2}} \approx 0{,}707 \cdot \hat{A}$$
 ### Effektivwert: Beispiele
 
 **Netzspannung:**
-- $U_\text{eff} = 230\text{ V}$ ②
+- $U_\text{eff} = 230\text{ V}$ ③
 - $\hat{U} = \sqrt{2} \cdot U_\text{eff} = 325\text{ V}$ ①
 
 **Haushaltssicherung:**
-- $I_\text{eff} = 16\text{ A}$ ②
+- $I_\text{eff} = 16\text{ A}$ ③
 - $\hat{I} = \sqrt{2} \cdot I_\text{eff} = 22{,}6\text{ A}$ ①
 
 Der Effektivwert wird von Messgeräten angezeigt!
