@@ -37,7 +37,7 @@ David Straub
 7. [Algorithmen, Pseudocode & Struktogramme](#algorithmen-pseudocode--struktogramme)
 8. [Arbeiten mit Zeichenketten](#arbeiten-mit-zeichenketten)
 9. [Visualisierung von Funktionen](#visualisierung-von-funktionen)
-10. Zahlensysteme
+10. [Zahlensysteme](#zahlensysteme)
 11. Klassen
 12. Numerisches Programmieren in Python
 
@@ -3589,3 +3589,546 @@ Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 - Farben: `'r'`, `'g'`, `'b'`, `'c'`, `'m'`, `'y'`, `'k'` oder Namen
 
 **Kombination:** `'ro-'` = rot, Kreise, durchgezogen
+
+## Zahlensysteme
+
+### Überblick: Zahlensysteme
+
+**Warum ist dieses Thema wichtig?**
+- Computer arbeiten intern mit Binärzahlen (0 und 1)
+- Verständnis der Zahlenrepräsentation erleichtert Programmieren und Fehlersuche
+- Beeinflusst Speicherbedarf, Rechengeschwindigkeit und Effizienz von Programmen
+
+**Themen:**
+
+1. Bits und Bytes
+2. Dezimal-, Binär-, Hexadezimalsystem
+3. Umrechnung zwischen Zahlensystemen
+4. Gleitkommazahlen
+
+### Bits und Bytes: Grundlagen
+
+**Bit** (Binary Digit) – kleinste Informationseinheit
+- Kann nur zwei Zustände annehmen: 0 oder 1
+- Physikalisch: Strom an/aus, magnetisch nord/süd, etc.
+
+**Byte** – Gruppe von 8 Bits
+- Standard-Einheit für Speicher und Daten
+- Ein Byte kann $2^8 = 256$ verschiedene Werte darstellen (0–255)
+
+**Beispiel:**
+```
+1 Bit:  0  oder  1
+1 Byte: 10110101  (8 Bits zusammen)
+```
+
+### Warum Bits und Bytes?
+
+**Historische Entwicklung:**
+- Frühe Computer: verschiedene Wortgrößen (4, 6, 7 Bits)
+- 8-Bit-Byte setzte sich als Standard durch
+- Praktisch für Zeichenkodierung (ASCII: 7 Bit, erweitert 8 Bit)
+
+**Moderne Bedeutung:**
+- Prozessoren arbeiten mit Wortgrößen von 32 oder 64 Bit
+- Speicher wird in Bytes adressiert
+- Datentypen haben feste Größen in Bytes:
+  - `int` in Python: variabel
+  - `int32` in NumPy: 4 Bytes = 32 Bits
+  - `float64`: 8 Bytes = 64 Bits
+
+### 7-Bit-ASCII
+
+![bg fit](https://upload.wikimedia.org/wikipedia/commons/d/dd/ASCII-Table.svg)
+
+### Was kann man mit n Bits darstellen?
+
+Mit $n$ Bits können $2^n$ verschiedene Werte dargestellt werden.
+
+| Bits | Anzahl Werte | Bereich (vorzeichenlos) | Beispiel |
+|------|--------------|-------------------------|----------|
+| 1    | 2            | 0–1                     | Boolesche Werte |
+| 4    | 16           | 0–15                    | Hexadezimal-Ziffer |
+| 8    | 256          | 0–255                   | 1 Byte, ASCII-Zeichen |
+| 16   | 65.536       | 0–65.535                | `uint16` |
+| 32   | ~4,3 Mrd.    | 0–4.294.967.295         | `uint32`, IPv4 |
+| 64   | ~18 Trillionen | 0–$2^{64}-1$          | `uint64` |
+
+**Merke:** Jedes zusätzliche Bit **verdoppelt** die Anzahl möglicher Werte!
+
+### Vorzeichenbehaftete Zahlen
+
+**Problem:** Wie stellt man negative Zahlen dar?
+
+**Lösung:** Ein Bit wird für das Vorzeichen verwendet
+
+**Wertebereich:**
+
+| Bits | Vorzeichenlos | Mit Vorzeichen |
+|------|---------------|----------------|
+| 8    | 0–255         | -128 bis 127   |
+| 16   | 0–65.535      | -32.768 bis 32.767 |
+| 32   | 0–~4,3 Mrd.   | ~-2,1 Mrd. bis ~2,1 Mrd. |
+
+- Gleich viele darstellbare Zahlen, nur anders verteilt
+- Nicht symmetrisch (z.B. -128 bis +127), weil es nur eine Null gibt
+
+**In Python:** `int` hat unbegrenzte Größe – kein Überlauf!
+
+### SI-Präfixe vs. Binärpräfixe
+
+**Problem:** Zwei verschiedene Systeme für Speichergrößen!
+
+**SI-Präfixe** (Dezimal, Basis 10):
+- Kilo (k) = $10^3$ = 1.000
+- Mega (M) = $10^6$ = 1.000.000
+- Giga (G) = $10^9$ = 1.000.000.000
+- Tera (T) = $10^{12}$ = 1.000.000.000.000
+
+**Binärpräfixe** (IEC-Standard, Basis 2):
+- Kibi (Ki) = $2^{10}$ = 1.024
+- Mebi (Mi) = $2^{20}$ = 1.048.576
+- Gibi (Gi) = $2^{30}$ = 1.073.741.824
+- Tebi (Ti) = $2^{40}$ = 1.099.511.627.776
+
+### Unterschied SI vs. Binär: Praktische Auswirkung
+
+**Beispiel: 1 TB Festplatte**
+
+```python
+# Hersteller rechnet (SI):
+si_bytes = 1_000_000_000_000  # 1 TB = 1.000 GB
+
+# Betriebssystem rechnet (Binär):
+gibibytes = si_bytes / (1024**3)
+print(f"1 TB = {gibibytes:.2f} GiB")  # ~931 GiB
+```
+
+**Deshalb:** Eine "1 TB" Festplatte zeigt im Betriebssystem nur ~931 GB an!
+
+**Aktueller Standard:**
+- Festplatten-Hersteller: SI-Präfixe (Dezimal)
+- Betriebssysteme: oft noch Binär, zeigen aber "GB" an
+- IEC-Standard: KiB, MiB, GiB für Binärpräfixe (wird immer mehr verwendet)
+
+### Verwendung von Byte-Präfixen in Dateimanagern
+
+| Betriebssystem | Einheit | Basis | Kommentar |
+|----------------|---------|----------------|-----------|
+| Windows        | KB, MB, GB | 1024          | Binärpräfixe aber ohne "i" 😕 |
+| macOS          | KB, MB, GB | 1000          | SI-Präfixe aber mit K für Kilo 🤔 |
+| Linux/KDE   | KiB, MiB, GiB | 1024          | IEC-Präfixe (korrekt) ✅, einstellbar  |
+| Linux/Gnome | KB, MB, GB | 1000          | SI-Präfixe, aber mit K für Kilo 🤔 |
+
+### Umrechnung: Beispiele
+
+```python
+# Wie viele Bytes sind 5 MiB?
+mib = 5
+bytes_wert = mib * 1024 * 1024
+print(f"{mib} MiB = {bytes_wert:,} Bytes")
+print(f"{mib} MiB = {bytes_wert / 1_000_000:.2f} MB (SI)")
+```
+
+```python
+# RAM-Größen sind typischerweise in Zweierpotenzen
+ram_gb = 16  # "16 GB" RAM
+ram_bytes = 16 * 1024**3  # Eigentlich GiB!
+print(f"{ram_gb} GiB = {ram_bytes:,} Bytes")
+print(f"{ram_gb} GiB = {ram_bytes / 1_000_000_000:.2f} GB (SI)")
+```
+
+### Stellenwertsysteme: Grundidee
+
+**Ein Stellenwertsystem** repräsentiert Zahlen durch Ziffern an verschiedenen Positionen.
+
+**Allgemeine Form:**
+$$\text{Zahl} = d_n \cdot b^n + d_{n-1} \cdot b^{n-1} + \ldots + d_1 \cdot b^1 + d_0 \cdot b^0$$
+
+- $b$ = Basis des Zahlensystems
+- $d_i$ = Ziffer an Position $i$ (von rechts, beginnend bei 0)
+- Jede Position hat einen Stellenwert: $b^i$
+
+**Wichtig:** Die Ziffer $d_i$ muss kleiner als die Basis sein: $0 \leq d_i < b$
+
+### Dezimalsystem (Basis 10)
+
+**Unser Alltags-Zahlensystem**
+- Basis: $b = 10$
+- Ziffern: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+**Beispiel: 5347**
+
+| Position | 3 | 2 | 1 | 0 |
+|----------|---|---|---|---|
+| Stellenwert | $10^3$ | $10^2$ | $10^1$ | $10^0$ |
+| | 1000 | 100 | 10 | 1 |
+| Ziffer | 5 | 3 | 4 | 7 |
+| Wert | 5000 | 300 | 40 | 7 |
+
+$$5347_{10} = 5 \cdot 10^3 + 3 \cdot 10^2 + 4 \cdot 10^1 + 7 \cdot 10^0$$
+
+### Binärsystem (Basis 2)
+
+**Die Sprache der Computer**
+- Basis: $b = 2$
+- Ziffern: 0, 1
+
+**Beispiel: 1011**
+
+| Position | 3 | 2 | 1 | 0 |
+|----------|---|---|---|---|
+| Stellenwert | $2^3$ | $2^2$ | $2^1$ | $2^0$ |
+| | 8 | 4 | 2 | 1 |
+| Ziffer | 1 | 0 | 1 | 1 |
+| Wert | 8 | 0 | 2 | 1 |
+
+$$1011_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = 11_{10}$$
+
+### Hexadezimalsystem (Basis 16)
+
+**Kompakte Darstellung für Binärzahlen**
+- Basis: $b = 16$
+- Ziffern: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+- A=10, B=11, C=12, D=13, E=14, F=15
+
+**Beispiel: 2F3**
+
+| Position | 2 | 1 | 0 |
+|----------|---|---|---|
+| Stellenwert | $16^2$ | $16^1$ | $16^0$ |
+| | 256 | 16 | 1 |
+| Ziffer | 2 | F (15) | 3 |
+| Wert | 512 | 240 | 3 |
+
+$$\text{2F3}_{16} = 2 \cdot 16^2 + 15 \cdot 16^1 + 3 \cdot 16^0 = 755_{10}$$
+
+### Warum Hexadezimal?
+
+**4 Bit = 1 Hexadezimal-Ziffer** – sehr praktisch!
+
+| Binär | Hex | Dezimal | | Binär | Hex | Dezimal |
+|-------|-----|---------|--|-------|-----|---------|
+| 0000 | 0 | 0 | | 1000 | 8 | 8 |
+| 0001 | 1 | 1 | | 1001 | 9 | 9 |
+| 0010 | 2 | 2 | | 1010 | A | 10 |
+| 0011 | 3 | 3 | | 1011 | B | 11 |
+| 0100 | 4 | 4 | | 1100 | C | 12 |
+| 0101 | 5 | 5 | | 1101 | D | 13 |
+| 0110 | 6 | 6 | | 1110 | E | 14 |
+| 0111 | 7 | 7 | | 1111 | F | 15 |
+
+**Beispiel:** `11010110` (binär) = `D6` (hex) – viel kompakter!
+### Zahlensysteme in Python
+
+**Python unterstützt verschiedene Zahlensysteme direkt:**
+
+```python
+# Dezimal (Standard)
+dezimal = 42
+print(dezimal)
+```
+
+```python
+# Binär (Präfix 0b)
+binaer = 0b101010
+print(binaer)        # Ausgabe in Dezimal: 42
+print(bin(dezimal))  # Umwandlung zu Binär-String: '0b101010'
+```
+
+```python
+# Hexadezimal (Präfix 0x)
+hexadezimal = 0x2A
+print(hexadezimal)   # Ausgabe in Dezimal: 42
+print(hex(dezimal))  # Umwandlung zu Hex-String: '0x2a'
+```
+
+### Umrechnung in Python: Binär/Hex → Dezimal
+
+**Mit `int()`-Funktion und Basis-Parameter:**
+
+```python
+# Binär → Dezimal
+binaer_string = "101010"
+dezimal = int(binaer_string, 2)
+print(dezimal)  # 42
+```
+
+```python
+# Hexadezimal → Dezimal
+hex_string = "2A"
+dezimal = int(hex_string, 16)
+print(dezimal)  # 42
+```
+
+```python
+# Auch mit Präfixen möglich
+print(int("0b101010", 2))   # 42
+print(int("0x2A", 16))      # 42
+```
+
+### Umrechnung: Beliebige Basis → Dezimal
+
+**Methode:** Stellenwertsystem-Formel anwenden
+
+**Algorithmus:**
+1. Von rechts nach links durchgehen
+2. Jede Ziffer mit ihrem Stellenwert multiplizieren
+3. Alle Werte addieren
+
+**Beispiel: $\text{2F3}_{16}$ → Dezimal**
+$$2 \times 16^2 + 15 \times 16^1 + 3 \times 16^0 = 512 + 240 + 3 = 755$$
+
+### Umrechnung: Dezimal → Beliebige Basis
+
+**Methode:** Wiederholte Division mit Rest
+
+**Beispiel: 42 → Binär**
+- $42 \div 2 = 21$ Rest $0$
+- $21 \div 2 = 10$ Rest $1$
+- $10 \div 2 = 5$ Rest $0$
+- $5 \div 2 = 2$ Rest $1$
+- $2 \div 2 = 1$ Rest $0$
+- $1 \div 2 = 0$ Rest $1$
+
+**Ergebnis (von unten nach oben):** $101010_2$
+
+### Umrechnung: Dezimal → Hexadezimal
+
+**Methode:** Wiederholte Division mit Rest (wie bei Binär)
+
+**Beispiel: 755 → Hexadezimal**
+- $755 \div 16 = 47$ Rest $3$ → Ziffer: 3
+- $47 \div 16 = 2$ Rest $15$ → Ziffer: F (15 = F)
+- $2 \div 16 = 0$ Rest $2$ → Ziffer: 2
+
+**Ergebnis (von unten nach oben):** $\text{2F3}_{16}$
+
+**Probe:** $2 \times 16^2 + 15 \times 16^1 + 3 \times 16^0 = 512 + 240 + 3 = 755$ ✓
+
+### 👥 Gruppenarbeit: CSS-Farbcode entschlüsseln
+
+**Gegeben:** Hex-Farbcode `#FC5555`
+
+**Aufgaben:**
+1. Wandle jede Hex-Ziffer einzeln in Dezimal um
+2. Bestimme die RGB-Werte (Rot, Grün, Blau)
+3. Jeder Farbkanal hat einen Wert von 0–255 (additive Farbmischung)
+
+**Hinweis:** CSS-Farbcodes: `#RRGGBB`
+- Erste 2 Ziffern = Rot
+- Mittlere 2 Ziffern = Grün
+- Letzte 2 Ziffern = Blau
+
+**Frage:** Welche Farbe ergibt sich?
+
+**Zusatzaufgabe:** `#007CB0`
+
+### Umrechnung: Binär ↔ Hexadezimal
+
+**Besonders einfach:** 4 Binärziffern = 1 Hexadezimalziffer!
+
+**Binär → Hex:** Gruppiere je 4 Bits von rechts
+
+**Beispiel:** $11010110_2$ → Hex
+- `1101` = $13_{10}$ = `D`
+- `0110` = $6_{10}$ = `6`
+- Ergebnis: `D6`
+
+**Hex → Binär:** Jede Ziffer = 4 Bits
+
+**Beispiel:** `2FA` → Binär
+- `2` = `0010`, `F` = `1111`, `A` = `1010`
+- Ergebnis: `1011111010`
+
+### Alle 6 Umrechnungsfälle: Übersicht
+
+| Von → Nach | Methode | Python-Funktion |
+|------------|---------|-----------------|
+| **Dezimal → Binär** | Division mit Rest | `bin(x)` |
+| **Dezimal → Hex** | Division mit Rest | `hex(x)` |
+| **Binär → Dezimal** | Stellenwertsystem | `int(x, 2)` |
+| **Binär → Hex** | Über Dezimal *oder* 4-Bit-Gruppen | `hex(int(x, 2))` |
+| **Hex → Dezimal** | Stellenwertsystem | `int(x, 16)` |
+| **Hex → Binär** | Über Dezimal *oder* jede Ziffer → 4 Bits | `bin(int(x, 16))` |
+
+**Zwei Strategien:**
+1. **Direkte Umrechnung:** Binär ↔ Hex (4-Bit-Gruppen)
+2. **Über Dezimal:** Alle anderen Fälle
+
+### Gleitkommazahlen: Problem der Darstellung
+
+**Wie speichert der Computer Dezimalzahlen?**
+
+**Problem:**
+- Ganzzahlen: exakte Darstellung möglich
+- Dezimalzahlen: unendlich viele mögliche Werte zwischen zwei Ganzzahlen!
+- Speicher ist begrenzt (32 oder 64 Bit)
+
+**Lösung:** Gleitkommazahlen (Floating Point)
+- Idee: Wissenschaftliche Notation im Binärsystem
+- Speichere Vorzeichen, signifikante Stellen und Exponent
+- Ermöglicht sehr große und sehr kleine Zahlen mit begrenztem Speicher
+
+### Binärkommazahlen
+
+**Dezimalzahlen mit Nachkommastellen in Binär**
+
+Wie bei Ganzzahlen: Stellenwertsystem, aber mit negativen Exponenten!
+
+| Position | $2^0$ | $2^{-1}$ | $2^{-2}$ | $2^{-3}$ | $2^{-4}$ |
+|----------|-------|----------|----------|----------|----------|
+| Wert | 1 | 0,5 | 0,25 | 0,125 | 0,0625 |
+
+**Beispiel: $0.11_2$ in Dezimal**
+$$0.11_2 = 1 \times 2^{-1} + 1 \times 2^{-2} = 0.5 + 0.25 = 0.75_{10}$$
+
+**Beispiel: $1.101_2$ in Dezimal**
+$$1.101_2 = 1 \times 2^0 + 1 \times 2^{-1} + 0 \times 2^{-2} + 1 \times 2^{-3}$$
+$$= 1 + 0.5 + 0.125 = 1.625_{10}$$
+
+### Umrechnung: Dezimalzahlen in Binär
+
+**Methode:** Multiplikation mit Basis (statt Division)
+
+**Beispiel: $0.75_{10}$ in Binär**
+- $0.75 \times 2 = 1.5$ → Ziffer: 1, Rest: 0.5
+- $0.5 \times 2 = 1.0$ → Ziffer: 1, Rest: 0.0
+- **Ergebnis:** $0.75_{10} = 0.11_2$
+
+**Probe:** $0.11_2 = 1 \times 2^{-1} + 1 \times 2^{-2} = 0.75$ ✓
+
+**Problem:** Nicht alle Dezimalzahlen haben endliche Binärdarstellung!
+- $0.1_{10} = 0.0\overline{0011}_2$ (periodisch – unendlich viele Nachkommastellen!)
+
+### Beispiel: 0.1 im Binärsystem
+
+**Umrechnung $0.1_{10}$ → Binär (Multiplikationsmethode):**
+- $0.1 \times 2 = 0.2$ → Ganzzahlteil: 0, Rest: 0.2
+- $0.2 \times 2 = 0.4$ → Ganzzahlteil: 0, Rest: 0.4
+- $0.4 \times 2 = 0.8$ → Ganzzahlteil: 0, Rest: 0.8
+- $0.8 \times 2 = 1.6$ → Ganzzahlteil: 1, Rest: 0.6
+- $0.6 \times 2 = 1.2$ → Ganzzahlteil: 1, Rest: 0.2
+- $0.2 \times 2 = 0.4$ → **Wiederholt sich!** 🔄
+
+**Ergebnis (von oben nach unten):** $0.1_{10} = 0.0\overline{0011}_2$ (periodisch)
+
+**Probe zurück in Dezimal (erste Stellen):**
+$$0.00011001100110011..._2 = 0 \cdot 2^{-1} + 0 \cdot 2^{-2} + 0 \cdot 2^{-3} + 1 \cdot 2^{-4} + 1 \cdot 2^{-5} + ...$$
+$$= 0.0625 + 0.03125 + 0.0078125 + ... \approx 0.09999999...$$
+
+### Gleitkommazahlen: IEEE-754-Standard
+
+**Wie speichert der Computer Binärkommazahlen?**
+
+**64-Bit Double Precision (Python `float`):**
+
+| Vorzeichen | Exponent | Mantisse |
+|------------|----------|----------|
+| 1 Bit      | 11 Bits  | 52 Bits  |
+
+**Format:** $\pm 1.\text{Mantisse} \times 2^{\text{Exponent}}$ (normalisierte Form)
+
+**Beispiel: 0.75**
+- Dezimal: $0.75_{10}$
+- Binär: $0.11_2 = 1.1_2 \times 2^{-1}$ (normalisiert)
+- Vorzeichen: 0 (positiv)
+- Exponent: -1
+- Mantisse: 1 (führende `1.` ist implizit, nur `.1` wird gespeichert)
+
+### Gleitkommazahlen: Grenzen der Genauigkeit
+
+**52-Bit-Mantisse ≈ 15–17 Dezimalstellen Genauigkeit**
+
+```python
+# Erinnerung: Rundungsfehler!
+print(0.1 + 0.1 + 0.1)        # 0.30000000000000004
+print(0.1 + 0.1 + 0.1 == 0.3) # False
+```
+
+**Warum?**
+- $0.1_{10}$ hat unendlich viele Nachkommastellen im Binärsystem!
+- $0.1_{10} = 0.0\overline{0011}_2$ (periodisch)
+- Wird nach 52 Bit abgeschnitten → Rundungsfehler
+
+**Fazit:** Niemals Gleitkommazahlen mit `==` vergleichen!
+
+### Gleitkommazahlen: Spezielle Werte
+
+**IEEE 754 definiert spezielle Werte:**
+
+```python
+# Unendlich (Division durch 0)
+print(1.0 / 0.0)              # inf
+print(-1.0 / 0.0)             # -inf
+
+# Not a Number (ungültige Operationen)
+print(0.0 / 0.0)              # nan
+print(float('inf') - float('inf'))  # nan
+
+# Testen
+import math
+x = float('inf')
+print(math.isinf(x))          # True
+y = float('nan')
+print(math.isnan(y))          # True
+```
+
+### Gleitkommazahlen: Extreme Werte
+
+**Wertebereich von `float` (64-Bit):**
+- Größte Zahl: ca. $1.8 \times 10^{308}$
+- Kleinste positive Zahl: ca. $2.2 \times 10^{-308}$
+- Präzision: ca. 15–17 Dezimalstellen
+
+**Überlauf/Unterlauf:**
+```python
+print(1e308)   # 1e+308
+print(1e309)   # inf (Überlauf!)
+print(1e-324)  # 5e-324
+print(1e-325)  # 0.0 (Unterlauf!)
+```
+
+### Gleitkommazahlen: Best Practices
+
+**❌ Vermeiden:**
+```python
+# Direkte Gleichheitstests
+if x == 0.3:  # Gefährlich!
+    ...
+
+# Akkumulation kleiner Fehler
+summe = 0.0
+for i in range(1000000):
+    summe += 0.1  # Fehler akkumulieren sich!
+```
+
+### Gleitkommazahlen: Best Practices
+
+
+**✅ Besser:**
+```python
+# Toleranz-basierter Vergleich
+tolerance = 1e-9
+if abs(x - 0.3) < tolerance:
+    ...
+
+# Für kritische Anwendungen: decimal-Modul
+from decimal import Decimal
+summe = Decimal('0.0')
+for i in range(1000000):
+    summe += Decimal('0.1')  # Exakt!
+```
+
+
+### Übungsaufgaben: Zahlensysteme
+
+**Dateiberechtigungen (Unix/Linux)**
+Die Oktalzahl `755` steht für Dateiberechtigungen: `rwxr-xr-x`
+- Wandle `755` (Oktal) in Binär um
+- Was bedeuten die 9 Bits? (3 Bit pro Benutzergruppe: owner, group, others)
+
+**UTF-8 Emoji**
+Das Emoji 🔥 hat den Unicode `U+1F525` (Hexadezimal)
+- Wandle `1F525` in Dezimal um
+- Wie viele Werte kann Unicode maximal darstellen? (Hinweis: `10FFFF` ist der höchste Wert)
