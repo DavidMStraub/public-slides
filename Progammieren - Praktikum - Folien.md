@@ -290,7 +290,7 @@ Visualisieren Sie den zeitlichen Verlauf von Spannung und Strom an verschiedenen
 
 Importieren Sie `matplotlib.pyplot` und `math`.
 
-### Visualisierung Teil 1: Daten vorbereiten325
+### Visualisierung Teil 1: Daten vorbereiten
 
 **a)** Definieren Sie die Konstanten $U_0$, $I_0$, $f$ und $\omega$.
 
