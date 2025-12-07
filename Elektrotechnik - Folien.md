@@ -2857,12 +2857,26 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 **Am Widerstand R:**
 - $\overline{p} = U_\text{eff} \cdot I_\text{eff}$ (Wirkleistung)
 - Energie wird ständig verbraucht
+- Keine Phasenverschiebung: $\varphi = 0°$
 
 **Am Kondensator C und an der Induktivität L:**
 - $\overline{p} = 0$ (Blindleistung)
 - Energie pendelt zwischen Quelle und Feld
+- Maximale Phasenverschiebung: $\varphi = \pm 90°$
 
-**Jetzt:** Der allgemeine Fall mit Phasenverschiebung!
+### Vom Spezialfall zum Allgemeinfall
+
+**Bisher betrachtet:**
+- Rein ohmsche Verbraucher ($\varphi = 0°$)
+- Rein reaktive Verbraucher ($\varphi = \pm 90°$)
+
+**In der Praxis:**
+- Kombinationen aus R, L und C
+- **Beliebige Phasenverschiebung** $0° < |\varphi| < 90°$
+
+**Beispiele:**
+- Motor: R-L-Kombination mit $\varphi \approx 30°{-}60°$
+- Netzteil: R-C-Kombination
 
 ### Der allgemeine Fall
 
@@ -2890,7 +2904,7 @@ $$p(t) = \frac{\hat{U} \cdot \hat{I}}{2} \cdot [\cos(\varphi) + \cos(2\omega t -
 
 Die Leistung hat einen **konstanten** und einen **oszillierenden** Anteil!
 
-### Wirk- und Blindleistung aus p(t)
+### Zerlegung der Momentanleistung
 
 Mit der Umformung $\cos(2\omega t - \varphi) = \cos(2\omega t)\cos(\varphi) + \sin(2\omega t)\sin(\varphi)$:
 
@@ -2900,11 +2914,22 @@ Mit Effektivwerten $U = \frac{\hat{U}}{\sqrt{2}}$, $I = \frac{\hat{I}}{\sqrt{2}}
 
 $$p(t) = \underbrace{U \cdot I \cdot \cos(\varphi)}_{P} \cdot [1 + \cos(2\omega t)] + \underbrace{U \cdot I \cdot \sin(\varphi)}_{Q} \cdot \sin(2\omega t)$$
 
-**Definitionen:**
-- **Wirkleistung:** $P = U \cdot I \cdot \cos(\varphi)$
-- **Blindleistung:** $Q = U \cdot I \cdot \sin(\varphi)$
-
 Die Leistung oszilliert mit **doppelter Frequenz** $2\omega$!
+
+### Allgemeine Definitionen
+
+**Aus der Zerlegung der Momentanleistung folgen die allgemeinen Definitionen:**
+
+**Wirkleistung:**
+$$P = U \cdot I \cdot \cos(\varphi)$$
+
+**Blindleistung:**
+$$Q = U \cdot I \cdot \sin(\varphi)$$
+
+**Spezialfälle (Wiederholung):**
+- $\varphi = 0°$ (nur R): $P = U \cdot I$, $Q = 0$
+- $\varphi = 90°$ (nur L): $P = 0$, $Q = U \cdot I$
+- $\varphi = -90°$ (nur C): $P = 0$, $Q = -U \cdot I$
 
 ### Wirkleistung P
 
@@ -2912,18 +2937,18 @@ Die **Wirkleistung** ist der zeitliche Mittelwert der Momentanleistung:
 
 $$P = \langle p(t) \rangle = \frac{1}{T} \int_0^T u(t) \cdot i(t) \, dt$$
 
-**Ergebnis:**
+**Allgemeine Formel:**
 $$\boxed{P = U \cdot I \cdot \cos \varphi}$$
 
 wobei $U$ und $I$ die **Effektivwerte** sind.
 
-**Grenzfälle:**
-- $\varphi = 0$ (nur R): $P = U \cdot I$ (maximal)
-- $\varphi = \pm 90°$ (nur L oder C): $P = 0$ (keine Wirkleistung)
-
 **Einheit:** Watt [W]
 
-### Wirkleistung: Physikalische Bedeutung
+**Grenzfälle:**
+- $\varphi = 0°$ (nur R): $P = U \cdot I$ (maximal)
+- $\varphi = \pm 90°$ (nur L oder C): $P = 0$
+
+### Wirkleistung: Bedeutung
 
 **Was ist Wirkleistung?**
 - Die tatsächlich in Arbeit, Wärme oder Licht umgesetzte Leistung
@@ -2931,12 +2956,11 @@ wobei $U$ und $I$ die **Effektivwerte** sind.
 
 **An ohmschen Widerständen:**
 $$P = R \cdot I^2$$
-(keine Phasenverschiebung, $\varphi = 0$)
 
 **Praxisbeispiele:**
-- Elektromotor mit $P = 1000\,\text{W}$: leistet mechanische Arbeit
-- Heizung mit $P = 2000\,\text{W}$: erzeugt Wärme
-- Glühbirne: reine Wirkleistung
+- Elektromotor: leistet mechanische Arbeit
+- Heizung: erzeugt Wärme
+- Glühbirne: erzeugt Licht
 
 ### Blindleistung Q
 
@@ -2944,26 +2968,30 @@ Die **Blindleistung** beschreibt den oszillierenden Energiefluss:
 
 $$\boxed{Q = U \cdot I \cdot \sin \varphi}$$
 
+**Einheit:** Voltampere reactive [var]
+
+**Physikalische Bedeutung:**
+
 **Bei induktiven Verbrauchern** (Motoren, Transformatoren):
-- $\varphi > 0$: $Q_L = U \cdot I \cdot \sin \varphi > 0$
+- $\varphi > 0$: $Q_L > 0$ (positiv)
 - Energie wird im **Magnetfeld** gespeichert und wieder abgegeben
 
 **Bei kapazitiven Verbrauchern** (Kondensatoren):
-- $\varphi < 0$: $Q_C = U \cdot I \cdot \sin \varphi < 0$
+- $\varphi < 0$: $Q_C < 0$ (negativ)
 - Energie wird im **elektrischen Feld** gespeichert und wieder abgegeben
-
-**Einheit:** Voltampere reactive [var]
 
 ### Blindleistung: Praktische Bedeutung
 
-**Was bedeutet Blindleistung in der Praxis?**
+**Problem:**
+Blindleistung trägt **nicht** zur nutzbaren Leistung bei, belastet aber das Netz:
 
-Blindleistung:
-- Trägt **nicht** zur nutzbaren Leistung bei
-- Belastet aber **Leitungen** und **Transformatoren**
-- Erzeugt **Verluste** durch erhöhten Strom
+- **Höhere Ströme** in Leitungen und Transformatoren
+- **Erhöhte Verluste:** $P_\text{Verlust} = R \cdot I^2$
+- **Spannungsabfälle** im Netz
 
-**Beispiel:** Elektromotor ohne Last benötigt hauptsächlich $Q_L$ zur Magnetisierung → hohe Ströme belasten das Netz
+**Beispiel:** Motor ohne Last
+- Benötigt hauptsächlich $Q_L$ zur Magnetisierung
+- Hohe Ströme → Netzbelastung
 
 **Konsequenz:** Industriekunden zahlen oft Strafgebühren bei hoher Blindleistung
 
@@ -2998,7 +3026,9 @@ $$\boxed{S = \sqrt{P^2 + Q^2}}$$
 
 Der Transformator ist voll ausgelastet ($S = 10\,\text{kVA}$), liefert aber nur 70% nutzbare Leistung.
 
-### Komplexe Scheinleistung: Motivation
+## Komplexe Scheinleistung
+
+### Motivation
 
 **Frage:** Wie kann man Wirk- und Blindleistung *gemeinsam* darstellen?
 
@@ -3033,7 +3063,7 @@ $$\underline{U} \cdot \underline{I}^* = U \cdot I \cdot (\cos \varphi + j \sin \
 $$= U \cdot I \cdot \cos \varphi + j \cdot U \cdot I \cdot \sin \varphi$$
 $$= P + jQ$$
 
-### Herleitung für RL-Reihenschaltung
+### Beispiel: RL-Reihenschaltung
 
 **Gegeben:** RL-Reihenschaltung
 $$\underline{Z} = R + j\omega L$$
@@ -3046,22 +3076,13 @@ $$\underline{S} = \underline{U} \cdot \underline{I}^* = (R + j\omega L) \cdot \u
 
 **Wichtig:** $\underline{I} \cdot \underline{I}^* = |\underline{I}|^2 = I^2$ ist **reell**!
 
-$$\underline{S} = I^2 \cdot (R + j\omega L) = R \cdot I^2 + j \cdot \omega L \cdot I^2$$
+$$\underline{S} = I^2 \cdot (R + j\omega L) = \underbrace{R \cdot I^2}_{P} + j \cdot \underbrace{\omega L \cdot I^2}_{Q}$$
 
-### Interpretation der komplexen Scheinleistung
+**Realteil** = Wirkleistung am Widerstand R
 
-Aus der Herleitung:
-$$\underline{S} = R \cdot I^2 + j \cdot \omega L \cdot I^2$$
-
-**Realteil** = Wirkleistung am Widerstand:
-$$P = \text{Re}(\underline{S}) = R \cdot I^2$$
-
-**Imaginärteil** = Blindleistung an der Induktivität:
-$$Q = \text{Im}(\underline{S}) = \omega L \cdot I^2$$
+**Imaginärteil** = Blindleistung an der Induktivität L
 
 **Verallgemeinerung:** Dies gilt für *beliebige* Impedanzen!
-
-Die komplexe Darstellung trennt automatisch Wirk- und Blindleistung.
 
 ### Definition der komplexen Scheinleistung
 
@@ -3079,25 +3100,17 @@ mit:
 **Alternative Darstellungen:**
 $$\underline{S} = \underline{Z} \cdot I^2 = \frac{U^2}{\underline{Z}^*}$$
 
+## Leistungsdreieck und Leistungsfaktor
+
 ### Leistungsdreieck
 
-Das **Leistungsdreieck** visualisiert den Zusammenhang:
+Das **Leistungsdreieck** visualisiert den Zusammenhang
+- Wirkleistung: $P = S \cdot \cos \varphi$
+- Blindleistung: $Q = S \cdot \sin \varphi$
+- Scheinleistung: $S = \sqrt{P^2 + Q^2}$
+- Phasenwinkel: $\tan \varphi = \frac{Q}{P}$
 
-```
-      |S| (Scheinleistung)
-     /|
-    / |
-   /  | Q (Blindleistung)
-  /φ  |
- /____|
-   P (Wirkleistung)
-```
-
-**Zusammenhänge:**
-$$P = S \cdot \cos \varphi \quad \text{(Wirkleistung)}$$
-$$Q = S \cdot \sin \varphi \quad \text{(Blindleistung)}$$
-$$S = \sqrt{P^2 + Q^2} \quad \text{(Scheinleistung)}$$
-$$\tan \varphi = \frac{Q}{P} \quad \text{(Phasenwinkel)}$$
+![bg right:40% 80%](https://upload.wikimedia.org/wikipedia/commons/2/28/Leistungsdreieck.svg)
 
 ### Leistungsdreieck: Praxisbeispiel
 
@@ -3157,6 +3170,8 @@ $$\lambda = \cos \varphi = \frac{P}{S}$$
 - **Stromreduktion um 26%!**
 
 **Energieversorger fordern:** $\cos \varphi > 0{,}9$
+
+## Blindleistungskompensation
 
 ### Blindfaktor sin φ
 
