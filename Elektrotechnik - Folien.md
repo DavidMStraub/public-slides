@@ -2850,48 +2850,388 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 
 ## Leistung bei Wechselstromverbrauchern
 
-### Leistungsarten
+### Rückblick: Leistung an R, L und C
 
-Für eine RL-Reihenschaltung:
-$$\underline{Z} = R + j \cdot \omega \cdot L = Z \cdot e^{j \cdot \varphi}$$
+**Wir haben bereits gesehen:**
 
-mit: $\varphi = \varphi_u - \varphi_i$
+**Am Widerstand R:**
+- $\overline{p} = U_\text{eff} \cdot I_\text{eff}$ (Wirkleistung)
+- Energie wird ständig verbraucht
 
-### Wirkleistung und Blindleistung
+**Am Kondensator C und an der Induktivität L:**
+- $\overline{p} = 0$ (Blindleistung)
+- Energie pendelt zwischen Quelle und Feld
 
-**Wirkleistung an R:**
-$$P = U_R \cdot I = R \cdot I^2$$
+**Jetzt:** Der allgemeine Fall mit Phasenverschiebung!
 
-**Induktive Blindleistung:**
-$$Q_L = U_L \cdot I = \omega \cdot L \cdot I^2$$
+### Der allgemeine Fall
 
-### Scheinleistung
+**Bisher:** Ideale Bauteile (nur R, nur L, nur C)
+
+**In der Praxis:** Kombinationen mit Phasenverschiebung $\varphi$
+
+Spannung und Strom:
+- $u(t) = \hat{U} \cdot \cos(\omega t)$
+- $i(t) = \hat{I} \cdot \cos(\omega t - \varphi)$
+
+Mit $\varphi = \varphi_u - \varphi_i$
+
+**Frage:** Wie berechnet man die Leistung bei *beliebiger* Phasenverschiebung?
+
+**Ziel:** Vom Spezialfall (R, L, C einzeln) zum Allgemeinfall (beliebige Kombinationen)
+
+### Momentanleistung mit Phasenverschiebung
+
+Die **Momentanleistung** bei beliebiger Phasenverschiebung:
+$$p(t) = u(t) \cdot i(t) = \hat{U} \cdot \hat{I} \cdot \cos(\omega t) \cdot \cos(\omega t - \varphi)$$
+
+**Mit trigonometrischer Umformung** ($\cos(a) \cdot \cos(b) = \frac{1}{2}[\cos(a-b) + \cos(a+b)]$):
+$$p(t) = \frac{\hat{U} \cdot \hat{I}}{2} \cdot [\cos(\varphi) + \cos(2\omega t - \varphi)]$$
+
+Die Leistung hat einen **konstanten** und einen **oszillierenden** Anteil!
+
+### Wirk- und Blindleistung aus p(t)
+
+Mit der Umformung $\cos(2\omega t - \varphi) = \cos(2\omega t)\cos(\varphi) + \sin(2\omega t)\sin(\varphi)$:
+
+$$p(t) = \frac{\hat{U} \cdot \hat{I}}{2} \cdot \cos(\varphi) \cdot [1 + \cos(2\omega t)] + \frac{\hat{U} \cdot \hat{I}}{2} \cdot \sin(\varphi) \cdot \sin(2\omega t)$$
+
+Mit Effektivwerten $U = \frac{\hat{U}}{\sqrt{2}}$, $I = \frac{\hat{I}}{\sqrt{2}}$:
+
+$$p(t) = \underbrace{U \cdot I \cdot \cos(\varphi)}_{P} \cdot [1 + \cos(2\omega t)] + \underbrace{U \cdot I \cdot \sin(\varphi)}_{Q} \cdot \sin(2\omega t)$$
+
+**Definitionen:**
+- **Wirkleistung:** $P = U \cdot I \cdot \cos(\varphi)$
+- **Blindleistung:** $Q = U \cdot I \cdot \sin(\varphi)$
+
+Die Leistung oszilliert mit **doppelter Frequenz** $2\omega$!
+
+### Wirkleistung P
+
+Die **Wirkleistung** ist der zeitliche Mittelwert der Momentanleistung:
+
+$$P = \langle p(t) \rangle = \frac{1}{T} \int_0^T u(t) \cdot i(t) \, dt$$
+
+**Ergebnis:**
+$$\boxed{P = U \cdot I \cdot \cos \varphi}$$
+
+wobei $U$ und $I$ die **Effektivwerte** sind.
+
+**Grenzfälle:**
+- $\varphi = 0$ (nur R): $P = U \cdot I$ (maximal)
+- $\varphi = \pm 90°$ (nur L oder C): $P = 0$ (keine Wirkleistung)
+
+**Einheit:** Watt [W]
+
+### Wirkleistung: Physikalische Bedeutung
+
+**Was ist Wirkleistung?**
+- Die tatsächlich in Arbeit, Wärme oder Licht umgesetzte Leistung
+- Nur der **in Phase** mit der Spannung schwingende Stromanteil trägt bei
+
+**An ohmschen Widerständen:**
+$$P = R \cdot I^2$$
+(keine Phasenverschiebung, $\varphi = 0$)
+
+**Praxisbeispiele:**
+- Elektromotor mit $P = 1000\,\text{W}$: leistet mechanische Arbeit
+- Heizung mit $P = 2000\,\text{W}$: erzeugt Wärme
+- Glühbirne: reine Wirkleistung
+
+### Blindleistung Q
+
+Die **Blindleistung** beschreibt den oszillierenden Energiefluss:
+
+$$\boxed{Q = U \cdot I \cdot \sin \varphi}$$
+
+**Bei induktiven Verbrauchern** (Motoren, Transformatoren):
+- $\varphi > 0$: $Q_L = U \cdot I \cdot \sin \varphi > 0$
+- Energie wird im **Magnetfeld** gespeichert und wieder abgegeben
+
+**Bei kapazitiven Verbrauchern** (Kondensatoren):
+- $\varphi < 0$: $Q_C = U \cdot I \cdot \sin \varphi < 0$
+- Energie wird im **elektrischen Feld** gespeichert und wieder abgegeben
+
+**Einheit:** Voltampere reactive [var]
+
+### Blindleistung: Praktische Bedeutung
+
+**Was bedeutet Blindleistung in der Praxis?**
+
+Blindleistung:
+- Trägt **nicht** zur nutzbaren Leistung bei
+- Belastet aber **Leitungen** und **Transformatoren**
+- Erzeugt **Verluste** durch erhöhten Strom
+
+**Beispiel:** Elektromotor ohne Last benötigt hauptsächlich $Q_L$ zur Magnetisierung → hohe Ströme belasten das Netz
+
+**Konsequenz:** Industriekunden zahlen oft Strafgebühren bei hoher Blindleistung
+
+### Scheinleistung S
+
+Die **Scheinleistung** ist das Produkt der Effektivwerte:
+$$S = U \cdot I$$
+
+Sie beschreibt die **Gesamtbelastung** des Netzes.
+
+**Zusammenhang mit Wirk- und Blindleistung:**
+$$\boxed{S = \sqrt{P^2 + Q^2}}$$
+
+**Einheit:** Voltampere [VA]
+
+**Warum wichtig?**
+- Generatoren, Transformatoren, Leitungen müssen für $S$ dimensioniert sein
+- Nicht für $P$!
+
+### Scheinleistung: Praxisbeispiel
+
+**Transformator mit $S_\text{max} = 10\,\text{kVA}$**
+
+**Szenario 1:** Idealer Verbraucher ($\cos \varphi = 1$)
+- $P = S = 10\,\text{kW}$ nutzbare Leistung
+
+**Szenario 2:** Schlechter Leistungsfaktor ($\cos \varphi = 0{,}7$)
+- $P = S \cdot \cos \varphi = 10 \cdot 0{,}7 = 7\,\text{kW}$
+- $Q = S \cdot \sin \varphi \approx 7{,}1\,\text{kvar}$
+
+**Verlust:** 3 kW Wirkleistung durch Blindleistung!
+
+Der Transformator ist voll ausgelastet ($S = 10\,\text{kVA}$), liefert aber nur 70% nutzbare Leistung.
+
+### Komplexe Scheinleistung: Motivation
+
+**Frage:** Wie kann man Wirk- und Blindleistung *gemeinsam* darstellen?
+
+**Idee:** Nutze die komplexe Darstellung!
+
+Wir haben:
+- Komplexe Spannung: $\underline{U} = U \cdot e^{j\varphi_u}$
+- Komplexer Strom: $\underline{I} = I \cdot e^{j\varphi_i}$
+
+**Naiver Ansatz:** $\underline{U} \cdot \underline{I} = U \cdot I \cdot e^{j(\varphi_u + \varphi_i)}$
+
+**Problem:** Die Phasen *addieren* sich → **falsch**!
+
+Wir brauchen die *Differenz* $\varphi = \varphi_u - \varphi_i$
+
+**Lösung:** Konjugiert komplexer Strom $\underline{I}^*$
+
+### Warum $\underline{U} \cdot \underline{I}^*$?
+
+**Konjugiert komplexer Strom:**
+$$\underline{I}^* = I \cdot e^{-j\varphi_i}$$
+
+**Produkt:**
+$$\underline{U} \cdot \underline{I}^* = U \cdot e^{j\varphi_u} \cdot I \cdot e^{-j\varphi_i}$$
+$$= U \cdot I \cdot e^{j(\varphi_u - \varphi_i)}$$
+$$= U \cdot I \cdot e^{j\varphi}$$
+
+**Jetzt stimmt's!** Die Phase ist $\varphi = \varphi_u - \varphi_i$
+
+In kartesischer Form:
+$$\underline{U} \cdot \underline{I}^* = U \cdot I \cdot (\cos \varphi + j \sin \varphi)$$
+$$= U \cdot I \cdot \cos \varphi + j \cdot U \cdot I \cdot \sin \varphi$$
+$$= P + jQ$$
+
+### Herleitung für RL-Reihenschaltung
+
+**Gegeben:** RL-Reihenschaltung
+$$\underline{Z} = R + j\omega L$$
+
+**Spannung:**
+$$\underline{U} = \underline{Z} \cdot \underline{I} = (R + j\omega L) \cdot \underline{I}$$
 
 **Komplexe Scheinleistung:**
-$$\underline{S} = P + j \cdot Q_L = I^2 \cdot (R + j \cdot \omega \cdot L)$$
-$$= I^2 \cdot Z \cdot e^{j \cdot \varphi} = \underline{U} \cdot \underline{I}^*$$
+$$\underline{S} = \underline{U} \cdot \underline{I}^* = (R + j\omega L) \cdot \underline{I} \cdot \underline{I}^*$$
 
-**Betragsgleichung:**
-$$S = \sqrt{P^2 + Q^2}$$
+**Wichtig:** $\underline{I} \cdot \underline{I}^* = |\underline{I}|^2 = I^2$ ist **reell**!
+
+$$\underline{S} = I^2 \cdot (R + j\omega L) = R \cdot I^2 + j \cdot \omega L \cdot I^2$$
+
+### Interpretation der komplexen Scheinleistung
+
+Aus der Herleitung:
+$$\underline{S} = R \cdot I^2 + j \cdot \omega L \cdot I^2$$
+
+**Realteil** = Wirkleistung am Widerstand:
+$$P = \text{Re}(\underline{S}) = R \cdot I^2$$
+
+**Imaginärteil** = Blindleistung an der Induktivität:
+$$Q = \text{Im}(\underline{S}) = \omega L \cdot I^2$$
+
+**Verallgemeinerung:** Dies gilt für *beliebige* Impedanzen!
+
+Die komplexe Darstellung trennt automatisch Wirk- und Blindleistung.
+
+### Definition der komplexen Scheinleistung
+
+Die **komplexe Scheinleistung** ist definiert als:
+
+$$\boxed{\underline{S} = \underline{U} \cdot \underline{I}^* = P + jQ}$$
+
+**In Polarform:**
+$$\underline{S} = S \cdot e^{j\varphi}$$
+
+mit:
+- **Betrag:** $S = |\underline{S}| = \sqrt{P^2 + Q^2}$ (Scheinleistung)
+- **Phase:** $\varphi = \varphi_u - \varphi_i$ (Phasenwinkel)
+
+**Alternative Darstellungen:**
+$$\underline{S} = \underline{Z} \cdot I^2 = \frac{U^2}{\underline{Z}^*}$$
 
 ### Leistungsdreieck
 
-**Größen:**
-- $\underline{S}$: komplexe Scheinleistung [VA]
-- $P$: Wirkleistung [W]
-- $Q$: Blindleistung [var]
+Das **Leistungsdreieck** visualisiert den Zusammenhang:
 
-**Zusammenhang:**
-$$\underline{S} = P + jQ = S \cdot e^{j\varphi}$$
+```
+      |S| (Scheinleistung)
+     /|
+    / |
+   /  | Q (Blindleistung)
+  /φ  |
+ /____|
+   P (Wirkleistung)
+```
 
-### Leistungsfaktoren
+**Zusammenhänge:**
+$$P = S \cdot \cos \varphi \quad \text{(Wirkleistung)}$$
+$$Q = S \cdot \sin \varphi \quad \text{(Blindleistung)}$$
+$$S = \sqrt{P^2 + Q^2} \quad \text{(Scheinleistung)}$$
+$$\tan \varphi = \frac{Q}{P} \quad \text{(Phasenwinkel)}$$
 
-**Leistungsfaktor (Wirkfaktor):**
-$$\lambda = \frac{P}{S} = \cos \varphi$$
+### Leistungsdreieck: Praxisbeispiel
 
-**Blindfaktor:**
-$$\beta = \frac{Q}{S} = \sin \varphi$$
+**Industriebetrieb:**
+- Wirkleistung: $P = 800\,\text{kW}$ (Maschinen)
+- Blindleistung: $Q = 600\,\text{kvar}$ (Motoren)
 
-**Zusammenhang:**
-$$\lambda^2 + \beta^2 = 1$$
+**Berechnung der Scheinleistung:**
+$$S = \sqrt{P^2 + Q^2} = \sqrt{800^2 + 600^2} = 1000\,\text{kVA}$$
+
+**Phasenwinkel:**
+$$\varphi = \arctan\frac{Q}{P} = \arctan\frac{600}{800} \approx 37°$$
+
+**Konsequenz:**
+Der Transformator muss für $S = 1000\,\text{kVA}$ ausgelegt sein, obwohl nur $P = 800\,\text{kW}$ genutzt werden!
+
+### Leistungsfaktor cos φ
+
+Der **Leistungsfaktor** gibt an, wie effizient die Scheinleistung genutzt wird:
+
+$$\lambda = \cos \varphi = \frac{P}{S}$$
+
+**Wertebereich:**
+- $\cos \varphi = 1$: Ideal (rein ohmsch)
+- $0 < \cos \varphi < 1$: Phasenverschiebung
+- $\cos \varphi = 0$: Rein reaktiv
+
+**Je höher, desto besser:** weniger Strom, weniger Verluste
+
+### Leistungsfaktor: Typische Werte
+
+**Verschiedene Verbraucher:**
+
+| Verbraucher | cos φ | Bemerkung |
+|-------------|-------|-----------|
+| Glühbirne | ≈ 1,0 | Rein ohmsch |
+| Heizung | ≈ 1,0 | Rein ohmsch |
+| Motor ohne Last | ≈ 0,3 | Viel Magnetisierung |
+| Motor Volllast | ≈ 0,85 | Besser, aber nicht ideal |
+| Transformator | ≈ 0,8–0,9 | Streuinduktivität |
+| Modernes Netzteil (PFC) | > 0,95 | Mit Kompensation |
+
+**PFC** = Power Factor Correction
+
+### Kostenaspekt: Warum cos φ wichtig ist
+
+**Industriekunden** zahlen oft Strafgebühren bei $\cos \varphi < 0{,}9$
+
+**Gründe:**
+1. **Höhere Ströme** → höhere Verluste im Netz ($P_\text{Verlust} = R \cdot I^2$)
+2. **Größere Anlagen** nötig (Transformatoren, Generatoren)
+3. **Spannungsabfälle** im Netz
+
+**Beispiel:**
+- Bei $\cos \varphi = 0{,}7$ muss $I = \frac{P}{U \cdot 0{,}7}$ fließen
+- Bei $\cos \varphi = 0{,}95$ nur $I = \frac{P}{U \cdot 0{,}95}$
+- **Stromreduktion um 26%!**
+
+**Energieversorger fordern:** $\cos \varphi > 0{,}9$
+
+### Blindfaktor sin φ
+
+Der **Blindfaktor** gibt den Anteil der Blindleistung an:
+
+$$\beta = \sin \varphi = \frac{Q}{S}$$
+
+**Zusammenhang mit Leistungsfaktor:**
+$$\lambda^2 + \beta^2 = \cos^2 \varphi + \sin^2 \varphi = 1$$
+
+**Bedeutung:**
+- Hoher Blindfaktor → viel Blindleistung
+- Niedriger Blindfaktor → wenig Blindleistung
+
+**Ziel:** Blindfaktor minimieren durch Kompensation
+
+### Blindleistungskompensation: Das Problem
+
+**Problem bei induktiven Verbrauchern** (Motoren, Transformatoren):
+- Hohe Blindleistung $Q_L > 0$
+- Niedriger Leistungsfaktor $\cos \varphi$
+- Hohe Ströme belasten das Netz
+- Strafzahlungen drohen
+
+**Lösung: Blindleistungskompensation**
+
+**Idee:** Kondensatoren parallel schalten
+- Kondensatoren: $Q_C < 0$ (kapazitive Blindleistung)
+- Induktivität: $Q_L > 0$ (induktive Blindleistung)
+- $Q_\text{gesamt} = Q_L + Q_C \approx 0$
+
+### Blindleistungskompensation: Berechnung
+
+**Gegeben:**
+- Wirkleistung: $P$
+- Ursprünglicher Leistungsfaktor: $\cos \varphi_1$
+- Ziel-Leistungsfaktor: $\cos \varphi_2$
+
+**Ursprüngliche Blindleistung:**
+$$Q_1 = P \cdot \tan \varphi_1$$
+
+**Ziel-Blindleistung:**
+$$Q_2 = P \cdot \tan \varphi_2$$
+
+**Benötigte kapazitive Blindleistung:**
+$$Q_C = Q_1 - Q_2 = P \cdot (\tan \varphi_1 - \tan \varphi_2)$$
+
+### Blindleistungskompensation: Praxisbeispiel
+
+**Betrieb mit:**
+- $P = 100\,\text{kW}$ (Wirkleistung)
+- $\cos \varphi_1 = 0{,}8$ → $\varphi_1 \approx 37°$
+
+**Ursprüngliche Werte:**
+- $Q_L = P \cdot \tan(37°) = 100 \cdot 0{,}75 = 75\,\text{kvar}$
+- $S_1 = \frac{P}{\cos \varphi_1} = \frac{100}{0{,}8} = 125\,\text{kVA}$
+- $I_1 = \frac{S_1}{U} = \frac{125000}{400} = 312\,\text{A}$ (bei 400 V)
+
+**Ziel:** $\cos \varphi_2 = 1$ (vollständige Kompensation)
+
+**Benötigte Kondensatoren:**
+$$Q_C = -75\,\text{kvar}$$
+
+### Blindleistungskompensation: Ergebnis
+
+**Nach Kompensation** ($\cos \varphi = 1$):
+- $Q_\text{gesamt} = Q_L + Q_C = 75 - 75 = 0\,\text{kvar}$
+- $S_2 = P = 100\,\text{kVA}$
+- $I_2 = \frac{100000}{400} = 250\,\text{A}$
+
+**Verbesserungen:**
+- **Stromreduktion:** von 312 A auf 250 A → **20% weniger**
+- **Scheinleistung:** von 125 kVA auf 100 kVA → **20% weniger**
+- **Verluste:** $\propto I^2$ → **36% weniger** Leitungsverluste!
+- **Keine Strafzahlungen** mehr
+
+**Investition** in Kondensatoren amortisiert sich schnell!
 
