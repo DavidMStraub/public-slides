@@ -4132,3 +4132,393 @@ Die Oktalzahl `755` steht für Dateiberechtigungen: `rwxr-xr-x`
 Das Emoji 🔥 hat den Unicode `U+1F525` (Hexadezimal)
 - Wandle `1F525` in Dezimal um
 - Wie viele Werte kann Unicode maximal darstellen? (Hinweis: `10FFFF` ist der höchste Wert)
+
+## Klassen
+
+### Motivation: Warum Klassen?
+
+**Bisher:** Variablen und Funktionen getrennt
+
+```python
+signal_amplitude = 5.0
+signal_frequenz = 50.0  # Hz
+signal_phase = 0.0
+
+def berechne_effektivwert(amplitude):
+    return amplitude / (2**0.5)
+    
+print(f"Effektivwert: {berechne_effektivwert(signal_amplitude):.2f}")
+```
+
+**Problem:** Zusammengehörige Daten (Amplitude, Frequenz, Phase) und Funktionen sind getrennt – unübersichtlich bei vielen Signalen!
+
+### Was sind Klassen?
+
+**Klassen bündeln zusammengehörige Daten und Funktionen**
+
+- Eine **Klasse** ist eine benutzerdefinierte Datenstruktur mit zugehörigen Operationen
+- Eine **Instanz** ist ein konkretes Objekt dieser Klasse
+- **Attribute** sind die Daten (Variablen) einer Instanz
+- **Methoden** sind die Funktionen, die auf Instanzen operieren
+
+**Beispiel Signal:**
+- Klasse `Signal`: Definiert, was ein Signal ist und kann
+- Instanz: Ein konkretes Signal mit Amplitude 5V, Frequenz 50Hz
+- Attribute: `amplitude`, `frequenz`, `phase`
+- Methoden: `effektivwert()`, `abtasten()`
+
+### Klassen haben wir bereits verwendet!
+
+**Alle Datentypen in Python sind Klassen:**
+
+```python
+zahl = 42
+text = "Hallo"
+liste = [1, 2, 3]
+
+print(type(zahl))   # <class 'int'>
+print(type(text))   # <class 'str'>
+print(type(liste))  # <class 'list'>
+```
+
+**Methoden haben wir schon benutzt:**
+
+```python
+text.upper()      # Methode der str-Klasse
+liste.append(4)   # Methode der list-Klasse
+```
+
+**Jetzt lernen wir: Eigene Klassen definieren!**
+
+### Wichtig: Klasse vs. Instanz
+
+**Wiederholung: Definition vs. Aufruf bei Funktionen**
+
+```python
+# Definition: Legt fest, WAS die Funktion tut
+def gruss(name):
+    return f"Hallo {name}"
+
+# Aufruf: BENUTZT die Funktion
+nachricht = gruss("Anna")  
+```
+
+**Genauso bei Klassen:**
+- **Klassendefinition**: Legt fest, WAS ein Objekt können soll
+- **Instanzerstellung**: ERSTELLT ein konkretes Objekt
+- **Methodenaufruf**: BENUTZT die Methode eines Objekts
+
+### Erste eigene Klasse: Signal
+
+```python
+class Signal:
+    pass  # Leere Klasse (fürs Erste)
+
+# Instanz erstellen (= ein konkretes Signal-Objekt erzeugen)
+signal1 = Signal()
+print(signal1)
+print(type(signal1))  # <class '__main__.Signal'>
+```
+
+**Wichtig:**
+- `class Signal:` = Definition (wie `def` bei Funktionen)
+- `Signal()` = Aufruf, erstellt eine Instanz
+- `signal1` = Variable, die auf die Instanz zeigt
+
+### Attribute hinzufügen
+
+```python
+class Signal:
+    pass
+
+# Instanz erstellen
+signal1 = Signal()
+
+# Attribute zuweisen
+signal1.amplitude = 5.0
+signal1.frequenz = 50.0
+signal1.phase = 0.0
+
+print(f"Amplitude: {signal1.amplitude} V")
+print(f"Frequenz: {signal1.frequenz} Hz")
+```
+
+**Syntax:** `objekt.attribut = wert`
+
+⚠️ **Achtung:** Attribute sollten eigentlich im Konstruktor definiert werden (dazu gleich mehr)!
+
+### Mehrere Instanzen
+
+```python
+class Signal:
+    pass
+
+# Zwei verschiedene Signale
+signal1 = Signal()
+signal1.amplitude = 5.0
+signal1.frequenz = 50.0
+
+signal2 = Signal()
+signal2.amplitude = 3.3
+signal2.frequenz = 1000.0
+
+print(signal1.frequenz)  # 50.0
+print(signal2.frequenz)  # 1000.0
+```
+
+**Jede Instanz hat eigene Attribute!**
+
+### Der Konstruktor: `__init__`
+
+**Problem:** Attribute manuell setzen ist umständlich und fehleranfällig
+
+**Lösung:** Der Konstruktor initialisiert Attribute beim Erstellen
+
+```python
+class Signal:
+    def __init__(self, amplitude, frequenz, phase=0.0):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+        self.phase = phase
+
+# Jetzt einfacher und sicherer:
+signal1 = Signal(5.0, 50.0)
+signal2 = Signal(3.3, 1000.0, 1.57)
+
+print(signal1.amplitude)  # 5.0
+print(signal2.frequenz)   # 1000.0
+```
+
+### Was ist `self`?
+
+`self` ist eine **Referenz auf die Instanz selbst**
+
+```python
+class Signal:
+    def __init__(self, amplitude, frequenz):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+
+signal1 = Signal(5.0, 50.0)
+```
+
+**Was passiert intern:**
+1. Python erstellt ein leeres Objekt
+2. Python ruft `__init__(signal1, 5.0, 50.0)` auf
+3. `self` zeigt auf `signal1`
+4. `self.amplitude = amplitude` → `signal1.amplitude = 5.0`
+
+**Merke:** `self` ist wie "ich selbst" – das Objekt referenziert sich selbst!
+
+### Methoden: Funktionen in Klassen
+
+```python
+import math
+
+class Signal:
+    def __init__(self, amplitude, frequenz, phase=0.0):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+        self.phase = phase
+    
+    def effektivwert(self):
+        return self.amplitude / math.sqrt(2)
+
+signal1 = Signal(5.0, 50.0)
+print(f"Effektivwert: {signal1.effektivwert():.2f} V")
+```
+
+**Syntax:** `objekt.methode()` – `self` wird automatisch übergeben!
+
+### Methoden mit Parametern
+
+```python
+import math
+
+class Signal:
+    def __init__(self, amplitude, frequenz, phase=0.0):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+        self.phase = phase
+    
+    def abtastwert(self, zeit):
+        """Berechnet den Signalwert zu einem Zeitpunkt"""
+        omega = 2 * math.pi * self.frequenz
+        return self.amplitude * math.sin(omega * zeit + self.phase)
+
+signal1 = Signal(5.0, 50.0)
+print(f"Wert bei t=0: {signal1.abtastwert(0):.2f} V")
+print(f"Wert bei t=0.005: {signal1.abtastwert(0.005):.2f} V")
+print(f"Wert bei t=0.01: {signal1.abtastwert(0.01):.2f} V")
+```
+
+### Methoden können Attribute ändern
+
+```python
+import math
+
+class Signal:
+    def __init__(self, amplitude, frequenz, phase=0.0):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+        self.phase = phase
+    
+    def phasenverschiebung(self, delta_phase):
+        """Verschiebt die Phase des Signals"""
+        self.phase += delta_phase
+    
+    def verstaerken(self, faktor):
+        """Verstärkt oder dämpft das Signal"""
+        self.amplitude *= faktor
+
+signal1 = Signal(5.0, 50.0)
+print(f"Amplitude: {signal1.amplitude} V")
+signal1.verstaerken(2.0)
+print(f"Nach Verstärkung: {signal1.amplitude} V")
+```
+
+### String-Darstellung: `__str__`
+
+```python
+class Signal:
+    def __init__(self, amplitude, frequenz, phase=0.0):
+        self.amplitude = amplitude
+        self.frequenz = frequenz
+        self.phase = phase
+    
+    def __str__(self):
+        return f"Signal({self.amplitude}V, {self.frequenz}Hz, φ={self.phase:.2f})"
+
+signal1 = Signal(5.0, 50.0, 0.5)
+print(signal1)  # Nutzt automatisch __str__
+```
+
+**`__str__`** wird automatisch aufgerufen, wenn das Objekt mit `print()` ausgegeben wird!
+
+### Beispiel: Messung
+
+```python
+class Messung:
+    def __init__(self, wert, einheit):
+        self.wert = wert
+        self.einheit = einheit
+    
+    def in_millivolt(self):
+        if self.einheit == "V":
+            return self.wert * 1000
+        return self.wert
+    
+    def __str__(self):
+        return f"{self.wert} {self.einheit}"
+
+m = Messung(3.3, "V")
+print(m)
+print(f"In mV: {m.in_millivolt()} mV")
+```
+
+### Beispiel: PID-Regler (vereinfacht)
+
+```python
+class PIDRegler:
+    def __init__(self, kp, ki, kd):
+        self.kp = kp  # Proportionalanteil
+        self.ki = ki  # Integralanteil
+        self.kd = kd  # Differentialanteil
+        self.integral = 0.0
+        self.letzter_fehler = 0.0
+    
+    def berechne_stellgroesse(self, fehler, dt):
+        self.integral += fehler * dt
+        differential = (fehler - self.letzter_fehler) / dt
+        stellgroesse = self.kp * fehler + self.ki * self.integral + self.kd * differential
+        self.letzter_fehler = fehler
+        return stellgroesse
+
+regler = PIDRegler(kp=1.0, ki=0.1, kd=0.05)
+stellwert = regler.berechne_stellgroesse(fehler=2.5, dt=0.01)
+print(f"Stellgröße: {stellwert:.2f}")
+```
+
+### Klassenattribute vs. Instanzattribute
+
+```python
+class Sensor:
+    # Klassenattribut (für alle Instanzen gleich)
+    max_abtastrate = 1000  # Hz
+    
+    def __init__(self, id, kalibrierungsfaktor):
+        # Instanzattribute (für jede Instanz verschieden)
+        self.id = id
+        self.kalibrierungsfaktor = kalibrierungsfaktor
+        self.messwerte = []
+
+sensor1 = Sensor("S001", 1.05)
+sensor2 = Sensor("S002", 0.98)
+
+print(sensor1.id)  # S001 (verschieden)
+print(sensor2.id)  # S002 (verschieden)
+print(sensor1.max_abtastrate)  # 1000 (gleich)
+print(sensor2.max_abtastrate)  # 1000 (gleich)
+```
+
+**Klassenattribute** sind für alle Instanzen gleich!
+
+### Wann verwendet man Klassen?
+
+**✅ Sinnvoll:**
+- Zusammengehörige Daten mit Verhalten/Methoden
+- Mehrere ähnliche Objekte benötigt
+- Zustand muss über mehrere Operationen erhalten bleiben
+- Strukturierte Datencontainer (statt Tupel/Dictionaries)
+
+**❌ Weniger sinnvoll:**
+- Einfache Berechnungen ohne Zustand → einfache Funktionen
+- Zustandslose Funktionen → Funktionen oder Modul
+- Einmalige Datensammlung → Dictionary oder Tupel
+
+### Zusammenfassung: Klassen
+
+**Grundkonzepte:**
+- **Klasse** = Benutzerdefinierter Datentyp (`class`)
+- **Instanz** = Konkretes Objekt (`Klassenname()`)
+- **Attribute** = Daten (`self.attribut`)
+- **Methoden** = Funktionen (`def methode(self, ...)`)
+
+**Wichtige Methoden:**
+- `__init__(self, ...)` – Konstruktor
+- `__str__(self)` – String-Darstellung
+
+
+### Übungsaufgabe: Widerstand
+
+Erstelle eine Klasse `Widerstand`:
+
+- Konstruktor: Widerstandswert in Ohm
+- `parallel(self, r2)`: Ersatzwiderstand Parallelschaltung ($R_{ges} = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}$)
+- `reihe(self, r2)`: Ersatzwiderstand Reihenschaltung ($R_{ges} = R_1 + R_2$)
+- `leistung(self, spannung)`: Leistung ($P = \frac{U^2}{R}$)
+- `__str__()`: z.B. "100 Ω"
+
+```python
+r1 = Widerstand(100)
+print(r1.parallel(200))  # 66.67
+print(r1.leistung(5))   # 0.25
+```
+
+### Übungsaufgabe: Timer
+
+Erstelle eine Klasse `Timer`:
+
+- Konstruktor: Initialisiert `startzeit` und `laufend` (`None` bzw. `False`)
+- `start()`: Startet Timer (speichert `time.time()`)
+- `stop()`: Stoppt Timer
+- `vergangene_zeit()`: Gibt Zeit in Sekunden zurück
+- `__str__()`: Status ("läuft" oder "gestoppt: X.XX s")
+
+```python
+t = Timer()
+t.start()
+# ... Code ausführen ...
+t.stop()
+print(t.vergangene_zeit())  # z.B. 2.34
+```
