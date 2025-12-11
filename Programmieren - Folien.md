@@ -38,7 +38,7 @@ David Straub
 8. [Arbeiten mit Zeichenketten](#arbeiten-mit-zeichenketten)
 9. [Visualisierung von Funktionen](#visualisierung-von-funktionen)
 10. [Zahlensysteme](#zahlensysteme)
-11. Klassen
+11. [Klassen](#klassen)
 12. Numerisches Programmieren in Python
 
 ## Einführung
@@ -4056,16 +4056,19 @@ print(0.1 + 0.1 + 0.1 == 0.3) # False
 ### Gleitkommazahlen: Spezielle Werte
 
 **IEEE 754 definiert spezielle Werte:**
-
 ```python
 # Unendlich (Division durch 0)
 print(1.0 / 0.0)              # inf
 print(-1.0 / 0.0)             # -inf
+```
 
+```python
 # Not a Number (ungültige Operationen)
 print(0.0 / 0.0)              # nan
 print(float('inf') - float('inf'))  # nan
+```
 
+```python
 # Testen
 import math
 x = float('inf')
