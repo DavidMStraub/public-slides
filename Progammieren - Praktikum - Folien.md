@@ -352,6 +352,8 @@ Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
 
 **Zusatz 3**: Schreiben Sie eine Funktion `plot_phasenverschiebung(phi_grad)`, die Spannung und Strom für eine beliebige Phasenverschiebung in Grad plottet. Testen Sie mit verschiedenen Werten.
 
+## 6. Termin
+
 ### 🎄 Advent of Code
 
 **Advent of Code** ist ein Programmierwettbewerb mit täglichen Rätseln vom 1. bis 25. Dezember.
