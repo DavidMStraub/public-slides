@@ -351,3 +351,17 @@ Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
 **Zusatz 2**: Die Momentanleistung ist $p(t) = u(t) \cdot i(t)$. Berechnen Sie und visualisieren Sie die Leistung für alle drei Fälle in separaten Plots. Was fällt bei der Spule und beim Kondensator auf?
 
 **Zusatz 3**: Schreiben Sie eine Funktion `plot_phasenverschiebung(phi_grad)`, die Spannung und Strom für eine beliebige Phasenverschiebung in Grad plottet. Testen Sie mit verschiedenen Werten.
+
+### 🎄 Advent of Code
+
+**Advent of Code** ist ein Programmierwettbewerb mit täglichen Rätseln vom 1. bis 25. Dezember.
+
+**Aufgabe:** Lösen Sie [Day 1](https://adventofcode.com/2025/day/1) in Python und **zeigen Sie mir Ihren Code**.
+
+**Regeln:**
+- ❌ **Keine KI-Tools** (ChatGPT, Copilot, etc.)
+- ✅ Dokumentation, Google, gegenseitige Hilfe erlaubt
+
+Sie brauchen einen Account auf [adventofcode.com](https://adventofcode.com/) (Login mit GitHub, Google, etc.)
+
+**Wenn Sie fertig sind**: Machen Sie mit Tag 2, 3, ... so weit wie Sie kommen! 
