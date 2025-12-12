@@ -15,7 +15,7 @@ jupyter:
       format_version: '1.3'
       jupytext_version: 1.17.3
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -4419,28 +4419,6 @@ print(m)
 print(f"In mV: {m.in_millivolt()} mV")
 ```
 
-### Beispiel: PID-Regler (vereinfacht)
-
-```python
-class PIDRegler:
-    def __init__(self, kp, ki, kd):
-        self.kp = kp  # Proportionalanteil
-        self.ki = ki  # Integralanteil
-        self.kd = kd  # Differentialanteil
-        self.integral = 0.0
-        self.letzter_fehler = 0.0
-    
-    def berechne_stellgroesse(self, fehler, dt):
-        self.integral += fehler * dt
-        differential = (fehler - self.letzter_fehler) / dt
-        stellgroesse = self.kp * fehler + self.ki * self.integral + self.kd * differential
-        self.letzter_fehler = fehler
-        return stellgroesse
-
-regler = PIDRegler(kp=1.0, ki=0.1, kd=0.05)
-stellwert = regler.berechne_stellgroesse(fehler=2.5, dt=0.01)
-print(f"Stellgröße: {stellwert:.2f}")
-```
 
 ### Klassenattribute vs. Instanzattribute
 
