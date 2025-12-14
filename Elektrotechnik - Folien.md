@@ -3082,7 +3082,6 @@ $$\underline{S} = I^2 \cdot (R + j\omega L) = \underbrace{R \cdot I^2}_{P} + j \
 
 **Imaginärteil** = Blindleistung an der Induktivität L
 
-**Verallgemeinerung:** Dies gilt für *beliebige* Impedanzen!
 
 ### Definition der komplexen Scheinleistung
 
@@ -3250,3 +3249,414 @@ $$Q_C = -75\,\text{kvar}$$
 
 **Investition** in Kondensatoren amortisiert sich schnell!
 
+
+### Zusammenfassung: Wirk-, Blind- und Scheinleistung
+
+| Leistungsart | Symbol | Einheit | Bedeutung |
+|--------------|--------|---------|-----------|
+| **Wirkleistung** | $P$ | W (Watt) | Tatsächlich umgesetzte/nutzbare Leistung |
+| **Blindleistung** | $Q$ | var | Pendelnde Leistung (Auf-/Abbau von Feldern) |
+| **Scheinleistung** | $S$ | VA (Voltampere) | Rechengröße ($U \cdot I$), für Dimensionierung |
+
+**Zusammenhang:**
+$$S = \sqrt{P^2 + Q^2}$$
+
+**Leistungsfaktor:**
+$$\cos \varphi = \frac{P}{S}$$
+
+- **Ziel:** $\cos \varphi$ möglichst nahe bei 1 (idealerweise > 0,9)
+- **Maßnahme:** Kompensation mit Kondensatoren
+
+
+### Wechselstrom: Niederspannung weltweit
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/70/World_Map_of_Mains_Voltages_and_Frequencies%2C_Detailed.svg)
+
+### 👥 Gruppenarbeit: Westinghouse vs. Edison reloaded
+
+Mit Ihrem jetzigen Wissen über Wechselstrom und Gleichstrom, Wirkleistung und Blindleistung, diskutieren Sie in Ihrer Gruppe die Vor- und Nachteile der beiden Stromsysteme.
+
+- Edison 💡: Gleichstrom mit 110 V
+- Westinghouse 〜: Wechselstrom mit 110 V, auf längere Strecken transformiert auf > 1000 V
+
+**Hinweise:**
+
+- Leitungsverluste (inklusive möglicher Blindleistung)
+- Sicherheit (Spannungshöhe, Isolation)
+- Wirtschaftlichkeit (Infrastruktur, Transformatoren)
+
+**Zusatzfrage:** würde die Entscheidung heute anders ausfallen?
+
+
+## Drehstrom
+
+- [Grundlagen des Drehstromsystems](#grundlagen-des-drehstromsystems)
+- [Stern- und Dreieckspannung](#stern--und-dreieckspannung)
+- [Symmetrische Verbraucher](#symmetrische-verbraucher)
+- [Leistung im Drehstromsystem](#leistung-im-drehstromsystem)
+
+### Drehstrom: Motivation
+
+**Warum Drehstrom?**
+
+- **Effizientere Energieübertragung** über große Entfernungen
+- **Höhere Leistung** bei gleicher Leitermasse
+- **Einfache Erzeugung rotierender Magnetfelder** für Motoren
+
+### Anwendungen von Drehstrom
+
+**Energieversorgung:**
+- Hochspannungsübertragung (110 kV, 380 kV)
+- Verteilnetze (10 kV, 20 kV)
+- Niederspannungsnetze (400 V)
+
+**Antriebstechnik:**
+- Asynchronmotoren in der Industrie
+- Bahnantriebe
+- Windkraftanlagen
+
+**Elektromobilität:**
+- Schnellladestationen (bis 350 kW)
+
+### Grundlagen des Drehstromsystems
+
+**Dreiphasensystem:**
+
+Ein Drehstromsystem besteht aus **drei sinusförmigen Wechselspannungen** gleicher Amplitude und Frequenz, die um **120°** phasenverschieben sind.
+
+**Zeitfunktionen:**
+$$u_1(t) = \hat{U} \cdot \sin(\omega t)$$
+$$u_2(t) = \hat{U} \cdot \sin(\omega t - 120°)$$
+$$u_3(t) = \hat{U} \cdot \sin(\omega t - 240°)$$
+
+**Komplexe Darstellung:**
+$$\underline{U}_1 = U \cdot e^{j \cdot 0°}$$
+$$\underline{U}_2 = U \cdot e^{j \cdot (-120°)}$$
+$$\underline{U}_3 = U \cdot e^{j \cdot (-240°)}$$
+
+
+### Rotierende Leiterschleife im Magnetfeld
+
+**Prinzip der Wechselspannungserzeugung:**
+
+Eine rechteckige Leiterschleife (Fläche $A$) rotiert mit konstanter Winkelgeschwindigkeit $\omega$ in einem homogenen Magnetfeld $\vec{B}$.
+
+**Magnetischer Fluss durch die Schleife:**
+$$\Phi(t) = B \cdot A \cdot \cos(\omega t)$$
+
+**Induzierte Spannung (Faraday'sches Induktionsgesetz):**
+$$u(t) = -\frac{d\Phi}{dt} = B \cdot A \cdot \omega \cdot \sin(\omega t) = \hat{U} \cdot \sin(\omega t)$$
+
+**Amplitude:** $\hat{U} = B \cdot A \cdot \omega$
+
+
+### Vom Wechselstrom zum Drehstrom
+
+**Eine Leiterschleife:** Sinusförmige Wechselspannung
+$$u_1(t) = \hat{U} \cdot \sin(\omega t)$$
+
+**Drei Leiterschleifen um 120° versetzt:**
+
+Drei identische Wicklungen sind räumlich um jeweils **120°** versetzt auf dem Rotor angeordnet.
+
+$$u_1(t) = \hat{U} \cdot \sin(\omega t)$$
+$$u_2(t) = \hat{U} \cdot \sin(\omega t - 120°)$$
+$$u_3(t) = \hat{U} \cdot \sin(\omega t - 240°)$$
+
+**Ergebnis:** Dreiphasiges Drehstromsystem
+
+
+
+### Erzeugung von Drehstrom
+
+**Drehstromgenerator:**
+
+Ein Drehstromgenerator hat **drei um 120° versetzte Wicklungen**, die sich in einem rotierenden Magnetfeld befinden.
+
+**Funktionsprinzip:**
+- Rotor dreht sich mit konstanter Winkelgeschwindigkeit
+- In jeder Wicklung wird eine Spannung induziert
+- Die drei Spannungen sind zeitlich um 120° versetzt
+
+![bg right:40% 80%](https://upload.wikimedia.org/wikipedia/commons/7/78/Simpel-3-faset-generator.gif)
+
+### Symmetrisches Dreiphasensystem
+
+**Aufbau:**
+- Drei **Außenleiter** (L1, L2, L3) – oft als **Phasen** bezeichnet
+- Ein **Neutralleiter** (N) – auf Erdpotential
+
+**Bezeichnungen:**
+- $\underline{U}_{1}, \underline{U}_{2}, \underline{U}_{3}, U_{Y}$: Sternspannung
+- $U_Y=|\underline{U}_1| = |\underline{U}_2| = |\underline{U}_3|$
+- $\underline{U}_{12}, \underline{U}_{23}, \underline{U}_{31}, U_{\Delta}$: Dreieckspannung
+- $U_{\Delta}=|\underline{U}_{12}| = |\underline{U}_{23}| = |\underline{U}_{31}|$
+- $\underline{I}_{1}, \underline{I}_{2}, \underline{I}_{3}, I$: Außenleiterstrom
+- $\underline{I}_{N}$: Strom im Neutralleiter
+
+
+### Maschengleichungen
+
+Die Dreieckspannungen (Außenleiterspannungen) ergeben sich aus den Differenzen der Sternspannungen:
+
+$$\underline{U}_{12} = \underline{U}_{1} - \underline{U}_{2}$$
+$$\underline{U}_{23} = \underline{U}_{2} - \underline{U}_{3}$$
+$$\underline{U}_{31} = \underline{U}_{3} - \underline{U}_{1}$$
+
+Außerdem:
+
+$$\underline{U}_{12} + \underline{U}_{23} + \underline{U}_{31} = 0$$
+
+### Zeigerdiagramm
+
+Die Sternspannungen $\underline{U}_1, \underline{U}_2, \underline{U}_3$ sind um 120° versetzt.
+
+Die Dreieckspannungen $\underline{U}_{12}, \underline{U}_{23}, \underline{U}_{31}$ ergeben sich als Differenzen.
+
+
+**Zusammenhang zwischen Stern- und Dreieckspannung:**
+$$\boxed{U_{\Delta} = \sqrt{3} \cdot U_{Y}}$$
+
+(Grafische Herleitung)
+
+**Wichtig:**
+- Dreieckspannungen sind um **30°** gegenüber den Sternspannungen gedreht
+- $U_{\Delta} \approx 1{,}73 \cdot U_Y$
+
+
+### Herleitung der Beziehung
+
+**Gegeben:** $\underline{U}_1 = U_Y \cdot e^{j0°}$, $\underline{U}_2 = U_Y \cdot e^{-j120°}$
+
+**Berechnung:**
+$$\underline{U}_{12} = \underline{U}_{1} - \underline{U}_{2} = U_Y \cdot (e^{j0°} - e^{-j120°})$$
+$$= U_Y \cdot (1 - (-\frac{1}{2} - j\frac{\sqrt{3}}{2}))$$
+$$= U_Y \cdot (\frac{3}{2} + j\frac{\sqrt{3}}{2})$$
+
+**Betrag:**
+$$U_{\Delta} = |\underline{U}_{12}| = U_Y \cdot \sqrt{(\frac{3}{2})^2 + (\frac{\sqrt{3}}{2})^2} = U_Y \cdot \sqrt{3}$$
+
+### Beispiel: Öffentliches Stromnetz
+
+**Niederspannungsnetz in Deutschland:**
+
+- **Sternspannung** (Phase gegen Neutralleiter):
+  $$U_Y = 230\,\text{V}$$
+
+- **Dreieckspannung** (zwischen zwei Außenleitern):
+  $$U_{\Delta} = \sqrt{3} \cdot 230\,\text{V} \approx 400\,\text{V}$$
+
+**Haushalte:**
+- Einphasige Verbraucher: 230 V (L1-N, L2-N oder L3-N)
+- Drehstromverbraucher: 400 V (L1-L2-L3)
+
+## Symmetrische Verbraucher
+
+**Definition:** 
+
+Alle drei Verbraucherstränge sind mit dem gleichen Widerstand $\underline{Z}$ belastet:
+
+$$\underline{Z}_1 = \underline{Z}_2 = \underline{Z}_3 = \underline{Z}$$
+
+**Konsequenzen:**
+- Alle Ströme haben den gleichen Betrag
+- Phasenverschiebung zwischen den Strömen: 120°
+- Neutralleiterstrom ist null: $\underline{I}_N = 0$
+
+### Verbraucher in Sternschaltung
+
+**Eigenschaften:**
+- Strangströme = Außenleiterströme
+- Strom durch Neutralleiter = 0 (bei symmetrischer Last)
+
+$$I_\text{Str} = I = \frac{U_Y}{Z}$$
+$$U_\text{Str} = U_Y = \frac{U_{\Delta}}{\sqrt{3}}$$
+
+![bg right:32% 95%](https://upload.wikimedia.org/wikipedia/commons/8/86/Sternschaltung.svg)
+
+
+### Verbraucher in Dreieckschaltung
+
+**Eigenschaften:**
+- Strangspannungen = Dreieckspannungen
+- Zusammenhang zwischen Außenleiter- und Strangströmen:
+
+$$U_\text{Str} = U_{\Delta} = \sqrt{3} \cdot U_{Y}$$
+$$I_\text{Str} = \frac{U_{\Delta}}{Z}, \quad I = \sqrt{3} \cdot I_\text{Str}$$
+
+![bg right:40% 95%](https://upload.wikimedia.org/wikipedia/commons/e/e2/Dreieckschaltung.svg)
+
+
+### Vergleich Stern- und Dreieckschaltung
+
+**Übersichtstabelle:**
+
+| Größe | Sternschaltung | Dreieckschaltung |
+|-------|----------------|------------------|
+| **Strangspannung** | $U_\text{Str} = U_Y = \frac{U_{\Delta}}{\sqrt{3}}$ | $U_\text{Str} = U_{\Delta} = \sqrt{3} \cdot U_Y$ |
+| **Strangstrom** | $I_\text{Str} = \frac{U_Y}{Z}$ | $I_\text{Str} = \frac{U_{\Delta}}{Z}$ |
+| **Außenleiterstrom** | $I = I_\text{Str}$ | $I = \sqrt{3} \cdot I_\text{Str}$ |
+| **Neutralleiter** | Vorhanden (kann entfallen bei symmetrischer Last) | Nicht vorhanden |
+
+## Leistung im Drehstromsystem
+
+### Leistung pro Strang
+
+**Für symmetrische Verbraucher:**
+
+Jeder der drei Stränge nimmt die gleiche Leistung auf.
+
+**Scheinleistung pro Strang:**
+$$S_\text{Str} = U_\text{Str} \cdot I_\text{Str}$$
+
+**Wirkleistung pro Strang:**
+$$P_\text{Str} = U_\text{Str} \cdot I_\text{Str} \cdot \cos(\varphi)$$
+
+**Blindleistung pro Strang:**
+$$Q_\text{Str} = U_\text{Str} \cdot I_\text{Str} \cdot \sin(\varphi)$$
+
+wobei $\varphi$ die Phasenverschiebung zwischen Strang-Spannung und Strang-Strom ist.
+
+### Gesamtleistung
+
+**Die Gesamtleistung ist die Summe der Leistungen aller drei Stränge:**
+
+**Scheinleistung:**
+$$S_{ges} = 3 \cdot S_\text{Str} = 3 \cdot U_\text{Str} \cdot I_\text{Str}$$
+
+**Wirkleistung:**
+$$P_{ges} = 3 \cdot P_\text{Str} = 3 \cdot U_\text{Str} \cdot I_\text{Str} \cdot \cos(\varphi)$$
+
+**Blindleistung:**
+$$Q_{ges} = 3 \cdot Q_\text{Str} = 3 \cdot U_\text{Str} \cdot I_\text{Str} \cdot \sin(\varphi)$$
+
+**Gilt für Stern- UND Dreieckschaltung!**
+
+### Leistung in Sternschaltung
+
+**Gegeben:**
+- Sternspannung: $U_Y$
+- Strangstrom = Außenleiterstrom: $I_\text{Str} = I$
+
+**Gesamtleistung:**
+$$S = 3 \cdot U_Y \cdot I$$
+
+**Mit $U_Y = \frac{U_{\Delta}}{\sqrt{3}}$ folgt:**
+
+$$S = 3 \cdot \frac{U_{\Delta}}{\sqrt{3}} \cdot I = \sqrt{3} \cdot U_{\Delta} \cdot I$$
+
+**Wirkleistung:**
+$$P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)$$
+
+**Blindleistung:**
+$$Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)$$
+
+### Leistung in Dreieckschaltung
+
+**Gegeben:**
+- Dreieckspannung: $U_{\Delta}$
+- Strangstrom: $I_\text{Str} = \frac{I}{\sqrt{3}}$
+
+**Gesamtleistung:**
+$$S = 3 \cdot U_{\Delta} \cdot I_\text{Str} = 3 \cdot U_{\Delta} \cdot \frac{I}{\sqrt{3}} = \sqrt{3} \cdot U_{\Delta} \cdot I$$
+
+**Wirkleistung:**
+$$P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)$$
+
+**Blindleistung:**
+$$Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)$$
+
+### Allgemeine Leistungsformel
+
+**Für symmetrische Drehstromverbraucher gilt unabhängig von der Schaltungsart:**
+
+$$\boxed{S = \sqrt{3} \cdot U_{\Delta} \cdot I}$$
+
+$$\boxed{P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)}$$
+
+$$\boxed{Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)}$$
+
+wobei:
+- $U_{\Delta}$: Dreieckspannung (Außenleiterspannung)
+- $I$: Außenleiterstrom
+- $\varphi$: Phasenverschiebung zwischen Strang-Spannung und Strang-Strom
+
+**Hinweis:** Oft wird $U_{\Delta}$ einfach als $U$ geschrieben.
+
+### Drehstrom-Blindleistungskompensation
+
+**Problem:**
+Drehstrommotoren haben oft einen niedrigen Leistungsfaktor ($\cos \varphi < 0{,}9$).
+
+**Lösung:**
+Kompensationskondensatoren in **Stern-** oder **Dreieckschaltung**
+
+**Benötigte Blindleistung:**
+$$Q_C = P \cdot (\tan \varphi_1 - \tan \varphi_2)$$
+
+wobei:
+- $\varphi_1$: ursprünglicher Phasenwinkel
+- $\varphi_2$: gewünschter Phasenwinkel
+
+### Kapazität bei Sternschaltung
+
+**Sternschaltung der Kondensatoren:**
+
+Am Kondensator liegt die **Sternspannung** $U_Y$ an.
+
+**Blindleistung pro Kondensator:**
+$$Q_{C,Str} = U_Y^2 \cdot \omega \cdot C_Y$$
+
+**Gesamte Blindleistung:**
+$$Q_C = 3 \cdot U_Y^2 \cdot \omega \cdot C_Y$$
+
+**Benötigte Kapazität pro Kondensator:**
+$$\boxed{C_Y = \frac{Q_C}{3 \cdot U_Y^2 \cdot \omega}}$$
+
+
+### Kapazität bei Dreieckschaltung
+
+**Dreieckschaltung der Kondensatoren:**
+
+Am Kondensator liegt die **Dreieckspannung** $U_{\Delta}$ an.
+
+**Blindleistung pro Kondensator:**
+$$Q_{C,Str} = U_{\Delta}^2 \cdot \omega \cdot C_{\Delta}$$
+
+**Gesamte Blindleistung:**
+$$Q_C = 3 \cdot U_{\Delta}^2 \cdot \omega \cdot C_{\Delta}$$
+
+**Benötigte Kapazität pro Kondensator:**
+$$\boxed{C_{\Delta} = \frac{Q_C}{3 \cdot U_{\Delta}^2 \cdot \omega}}$$
+
+### Vergleich Stern- und Dreieckschaltung der Kondensatoren
+
+In der Sternschaltung gilt $U_Y = \frac{U_{\Delta}}{\sqrt{3}}$, also:
+
+$$C_Y = \frac{Q_C}{U_{\Delta}^2 \cdot \omega}, \qquad C_{\Delta} = \frac{Q_C}{3 \cdot U_{\Delta}^2 \cdot \omega}$$
+
+$$\Rightarrow C_Y = 3 \cdot C_{\Delta}$$
+
+**Interpretation:**
+- Bei **Sternschaltung:** höhere Kapazität erforderlich
+- Bei **Dreieckschaltung:** niedrigere Kapazität, aber höhere Spannungsbelastung
+
+**Praxis:**
+- Sternschaltung bei höheren Spannungen (Spannungsbelastung nur $U_Y$)
+- Dreieckschaltung bei niedrigeren Spannungen
+
+### Vorteile des Drehstromsystems
+
+**Gegenüber einphasigem Wechselstrom:**
+
+1. **Effizientere Energieübertragung**
+   - Bei gleicher Leistung geringere Leiterverluste
+   - Materialeinsparung bei Leitungen
+
+2. **Konstante Leistungsabgabe**
+   - Summe der Momentanleistungen ist konstant
+   - Gleichmäßigerer Lauf von Motoren
+
+3. **Einfache Erzeugung von Drehfeldern**
+   - Drehstrommotoren ohne Anlaufhilfe
+   - Robuster Aufbau
