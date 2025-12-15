@@ -3545,11 +3545,6 @@ $$S = 3 \cdot U_Y \cdot I$$
 
 $$S = 3 \cdot \frac{U_{\Delta}}{\sqrt{3}} \cdot I = \sqrt{3} \cdot U_{\Delta} \cdot I$$
 
-**Wirkleistung:**
-$$P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)$$
-
-**Blindleistung:**
-$$Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)$$
 
 ### Leistung in Dreieckschaltung
 
@@ -3560,11 +3555,6 @@ $$Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)$$
 **Gesamtleistung:**
 $$S = 3 \cdot U_{\Delta} \cdot I_\text{Str} = 3 \cdot U_{\Delta} \cdot \frac{I}{\sqrt{3}} = \sqrt{3} \cdot U_{\Delta} \cdot I$$
 
-**Wirkleistung:**
-$$P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)$$
-
-**Blindleistung:**
-$$Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)$$
 
 ### Allgemeine Leistungsformel
 
@@ -3591,12 +3581,6 @@ Drehstrommotoren haben oft einen niedrigen Leistungsfaktor ($\cos \varphi < 0{,}
 **Lösung:**
 Kompensationskondensatoren in **Stern-** oder **Dreieckschaltung**
 
-**Benötigte Blindleistung:**
-$$Q_C = P \cdot (\tan \varphi_1 - \tan \varphi_2)$$
-
-wobei:
-- $\varphi_1$: ursprünglicher Phasenwinkel
-- $\varphi_2$: gewünschter Phasenwinkel
 
 ### Kapazität bei Sternschaltung
 
@@ -3605,7 +3589,7 @@ wobei:
 Am Kondensator liegt die **Sternspannung** $U_Y$ an.
 
 **Blindleistung pro Kondensator:**
-$$Q_{C,Str} = U_Y^2 \cdot \omega \cdot C_Y$$
+$$Q_{C,\text{Str}} = U_Y^2 \cdot \omega \cdot C_Y$$
 
 **Gesamte Blindleistung:**
 $$Q_C = 3 \cdot U_Y^2 \cdot \omega \cdot C_Y$$
@@ -3621,7 +3605,7 @@ $$\boxed{C_Y = \frac{Q_C}{3 \cdot U_Y^2 \cdot \omega}}$$
 Am Kondensator liegt die **Dreieckspannung** $U_{\Delta}$ an.
 
 **Blindleistung pro Kondensator:**
-$$Q_{C,Str} = U_{\Delta}^2 \cdot \omega \cdot C_{\Delta}$$
+$$Q_{C,\text{Str}} = U_{\Delta}^2 \cdot \omega \cdot C_{\Delta}$$
 
 **Gesamte Blindleistung:**
 $$Q_C = 3 \cdot U_{\Delta}^2 \cdot \omega \cdot C_{\Delta}$$
