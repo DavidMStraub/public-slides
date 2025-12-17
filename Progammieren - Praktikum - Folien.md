@@ -13,9 +13,8 @@ math: katex
 
 David Straub
 
+
 ### Sicherheitsunterweisung für Benutzer der des Verbundlabors KCA
-
-
 
 - **Fluchtwege** von jedem Raum links und rechts auf den Flur in das Treppenhaus
 - an der Flurdecke sind **grüne beleuchtete Hinweisschilder** als Fluchtwegmarkierung angebracht
@@ -27,6 +26,20 @@ David Straub
 - **Not-Aus-Schalter** sind in allen Räumen vorhanden
 
 ![bg 80% opacity:0.15](https://upload.wikimedia.org/wikipedia/commons/2/2f/ISO_Exit_-_Right.svg)
+
+
+### Gliederung
+
+- [1. Termin](#1-termin)
+- [2. Termin](#2-termin)
+- [3. Termin](#3-termin)
+- [4. Termin](#4-termin)
+- [5. Termin](#5-termin)
+- [6. Termin](#6-termin)
+
+
+## 1. Termin
+
 
 ### Datentypen
 
@@ -113,7 +126,10 @@ Schreiben Sie ein Programm, das die Schwebedauer des Multicopters in Abhängigke
 
 ![bg right:30%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Quadcopter_Drone_in_flight.jpg/1024px-Quadcopter_Drone_in_flight.jpg)
 
-### Aufgabe 3: Gleitstreckenberechnung
+
+## 2. Termin
+
+### Aufgabe: Gleitstreckenberechnung
 
 - Schreiben Sie eine Funktion, die die maximale Gleitstrecke eines Segelflugzeugs berechnet. Die Funktion soll die Starthöhe in Metern, den Höhenverlust pro Kilometer Flugstrecke in Metern und die nötige Höhenreserve in Metern als Eingabeparameter erhalten und die maximale Gleitstrecke in Kilometern zurückgeben.
 - Verwenden Sie eine separate Funktion zur Ausgabe der Gleitstrecke in einem lesbaren Format (z.B. "Die maximale Gleitstrecke beträgt X km") inklusive sinnvoller Rundung.
@@ -138,6 +154,8 @@ def test_negative_starthoehe():
 - Erweitern Sie die Funktion zur Berechnung der Gleitstrecke, um zusätzlich den Gleitwinkel in Grad zu berechnen und zurückzugeben.
 - Der Gleitwinkel $\theta$ kann mit der Formel $\tan(\theta) = \frac{\text{Höhenverlust}}{\text{Flugstrecke}}$ berechnet werden.
 - Passen Sie die Ausgabe-Funktion an, um auch den Gleitwinkel auszugeben.
+
+## 3. Termin
 
 
 ### Aufgabe: Primzahlbestimmung Teil 1
@@ -169,6 +187,10 @@ Beispiel: Für n = 10 → 2 + 3 + 5 + 7 = 17.
 Beispiel: Zwischen 2, 3, 5, 7 → Differenzen: `[1, 2, 2]`.
 
 - Primzahlzwillinge: Finden Sie alle Primzahlzwillinge (Paare von Primzahlen, die genau 2 auseinanderliegen, z. B. (3,5), (5,7), (11,13)) bis `n`.
+
+
+## 4. Termin
+
 
 ### Würfelspiel-Simulator
 
@@ -262,8 +284,6 @@ Standardabweichung: X.X
 **Analysieren Sie** alle vier Strategien. Welche ist am effizientesten?
 
 
-
-
 ### Würfelspiel-Simulator: Zusatzaufgaben
 
 **Zusatz 1: Optimale Strategie finden**
@@ -277,6 +297,9 @@ Berechnen Sie für jede Strategie: Wie oft (in Prozent) wird in einer Runde eine
 **Zusatz 3: Detaillierte Ausgabe**
 
 Erweitern Sie `spiele_runde()` so, dass bei gesetztem optionalen Parameter `debug=True` jeder einzelne Wurf ausgegeben wird, z.B.: "Wurf 1: 4, Wurf 2: 6, Wurf 3: 1 → Runde verloren!"
+
+
+## 5. Termin
 
 ### Aufgabe: Visualisierung von Wechselstromgrößen
 
