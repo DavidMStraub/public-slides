@@ -35,6 +35,7 @@ David Straub
 5. [Elektromagnetische Induktion](#elektromagnetische-induktion) (Induktion, Selbstinduktion, Energie)
 6. [Wechselstrom](#wechselstrom) (Komplexe Wechselstromrechnung, Schaltungen, Leistung)
 7. [Drehstrom](#drehstrom) (Dreiphasensystem)
+8. [Schaltvorgänge an Kapazitäten und Induktivitäten](#schaltvorgänge-an-kapazitäten-und-induktivitäten)
 
 
 
@@ -3644,3 +3645,132 @@ $$\Rightarrow C_Y = 3 \cdot C_{\Delta}$$
 3. **Einfache Erzeugung von Drehfeldern**
    - Drehstrommotoren ohne Anlaufhilfe
    - Robuster Aufbau
+
+
+
+
+## Schaltvorgänge an Kapazitäten und Induktivitäten
+
+- Einschaltvorgang und Ausschaltvorgang von Kapazitäten
+- Einschaltvorgang und Ausschaltvorgang von Induktivitäten
+
+### Einschaltvorgang: Kondensator
+
+![](_page_108_Figure_3.jpeg)
+
+**Schalterstellung:**
+$$u = \begin{cases} 0 & \text{für } t \le 0 \\ U_0 & \text{für } t > 0 \end{cases}$$
+
+**Für t > 0 gilt (Maschengleichung):**
+$$U_0 = u_R + u_C = i \cdot R + u_C = C \cdot \frac{du_C}{dt} \cdot R + u_C$$
+
+**Gesucht:** $u_C(t)$
+
+### Aufladevorgang: Lösung
+
+**Lösung der Differentialgleichung:**
+
+$$u_{C}(t) = U_{0} \cdot \left(1 - e^{-\frac{t}{\tau}}\right) \text{ mit } \tau = R \cdot C \quad (7.1)$$
+$$i_{C}(t) = \frac{U_{0}}{R} \cdot e^{-\frac{t}{\tau}}$$
+
+**Anfangs- und Endwerte:**
+- $u_C(t=0) = 0$, $u_C(t \to \infty) = U_0$
+- $i_C(t=0) = \frac{U_0}{R}$, $i_C(t \to \infty) = 0$
+
+**Zeitkonstante:** $\tau = R \cdot C$
+
+### Ausschaltvorgang: Kondensator
+
+![](_page_110_Figure_1.jpeg)
+
+**Schalterstellung:**
+$$u = \begin{cases} U_0 & \text{für } t \le 0 \\ 0 & \text{für } t > 0 \end{cases}$$
+
+**Für t > 0 gilt (Maschengleichung):**
+$$0 = u_R + u_C = i \cdot R + u_C = C \cdot \frac{du_C}{dt} \cdot R + u_C$$
+
+### Entladevorgang: Lösung
+
+**Lösung der Differentialgleichung:**
+
+$$u_C(t) = U_0 \cdot e^{-\frac{t}{\tau}} \text{ mit } \tau = R \cdot C \quad (7.2)$$
+$$i_C(t) = -\frac{U_0}{R} \cdot e^{-\frac{t}{\tau}}$$
+
+**Anfangs- und Endwerte:**
+- $u_C(t=0) = U_0$, $u_C(t \to \infty) = 0$
+- $i_C(t=0) = -\frac{U_0}{R}$, $i_C(t \to \infty) = 0$
+
+**Zeitkonstante:** $\tau = R \cdot C$
+
+### Einschaltvorgang: Induktivität
+
+![](_page_112_Figure_2.jpeg)
+
+**Schalterstellung:**
+$$u = \begin{cases} 0 & \text{für } t \le 0 \\ U_0 & \text{für } t > 0 \end{cases}$$
+
+**Für t > 0 gilt (Maschengleichung):**
+$$U_0 = u_R + u_L = i_L \cdot R + L \cdot \frac{di_L}{dt}$$
+
+**Gesucht:** $i_L(t)$
+
+### Aufbau des Magnetfeldes: Lösung
+
+**Lösung der Differentialgleichung:**
+
+$$i_{L}(t) = \frac{U_{0}}{R} \cdot \left(1 - e^{-\frac{t}{\tau}}\right) \text{ mit } \tau = \frac{L}{R} \quad (7.3)$$
+$$u_{L}(t) = U_{0} \cdot e^{-\frac{t}{\tau}}$$
+
+**Anfangs- und Endwerte:**
+- $i_L(t=0) = 0$, $i_L(t \to \infty) = \frac{U_0}{R}$
+- $u_L(t=0) = U_0$, $u_L(t \to \infty) = 0$
+
+**Zeitkonstante:** $\tau = \frac{L}{R}$
+
+### Ausschaltvorgang: Induktivität
+
+![](_page_114_Figure_1.jpeg)
+
+**Schalterstellung:**
+$$u = \begin{cases} U_0 & \text{für } t \le 0 \\ 0 & \text{für } t > 0 \end{cases}$$
+
+**Für t > 0 gilt (Maschengleichung):**
+$$0 = u_R + u_L = i_L \cdot R + L \cdot \frac{di_L}{dt}$$
+
+### Abbau des Magnetfeldes: Lösung
+
+**Lösung der Differentialgleichung:**
+$$i_{L}(t) = \frac{U_{0}}{R} \cdot e^{-\frac{t}{\tau}} \text{ mit } \tau = \frac{L}{R} \quad (7.4)$$
+$$u_{L}(t) = -U_{0} \cdot e^{-\frac{t}{\tau}}$$
+
+**Anfangs- und Endwerte:**
+- $i_L(t=0) = \frac{U_0}{R}$, $i_L(t \to \infty) = 0$
+- $u_L(t=0) = -U_0$, $u_L(t \to \infty) = 0$
+
+**Zeitkonstante:** $\tau = \frac{L}{R}$
+
+### Beispiel 1: Kondensator-Entladung
+
+**Aufgabe:** 
+
+Ein Kondensator $C = 0{,}1\,\mu\text{F}$ wird über einen Widerstand $R = 5\,\Omega$ entladen. 
+
+In welcher Zeit $t_x$ ist die Spannung am Kondensator auf 10% des ursprünglichen Wertes gesunken?
+
+### Beispiel 2: Pufferkondensator
+
+**Aufgabe:** 
+
+Der Datenspeicher eines Taschenrechners (Lastwiderstand $R = 2{,}2\,\text{M}\Omega$) soll während des Batteriewechsels aus einem Kondensator $C$ gespeist werden.
+
+**Gegeben:**
+- Batteriespannung: $U_B = 3\,\text{V}$
+- Batteriewechselzeit: $t_W = 30\,\text{s}$
+- Minimale Versorgungsspannung: $U_{\text{min}} = 0{,}8\,\text{V}$
+
+**Gesucht:** Dimensionierung von $C$
+
+![](_page_116_Figure_5.jpeg)
+
+
+
