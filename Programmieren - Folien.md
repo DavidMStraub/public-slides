@@ -39,7 +39,7 @@ David Straub
 9. [Visualisierung von Funktionen](#visualisierung-von-funktionen)
 10. [Zahlensysteme](#zahlensysteme)
 11. [Klassen](#klassen)
-12. Numerisches Programmieren in Python
+12. [Numerisches Programmieren mit NumPy](#numerisches-programmieren-mit-numpy)
 
 ## Einführung
 
@@ -4503,3 +4503,288 @@ t.start()
 t.stop()
 print(t.vergangene_zeit())  # z.B. 2.34
 ```
+
+## Numerisches Programmieren mit NumPy
+
+### Was ist NumPy?
+
+**NumPy** = **Num**erical **Py**thon
+
+Die wichtigste Bibliothek für numerisches Rechnen in Python.
+
+**Unverzichtbar** für Ingenieurwesen:
+- Signalverarbeitung, Simulation, Datenanalyse
+- Basis für SciPy, pandas, Matplotlib
+- Viel schneller als Python-Listen
+
+### Arrays vs. Listen
+
+**Listen:**
+- Flexibel: verschiedene Datentypen möglich
+- Langsam für numerische Berechnungen
+
+**NumPy-Arrays:**
+- Nur ein Datentyp (z.B. nur Zahlen)
+- In C implementiert → sehr schnell
+- Natürliche Syntax für mathematische Operationen
+
+```python
+import numpy as np
+
+array = np.array([1, 2, 3, 4, 5])
+print(array.dtype)  # int64 - fester Datentyp
+```
+
+### Arrays erstellen
+
+```python
+import numpy as np
+
+# Aus Liste
+a = np.array([1, 2, 3, 4, 5])
+print(a)
+```
+
+```python
+# Nullen, Einsen
+nullen = np.zeros(5)
+einsen = np.ones(3)
+```
+
+```python
+# Bereich (wie range)
+bereich = np.arange(0, 10, 2)  # [0 2 4 6 8]
+```
+
+### linspace: Wichtig für Plots!
+
+**Ohne NumPy:**
+```python
+x = [2 + i * (9-2)/99 for i in range(100)]  # umständlich!
+```
+
+**Mit NumPy:**
+```python
+import numpy as np
+x = np.linspace(2, 9, 100)  # elegant!
+```
+
+`linspace(start, stop, anzahl)` - gleichmäßig verteilte Werte
+
+### Element-weise Operationen
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+
+print(a + 10)   # [11 12 13 14 15]
+print(a * 2)    # [2 4 6 8 10]
+print(a ** 2)   # [1 4 9 16 25]
+```
+
+Operationen werden auf **jedes Element** angewendet!
+
+### Arrays kombinieren
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([10, 20, 30])
+
+print(a + b)  # [11 22 33]
+print(a * b)  # [10 40 90]
+```
+
+**Mit Listen geht das nicht!**
+
+```python
+liste_a = [1, 2, 3]
+liste_b = [10, 20, 30]
+print(liste_a + liste_b)  # [1, 2, 3, 10, 20, 30] ❌
+```
+
+### Mathematische Funktionen
+
+```python
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 5)
+
+print(np.sin(x))
+print(np.cos(x))
+print(np.exp(x))
+```
+
+Funktionen arbeiten element-weise auf Arrays!
+
+### Plots mit NumPy
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# x-Werte generieren
+x = np.linspace(0, 2*np.pi, 100)
+
+# Funktion berechnen
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.grid(True)
+plt.show()
+```
+
+Viel kürzer und lesbarer als mit List Comprehensions!
+
+### Statistik
+
+```python
+import numpy as np
+
+messwerte = np.array([23.1, 24.5, 23.8, 24.2, 23.9])
+
+print(f"Mittelwert: {np.mean(messwerte):.2f}")
+print(f"Standardabweichung: {np.std(messwerte):.2f}")
+print(f"Minimum: {np.min(messwerte):.2f}")
+print(f"Maximum: {np.max(messwerte):.2f}")
+```
+
+### 2D-Arrays: Vektoren & Matrizen
+
+```python
+import numpy as np
+
+# 3D-Vektor
+vektor = np.array([1.0, 2.0, 3.0])
+
+# Matrix (3x3)
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
+
+print(vektor.shape)  # (3,)
+print(matrix.shape)  # (3, 3)
+```
+
+### Vektoroperationen
+
+```python
+import numpy as np
+
+v1 = np.array([1, 2, 3])
+v2 = np.array([4, 5, 6])
+
+# Skalarprodukt
+print(np.dot(v1, v2))  # 32
+
+# Kreuzprodukt
+print(np.cross(v1, v2))  # [-3  6 -3]
+
+# Betrag
+print(np.linalg.norm(v1))  # 3.74
+```
+
+**Ohne NumPy extrem umständlich!**
+
+### Matrixmultiplikation mit @
+
+```python
+import numpy as np
+
+A = np.array([[1, 2],
+              [3, 4]])
+B = np.array([[5, 6],
+              [7, 8]])
+
+# Matrixmultiplikation mit @
+C = A @ B
+print(C)  # [[19 22]
+          #  [43 50]]
+```
+
+**Achtung:** `A * B` ist element-weise Multiplikation, **nicht** Matrixmultiplikation!
+
+### NumPy vs. for-Schleife: Geschwindigkeit
+
+```python
+import numpy as np
+import time
+
+# Mit for-Schleife
+start = time.time()
+x = [i/100 for i in range(100000)]
+y = [xi**2 + 2*xi + 1 for xi in x]
+print(f"For-Schleife: {time.time()-start:.3f}s")
+
+# Mit NumPy
+start = time.time()
+x = np.linspace(0, 1000, 100000)
+y = x**2 + 2*x + 1
+print(f"NumPy: {time.time()-start:.3f}s")
+```
+
+**Relevant bei:** CFD-Simulationen, FEM-Berechnungen, Sensordaten, neuronalen Netzen, ...
+
+### Zusammenfassung: NumPy
+
+**Wichtigste Funktionen:**
+- `np.array()` - Array erstellen
+- `np.linspace(start, stop, num)` - Werte für Plots
+- `np.sin()`, `np.cos()`, `np.exp()` - Math. Funktionen
+- `np.dot()`, `np.cross()` - Vektoroperationen
+
+**Warum NumPy?**
+- Kompakter, lesbarer Code
+- 10-100x schneller als Listen
+- Standard im Ingenieurwesen
+
+### Ausblick: SciPy
+
+**SciPy** baut auf NumPy auf und bietet wissenschaftliche Funktionen:
+
+- **Integration**: `scipy.integrate.quad()` - numerische Integration
+- **Optimierung**: `scipy.optimize.minimize()` - Funktionen minimieren
+- **Signalverarbeitung**: `scipy.signal` - Filter, FFT, Faltung
+- **Differentialgleichungen**: `scipy.integrate.odeint()` - DGL lösen
+- **Statistik**: `scipy.stats` - Verteilungen, Tests
+
+```python
+from scipy.integrate import quad
+
+def f(x):
+    return x**2
+
+ergebnis, fehler = quad(f, 0, 1)  # Integral von 0 bis 1
+print(f"Integral: {ergebnis:.4f}")  # 0.3333
+```
+
+### Beispielaufgabe: Kräftegleichgewicht
+
+Drei Kräfte wirken auf einen Punkt:
+
+$$\vec{F}_1 = \begin{pmatrix}3\\4\\0\end{pmatrix}, \vec{F}_2 = \begin{pmatrix}-2\\1\\5\end{pmatrix}, \vec{F}_3 = \begin{pmatrix}x\\y\\z\end{pmatrix}$$
+
+**Aufgaben:**
+1. Berechne die resultierende Kraft $\vec{F}_{res} = \vec{F}_1 + \vec{F}_2$
+2. Bestimme $\vec{F}_3$, sodass Gleichgewicht herrscht ($\vec{F}_{res} + \vec{F}_3 = \vec{0}$)
+3. Berechne die Beträge aller Kräfte mit `np.linalg.norm()`
+4. Berechne den Winkel zwischen $\vec{F}_1$ und $\vec{F}_2$ mit:
+   $$\cos(\alpha) = \frac{\vec{F}_1 \cdot \vec{F}_2}{|\vec{F}_1| \cdot |\vec{F}_2|}$$
+
+### Beispielaufgabe: Stromberechnung
+
+Gegeben ist ein elektrisches Netzwerk mit drei Maschen. Die Maschengleichungen (Kirchhoff) ergeben:
+
+$$\begin{align}
+5I_1 - 2I_2 + 0I_3 &= 10 \\
+-2I_1 + 8I_2 - 3I_3 &= 5 \\
+0I_1 - 3I_2 + 6I_3 &= 0
+\end{align}$$
+
+**Aufgaben:**
+1. Erstelle die Koeffizientenmatrix $A$ und den Vektor $b$
+2. Löse das Gleichungssystem mit `np.linalg.solve(A, b)`
+3. Berechne die Gesamtleistung: $P = \sum_{i=1}^{3} I_i^2 \cdot R_i$ mit $R = [5, 8, 6]$ Ω
+
