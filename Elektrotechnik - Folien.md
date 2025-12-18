@@ -3656,7 +3656,6 @@ $$\Rightarrow C_Y = 3 \cdot C_{\Delta}$$
 
 ### Einschaltvorgang: Kondensator
 
-![](_page_108_Figure_3.jpeg)
 
 **Schalterstellung:**
 $$u = \begin{cases} 0 & \text{für } t \le 0 \\ U_0 & \text{für } t > 0 \end{cases}$$
@@ -3681,7 +3680,6 @@ $$i_{C}(t) = \frac{U_{0}}{R} \cdot e^{-\frac{t}{\tau}}$$
 
 ### Ausschaltvorgang: Kondensator
 
-![](_page_110_Figure_1.jpeg)
 
 **Schalterstellung:**
 $$u = \begin{cases} U_0 & \text{für } t \le 0 \\ 0 & \text{für } t > 0 \end{cases}$$
@@ -3704,7 +3702,6 @@ $$i_C(t) = -\frac{U_0}{R} \cdot e^{-\frac{t}{\tau}}$$
 
 ### Einschaltvorgang: Induktivität
 
-![](_page_112_Figure_2.jpeg)
 
 **Schalterstellung:**
 $$u = \begin{cases} 0 & \text{für } t \le 0 \\ U_0 & \text{für } t > 0 \end{cases}$$
@@ -3729,7 +3726,6 @@ $$u_{L}(t) = U_{0} \cdot e^{-\frac{t}{\tau}}$$
 
 ### Ausschaltvorgang: Induktivität
 
-![](_page_114_Figure_1.jpeg)
 
 **Schalterstellung:**
 $$u = \begin{cases} U_0 & \text{für } t \le 0 \\ 0 & \text{für } t > 0 \end{cases}$$
@@ -3770,7 +3766,21 @@ Der Datenspeicher eines Taschenrechners (Lastwiderstand $R = 2{,}2\,\text{M}\Ome
 
 **Gesucht:** Dimensionierung von $C$
 
-![](_page_116_Figure_5.jpeg)
 
 
+### Freilaufdioden
 
+**Problem bei Induktivitäten:**
+
+Beim Abschalten einer Spule mit Strom $I$ entsteht eine hohe Induktionsspannung $u_\text{ind} = -u_L = -L \cdot \frac{di}{dt}$
+
+- Bei schnellem Abschalten können sehr hohe Spannungen entstehen
+- Diese können Schaltkreise beschädigen (z.B. Transistoren, Relais)
+
+**Lösung: Freilaufdiode**
+
+- Parallel zur Induktivität wird eine Diode geschaltet
+- Beim Abschalten kann der Strom durch die Diode weiterfließen
+- Gespeicherte Energie wird kontrolliert abgebaut
+
+![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/9/90/Catchdiode.png)
