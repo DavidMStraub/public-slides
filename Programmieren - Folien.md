@@ -4727,6 +4727,33 @@ print(f"NumPy: {time.time()-start:.3f}s")
 
 **Relevant bei:** CFD-Simulationen, FEM-Berechnungen, Sensordaten, neuronalen Netzen, ...
 
+### NumPy Matrix-Multiplikation vs. for-Schleife: Geschwindigkeit
+
+```python
+import numpy as np
+import time
+
+n = 500  # 500x500 Matrizen
+
+A = [[i+j for j in range(n)] for i in range(n)]
+B = [[i-j for j in range(n)] for i in range(n)]
+
+start = time.time()
+C = [[sum(A[i][k]*B[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+zeit_for = time.time() - start
+print(f"For-Schleife: {zeit_for:.2f}s")
+
+A = np.arange(n*n).reshape(n, n)
+B = np.arange(n*n).reshape(n, n)
+
+start = time.time()
+C = A @ B
+zeit_numpy = time.time() - start
+print(f"NumPy: {zeit_numpy:.2f}s")
+print(f"Speedup: {zeit_for/zeit_numpy:.0f}x schneller")
+```
+
+
 ### Zusammenfassung: NumPy
 
 **Wichtigste Funktionen:**
