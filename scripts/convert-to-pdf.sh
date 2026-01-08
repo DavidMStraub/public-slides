@@ -51,10 +51,35 @@ while IFS= read -r url; do
         # Download remote image
         downloaded_file="$IMAGES_DIR/image_$counter.$ext"
         
-        if command -v curl >/dev/null 2>&1; then
-            curl -s -L --max-time 30 -H "User-Agent: Mozilla/5.0" "$url" -o "$downloaded_file" || { echo "  -> Failed to download"; continue; }
-        else
-            wget -q --timeout=30 --user-agent="Mozilla/5.0" -O "$downloaded_file" "$url" || { echo "  -> Failed to download"; continue; }
+        # Try downloading with retries
+        max_retries=3
+        retry=0
+        download_success=false
+        
+        while [[ $retry -lt $max_retries ]] && [[ $download_success == false ]]; do
+            if command -v curl >/dev/null 2>&1; then
+                curl -s -L --max-time 60 --connect-timeout 10 --retry 2 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$url" -o "$downloaded_file"
+                if [[ $? -eq 0 ]] && [[ -s "$downloaded_file" ]] && [[ $(wc -c < "$downloaded_file") -gt 100 ]]; then
+                    download_success=true
+                else
+                    echo "  -> Retry $((retry + 1))/$max_retries"
+                    rm -f "$downloaded_file"
+                fi
+            else
+                wget -q --timeout=60 --tries=3 --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" -O "$downloaded_file" "$url"
+                if [[ $? -eq 0 ]] && [[ -s "$downloaded_file" ]] && [[ $(wc -c < "$downloaded_file") -gt 100 ]]; then
+                    download_success=true
+                else
+                    echo "  -> Retry $((retry + 1))/$max_retries"
+                    rm -f "$downloaded_file"
+                fi
+            fi
+            ((retry++))
+        done
+        
+        if [[ $download_success == false ]]; then
+            echo "  -> Failed to download after $max_retries attempts"
+            continue
         fi
         
         # Convert SVG to PDF
@@ -268,7 +293,6 @@ pandoc "$TEMP_MD" \
     -V fontsize=11pt \
     --include-in-header="$LATEX_HEADER" \
     --highlight-style=tango \
-    --toc=false \
     2>&1 | tee /tmp/pandoc_output.log
 
 # Check if PDF was actually created
