@@ -59,6 +59,8 @@ while IFS= read -r url; do
     
     if [[ $url == http* ]]; then
         # Create a hash of the URL for cache filename
+        # NOTE: Cache is keyed by URL, so if URL changes, new file is downloaded.
+        # If URL stays same but content changes, cached version is used (this is intentional).
         url_hash=$(echo -n "$url" | md5sum | cut -d' ' -f1)
         cached_file="$IMAGES_DIR/${url_hash}.${ext}"
         
@@ -216,7 +218,7 @@ if [ ${#failed_images[@]} -gt 0 ]; then
 fi
 
 echo "Copying images to Pandoc working directory..."
-# Copy all images to temp directory for Pandoc (it can't access files outside its working dir)
+# Copy all images to temp directory for Pandoc
 PANDOC_IMAGES_DIR="$TEMP_DIR/images"
 mkdir -p "$PANDOC_IMAGES_DIR"
 declare -A final_url_map
@@ -227,14 +229,31 @@ for url in "${!url_map[@]}"; do
     dest_file="$PANDOC_IMAGES_DIR/$filename"
     if [[ -f "$source_file" ]]; then
         cp "$source_file" "$dest_file"
-        final_url_map["$url"]="$dest_file"
+        # Use relative path from temp markdown location
+        final_url_map["$url"]="images/$filename"
         image_count=$((image_count + 1))
         echo "  Copied: $filename ($(stat -c%s "$dest_file" 2>/dev/null || stat -f%z "$dest_file" 2>/dev/null) bytes)"
     else
         echo "  WARNING: Source file not found: $source_file"
+        # Track missing files
+        failed_images+=("$url (copy failed)")
     fi
 done
 echo "Copied $image_count images to $PANDOC_IMAGES_DIR"
+
+# Check if any files failed to copy
+if [ ${#failed_images[@]} -gt 0 ]; then
+    echo ""
+    echo "=========================================="
+    echo "ERROR: Failed to prepare ${#failed_images[@]} image(s):"
+    for failed_url in "${failed_images[@]}"; do
+        echo "  - $failed_url"
+    done
+    echo "=========================================="
+    echo "Cannot create PDF with missing images. Skipping this file."
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
 
 # Replace image references with temp directory paths in the markdown file
 echo "Updating image references in markdown..."
