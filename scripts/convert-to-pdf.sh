@@ -385,7 +385,7 @@ ESCAPED_FOOTER=$(echo "$FOOTER" | sed 's/[\/&]/\\&/g')
 sed -i "s/FOOTERPLACEHOLDER/$ESCAPED_FOOTER/g" "$LATEX_HEADER"
 
 # Convert to PDF using Pandoc with LaTeX
-# Disable Pandoc's automatic resource downloading
+# Disable Pandoc's automatic resource downloading by extracting to our controlled dir
 pandoc "$TEMP_MD" \
     -o "$OUTPUT_FILE" \
     --pdf-engine=xelatex \
@@ -396,6 +396,7 @@ pandoc "$TEMP_MD" \
     --include-in-header="$LATEX_HEADER" \
     --highlight-style=tango \
     --resource-path="$PANDOC_IMAGES_DIR" \
+    --extract-media="$TEMP_DIR" \
     2>&1 | tee /tmp/pandoc_output.log
 
 # Check if PDF was actually created
