@@ -196,9 +196,21 @@ while IFS= read -r url; do
     fi
 done <<< "$IMAGE_URLS"
 
-# Replace SVG references with PDF references in the temp markdown file
+# Copy all images to temp directory for Pandoc (it can't access files outside its working dir)
+PANDOC_IMAGES_DIR="$TEMP_DIR/images"
+mkdir -p "$PANDOC_IMAGES_DIR"
+declare -A final_url_map
 for url in "${!url_map[@]}"; do
-    pdf_path="${url_map[$url]}"
+    source_file="${url_map[$url]}"
+    filename=$(basename "$source_file")
+    dest_file="$PANDOC_IMAGES_DIR/$filename"
+    cp "$source_file" "$dest_file"
+    final_url_map["$url"]="$dest_file"
+done
+
+# Replace image references with temp directory paths in the markdown file
+for url in "${!final_url_map[@]}"; do
+    pdf_path="${final_url_map[$url]}"
     # Escape special characters for sed
     escaped_url=$(echo "$url" | sed 's/[\/&]/\\&/g')
     escaped_pdf=$(echo "$pdf_path" | sed 's/[\/&]/\\&/g')

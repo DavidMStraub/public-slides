@@ -69,10 +69,8 @@ jobs:
           # Create image cache directory
           mkdir -p ~/.cache/public-slides-images
           
-          # Convert all Elektrotechnik parts to PDF
-          for file in "Elektrotechnik - Folien - Teil 1.md" \
-                      "Elektrotechnik - Folien - Teil 2.md" \
-                      "Elektrotechnik - Folien - Teil 3.md"; do
+          # Convert all markdown files to PDF
+          for file in *.md; do
             if [ -f "$file" ]; then
               echo "Converting $file to PDF..."
               ./scripts/convert-to-pdf.sh "$file" || echo "Warning: Failed to convert $file"
