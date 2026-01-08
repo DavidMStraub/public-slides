@@ -260,8 +260,9 @@ echo "Updating image references in markdown..."
 for url in "${!final_url_map[@]}"; do
     pdf_path="${final_url_map[$url]}"
     echo "  Replacing: $url -> $pdf_path"
-    # Use perl for replacement to avoid sed escaping issues with special characters
-    perl -pi -e "s/\Q$url\E/$pdf_path/g" "$TEMP_MD"
+    # Use perl with # as delimiter to avoid issues with / in paths
+    # \Q...\E quotes all regex metacharacters in the URL
+    perl -pi -e "s#\Q$url\E#$pdf_path#g" "$TEMP_MD"
 done
 
 echo "Converting Markdown to PDF with Pandoc..."
