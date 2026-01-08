@@ -50,11 +50,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-images-
 
+      - name: Install Pandoc from GitHub releases
+        run: |
+          PANDOC_VERSION=3.1.11.1
+          wget https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb
+          sudo dpkg -i pandoc-${PANDOC_VERSION}-1-amd64.deb
+          pandoc --version
+
       - name: Install PDF dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            pandoc \
             texlive-xetex \
             texlive-fonts-recommended \
             texlive-fonts-extra \
