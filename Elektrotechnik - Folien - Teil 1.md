@@ -6,7 +6,7 @@ language: de
 footer: Elektrotechnik – Straub
 headingDivider: 3
 ---
-# Elektrotechnik
+# Elektrotechnik (Teil 1/3)
 
 **Luft- und Raumfahrttechnik Bachelor, 1. Semester**
 
@@ -134,6 +134,7 @@ $[P]  = \frac{[W]}{[t]} = \frac{\text{J}}{\text{s}} = \frac{\text{kg} \cdot \tex
 Jede physikalische Größe hat – unabängig von Einheit oder Zahlenwert – eine **Dimension**, die beschreibt, wie die Größe aus den Grundgrößen zusammengesetzt ist. 
 
 Beispiele:
+
 - Geschwindigkeit: $\text{dim}[v] = \frac{\text{L}}{\text{T}}$
 - Kraft: $\text{dim}[F] = \text{M} \cdot \frac{\text{L}}{\text{T}^2}$
 - Winkel: $\text{dim}[\varphi] = \frac{\text{L}}{\text{L}} = 1$ (dimensionslos)
@@ -523,6 +524,7 @@ $$U_{12} = \int_{P_1}^{P_2} \vec{E} \cdot d\vec{s} = \varphi_1 - \varphi_2$$
 Ein homogenes elektrisches Feld ist durch konstante Feldstärke und parallele Feldlinien gekennzeichnet.
 
 Wichtige Eigenschaften:
+
 - Konstante Feldstärke $E$ in Betrag und Richtung
 - Parallele Feldlinien
 - Äquipotentialflächen stehen senkrecht zu den Feldlinien
@@ -595,6 +597,7 @@ $$E =\frac{Q}{\varepsilon_0 \varepsilon_r A} ,\qquad U = E \cdot d = \frac{Q}{\v
 $$C=\frac{Q}{U} = \frac{\varepsilon_0 \varepsilon_r A}{d}=\frac{\varepsilon A}{d}$$
 
 Kapazität steigt mit:
+
 - Fläche $A$ der Platten
 - relativer Permittivität $\varepsilon_r$ des Dielektrikums
 - Abnahme des Plattenabstands $d$
@@ -606,6 +609,7 @@ Kapazität steigt mit:
 Ein Kugelkondensator besteht aus zwei konzentrischen leitenden Kugelschalen mit den Radien $R_i$ (innen) und $R_a$ (außen).
 
 ![bg 80% right:33%](https://upload.wikimedia.org/wikipedia/commons/3/3f/Spherical_Capacitor.svg)
+
 ### Kugelkondensator: Herleitung mit dem Satz von Gauß
 
 **Elektrisches Feld (Satz von Gauß):**
@@ -696,6 +700,7 @@ Bei der Parallelschaltung von Kondensatoren addieren sich die Kapazitäten:
 $$C_{\text{ges}} = C_1 + C_2 + \dots + C_n = \sum_{i=1}^n C_i$$
 
 Eigenschaften:
+
 - Gleiche Spannung an allen Kondensatoren
 - Die Gesamtladung ist die Summe der Einzelladungen
 
@@ -710,6 +715,7 @@ Bei der Reihenschaltung von Kondensatoren addieren sich die Kehrwerte der Kapazi
 $$\frac{1}{C_{\text{ges}}} = \frac{1}{C_1} + \frac{1}{C_2} + \dots + \frac{1}{C_n} = \sum_{i=1}^n \frac{1}{C_i}$$
 
 Eigenschaften:
+
 - Gleiche Ladung auf allen Kondensatoren $Q_1 = Q_2 = \dots = Q_n = Q_{\text{ges}}$
 - Die Gesamtspannung ist die Summe der Einzelspannungen
 
@@ -942,7 +948,9 @@ Kleinsignalverhalten (lineare Näherung):
 
 $$R(T) = R(T_0) \cdot [1 + \alpha \cdot (T - T_0)]$$
 
+
 Dabei ist:
+
 - $\alpha$ der Temperaturkoeffizient des Widerstands (Einheit: $[\alpha] = \frac{1}{\text{K}}$)
 - $T_0$ die Bezugstemperatur (üblicherweise 20°C oder 0°C)
 - $T$ die aktuelle Temperatur
@@ -1113,6 +1121,7 @@ $$U = R \cdot I$$
 Eine ideale Spannungsquelle liefert eine konstante Spannung $U_0$ unabhängig von der Belastung.
 
 Eigenschaften:
+
 - Konstante Klemmenspannung $U = U_0$
 - Innenwiderstand $R_i = 0$
 - Beliebiger Strom $I$ möglich
@@ -1124,6 +1133,7 @@ Eigenschaften:
 Eine ideale Stromquelle liefert einen konstanten Strom $I_0$ unabhängig von der Belastung.
 
 Eigenschaften:
+
 - Konstanter Strom $I = I_0$
 - Innenwiderstand $R_i = \infty$
 - Beliebige Spannung $U$ möglich
@@ -1135,6 +1145,7 @@ Eigenschaften:
 Eine reale Spannungsquelle kann als Reihenschaltung einer idealen Spannungsquelle $U_0$ mit einem Innenwiderstand $R_i$ dargestellt werden.
 
 Eigenschaften:
+
 - Klemmenspannung nimmt mit zunehmendem Strom ab: $U = U_0 - R_i \cdot I$
 - Bei Leerlauf: $U = U_0$ (maximale Spannung)
 - Bei Kurzschluss: $I = \frac{U_0}{R_i}$ (maximaler Strom)
@@ -1146,6 +1157,7 @@ Eigenschaften:
 Eine reale Stromquelle kann als Parallelschaltung einer idealen Stromquelle $I_0$ mit einem Innenwiderstand $R_i$ dargestellt werden.
 
 Eigenschaften:
+
 - Strom nimmt mit zunehmender Spannung ab: $I = I_0 - \frac{U}{R_i}$
 - Bei Leerlauf: $U = I_0 \cdot R_i$ (maximale Spannung)
 - Bei Kurzschluss: $I = I_0$ (maximaler Strom)

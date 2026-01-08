@@ -6,7 +6,7 @@ language: de
 footer: Elektrotechnik – Straub
 headingDivider: 3
 ---
-# Elektrotechnik
+# Elektrotechnik (Teil 3/3)
 
 **Luft- und Raumfahrttechnik Bachelor, 1. Semester**
 
@@ -84,6 +84,7 @@ Der Gleichrichtwert entspricht dem Mittelwert des Betrags der Wechselgröße.
 ### Effektivwert: Definition
 
 **Physikalischer Hintergrund:**
+
 - Derjenige Wert einer Wechselgröße, der in seiner Wirkung bei Energieumformung einem Gleichstrom entspricht
 
 **Beispiel:**
@@ -108,10 +109,12 @@ $$A_\text{eff} = \frac{\hat{A}}{\sqrt{2}} \approx 0{,}707 \cdot \hat{A}$$
 ### Effektivwert: Beispiele
 
 **Netzspannung:**
+
 - $U_\text{eff} = 230\text{ V}$ ③
 - $\hat{U} = \sqrt{2} \cdot U_\text{eff} = 325\text{ V}$ ①
 
 **Haushaltssicherung:**
+
 - $I_\text{eff} = 16\text{ A}$ ③
 - $\hat{I} = \sqrt{2} \cdot I_\text{eff} = 22{,}6\text{ A}$ ①
 
@@ -132,10 +135,12 @@ Der Effektivwert wird von Messgeräten angezeigt!
 ### Notationskonvention
 
 In diesem Kapitel werden die zeitabhängigen Wechselgrößen mit Kleinbuchstaben bezeichnet:
+
 - $u(t)$: Spannung
 - $i(t)$: Strom
 
 Großbuchstaben stehen für die zugehörigen Amplituden:
+
 - $\hat{U}$: Spannungsamplitude
 - $\hat{I}$: Stromamplitude
 
@@ -144,6 +149,7 @@ Großbuchstaben stehen für die zugehörigen Amplituden:
 **Sinusförmige Wechselgrößen** können als rotierende Zeiger in der komplexen Ebene dargestellt werden.
 
 **Zeigereigenschaften:**
+
 - Winkelgeschwindigkeit: $\omega = 2\pi f$
 - Länge: $\hat{U}=U_\text{max}$ (Amplitude)
 - zum Zeitpunkt $t=0$: $\varphi_u$
@@ -181,6 +187,7 @@ mit Realteil $a = \text{Re}\, \underline{z}$ und Imaginärteil $b = \text{Im}\,\
 $$e^{j\varphi} = \cos(\varphi) + j\sin(\varphi)$$
 
 **Wichtige Spezialfälle:**
+
 - $e^{j0} = 1$
 - $e^{j\pi/2} = j$
 - $e^{j\pi} = -1$
@@ -198,6 +205,7 @@ $$\underline{Z} = R + j X$$
 $$\underline{Z} = |\underline{Z}| \cdot e^{j\varphi} = Z \cdot e^{j\varphi}$$
 
 **Umrechnung:**
+
 - Betrag: $Z = |\underline{Z}| = \sqrt{R^2 + X^2}$
 - Phase: $\varphi = \arctan\left(\frac{X}{R}\right)$
 - Realteil: $R = Z \cdot \cos(\varphi)$
@@ -212,6 +220,7 @@ $$\underline{Z} = R + jX \quad \Rightarrow \quad \underline{Z}^* = R - jX$$
 $$\underline{Z} = Z \cdot e^{j\varphi} \quad \Rightarrow \quad \underline{Z}^* = Z \cdot e^{-j\varphi}$$
 
 **Eigenschaften:**
+
 - $\underline{Z} \cdot \underline{Z}^* = |\underline{Z}|^2 = Z^2$
 - $\text{Re}\,\underline{Z} = \dfrac{\underline{Z} + \underline{Z}^*}{2}$
 
@@ -251,6 +260,7 @@ $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot 
 ## 📝 Gruppenarbeit: Spannung × Strom
 
 **Gegeben:**
+
 - Spannung: $u(t) = 325\,\text{V} \cdot \cos(\omega t)$
 - Strom: $i(t) = 10\,\text{A} \cdot \sin(\omega t)$
 
@@ -270,6 +280,7 @@ $$\frac{\underline{Z}_1}{\underline{Z}_2} = \frac{R_1 + jX_1}{R_2 + jX_2} \cdot 
 ### Grundelemente im Wechselstromkreis
 
 Die drei Grundelemente im Wechselstromkreis sind:
+
 - Ohmscher Widerstand R ![](https://upload.wikimedia.org/wikipedia/commons/c/c3/Resistor_symbol_IEC.svg)
 - Kapazität C ![](https://upload.wikimedia.org/wikipedia/commons/6/6d/Capacitor_Symbol_alternative.svg)
 - Induktivität L ![](https://upload.wikimedia.org/wikipedia/commons/4/4b/Inductor.svg)
@@ -389,6 +400,7 @@ $$= U_\text{eff} \cdot I_\text{eff} \cdot \sin(2\omega t)$$
 ### Leistung am Kondensator - Interpretation
 
 **Energiefluss:**
+
 - Positive Leistung: Aufladen des Kondensators
 - Negative Leistung: Entladung des Kondensators
 
@@ -423,6 +435,7 @@ $$i = \hat{I} \cdot \sin(\omega \cdot t + \varphi_i)$$
 $$= L \cdot \omega \cdot \hat{I} \cdot \sin\left(\omega \cdot t + \frac{\pi}{2} + \varphi_i\right)$$
 
 **Bedingungen für Gleichheit:**
+
 - Amplituden: $\hat{U} = L \cdot \omega \cdot \hat{I}$ bzw. $\frac{\hat{U}}{\hat{I}} = \omega \cdot L$
 - Phasen: $\varphi_u = \frac{\pi}{2} + \varphi_i$ bzw. $\varphi_u - \varphi_i = \frac{\pi}{2}$
 
@@ -442,6 +455,7 @@ $$= U_\text{eff} \cdot I_\text{eff} \cdot \sin(2\omega t)$$
 ### Leistung an der Induktivität – Interpretation
 
 **Energiefluss:**
+
 - Positive Leistung: Energie zum Aufbau des magnetischen Feldes
 - Negative Leistung: Energie durch Abbau des magnetischen Feldes
 
@@ -592,11 +606,13 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 **Wir haben bereits gesehen:**
 
 **Am Widerstand R:**
+
 - $\overline{p} = U_\text{eff} \cdot I_\text{eff}$ (Wirkleistung)
 - Energie wird ständig verbraucht
 - Keine Phasenverschiebung: $\varphi = 0°$
 
 **Am Kondensator C und an der Induktivität L:**
+
 - $\overline{p} = 0$ (Blindleistung)
 - Energie pendelt zwischen Quelle und Feld
 - Maximale Phasenverschiebung: $\varphi = \pm 90°$
@@ -604,14 +620,17 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 ### Vom Spezialfall zum Allgemeinfall
 
 **Bisher betrachtet:**
+
 - Rein ohmsche Verbraucher ($\varphi = 0°$)
 - Rein reaktive Verbraucher ($\varphi = \pm 90°$)
 
 **In der Praxis:**
+
 - Kombinationen aus R, L und C
 - **Beliebige Phasenverschiebung** $0° < |\varphi| < 90°$
 
 **Beispiele:**
+
 - Motor: R-L-Kombination mit $\varphi \approx 30°{-}60°$
 - Netzteil: R-C-Kombination
 
@@ -622,6 +641,7 @@ $$Z = \frac{1}{\sqrt{\frac{1}{R^2} + (\omega \cdot C)^2}}\,,\qquad\varphi = -\ar
 **In der Praxis:** Kombinationen mit Phasenverschiebung $\varphi$
 
 Spannung und Strom:
+
 - $u(t) = \hat{U} \cdot \cos(\omega t)$
 - $i(t) = \hat{I} \cdot \cos(\omega t - \varphi)$
 
@@ -664,6 +684,7 @@ $$P = U \cdot I \cdot \cos(\varphi)$$
 $$Q = U \cdot I \cdot \sin(\varphi)$$
 
 **Spezialfälle (Wiederholung):**
+
 - $\varphi = 0°$ (nur R): $P = U \cdot I$, $Q = 0$
 - $\varphi = 90°$ (nur L): $P = 0$, $Q = U \cdot I$
 - $\varphi = -90°$ (nur C): $P = 0$, $Q = -U \cdot I$
@@ -682,6 +703,7 @@ wobei $U$ und $I$ die **Effektivwerte** sind.
 **Einheit:** Watt [W]
 
 **Grenzfälle:**
+
 - $\varphi = 0°$ (nur R): $P = U \cdot I$ (maximal)
 - $\varphi = \pm 90°$ (nur L oder C): $P = 0$
 
@@ -695,6 +717,7 @@ wobei $U$ und $I$ die **Effektivwerte** sind.
 $$P = R \cdot I^2$$
 
 **Praxisbeispiele:**
+
 - Elektromotor: leistet mechanische Arbeit
 - Heizung: erzeugt Wärme
 - Glühbirne: erzeugt Licht
@@ -772,6 +795,7 @@ Der Transformator ist voll ausgelastet ($S = 10\,\text{kVA}$), liefert aber nur 
 **Idee:** Nutze die komplexe Darstellung!
 
 Wir haben:
+
 - Komplexe Spannung: $\underline{U} = U \cdot e^{j\varphi_u}$
 - Komplexer Strom: $\underline{I} = I \cdot e^{j\varphi_i}$
 
@@ -830,6 +854,7 @@ $$\boxed{\underline{S} = \underline{U} \cdot \underline{I}^* = P + jQ}$$
 $$\underline{S} = S \cdot e^{j\varphi}$$
 
 mit:
+
 - **Betrag:** $S = |\underline{S}| = \sqrt{P^2 + Q^2}$ (Scheinleistung)
 - **Phase:** $\varphi = \varphi_u - \varphi_i$ (Phasenwinkel)
 
@@ -841,6 +866,7 @@ $$\underline{S} = \underline{Z} \cdot I^2 = \frac{U^2}{\underline{Z}^*}$$
 ### Leistungsdreieck
 
 Das **Leistungsdreieck** visualisiert den Zusammenhang
+
 - Wirkleistung: $P = S \cdot \cos \varphi$
 - Blindleistung: $Q = S \cdot \sin \varphi$
 - Scheinleistung: $S = \sqrt{P^2 + Q^2}$
@@ -851,6 +877,7 @@ Das **Leistungsdreieck** visualisiert den Zusammenhang
 ### Leistungsdreieck: Praxisbeispiel
 
 **Industriebetrieb:**
+
 - Wirkleistung: $P = 800\,\text{kW}$ (Maschinen)
 - Blindleistung: $Q = 600\,\text{kvar}$ (Motoren)
 
@@ -870,6 +897,7 @@ Der **Leistungsfaktor** gibt an, wie effizient die Scheinleistung genutzt wird:
 $$\lambda = \cos \varphi = \frac{P}{S}$$
 
 **Wertebereich:**
+
 - $\cos \varphi = 1$: Ideal (rein ohmsch)
 - $0 < \cos \varphi < 1$: Phasenverschiebung
 - $\cos \varphi = 0$: Rein reaktiv
@@ -901,6 +929,7 @@ $$\lambda = \cos \varphi = \frac{P}{S}$$
 3. **Spannungsabfälle** im Netz
 
 **Beispiel:**
+
 - Bei $\cos \varphi = 0{,}7$ muss $I = \frac{P}{U \cdot 0{,}7}$ fließen
 - Bei $\cos \varphi = 0{,}95$ nur $I = \frac{P}{U \cdot 0{,}95}$
 - **Stromreduktion um 26%!**
@@ -919,6 +948,7 @@ $$\beta = \sin \varphi = \frac{Q}{S}$$
 $$\lambda^2 + \beta^2 = \cos^2 \varphi + \sin^2 \varphi = 1$$
 
 **Bedeutung:**
+
 - Hoher Blindfaktor → viel Blindleistung
 - Niedriger Blindfaktor → wenig Blindleistung
 
@@ -942,6 +972,7 @@ $$\lambda^2 + \beta^2 = \cos^2 \varphi + \sin^2 \varphi = 1$$
 ### Blindleistungskompensation: Berechnung
 
 **Gegeben:**
+
 - Wirkleistung: $P$
 - Ursprünglicher Leistungsfaktor: $\cos \varphi_1$
 - Ziel-Leistungsfaktor: $\cos \varphi_2$
@@ -958,10 +989,12 @@ $$Q_C = Q_1 - Q_2 = P \cdot (\tan \varphi_1 - \tan \varphi_2)$$
 ### Blindleistungskompensation: Praxisbeispiel
 
 **Betrieb mit:**
+
 - $P = 100\,\text{kW}$ (Wirkleistung)
 - $\cos \varphi_1 = 0{,}8$ → $\varphi_1 \approx 37°$
 
 **Ursprüngliche Werte:**
+
 - $Q_L = P \cdot \tan(37°) = 100 \cdot 0{,}75 = 75\,\text{kvar}$
 - $S_1 = \frac{P}{\cos \varphi_1} = \frac{100}{0{,}8} = 125\,\text{kVA}$
 - $I_1 = \frac{S_1}{U} = \frac{125000}{400} = 312\,\text{A}$ (bei 400 V)
@@ -979,6 +1012,7 @@ $$Q_C = -75\,\text{kvar}$$
 - $I_2 = \frac{100000}{400} = 250\,\text{A}$
 
 **Verbesserungen:**
+
 - **Stromreduktion:** von 312 A auf 250 A → **20% weniger**
 - **Scheinleistung:** von 125 kVA auf 100 kVA → **20% weniger**
 - **Verluste:** $\propto I^2$ → **36% weniger** Leitungsverluste!
@@ -1043,16 +1077,19 @@ Mit Ihrem jetzigen Wissen über Wechselstrom und Gleichstrom, Wirkleistung und B
 ### Anwendungen von Drehstrom
 
 **Energieversorgung:**
+
 - Hochspannungsübertragung (110 kV, 380 kV)
 - Verteilnetze (10 kV, 20 kV)
 - Niederspannungsnetze (400 V)
 
 **Antriebstechnik:**
+
 - Asynchronmotoren in der Industrie
 - Bahnantriebe
 - Windkraftanlagen
 
 **Elektromobilität:**
+
 - Schnellladestationen (bis 350 kW)
 
 ### Grundlagen des Drehstromsystems
@@ -1111,6 +1148,7 @@ $$u_3(t) = \hat{U} \cdot \sin(\omega t - 240°)$$
 Ein Drehstromgenerator hat **drei um 120° versetzte Wicklungen**, die sich in einem rotierenden Magnetfeld befinden.
 
 **Funktionsprinzip:**
+
 - Rotor dreht sich mit konstanter Winkelgeschwindigkeit
 - In jeder Wicklung wird eine Spannung induziert
 - Die drei Spannungen sind zeitlich um 120° versetzt
@@ -1120,10 +1158,12 @@ Ein Drehstromgenerator hat **drei um 120° versetzte Wicklungen**, die sich in e
 ### Symmetrisches Dreiphasensystem
 
 **Aufbau:**
+
 - Drei **Außenleiter** (L1, L2, L3) – oft als **Phasen** bezeichnet
 - Ein **Neutralleiter** (N) – auf Erdpotential
 
 **Bezeichnungen:**
+
 - $\underline{U}_{1}, \underline{U}_{2}, \underline{U}_{3}, U_{Y}$: Sternspannung
 - $U_Y=|\underline{U}_1| = |\underline{U}_2| = |\underline{U}_3|$
 - $\underline{U}_{12}, \underline{U}_{23}, \underline{U}_{31}, U_{\Delta}$: Dreieckspannung
@@ -1157,6 +1197,7 @@ $$\boxed{U_{\Delta} = \sqrt{3} \cdot U_{Y}}$$
 (Grafische Herleitung)
 
 **Wichtig:**
+
 - Dreieckspannungen sind um **30°** gegenüber den Sternspannungen gedreht
 - $U_{\Delta} \approx 1{,}73 \cdot U_Y$
 
@@ -1184,6 +1225,7 @@ $$U_{\Delta} = |\underline{U}_{12}| = U_Y \cdot \sqrt{(\frac{3}{2})^2 + (\frac{\
   $$U_{\Delta} = \sqrt{3} \cdot 230\,\text{V} \approx 400\,\text{V}$$
 
 **Haushalte:**
+
 - Einphasige Verbraucher: 230 V (L1-N, L2-N oder L3-N)
 - Drehstromverbraucher: 400 V (L1-L2-L3)
 
@@ -1196,6 +1238,7 @@ Alle drei Verbraucherstränge sind mit dem gleichen Widerstand $\underline{Z}$ b
 $$\underline{Z}_1 = \underline{Z}_2 = \underline{Z}_3 = \underline{Z}$$
 
 **Konsequenzen:**
+
 - Alle Ströme haben den gleichen Betrag
 - Phasenverschiebung zwischen den Strömen: 120°
 - Neutralleiterstrom ist null: $\underline{I}_N = 0$
@@ -1203,6 +1246,7 @@ $$\underline{Z}_1 = \underline{Z}_2 = \underline{Z}_3 = \underline{Z}$$
 ### Verbraucher in Sternschaltung
 
 **Eigenschaften:**
+
 - Strangströme = Außenleiterströme
 - Strom durch Neutralleiter = 0 (bei symmetrischer Last)
 
@@ -1215,6 +1259,7 @@ $$U_\text{Str} = U_Y = \frac{U_{\Delta}}{\sqrt{3}}$$
 ### Verbraucher in Dreieckschaltung
 
 **Eigenschaften:**
+
 - Strangspannungen = Dreieckspannungen
 - Zusammenhang zwischen Außenleiter- und Strangströmen:
 
@@ -1272,6 +1317,7 @@ $$Q_{ges} = 3 \cdot Q_\text{Str} = 3 \cdot U_\text{Str} \cdot I_\text{Str} \cdot
 ### Leistung in Sternschaltung
 
 **Gegeben:**
+
 - Sternspannung: $U_Y$
 - Strangstrom = Außenleiterstrom: $I_\text{Str} = I$
 
@@ -1286,6 +1332,7 @@ $$S = 3 \cdot \frac{U_{\Delta}}{\sqrt{3}} \cdot I = \sqrt{3} \cdot U_{\Delta} \c
 ### Leistung in Dreieckschaltung
 
 **Gegeben:**
+
 - Dreieckspannung: $U_{\Delta}$
 - Strangstrom: $I_\text{Str} = \frac{I}{\sqrt{3}}$
 
@@ -1304,6 +1351,7 @@ $$\boxed{P = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \cos(\varphi)}$$
 $$\boxed{Q = \sqrt{3} \cdot U_{\Delta} \cdot I \cdot \sin(\varphi)}$$
 
 wobei:
+
 - $U_{\Delta}$: Dreieckspannung (Außenleiterspannung)
 - $I$: Außenleiterstrom
 - $\varphi$: Phasenverschiebung zwischen Strang-Spannung und Strang-Strom
@@ -1359,10 +1407,12 @@ $$C_Y = \frac{Q_C}{U_{\Delta}^2 \cdot \omega}, \qquad C_{\Delta} = \frac{Q_C}{3 
 $$\Rightarrow C_Y = 3 \cdot C_{\Delta}$$
 
 **Interpretation:**
+
 - Bei **Sternschaltung:** höhere Kapazität erforderlich
 - Bei **Dreieckschaltung:** niedrigere Kapazität, aber höhere Spannungsbelastung
 
 **Praxis:**
+
 - Sternschaltung bei höheren Spannungen (Spannungsbelastung nur $U_Y$)
 - Dreieckschaltung bei niedrigeren Spannungen
 
@@ -1409,6 +1459,7 @@ $$u_{C}(t) = U_{0} \cdot \left(1 - e^{-\frac{t}{\tau}}\right) \text{ mit } \tau 
 $$i_{C}(t) = \frac{U_{0}}{R} \cdot e^{-\frac{t}{\tau}}$$
 
 **Anfangs- und Endwerte:**
+
 - $u_C(t=0) = 0$, $u_C(t \to \infty) = U_0$
 - $i_C(t=0) = \frac{U_0}{R}$, $i_C(t \to \infty) = 0$
 
@@ -1431,6 +1482,7 @@ $$u_C(t) = U_0 \cdot e^{-\frac{t}{\tau}} \text{ mit } \tau = R \cdot C \quad (7.
 $$i_C(t) = -\frac{U_0}{R} \cdot e^{-\frac{t}{\tau}}$$
 
 **Anfangs- und Endwerte:**
+
 - $u_C(t=0) = U_0$, $u_C(t \to \infty) = 0$
 - $i_C(t=0) = -\frac{U_0}{R}$, $i_C(t \to \infty) = 0$
 
@@ -1455,6 +1507,7 @@ $$i_{L}(t) = \frac{U_{0}}{R} \cdot \left(1 - e^{-\frac{t}{\tau}}\right) \text{ m
 $$u_{L}(t) = U_{0} \cdot e^{-\frac{t}{\tau}}$$
 
 **Anfangs- und Endwerte:**
+
 - $i_L(t=0) = 0$, $i_L(t \to \infty) = \frac{U_0}{R}$
 - $u_L(t=0) = U_0$, $u_L(t \to \infty) = 0$
 
@@ -1476,6 +1529,7 @@ $$i_{L}(t) = \frac{U_{0}}{R} \cdot e^{-\frac{t}{\tau}} \text{ mit } \tau = \frac
 $$u_{L}(t) = -U_{0} \cdot e^{-\frac{t}{\tau}}$$
 
 **Anfangs- und Endwerte:**
+
 - $i_L(t=0) = \frac{U_0}{R}$, $i_L(t \to \infty) = 0$
 - $u_L(t=0) = -U_0$, $u_L(t \to \infty) = 0$
 
@@ -1496,6 +1550,7 @@ In welcher Zeit $t_x$ ist die Spannung am Kondensator auf 10% des ursprüngliche
 Der Datenspeicher eines Taschenrechners (Lastwiderstand $R = 2{,}2\,\text{M}\Omega$) soll während des Batteriewechsels aus einem Kondensator $C$ gespeist werden.
 
 **Gegeben:**
+
 - Batteriespannung: $U_B = 3\,\text{V}$
 - Batteriewechselzeit: $t_W = 30\,\text{s}$
 - Minimale Versorgungsspannung: $U_{\text{min}} = 0{,}8\,\text{V}$

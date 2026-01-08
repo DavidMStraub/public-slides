@@ -6,7 +6,7 @@ language: de
 footer: Elektrotechnik – Straub
 headingDivider: 3
 ---
-# Elektrotechnik
+# Elektrotechnik (Teil 2/3)
 
 **Luft- und Raumfahrttechnik Bachelor, 1. Semester**
 
@@ -131,10 +131,12 @@ Wieviel Ampere müssen durch einen Leiter fließen, um ein Magnetfeld von 1 T in
 ### Permanenter Magnetismus: Ursprung im Elektronenspin
 
 **Elektronenspin** (intrinsische Eigenschaft):
+
 - Das Elektron besitzt einen **Spin** – eine quantenmechanische Eigenschaft ähnlich einem Drehimpuls
 - Man kann sich (vereinfacht) vorstellen: Elektron verhält sich *als ob* es um die eigene Achse rotiert
 
 **Konsequenz:**
+
 - Jedes Elektron ist ein winziger **Permanentmagnet**
 - Makroskopische Magnete entstehen durch **Ausrichtung** vieler Elektronenspins
 
@@ -162,11 +164,13 @@ $$\vec{F} = I \cdot (\vec{\ell} \times \vec{B})$$
 
 
 **Kreisbewegung:**
+
 - Lorentzkraft wirkt als Zentripetalkraft: $Q \cdot v \cdot B = \frac{m \cdot v^2}{r}$
 - Bahnradius: $r = \frac{m \cdot v}{Q \cdot B}$
 - Umlauffrequenz: $f = \frac{Q \cdot B}{2\pi m}$ (unabhängig von $v$!)
 
 **Anwendungen:**
+
 - Teilchenbeschleuniger (Zyklotron)
 - Massenspektrometer
 
@@ -218,6 +222,7 @@ $$\vec{B} = \mu_0 \vec{H}$$
 - Einheit: $[H] = \frac{[B]}{[\mu_0]} = \frac{\text{T}}{\frac{\text{N}}{\text{A}^2}} = \frac{\frac{\text{N}\cdot\text{s}}{\text{A}\cdot\text{m}}}{\frac{\text{N}}{\text{A}^2}}=\frac{\text{A}}{\text{m}}$
 
 **Beispiel:**
+
 - Gerader stromdurchflossener Leiter (Abstand $r$): $H = \frac{I}{2\pi r}$
 
 ### Durchflutungsgesetz (Ampèresches Gesetz)
@@ -245,6 +250,7 @@ $$U =\int \vec{E}(s) \cdot d\vec{s} ~~\Rightarrow~~ \oint \vec{E}(s) \cdot d\vec
 | (Elektrostatische Felder sind wirbelfrei) | (Magnetische Felder sind quellenfrei) |
 
 **Anwendung bei Symmetrie:**
+
 - Gaußsches Gesetz → Kugel-, Zylinder-, Plattensymmetrie für Ladungen
 - Ampèresches Gesetz → Zylinder-, Ebenen-, Toroidsymmetrie für Ströme
 
@@ -276,12 +282,14 @@ $$B = \mu_0 \mu_r H = \mu_0 \mu_r n I$$
 Ringförmiges Fusionsreaktor-Design mit toroidalem Magnetfeld zum Plasmaeinschluss
 
 **Toroidale Feldspulen (TF):**
+
 - $N$ Spulen gleichmäßig um den Torus verteilt, $M$ Windungen, Strom $I$ pro Windung
 - Ampèresches Gesetz auf kreisförmigem Weg (Radius $r$):
 
 $$\oint \vec{H} \cdot d\vec{s} = H \cdot 2\pi r = N M \cdot I \Rightarrow H(r) = \frac{N M I}{2\pi r}$$
 
 **Eigenschaften:**
+
 - Feld nimmt mit $\frac{1}{r}$ ab (inhomogen)
 - Typische Werte: $B \approx 5{-}15 \, \text{T}$
 
@@ -293,6 +301,7 @@ $$\oint \vec{H} \cdot d\vec{s} = H \cdot 2\pi r = N M \cdot I \Rightarrow H(r) =
 Ähnlich wie bei Dielektrika im elektrischen Feld reagiert Materie im Magnetfeld durch **Magnetisierung**.
 
 **Magnetische Dipole in Atomen:**
+
 - Elektronen haben einen intrinsischen **Spin** (magnetischer Dipol)
 - Bahnbewegung der Elektronen erzeugt **Bahnmagnetismus**
 - Atomrümpfe können ebenfalls magnetische Momente besitzen
@@ -309,6 +318,7 @@ Die Magnetisierung $\vec{M}$ ist proportional zur magnetischen Feldstärke $\vec
 $$\vec{M} = \chi_m \vec{H} \quad \text{bzw.} \quad \mu_r = 1 + \chi_m$$
 
 **Reaktion auf äußeres Feld:**
+
 - Diamagnetismus: Dipole richten sich **gegen** das äußere Feld ($\mu_r < 1$, $\chi_m < 0$)
 - Paramagnetismus: Dipole richten sich **mit** dem äußeren Feld ($\mu_r > 1$, $\chi_m > 0$)
 - Ferromagnetismus: Starke Ausrichtung der Dipole ($\mu_r \gg 1$, $\chi_m \gg 1$)
@@ -324,11 +334,13 @@ $$\vec{M} = \chi_m \vec{H} \quad \text{bzw.} \quad \mu_r = 1 + \chi_m$$
 ### Diamagnetismus
 
 **Eigenschaften:**
+
 - Tritt in allen Materialien auf
 - Magnetische Suszeptibilität: $\chi_m < 0$ (sehr klein)
 - Relative Permeabilität: $\mu_r < 1$ (knapp unter 1)
 
 **Physikalischer Mechanismus:**
+
 - Externes Magnetfeld induziert Änderung der Elektronenbahnen
 - Erzeugt magnetisches Moment **entgegen** dem äußeren Feld
 - Effekt verschwindet, wenn Feld abgeschaltet wird
@@ -345,12 +357,14 @@ Diamagnetische Materialien können in starken Magnetfeldern schweben
 ### Paramagnetismus
 
 **Eigenschaften:**
+
 - Atome besitzen permanente magnetische Dipole
 - Magnetische Suszeptibilität: $\chi_m > 0$ (klein)
 - Relative Permeabilität: $\mu_r > 1$ (knapp über 1)
 - Paramagnete werden **schwach von Magneten angezogen**
 
 **Physikalischer Mechanismus:**
+
 - Ohne externes Feld: zufällige Ausrichtung der Dipole (thermische Bewegung)
 - Mit externem Feld: partielle Ausrichtung **parallel** zum Feld
 - Stärker bei tiefen Temperaturen (Curie-Gesetz: $\chi_m \propto 1/T$)
@@ -362,12 +376,14 @@ Diamagnetische Materialien können in starken Magnetfeldern schweben
 ### Ferromagnetismus
 
 **Eigenschaften:**
+
 - Sehr starke Magnetisierung
 - Magnetische Suszeptibilität: $\chi_m \gg 1$
 - Relative Permeabilität: $\mu_r \gg 1$ (bis zu $10^5$), viel größer als bei Paramagneten!
 - **Spontane Magnetisierung** auch ohne externes Feld möglich
 
 **Physikalischer Mechanismus:**
+
 - Starke Wechselwirkung zwischen benachbarten Atomen (**Austauschwechselwirkung**)
 - Bildung von **Weiss'schen Bezirken** (Domänen)
 - Externes Feld richtet Domänen aus
@@ -379,9 +395,11 @@ Diamagnetische Materialien können in starken Magnetfeldern schweben
 - Spontane Magnetisierung innerhalb der Bezirke
 
 **Ohne äußeres Feld:**
+
 - Bezirke sind zufällig orientiert → keine Gesamtmagnetisierung
 
 **Mit äußerem Feld:**
+
 - Bezirke richten sich aus
 - Bei Sättigung: einheitliche Ausrichtung
 
@@ -391,6 +409,7 @@ Diamagnetische Materialien können in starken Magnetfeldern schweben
 
 
 **Kenngrößen:**
+
 - **Sättigungsmagnetisierung** (1): maximale Magnetisierung
 - **Remanenz** (2): verbleibende Flussdichte bei verschwindendem äußeren Feld
 - **Koerzitivfeldstärke** (3): Feldstärke zum Entmagnetisieren
@@ -433,6 +452,7 @@ $$\oint \vec{H} \cdot d\vec{s} = I_{\text{frei}}$$
 ### Analogie Elektrostatik <-> Magnetostatik
 
 **Elektrostatik:**
+
 - Elektrische Flussdichte: $\vec{D} = \varepsilon_0 \vec{E} + \vec{P}$ (bezieht sich auf freie Ladungen)
 - Vorteil: Das Gaußsche Gesetz gilt unverändert für freie Ladungen:
   
@@ -489,6 +509,7 @@ Relative Permeabilität (*relative permeability*) | $\mu_r = \frac{\mu}{\mu_0}$ 
 **Eindimensionale Lösung: Der magnetische Kreis**
 
 Eine *mathematische Analogie* zum elektrischen Stromkreis:
+
 - Einfache Berechnungen wie bei Widerstandsnetzwerken
 - Gute Näherung für viele praktische Fälle
 
@@ -500,11 +521,13 @@ Eine *mathematische Analogie* zum elektrischen Stromkreis:
 ### Grundidee
 
 **Elektrischer Kreis:**
+
 - Spannung treibt Strom durch Widerstand
 - Strom „fließt“ durch Leiter
 - $U = R \cdot I$ (Ohmsches Gesetz)
 
 **Magnetischer Kreis:**
+
 - Durchflutung treibt magnetischen Fluss durch magnetischen Widerstand
 - Magnetischer Fluss „fließt“ durch ferromagnetisches Material
 - $\Theta = R_m \cdot \Phi$ (analoges „Ohmsches Gesetz“)
@@ -523,13 +546,15 @@ $$\Theta = N \cdot I = \oint \vec{H} \cdot d\vec{s}$$
 - $N \cdot I$: Windungszahl mal Strom in der Spule
 - $\vec{H}$: magnetische Feldstärke
 
-**Interpretation:** 
+**Interpretation:**
+
 - Die Durchflutung $\Theta$ ist wie eine „treibende Kraft“ für das Magnetfeld
 - Entspricht der Spannung im elektrischen Kreis: $U = \int \vec{E} \cdot d\vec{s}$ (wichtiger Unterschied: $\int \vec{H} \cdot d\vec{s}$ ist nicht wegunabhängig!)
 
 ### Vereinfachung für homogene Kreise
 
 **Annahme:** Homogener magnetischer Kreis
+
 - Konstante Querschnittsfläche $A$
 - Ein Material mit konstanter Permeabilität $\mu_r$
 - Magnetfeld folgt dem Materialweg
@@ -556,6 +581,7 @@ $$\Phi = B \cdot A$$
 **Einheit:** Weber ($\text{Wb} = \text{Vs}$)
 
 **Physikalische Bedeutung:**
+
 - Maß für die Gesamtzahl der magnetischen Feldlinien durch eine Fläche
 
 
@@ -599,6 +625,7 @@ $$R_m = \frac{\ell}{\mu_0 \mu_r A}$$
 **Einheit:** $[R_m] = \frac{\text{A}}{\text{Wb}}$ (Ampere pro Weber)
 
 **Der magnetische Widerstand wird größer, wenn:**
+
 - ✓ Der Weg $\ell$ länger wird (mehr „Strecke“ für den Fluss)
 - ✓ Die Querschnittsfläche $A$ kleiner wird (weniger „Platz“)
 - ✓ Die Permeabilität $\mu_r$ kleiner wird (Material „leitet“ schlechter)
@@ -617,7 +644,8 @@ $$\Lambda = \frac{1}{R_m} = \frac{\mu_0 \mu_r A}{\ell}$$
 
 $$\Phi = \Lambda \cdot \Theta$$
 
-**Interpretation:** 
+**Interpretation:**
+
 - Der Leitwert gibt an, wie *leicht* magnetischer Fluss durch ein Material fließt
 - Große Permeabilität $\mu_r$ → großer Leitwert → viel Fluss
 
@@ -636,6 +664,7 @@ $$\Phi = \Lambda \cdot \Theta$$
 ### Komplexere Kreise: Reihenschaltung
 
 **Reale Situation:** Verschiedene Materialien im magnetischen Pfad
+
 - Eisenkern verschiedener Querschnitte
 - Luftspalte
 - Verschiedene Materialien (Eisen, Ferrit, ...)
@@ -656,6 +685,7 @@ $$\Theta = \Phi \cdot R_{m,\text{ges}}$$
 **Typische Anwendung:** Schaltschütz, Relais, Hubmagnet
 
 **Aufbau:**
+
 - Eisenkern mit Spule ($N$ Windungen, Strom $I$)
 - Einstellbarer Luftspalt der Länge $\delta$
 - Eisenweg: Länge $\ell_E$, Querschnitt $A$
@@ -682,6 +712,7 @@ $$\Phi = \frac{\Theta}{R_{m,\text{ges}}} = \frac{N \cdot I}{\frac{\ell_E}{\mu_0 
 ### Die überraschende Dominanz des Luftspalts
 
 **Zahlenwerte (typisch):**
+
 - Eisenweg: $\ell_E = 30$ cm, $\mu_r = 2000$
 - Luftspalt: $\delta = 1$ mm
 
@@ -796,7 +827,8 @@ Für $\frac{d\Phi}{dt} > 0$ wirkt der induzierte Strom der Flussänderung entgeg
 
 **Wichtige Erkenntnis:** Bei Induktion ist die Spannung $U_\text{ind}$ **keine Potentialdifferenz**!
 
-**Grund:** 
+**Grund:**
+
 - Das zeitlich veränderliche Magnetfeld erzeugt ein elektrisches **Wirbelfeld**
 - Dieses Wirbelfeld ist **nicht konservativ** (im Gegensatz zum elektrostatischen Feld)
 - Es existiert kein Potential $\varphi$ mit $U = \varphi_1 - \varphi_2$
@@ -843,6 +875,7 @@ Dies ist das **Faraday’sche Induktionsgesetz**
 **Situation:** Rechteckige Leiterschleife (Breite $b$, Höhe $h$) bewegt sich mit Geschwindigkeit $\vec{v}$ durch homogenes Magnetfeld $\vec{B}$
 
 **Induktionsmechanismus:**
+
 - Beim Eintreten: zunehmender magnetischer Fluss durch die Schleife
 - Vollständig im Feld: konstanter Fluss → keine Induktion
 - Beim Austreten: abnehmender Fluss durch die Schleife
@@ -1049,6 +1082,7 @@ $$F = \frac{B^2}{2 \cdot \mu_0} \cdot A$$
 $$\sigma = \frac{F}{A} = \frac{B^2}{2 \cdot \mu_0}$$
 
 **Anwendungen:**
+
 - Hubmagnete (Kräne, Magnetventile)
 - Elektromagnetische Relais
 - Magnetische Verriegelungen
