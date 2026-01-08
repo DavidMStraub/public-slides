@@ -838,8 +838,6 @@ Strom ist der gerichtete Fluss von elektrischer Ladung
 
 ### Stromrichtung & Ladungsträger
 
-<!-- ![bg right:40% 90%](https://upload.wikimedia.org/wikipedia/commons/3/3f/ElectricCurrent.gif) -->
-
 - $\vec{J} = \rho \cdot \vec{v}$ zeigt in die Richtung, in die sich *positive* Ladung bewegt – egal ob die tatsächlichen Ladungsträger positiv oder negativ sind!
 - Das ist auch die *Zählrichtung* der Stromstärke $I$
 

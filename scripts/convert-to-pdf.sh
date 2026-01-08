@@ -168,8 +168,28 @@ while IFS= read -r url; do
             fi
             
             counter=$((counter + 1))
+        # Convert GIF to PNG
+        elif [[ $ext_lower == "gif" ]]; then
+            png_file="$IMAGES_DIR/image_$counter.png"
+            
+            if command -v convert >/dev/null 2>&1; then
+                convert "$downloaded_file" "$png_file" || true
+            elif command -v ffmpeg >/dev/null 2>&1; then
+                ffmpeg -i "$downloaded_file" -y "$png_file" >/dev/null 2>&1 || true
+            fi
+            
+            if [[ -f "$png_file" ]]; then
+                url_map["$url"]="$png_file"
+                echo "  -> Downloaded and converted to: $png_file"
+                counter=$((counter + 1))
+            else
+                echo "  -> Failed to convert GIF to PNG. Using original."
+                url_map["$url"]="$downloaded_file"
+                echo "  -> Downloaded to: $downloaded_file"
+                counter=$((counter + 1))
+            fi
         else
-            # Keep non-SVG images as-is
+            # Keep non-SVG/GIF images as-is
             url_map["$url"]="$downloaded_file"
             echo "  -> Downloaded to: $downloaded_file"
             counter=$((counter + 1))
@@ -297,6 +317,8 @@ function Image(el)
   if url_map[el.src] then
     el.src = url_map[el.src]
     return el
+  else
+    io.stderr:write("NO MATCH from Replace Lua: " .. el.src .. "\n")
   end
 end
 EOF
@@ -312,7 +334,8 @@ sed -i 's/!\[bg [^]]*\]/![]/g' "$TEMP_MD"  # Remove bg positioning directives
 
 # Replace -> ligatures with Unicode arrow for LaTeX compatibility
 sed -i 's/->/→/g' "$TEMP_MD"
-sed -i 's/<!-- .* -->//g' "$TEMP_MD"  # Remove HTML comments
+# Remove HTML comments (multiline safe)
+perl -0777 -i -pe 's/<!--.*?-->//gs' "$TEMP_MD"
 
 # Fix common LaTeX equation issues
 # Remove $$ around align environments (align already creates math mode)
