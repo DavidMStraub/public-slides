@@ -229,8 +229,8 @@ for url in "${!url_map[@]}"; do
     dest_file="$PANDOC_IMAGES_DIR/$filename"
     if [[ -f "$source_file" ]]; then
         cp "$source_file" "$dest_file"
-        # Use relative path from temp markdown location
-        final_url_map["$url"]="images/$filename"
+        # Use absolute path because Pandoc's xelatex changes directory during processing
+        final_url_map["$url"]="$dest_file"
         image_count=$((image_count + 1))
         echo "  Copied: $filename ($(stat -c%s "$dest_file" 2>/dev/null || stat -f%z "$dest_file" 2>/dev/null) bytes)"
     else
@@ -259,6 +259,7 @@ fi
 echo "Updating image references in markdown..."
 for url in "${!final_url_map[@]}"; do
     pdf_path="${final_url_map[$url]}"
+    echo "  Replacing: $url -> $pdf_path"
     # Escape special characters for sed
     escaped_url=$(echo "$url" | sed 's/[\/&]/\\&/g')
     escaped_pdf=$(echo "$pdf_path" | sed 's/[\/&]/\\&/g')
