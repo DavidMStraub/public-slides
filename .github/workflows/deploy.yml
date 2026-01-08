@@ -43,10 +43,10 @@ jobs:
         run: mkdir -p ~/.cache/public-slides-images
 
       - name: Cache downloaded images
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/public-slides-images
-          key: ${{ runner.os }}-images-${{ hashFiles('**/*.md') }}
+          key: ${{ runner.os }}-images-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-images-
 
@@ -83,7 +83,7 @@ jobs:
         if: always()
         with:
           path: ~/.cache/public-slides-images
-          key: ${{ runner.os }}-images-${{ hashFiles('**/*.md') }}-${{ github.run_id }}
+          key: ${{ runner.os }}-images-${{ github.run_id }}
 
       - name: Generate Index
         run: |
