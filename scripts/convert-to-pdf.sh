@@ -270,7 +270,17 @@ done
 
 # Debug: Check what image references remain in the markdown
 echo "Checking for remaining http URLs in markdown..."
-grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | grep '^http' || echo "  No http URLs found (good!)"
+remaining_urls=$(grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | grep '^http' || true)
+if [[ -z "$remaining_urls" ]]; then
+    echo "  No http URLs found (good!)"
+else
+    echo "  WARNING: Found remaining http URLs:"
+    echo "$remaining_urls"
+fi
+
+# Debug: Show what image paths ARE in the markdown
+echo "Image paths in markdown:"
+grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | head -5
 
 echo "Converting Markdown to PDF with Pandoc..."
 
