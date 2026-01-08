@@ -1,6 +1,9 @@
 # Generated HTML files from markdown conversion
 *.html
 
+# Generated PDF files from markdown conversion
+*.pdf
+
 # Temporary files
 *.tmp
 *.temp

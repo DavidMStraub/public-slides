@@ -39,6 +39,47 @@ jobs:
           chmod +x scripts/convert-to-html.sh
           ./scripts/convert-to-html.sh
 
+      - name: Cache downloaded images
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/public-slides-images
+          key: ${{ runner.os }}-images-${{ hashFiles('**/*.md') }}
+          restore-keys: |
+            ${{ runner.os }}-images-
+
+      - name: Install PDF dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-latex-extra \
+            inkscape \
+            curl \
+            fonts-firacode \
+            librsvg2-bin
+        continue-on-error: false
+
+      - name: Convert Markdown to PDF
+        run: |
+          chmod +x scripts/convert-to-pdf.sh
+          
+          # Create image cache directory
+          mkdir -p ~/.cache/public-slides-images
+          
+          # Convert all Elektrotechnik parts to PDF
+          for file in "Elektrotechnik - Folien - Teil 1.md" \
+                      "Elektrotechnik - Folien - Teil 2.md" \
+                      "Elektrotechnik - Folien - Teil 3.md"; do
+            if [ -f "$file" ]; then
+              echo "Converting $file to PDF..."
+              ./scripts/convert-to-pdf.sh "$file" || echo "Warning: Failed to convert $file"
+            fi
+          done
+        continue-on-error: true
+
       - name: Generate Index
         run: |
           chmod +x scripts/create-index.sh
@@ -50,7 +91,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the HTML files from the repository root
+          # Upload HTML and PDF files from the repository root
           path: '.'
           # Exclude markdown files and scripts from deployment
           exclude: |
