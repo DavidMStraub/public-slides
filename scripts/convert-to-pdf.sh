@@ -230,9 +230,8 @@ cat > "$LATEX_HEADER" << 'HEREDOC'
 \usepackage{graphicx}
 \setkeys{Gin}{width=0.5\textwidth,keepaspectratio}
 
-% Modern fonts: Fira Sans headings, Charter body, Fira Mono code
-% Note: fontspec is already loaded by Pandoc when using xelatex
-\usepackage{XCharter}
+% Modern fonts: Fira Sans headings, Fira Mono code
+% Note: fontspec is already loaded by Pandoc, so we just set fonts
 \setsansfont{FiraSans}[
     Path=/usr/share/texlive/texmf-dist/fonts/opentype/public/fira/,
     Extension=.otf,
