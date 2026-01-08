@@ -265,6 +265,10 @@ for url in "${!final_url_map[@]}"; do
     perl -pi -e "s#\Q$url\E#$pdf_path#g" "$TEMP_MD"
 done
 
+# Debug: Check what image references remain in the markdown
+echo "Checking for remaining http URLs in markdown..."
+grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | grep '^http' || echo "  No http URLs found (good!)"
+
 echo "Converting Markdown to PDF with Pandoc..."
 
 # Extract footer from YAML frontmatter before stripping
