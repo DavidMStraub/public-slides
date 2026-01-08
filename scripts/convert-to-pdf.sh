@@ -47,8 +47,21 @@ cp "$INPUT_FILE" "$TEMP_MD"
 # Find all image URLs in the markdown file (SVG, PNG, JPG, etc.)
 echo "Searching for images..."
 
-# Extract all image URLs
-IMAGE_URLS=$(grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$INPUT_FILE" || true)
+# Create Lua filter to extract URLs
+EXTRACT_LUA="$TEMP_DIR/extract_urls.lua"
+cat > "$EXTRACT_LUA" << 'EOF'
+function Image(el)
+  if string.match(el.src, "^http") then
+    io.stderr:write("URL: " .. el.src .. "\n")
+  end
+end
+EOF
+
+# Extract all image URLs using Pandoc (more reliable than grep)
+echo "Extracting URLs with Pandoc..."
+# Capture stderr, filter for our URL prefix
+pandoc --lua-filter="$EXTRACT_LUA" "$INPUT_FILE" -o /dev/null 2> "$TEMP_DIR/urls.txt" || true
+IMAGE_URLS=$(grep "^URL: " "$TEMP_DIR/urls.txt" | sed 's/^URL: //' || true)
 
 counter=1
 declare -A url_map
@@ -261,33 +274,32 @@ if [ ${#failed_images[@]} -gt 0 ]; then
     exit 1
 fi
 
-# Replace image references with temp directory paths in the markdown file
-echo "Updating image references in markdown..."
+# Create Lua replacement filter
+REPLACE_LUA="$TEMP_DIR/replace_images.lua"
+echo "Creating Lua replacement filter..."
+
+cat > "$REPLACE_LUA" << 'EOF'
+local url_map = {
+EOF
+
 for url in "${!final_url_map[@]}"; do
     pdf_path="${final_url_map[$url]}"
-    echo "  Replacing: $url -> $pdf_path"
-    # Use perl with # as delimiter to avoid issues with / in paths
-    # \Q...\E quotes all regex metacharacters in the URL
-    perl -pi -e "s#\Q$url\E#$pdf_path#g" "$TEMP_MD"
+    # Escape quotes and backslashes for Lua string
+    safe_url=$(echo -n "$url" | sed 's/\\/\\\\/g; s/"/\\"/g')
+    safe_path=$(echo -n "$pdf_path" | sed 's/\\/\\\\/g; s/"/\\"/g')
+    echo "  [\"$safe_url\"] = \"$safe_path\"," >> "$REPLACE_LUA"
 done
 
-# Debug: Check what image references remain in the markdown
-echo "Checking for remaining http URLs in markdown..."
-remaining_urls=$(grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | grep '^http' || true)
-if [[ -z "$remaining_urls" ]]; then
-    echo "  No http URLs found (good!)"
-else
-    echo "  WARNING: Found remaining http URLs:"
-    echo "$remaining_urls"
-fi
+cat >> "$REPLACE_LUA" << 'EOF'
+}
 
-# Debug: Show what image paths ARE in the markdown
-echo "Image paths in markdown:"
-grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | head -5
-
-# Debug: Show total count of image references
-total_images=$(grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$TEMP_MD" | wc -l)
-echo "Total image references: $total_images"
+function Image(el)
+  if url_map[el.src] then
+    el.src = url_map[el.src]
+    return el
+  end
+end
+EOF
 
 echo "Converting Markdown to PDF with Pandoc..."
 
@@ -394,6 +406,7 @@ sed -i "s/FOOTERPLACEHOLDER/$ESCAPED_FOOTER/g" "$LATEX_HEADER"
 # Convert to PDF using Pandoc with LaTeX
 pandoc "$TEMP_MD" \
     -o "$OUTPUT_FILE" \
+    --lua-filter="$REPLACE_LUA" \
     --pdf-engine=xelatex \
     --shift-heading-level-by=-1 \
     -V geometry:margin=1in \
