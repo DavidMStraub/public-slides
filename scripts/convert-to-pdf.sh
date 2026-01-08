@@ -5,6 +5,9 @@
 
 set -e
 
+# Clear Pandoc's cache to avoid stale references
+rm -rf "${XDG_CACHE_HOME:-$HOME/.cache}/pandoc" 2>/dev/null || true
+
 # Check if required tools are installed
 command -v pandoc >/dev/null 2>&1 || { echo "Error: pandoc is required but not installed."; exit 1; }
 command -v inkscape >/dev/null 2>&1 || command -v rsvg-convert >/dev/null 2>&1 || { echo "Error: inkscape or rsvg-convert is required but not installed."; exit 1; }
@@ -372,6 +375,7 @@ ESCAPED_FOOTER=$(echo "$FOOTER" | sed 's/[\/&]/\\&/g')
 sed -i "s/FOOTERPLACEHOLDER/$ESCAPED_FOOTER/g" "$LATEX_HEADER"
 
 # Convert to PDF using Pandoc with LaTeX
+# Disable Pandoc's automatic resource downloading
 pandoc "$TEMP_MD" \
     -o "$OUTPUT_FILE" \
     --pdf-engine=xelatex \
@@ -381,6 +385,7 @@ pandoc "$TEMP_MD" \
     -V fontsize=11pt \
     --include-in-header="$LATEX_HEADER" \
     --highlight-style=tango \
+    --resource-path="$PANDOC_IMAGES_DIR" \
     2>&1 | tee /tmp/pandoc_output.log
 
 # Check if PDF was actually created
