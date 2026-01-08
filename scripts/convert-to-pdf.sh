@@ -20,9 +20,12 @@ TEMP_MD="$TEMP_DIR/temp.md"
 CACHE_DIR="${HOME}/.cache/public-slides-images"
 if mkdir -p "$CACHE_DIR" 2>/dev/null && [[ -w "$CACHE_DIR" ]]; then
     IMAGES_DIR="$CACHE_DIR"
+    cache_file_count=$(ls -1 "$CACHE_DIR" 2>/dev/null | wc -l)
+    echo "Using cache directory: $CACHE_DIR ($cache_file_count files cached)"
 else
     IMAGES_DIR="$TEMP_DIR/images"
     mkdir -p "$IMAGES_DIR"
+    echo "Using temporary directory: $IMAGES_DIR (cache not available)"
 fi
 
 # Get the directory of the input file for resolving relative paths
@@ -196,19 +199,29 @@ while IFS= read -r url; do
     fi
 done <<< "$IMAGE_URLS"
 
+echo "Copying images to Pandoc working directory..."
 # Copy all images to temp directory for Pandoc (it can't access files outside its working dir)
 PANDOC_IMAGES_DIR="$TEMP_DIR/images"
 mkdir -p "$PANDOC_IMAGES_DIR"
 declare -A final_url_map
+image_count=0
 for url in "${!url_map[@]}"; do
     source_file="${url_map[$url]}"
     filename=$(basename "$source_file")
     dest_file="$PANDOC_IMAGES_DIR/$filename"
-    cp "$source_file" "$dest_file"
-    final_url_map["$url"]="$dest_file"
+    if [[ -f "$source_file" ]]; then
+        cp "$source_file" "$dest_file"
+        final_url_map["$url"]="$dest_file"
+        image_count=$((image_count + 1))
+        echo "  Copied: $filename ($(stat -c%s "$dest_file" 2>/dev/null || stat -f%z "$dest_file" 2>/dev/null) bytes)"
+    else
+        echo "  WARNING: Source file not found: $source_file"
+    fi
 done
+echo "Copied $image_count images to $PANDOC_IMAGES_DIR"
 
 # Replace image references with temp directory paths in the markdown file
+echo "Updating image references in markdown..."
 for url in "${!final_url_map[@]}"; do
     pdf_path="${final_url_map[$url]}"
     # Escape special characters for sed

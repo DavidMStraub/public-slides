@@ -69,9 +69,9 @@ jobs:
           # Create image cache directory
           mkdir -p ~/.cache/public-slides-images
           
-          # Convert all markdown files to PDF
+          # Convert all markdown files to PDF (excluding README and LICENSE)
           for file in *.md; do
-            if [ -f "$file" ]; then
+            if [ -f "$file" ] && [ "$file" != "README.md" ] && [ "$file" != "LICENSE.md" ]; then
               echo "Converting $file to PDF..."
               ./scripts/convert-to-pdf.sh "$file" || echo "Warning: Failed to convert $file"
             fi
