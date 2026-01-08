@@ -539,9 +539,11 @@ print(f"{percent:.1%}")
 Schreibe ein Python-Skript, das persönliche Daten verarbeitet:
 
 **Gegeben:**
+
 - Name, Geburtsjahr, Größe (cm), Gewicht (kg)
 
 **Berechne und gib aus:**
+
 - Alter (aktuelles Jahr: 2025)
 - BMI (Gewicht / (Größe in m)²)
 - Personendaten als formatierte f-Strings
@@ -551,6 +553,7 @@ Schreibe ein Python-Skript, das persönliche Daten verarbeitet:
 ### Kontrollstrukturen: Übersicht
 
 **Was sind Kontrollstrukturen?**
+
 - Mechanismen zur Steuerung des Programmflusses
 - Bestimmen die Reihenfolge der Befehlsausführung
 - Ermöglichen komplexe Programmlogik
@@ -564,6 +567,7 @@ Schreibe ein Python-Skript, das persönliche Daten verarbeitet:
 ### Verzweigungen
 
 **Konzept:**
+
 - Programme müssen Entscheidungen treffen
 - Verschiedene Pfade basierend auf Bedingungen
 - Ermöglicht adaptive und intelligente Programme
@@ -636,12 +640,15 @@ else:
 Schreibe ein Python-Programm um zu entscheiden, ob eine Rakete starten darf.
 
 **Eingaben:**
+
 - Treibstoff (%), Temperatur (°C), Crew (ja/nein), Wetter
 
 **Startbedingungen:**
+
 - Treibstoff ≥ 70%, Temperatur < 100°C, Crew bereit, Wetter ≠ "storm"
 
 **Ausgabe:**
+
 - ✅ "🚀 Startfreigabe erteilt!" oder ❌ "Start abgebrochen!" + Grund
 
 ![bg right:30%](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/SpaceX_Starship_ignition_during_IFT-5.jpg/960px-SpaceX_Starship_ignition_during_IFT-5.jpg)
@@ -713,6 +720,7 @@ def funktionsname(parameter1, parameter2):
 ```
 
 **Aufbau:**
+
 - `def` - Schlüsselwort für Funktionsdefinition
 - `funktionsname` - Aussagekräftiger Name (snake_case 🐍)
 - `()` - Parameter in runden Klammern
@@ -954,11 +962,13 @@ Zwei Typen von Schleifen:
 
 
 **Was ist eine `while`-Schleife?**
+
 - Wiederholt Code solange eine Bedingung wahr ist
 - Anzahl Wiederholungen ist vorher unbekannt
 - Prüft Bedingung vor jedem Durchlauf
 
 **Typische Anwendungsfälle:**
+
 - **Benutzereingaben**: Solange bis gültige Eingabe
 - **Konvergenz**: Bis gewünschte Genauigkeit erreicht
 - **Suche**: Bis Element gefunden oder Ende erreicht
@@ -1066,6 +1076,7 @@ Entwirf eine Regelung, die eine Geschwindigkeit `v` auf `v_target` bringt.
 - Durchlaufen sequenziell alle Elemente
 
 **Typische Anwendungsfälle:**
+
 - **Feste Anzahl Wiederholungen**: z.B. 10× etwas ausführen
 - **Berechnung über Sequenzen**: Summen, Mittelwerte, Transformationen
 - **Über Sammlungen iterieren**: Siehe Kapitel Datenstrukturen
@@ -1197,6 +1208,7 @@ Schreibe eine Funktion, die die Quersumme einer positiven Ganzzahl berechnet.
 | **Beispiel:** `def quadrat(x)` | **Beispiel:** Taschenrechner |
 
 **Faustregel:**
+
 - Wird es **mehrfach verwendet**? → Funktion
 - Ist es ein **eigenständiges Programm**? → Skript
 
@@ -1213,6 +1225,7 @@ def funktionsname(parameter1, parameter2):
 ```
 
 **Fragen:**
+
 - Welche Eingabewerte? → Parameter
 - Was zurückgeben? → `return`
 - Welche Datentypen?
@@ -1462,6 +1475,7 @@ temperaturen = [15.2, 16.8, 14.5, 18.3, 17.1, 16.9, 15.8]
 - Kann **verschiedene Datentypen** enthalten
 
 **Verwendung:**
+
 - Daten, die nicht geändert werden sollen
 - Rückgabe mehrerer Werte aus Funktionen
 - Dictionary-Keys (Listen nicht möglich!)
@@ -1527,11 +1541,13 @@ print(punkt)
 ### Tupel vs. Listen: Wann was?
 
 **Listen verwenden:**
+
 - Daten, die sich ändern können
 - Sammlung gleichartiger Elemente
 - Wenn Reihenfolge wichtig und veränderbar ist
 
 **Tupel verwenden:**
+
 - Daten, die konstant bleiben sollen
 - Unterschiedliche Datentypen gruppieren (z.B. x, y, z)
 - Rückgabe mehrerer Werte aus Funktionen
@@ -1564,6 +1580,7 @@ print(f"Fläche: {a:.2f}, Umfang: {u:.2f}")
 - Keys müssen **eindeutig** und **unveränderbar** sein (z.B. Strings, Zahlen, Tupel)
 
 **Verwendung:**
+
 - Strukturierte Daten (z.B. Eigenschaften eines Objekts)
 - Schnelles Nachschlagen von Werten
 - Konfigurationen
@@ -1676,6 +1693,7 @@ text = "Python ist toll Python macht Spass toll toll"
 - **Keine Duplikate**: Jedes Element kommt nur einmal vor
 
 **Verwendung:**
+
 - Duplikate entfernen
 - Mengenoperationen (Vereinigung, Schnitt, Differenz)
 
@@ -1715,15 +1733,18 @@ print(sortiert_eindeutig)
 ### Wann Sets verwenden?
 
 **Sets verwenden:**
+
 - Duplikate entfernen
 - Schnelle Mitgliedschaftstests
 - Mengenoperationen (Vereinigung, Schnitt, Differenz)
 
 **Listen verwenden:**
+
 - Reihenfolge wichtig
 - Duplikate erlaubt
 
 **Dictionaries verwenden:**
+
 - Key-Value-Zuordnungen
 
 ## NumPy-Arrays
@@ -1733,6 +1754,7 @@ print(sortiert_eindeutig)
 **NumPy** (Numerical Python) ist die Standardbibliothek für numerische Berechnungen in Python.
 
 **NumPy-Arrays:**
+
 - Effiziente mehrdimensionale Arrays
 - Viel schneller als Python-Listen für numerische Operationen
 - Vektorisierte Operationen (keine Schleifen nötig!)
@@ -1876,6 +1898,7 @@ fluege = {
 - **Ersatzteillager** = Module/Bibliotheken
 
 **Vorteile:**
+
 - Code wiederverwendbar
 - Getestet und optimiert
 - Zeit sparen!
@@ -1894,6 +1917,7 @@ def seemeilen_zu_km(seemeilen):
 Das ist ein Modul! Es kann in anderen Programmen wiederverwendet werden.
 
 **Module ermöglichen:**
+
 - Strukturierung großer Programme
 - Wiederverwendung von Code
 - Zusammenarbeit im Team
@@ -2143,6 +2167,7 @@ Die Python-Community hat Tausende spezialisierte Module entwickelt:
 - Wird mit Python mitgeliefert (seit Python 3.4)
 
 **Analogie:**
+
 - **App Store** für Smartphones = **PyPI** für Python
 - **App-Installation** = **pip install**
 
@@ -2232,6 +2257,7 @@ if __name__ == "__main__":
 ```
 
 **Verwendung:**
+
 - `python test_modul.py` → Tests werden ausgeführt
 - `import test_modul` → Nur Funktion verfügbar, keine Ausgabe
 
@@ -2277,6 +2303,7 @@ Zwei *sprachunabhängige* Werkzeuge zur Planung von Algorithmen
 **Definition**: Eine eindeutige, schrittweise Handlungsvorschrift zur Lösung eines Problems
 
 **Eigenschaften:**
+
 - **Endlich**: Beschreibung hat endliche Länge
 - **Ausführbar**: Jeder Schritt ist durchführbar
 - **Determiniert**: Jeder Schritt ist eindeutig festgelegt
@@ -2314,11 +2341,13 @@ algorithmus finde_maximum(liste):
 ### Warum erst Pseudocode?
 
 **Das Problem beim Programmieren:**
+
 - Zwei Herausforderungen vermischen sich:
     1. **Was** soll der Algorithmus tun? (Logik)
     2. **Wie** schreibe ich das in Python? (Syntax)
 
 **Trennung der Probleme**
+
 - Pseudocode = **Denkwerkzeug** für die Planung
 - Erst die Logik klären, dann in Code umsetzen
 - Sprachunabhängig: funktioniert für alle Programmiersprachen
@@ -2329,6 +2358,7 @@ algorithmus finde_maximum(liste):
 **Pseudocode** = Zwischenschritt zwischen Alltagssprache und Programmcode
 
 **Eigenschaften:**
+
 - **Keine festen Regeln!** Jeder kann seinen eigenen Stil entwickeln
 - Fokus auf die **Logik**, nicht auf Syntax-Details
 - Auch auf Deutsch bzw. in der eigenen Sprache
@@ -2623,11 +2653,13 @@ def ist_prim(zahl):
 ### Zusammenfassung
 
 **Pseudocode:**
+
 - Werkzeug zum Planen: *Erst denken, dann coden!*
 - Keine festen Regeln, aber strukturiert
 - Hilft, die Logik zu klären
 
 **Struktogramme:**
+
 - Grafische Darstellung von Algorithmen
 - Drei Grundstrukturen: Sequenz, Verzweigung, Wiederholung
 - Nassi-Shneiderman-Notation
@@ -2637,6 +2669,7 @@ def ist_prim(zahl):
 ### Überblick: Strings in der Praxis
 
 **Wiederholung aus Kapitel 2:**
+
 - Strings mit `"..."`, `'...'` oder `"""..."""` erstellen
 - f-Strings für Formatierung: `f"{variable}"`, `f"{wert:.2f}"`
 - Unicode-Unterstützung `"🤩"`, Escape Sequences `"\n"`, `"\t"`, `"\\"`, `"\""`, `"\'"`
@@ -3049,6 +3082,7 @@ for name, alter, note in studenten:
 ### Caesar-Verschlüsselung: Einführung
 
 **Historischer Kontext:**
+
 - Von Julius Caesar verwendet (100-44 v. Chr.)
 - Einfache Substitutions-Verschlüsselung
 - Jeder Buchstabe wird um n Positionen verschoben
@@ -3075,6 +3109,7 @@ D E F G H I J ... A B C
    - Wandle zurück in Buchstaben
 
 **Beispiel (Verschiebung = 3):**
+
 - H → Position 7 → 7+3=10 → K
 - A → Position 0 → 0+3=3 → D
 - L → Position 11 → 11+3=14 → O
@@ -3085,6 +3120,7 @@ D E F G H I J ... A B C
 Schreibe eine Funktion `caesar_verschluesseln(text, verschiebung)`, die einen Text verschlüsselt.
 
 **Anforderungen:**
+
 - Wandle Text in Großbuchstaben um
 - Verschiebe jeden Buchstaben um `verschiebung` Positionen
 - Verwende Modulo 26 für Überlauf (Z+1 = A)
@@ -3122,6 +3158,7 @@ print(klartext)  # HALLO WELT
 Schreibe eine Funktion `caesar_brechen(geheimtext)`, die alle 26 möglichen Verschiebungen ausprobiert.
 
 **Anforderungen:**
+
 - Probiere Verschiebungen von 0 bis 25
 - Gib für jede Verschiebung das Ergebnis aus
 - Format: `"Verschiebung  3: HALLO WELT"`
@@ -3132,10 +3169,12 @@ Schreibe eine Funktion `caesar_brechen(geheimtext)`, die alle 26 möglichen Vers
 ### Zusammenfassung: Arbeiten mit Zeichenketten
 
 **String-Grundlagen:**
+
 - Indizierung, Slicing, Iteration
 - Strings sind unveränderbar
 
 **Wichtige Methoden:**
+
 - Groß-/Kleinschreibung: `upper()`, `lower()`
 - Bereinigung: `strip()`, `replace()`
 - Zerlegen/Verbinden: `split()`, `join()`
@@ -3168,6 +3207,7 @@ satz = "Leise rieselt der Schnee"
 **matplotlib** ist die Standard-Bibliothek für Datenvisualisierung in Python.
 
 **Hauptmerkmale:**
+
 - Erstellen von Plots, Diagrammen, Grafiken
 - Publikationsreife Qualität
 - Hochgradig anpassbar
@@ -3197,11 +3237,13 @@ plt.show()
 ### Mehr zu `plt.show()`
 
 **In Python-Skripten (Terminal):**
+
 - `plt.show()` ist **erforderlich**
 - Öffnet den Plot in einem neuen Fenster
 - Programm wartet, bis Fenster geschlossen wird
 
 **In Jupyter Notebooks:**
+
 - `plt.show()` ist **nicht nötig**
 - Plots werden automatisch angezeigt
 
@@ -3448,13 +3490,16 @@ print(fahrenheit)
 ### Wann List Comprehensions verwenden?
 
 **Vorteile:**
+
 - Kompakter und lesbarer Code
 
 **Verwenden für:**
+
 - Einfache Transformationen
 - Abbildungen (mapping)
 
 **Vermeiden wenn:**
+
 - Zu komplex
 - Nebeneffekte nötig (z.B. `print()`)
 - Mehrere Schritte pro Element
@@ -3544,6 +3589,7 @@ plt.plot([x1, x2], [y1, y2], 'ro', markersize=10, label='Nullstellen')
 ```
 
 **Wichtig:**
+
 - Zweiter `plot()`-Aufruf mit nur den Punktkoordinaten
 - Größere Marker mit `markersize` Parameter
 - Andere Farbe zur Unterscheidung
@@ -3557,6 +3603,7 @@ Erstellen Sie einen Plot mit drei mathematischen Funktionen für x-Werte von 0 b
 3. Kubisch: $h(x) = 0.1x^3$
 
 **Anforderungen:**
+
 - Verwenden Sie List Comprehensions für die y-Werte
 - Verschiedene Farben und Linien-Stile
 - Titel und Achsenbeschriftungen
@@ -3577,6 +3624,7 @@ Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 ### Zusammenfassung: matplotlib-Grundlagen
 
 **Wichtigste Funktionen:**
+
 - `plt.plot(x, y)` – Linie zeichnen
 - `plt.title()` – Titel setzen
 - `plt.xlabel()`, `plt.ylabel()` – Achsen beschriften
@@ -3584,6 +3632,7 @@ Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 - `plt.show()` – Plot anzeigen
 
 **Stile:**
+
 - Linien: `'-'`, `'--'`, `'-.'`, `':'`
 - Marker: `'o'`, `'s'`, `'^'`, `'*'`, `'+'`, `'x'`
 - Farben: `'r'`, `'g'`, `'b'`, `'c'`, `'m'`, `'y'`, `'k'` oder Namen
@@ -3595,6 +3644,7 @@ Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 ### Überblick: Zahlensysteme
 
 **Warum ist dieses Thema wichtig?**
+
 - Computer arbeiten intern mit Binärzahlen (0 und 1)
 - Verständnis der Zahlenrepräsentation erleichtert Programmieren und Fehlersuche
 - Beeinflusst Speicherbedarf, Rechengeschwindigkeit und Effizienz von Programmen
@@ -3625,11 +3675,13 @@ Plotten Sie die Funktion $f(x) = x^2 - 4$ für x-Werte von -3 bis 3.
 ### Warum Bits und Bytes?
 
 **Historische Entwicklung:**
+
 - Frühe Computer: verschiedene Wortgrößen (4, 6, 7 Bits)
 - 8-Bit-Byte setzte sich als Standard durch
 - Praktisch für Zeichenkodierung (ASCII: 7 Bit, erweitert 8 Bit)
 
 **Moderne Bedeutung:**
+
 - Prozessoren arbeiten mit Wortgrößen von 32 oder 64 Bit
 - Speicher wird in Bytes adressiert
 - Datentypen haben feste Größen in Bytes:
@@ -3707,6 +3759,7 @@ print(f"1 TB = {gibibytes:.2f} GiB")  # ~931 GiB
 **Deshalb:** Eine "1 TB" Festplatte zeigt im Betriebssystem nur ~931 GB an!
 
 **Aktueller Standard:**
+
 - Festplatten-Hersteller: SI-Präfixe (Dezimal)
 - Betriebssysteme: oft noch Binär, zeigen aber "GB" an
 - IEC-Standard: KiB, MiB, GiB für Binärpräfixe (wird immer mehr verwendet)
@@ -3754,6 +3807,7 @@ $$\text{Zahl} = d_n \cdot b^n + d_{n-1} \cdot b^{n-1} + \ldots + d_1 \cdot b^1 +
 ### Dezimalsystem (Basis 10)
 
 **Unser Alltags-Zahlensystem**
+
 - Basis: $b = 10$
 - Ziffern: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 
@@ -3771,6 +3825,7 @@ $$5347_{10} = 5 \cdot 10^3 + 3 \cdot 10^2 + 4 \cdot 10^1 + 7 \cdot 10^0$$
 ### Binärsystem (Basis 2)
 
 **Die Sprache der Computer**
+
 - Basis: $b = 2$
 - Ziffern: 0, 1
 
@@ -3788,6 +3843,7 @@ $$1011_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = 11_{10}$$
 ### Hexadezimalsystem (Basis 16)
 
 **Kompakte Darstellung für Binärzahlen**
+
 - Basis: $b = 16$
 - Ziffern: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
 - A=10, B=11, C=12, D=13, E=14, F=15
@@ -3884,6 +3940,7 @@ $$2 \times 16^2 + 15 \times 16^1 + 3 \times 16^0 = 512 + 240 + 3 = 755$$
 **Methode:** Wiederholte Division mit Rest
 
 **Beispiel: 42 → Binär**
+
 - $42 \div 2 = 21$ Rest $0$
 - $21 \div 2 = 10$ Rest $1$
 - $10 \div 2 = 5$ Rest $0$
@@ -3898,6 +3955,7 @@ $$2 \times 16^2 + 15 \times 16^1 + 3 \times 16^0 = 512 + 240 + 3 = 755$$
 **Methode:** Wiederholte Division mit Rest (wie bei Binär)
 
 **Beispiel: 755 → Hexadezimal**
+
 - $755 \div 16 = 47$ Rest $3$ → Ziffer: 3
 - $47 \div 16 = 2$ Rest $15$ → Ziffer: F (15 = F)
 - $2 \div 16 = 0$ Rest $2$ → Ziffer: 2
@@ -3961,6 +4019,7 @@ $$2 \times 16^2 + 15 \times 16^1 + 3 \times 16^0 = 512 + 240 + 3 = 755$$
 **Wie speichert der Computer Dezimalzahlen?**
 
 **Problem:**
+
 - Ganzzahlen: exakte Darstellung möglich
 - Dezimalzahlen: unendlich viele mögliche Werte zwischen zwei Ganzzahlen!
 - Speicher ist begrenzt (32 oder 64 Bit)
@@ -3992,6 +4051,7 @@ $$= 1 + 0.5 + 0.125 = 1.625_{10}$$
 **Methode:** Multiplikation mit Basis (statt Division)
 
 **Beispiel: $0.75_{10}$ in Binär**
+
 - $0.75 \times 2 = 1.5$ → Ziffer: 1, Rest: 0.5
 - $0.5 \times 2 = 1.0$ → Ziffer: 1, Rest: 0.0
 - **Ergebnis:** $0.75_{10} = 0.11_2$
@@ -4004,6 +4064,7 @@ $$= 1 + 0.5 + 0.125 = 1.625_{10}$$
 ### Beispiel: 0.1 im Binärsystem
 
 **Umrechnung $0.1_{10}$ → Binär (Multiplikationsmethode):**
+
 - $0.1 \times 2 = 0.2$ → Ganzzahlteil: 0, Rest: 0.2
 - $0.2 \times 2 = 0.4$ → Ganzzahlteil: 0, Rest: 0.4
 - $0.4 \times 2 = 0.8$ → Ganzzahlteil: 0, Rest: 0.8
@@ -4030,6 +4091,7 @@ $$= 0.0625 + 0.03125 + 0.0078125 + ... \approx 0.09999999...$$
 **Format:** $\pm 1.\text{Mantisse} \times 2^{\text{Exponent}}$ (normalisierte Form)
 
 **Beispiel: 0.75**
+
 - Dezimal: $0.75_{10}$
 - Binär: $0.11_2 = 1.1_2 \times 2^{-1}$ (normalisiert)
 - Vorzeichen: 0 (positiv)
@@ -4047,6 +4109,7 @@ print(0.1 + 0.1 + 0.1 == 0.3) # False
 ```
 
 **Warum?**
+
 - $0.1_{10}$ hat unendlich viele Nachkommastellen im Binärsystem!
 - $0.1_{10} = 0.0\overline{0011}_2$ (periodisch)
 - Wird nach 52 Bit abgeschnitten → Rundungsfehler
@@ -4080,6 +4143,7 @@ print(math.isnan(y))          # True
 ### Gleitkommazahlen: Extreme Werte
 
 **Wertebereich von `float` (64-Bit):**
+
 - Größte Zahl: ca. $1.8 \times 10^{308}$
 - Kleinste positive Zahl: ca. $2.2 \times 10^{-308}$
 - Präzision: ca. 15–17 Dezimalstellen
@@ -4165,6 +4229,7 @@ print(f"Effektivwert: {berechne_effektivwert(signal_amplitude):.2f}")
 - **Methoden** sind die Funktionen, die auf Instanzen operieren
 
 **Beispiel Signal:**
+
 - Klasse `Signal`: Definiert, was ein Signal ist und kann
 - Instanz: Ein konkretes Signal mit Amplitude 5V, Frequenz 50Hz
 - Attribute: `amplitude`, `frequenz`, `phase`
@@ -4207,6 +4272,7 @@ nachricht = gruss("Anna")
 ```
 
 **Genauso bei Klassen:**
+
 - **Klassendefinition**: Legt fest, WAS ein Objekt können soll
 - **Instanzerstellung**: ERSTELLT ein konkretes Objekt
 - **Methodenaufruf**: BENUTZT die Methode eines Objekts
@@ -4224,6 +4290,7 @@ print(type(signal1))  # <class '__main__.Signal'>
 ```
 
 **Wichtig:**
+
 - `class Signal:` = Definition (wie `def` bei Funktionen)
 - `Signal()` = Aufruf, erstellt eine Instanz
 - `signal1` = Variable, die auf die Instanz zeigt
@@ -4447,12 +4514,14 @@ print(sensor2.max_abtastrate)  # 1000 (gleich)
 ### Wann verwendet man Klassen?
 
 **✅ Sinnvoll:**
+
 - Zusammengehörige Daten mit Verhalten/Methoden
 - Mehrere ähnliche Objekte benötigt
 - Zustand muss über mehrere Operationen erhalten bleiben
 - Strukturierte Datencontainer (statt Tupel/Dictionaries)
 
 **❌ Weniger sinnvoll:**
+
 - Einfache Berechnungen ohne Zustand → einfache Funktionen
 - Zustandslose Funktionen → Funktionen oder Modul
 - Einmalige Datensammlung → Dictionary oder Tupel
@@ -4460,12 +4529,14 @@ print(sensor2.max_abtastrate)  # 1000 (gleich)
 ### Zusammenfassung: Klassen
 
 **Grundkonzepte:**
+
 - **Klasse** = Benutzerdefinierter Datentyp (`class`)
 - **Instanz** = Konkretes Objekt (`Klassenname()`)
 - **Attribute** = Daten (`self.attribut`)
 - **Methoden** = Funktionen (`def methode(self, ...)`)
 
 **Wichtige Methoden:**
+
 - `__init__(self, ...)` – Konstruktor
 - `__str__(self)` – String-Darstellung
 
@@ -4520,10 +4591,12 @@ Die wichtigste Bibliothek für numerisches Rechnen in Python.
 ### Arrays vs. Listen
 
 **Listen:**
+
 - Flexibel: verschiedene Datentypen möglich
 - Langsam für numerische Berechnungen
 
 **NumPy-Arrays:**
+
 - Nur ein Datentyp (z.B. nur Zahlen)
 - In C implementiert → sehr schnell
 - Natürliche Syntax für mathematische Operationen
@@ -4757,12 +4830,14 @@ print(f"Speedup: {zeit_for/zeit_numpy:.0f}x schneller")
 ### Zusammenfassung: NumPy
 
 **Wichtigste Funktionen:**
+
 - `np.array()` - Array erstellen
 - `np.linspace(start, stop, num)` - Werte für Plots
 - `np.sin()`, `np.cos()`, `np.exp()` - Math. Funktionen
 - `np.dot()`, `np.cross()` - Vektoroperationen
 
 **Warum NumPy?**
+
 - Kompakter, lesbarer Code
 - 10-100x schneller als Listen
 - Standard im Ingenieurwesen

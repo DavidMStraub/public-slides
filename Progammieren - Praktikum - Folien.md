@@ -30,15 +30,15 @@ David Straub
 
 ### Gliederung
 
-- [1. Termin](#1-termin)
-- [2. Termin](#2-termin)
-- [3. Termin](#3-termin)
-- [4. Termin](#4-termin)
-- [5. Termin](#5-termin)
-- [6. Termin](#6-termin)
+- [Termin 1](#termin-1)
+- [Termin 2](#termin-2)
+- [Termin 3](#termin-3)
+- [Termin 4](#termin-4)
+- [Termin 5](#termin-5)
+- [Termin 6](#termin-6)
 
 
-## 1. Termin
+## Termin 1
 
 
 ### Datentypen
@@ -127,7 +127,7 @@ Schreiben Sie ein Programm, das die Schwebedauer des Multicopters in Abhängigke
 ![bg right:30%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Quadcopter_Drone_in_flight.jpg/1024px-Quadcopter_Drone_in_flight.jpg)
 
 
-## 2. Termin
+## Termin 2
 
 ### Aufgabe: Gleitstreckenberechnung
 
@@ -155,7 +155,7 @@ def test_negative_starthoehe():
 - Der Gleitwinkel $\theta$ kann mit der Formel $\tan(\theta) = \frac{\text{Höhenverlust}}{\text{Flugstrecke}}$ berechnet werden.
 - Passen Sie die Ausgabe-Funktion an, um auch den Gleitwinkel auszugeben.
 
-## 3. Termin
+## Termin 3
 
 
 ### Aufgabe: Primzahlbestimmung Teil 1
@@ -189,7 +189,7 @@ Beispiel: Zwischen 2, 3, 5, 7 → Differenzen: `[1, 2, 2]`.
 - Primzahlzwillinge: Finden Sie alle Primzahlzwillinge (Paare von Primzahlen, die genau 2 auseinanderliegen, z. B. (3,5), (5,7), (11,13)) bis `n`.
 
 
-## 4. Termin
+## Termin 4
 
 
 ### Würfelspiel-Simulator
@@ -299,7 +299,7 @@ Berechnen Sie für jede Strategie: Wie oft (in Prozent) wird in einer Runde eine
 Erweitern Sie `spiele_runde()` so, dass bei gesetztem optionalen Parameter `debug=True` jeder einzelne Wurf ausgegeben wird, z.B.: "Wurf 1: 4, Wurf 2: 6, Wurf 3: 1 → Runde verloren!"
 
 
-## 5. Termin
+## Termin 5
 
 ### Aufgabe: Visualisierung von Wechselstromgrößen
 
@@ -375,7 +375,7 @@ Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
 
 **Zusatz 3**: Schreiben Sie eine Funktion `plot_phasenverschiebung(phi_grad)`, die Spannung und Strom für eine beliebige Phasenverschiebung in Grad plottet. Testen Sie mit verschiedenen Werten.
 
-## 6. Termin
+## Termin 6
 
 ### 🎄 Advent of Code
 
@@ -384,6 +384,7 @@ Erstellen Sie einen Plot für einen **Kondensator** ($\varphi = +\pi/2$):
 **Aufgabe:** Lösen Sie [Day 1](https://adventofcode.com/2025/day/1) in Python und **zeigen Sie mir Ihren Code**.
 
 **Regeln:**
+
 - ❌ **Keine KI-Tools** (ChatGPT, Copilot, etc.)
 - ✅ Dokumentation, Google, gegenseitige Hilfe erlaubt
 
