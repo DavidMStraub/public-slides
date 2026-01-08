@@ -46,6 +46,7 @@ IMAGE_URLS=$(grep -oP '!\[.*?\]\(\K[^)]+(?=\))' "$INPUT_FILE" || true)
 
 counter=1
 declare -A url_map
+failed_images=()
 
 while IFS= read -r url; do
     [[ -z "$url" ]] && continue
@@ -106,7 +107,8 @@ while IFS= read -r url; do
         fi
         
         if [[ $download_success == false ]]; then
-            echo "  -> Failed to download after $max_retries attempts"
+            echo "  -> ERROR: Failed to download after $max_retries attempts"
+            failed_images+=("$url")
             continue
         fi
         
@@ -198,6 +200,20 @@ while IFS= read -r url; do
         fi
     fi
 done <<< "$IMAGE_URLS"
+
+# Check if any images failed to download
+if [ ${#failed_images[@]} -gt 0 ]; then
+    echo ""
+    echo "=========================================="
+    echo "ERROR: Failed to download ${#failed_images[@]} image(s):"
+    for failed_url in "${failed_images[@]}"; do
+        echo "  - $failed_url"
+    done
+    echo "=========================================="
+    echo "Cannot create PDF with missing images. Skipping this file."
+    rm -rf "$TEMP_DIR"
+    exit 1  # Fail this conversion but let workflow continue with other files
+fi
 
 echo "Copying images to Pandoc working directory..."
 # Copy all images to temp directory for Pandoc (it can't access files outside its working dir)

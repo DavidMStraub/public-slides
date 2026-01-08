@@ -78,6 +78,13 @@ jobs:
           done
         continue-on-error: true
 
+      - name: Save image cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: ~/.cache/public-slides-images
+          key: ${{ runner.os }}-images-${{ hashFiles('**/*.md') }}-${{ github.run_id }}
+
       - name: Generate Index
         run: |
           chmod +x scripts/create-index.sh
