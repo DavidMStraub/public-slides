@@ -15,9 +15,15 @@ INPUT_FILE="${1:-Programmieren - Folien.md}"
 OUTPUT_FILE="${INPUT_FILE%.md}.pdf"
 TEMP_DIR=$(mktemp -d)
 TEMP_MD="$TEMP_DIR/temp.md"
-IMAGES_DIR="$TEMP_DIR/images"
 
-mkdir -p "$IMAGES_DIR"
+# Use cache directory for images if available, otherwise temp
+CACHE_DIR="${HOME}/.cache/public-slides-images"
+if mkdir -p "$CACHE_DIR" 2>/dev/null && [[ -w "$CACHE_DIR" ]]; then
+    IMAGES_DIR="$CACHE_DIR"
+else
+    IMAGES_DIR="$TEMP_DIR/images"
+    mkdir -p "$IMAGES_DIR"
+fi
 
 # Get the directory of the input file for resolving relative paths
 INPUT_DIR=$(dirname "$INPUT_FILE")
@@ -48,42 +54,53 @@ while IFS= read -r url; do
     ext_lower=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
     
     if [[ $url == http* ]]; then
-        # Download remote image
-        downloaded_file="$IMAGES_DIR/image_$counter.$ext"
+        # Create a hash of the URL for cache filename
+        url_hash=$(echo -n "$url" | md5sum | cut -d' ' -f1)
+        cached_file="$IMAGES_DIR/${url_hash}.${ext}"
         
-        # Try downloading with retries
-        max_retries=3
-        retry=0
-        download_success=false
-        
-        while [[ $retry -lt $max_retries ]] && [[ $download_success == false ]]; do
-            if command -v curl >/dev/null 2>&1; then
-                curl -s -L --max-time 60 --connect-timeout 10 --retry 2 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$url" -o "$downloaded_file" || true
-                file_size=0
-                if [[ -f "$downloaded_file" ]]; then
-                    file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
-                fi
-                if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
-                    download_success=true
+        # Check if file already exists in cache and is valid
+        if [[ -f "$cached_file" ]] && [[ -s "$cached_file" ]] && [[ $(stat -f%z "$cached_file" 2>/dev/null || stat -c%s "$cached_file" 2>/dev/null) -gt 100 ]]; then
+            downloaded_file="$cached_file"
+            download_success=true
+            echo "  -> Using cached file: $cached_file"
+        else
+            # Download remote image with retries
+            downloaded_file="$cached_file"
+            max_retries=3
+            retry=0
+            download_success=false
+            
+            while [[ $retry -lt $max_retries ]] && [[ $download_success == false ]]; do
+                if command -v curl >/dev/null 2>&1; then
+                    curl -s -L --max-time 60 --connect-timeout 10 --retry 2 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$url" -o "$downloaded_file" || true
+                    sleep 0.1  # Give filesystem time to sync
+                    file_size=0
+                    if [[ -f "$downloaded_file" ]]; then
+                        file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
+                    fi
+                    if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
+                        download_success=true
+                    else
+                        echo "  -> Retry $((retry + 1))/$max_retries (file_size=$file_size)"
+                        rm -f "$downloaded_file" 2>/dev/null || true
+                    fi
                 else
-                    echo "  -> Retry $((retry + 1))/$max_retries"
-                    rm -f "$downloaded_file" 2>/dev/null || true
+                    wget -q --timeout=60 --tries=3 --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" -O "$downloaded_file" "$url" || true
+                    sleep 0.1  # Give filesystem time to sync
+                    file_size=0
+                    if [[ -f "$downloaded_file" ]]; then
+                        file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
+                    fi
+                    if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
+                        download_success=true
+                    else
+                        echo "  -> Retry $((retry + 1))/$max_retries (file_size=$file_size)"
+                        rm -f "$downloaded_file" 2>/dev/null || true
+                    fi
                 fi
-            else
-                wget -q --timeout=60 --tries=3 --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" -O "$downloaded_file" "$url" || true
-                file_size=0
-                if [[ -f "$downloaded_file" ]]; then
-                    file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
-                fi
-                if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
-                    download_success=true
-                else
-                    echo "  -> Retry $((retry + 1))/$max_retries"
-                    rm -f "$downloaded_file" 2>/dev/null || true
-                fi
-            fi
-            retry=$((retry + 1))
-        done
+                retry=$((retry + 1))
+            done
+        fi
         
         if [[ $download_success == false ]]; then
             echo "  -> Failed to download after $max_retries attempts"
@@ -313,6 +330,6 @@ else
     exit 1
 fi
 
-# Clean up temporary directory
+# Clean up temporary directory (but not the cache)
 rm -rf "$TEMP_DIR"
 echo "Cleaned up temporary files"
