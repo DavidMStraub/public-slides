@@ -1128,7 +1128,7 @@ Eigenschaften:
 - Innenwiderstand $R_i = \infty$
 - Beliebige Spannung $U$ möglich
 
-![bg right:30% 70%](https://upload.wikimedia.org/wikipedia/commons/3/3a/Quelle_I-Schaltzeichen.svg)
+![bg right:30% 40%](https://upload.wikimedia.org/wikipedia/commons/b/bf/Ideale_Stromquelle.svg)
 
 ### Reale Spannungsquelle
 
