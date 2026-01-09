@@ -130,8 +130,13 @@ while IFS= read -r url; do
             
             while [[ $retry -lt $max_retries ]] && [[ $download_success == false ]]; do
                 if command -v curl >/dev/null 2>&1; then
-                    curl -s -L --max-time 60 --connect-timeout 10 --retry 2 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$url" -o "$downloaded_file" || true
-                    sleep 0.1  # Give filesystem time to sync
+                    curl -s -L --max-time 60 --connect-timeout 10 --retry 2 \
+                        -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+                        -H "Accept: image/png,image/jpeg,image/webp,image/svg+xml,image/*,*/*;q=0.8" \
+                        -H "Accept-Language: en-US,en;q=0.5" \
+                        -H "Referer: https://github.com/" \
+                        "$url" -o "$downloaded_file" || true
+                    sleep 0.5  # Be more respectful to servers
                     file_size=0
                     if [[ -f "$downloaded_file" ]]; then
                         file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
@@ -151,8 +156,13 @@ while IFS= read -r url; do
                         rm -f "$downloaded_file" 2>/dev/null || true
                     fi
                 else
-                    wget -q --timeout=60 --tries=3 --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" -O "$downloaded_file" "$url" || true
-                    sleep 0.1  # Give filesystem time to sync
+                    wget -q --timeout=60 --tries=3 \
+                        --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+                        --header="Accept: image/png,image/jpeg,image/webp,image/svg+xml,image/*,*/*;q=0.8" \
+                        --header="Accept-Language: en-US,en;q=0.5" \
+                        --header="Referer: https://github.com/" \
+                        -O "$downloaded_file" "$url" || true
+                    sleep 0.5  # Be more respectful to servers
                     file_size=0
                     if [[ -f "$downloaded_file" ]]; then
                         file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
