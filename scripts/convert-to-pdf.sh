@@ -333,14 +333,15 @@ echo "Copied $image_count images to $PANDOC_IMAGES_DIR"
 if [ ${#failed_images[@]} -gt 0 ]; then
     echo ""
     echo "=========================================="
-    echo "ERROR: Failed to prepare ${#failed_images[@]} image(s):"
+    echo "WARNING: Failed to prepare ${#failed_images[@]} image(s):"
     for failed_url in "${failed_images[@]}"; do
         echo "  - $failed_url"
     done
     echo "=========================================="
-    echo "Cannot create PDF with missing images. Skipping this file."
+    echo "Proceeding with missing images..."
+    # echo "Cannot create PDF with missing images. Skipping this file."
     # rm -rf "$TEMP_DIR"
-    exit 1
+    # exit 1
 fi
 
 # Create Lua replacement filter
