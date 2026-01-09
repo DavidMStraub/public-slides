@@ -49,6 +49,15 @@ INPUT_FILENAME=$(basename "$INPUT_FILE")
 echo "Converting: $INPUT_FILE -> $OUTPUT_FILE"
 echo "Temporary directory: $TEMP_DIR"
 
+# Create a placeholder image for missing/failed downloads
+MISSING_IMAGE="$TEMP_DIR/missing.svg"
+cat > "$MISSING_IMAGE" << 'EOF'
+<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="50" fill="#ffcccc" stroke="red" stroke-width="2"/>
+  <text x="100" y="30" font-family="Arial" font-size="14" fill="red" text-anchor="middle">Image Missing</text>
+</svg>
+EOF
+
 # Copy input file to temp location
 cp "$INPUT_FILE" "$TEMP_MD"
 
@@ -130,7 +139,9 @@ while IFS= read -r url; do
                     if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
                         mime_type=$(file --mime-type -b "$downloaded_file" 2>/dev/null || echo "application/octet-stream")
                         if [[ "$mime_type" == "text/html" ]]; then
-                             echo "  -> Error: Downloaded content is HTML (likely 403/404 page), not image"
+                             echo "  -> Error: Downloaded content is HTML (likely 403/404 page), not image. Mime: $mime_type"
+                             echo "  -> Head of content:"
+                             head -n 5 "$downloaded_file" | sed 's/^/     /'
                              rm -f "$downloaded_file" 2>/dev/null || true
                         else
                              download_success=true
@@ -166,6 +177,8 @@ while IFS= read -r url; do
         if [[ $download_success == false ]]; then
             echo "  -> ERROR: Failed to download after $max_retries attempts"
             failed_images+=("$url")
+            # Use missing image placeholder
+            url_map["$url"]="$MISSING_IMAGE"
             continue
         fi
         
@@ -282,14 +295,14 @@ done <<< "$IMAGE_URLS"
 if [ ${#failed_images[@]} -gt 0 ]; then
     echo ""
     echo "=========================================="
-    echo "ERROR: Failed to download ${#failed_images[@]} image(s):"
+    echo "WARNING: Failed to download ${#failed_images[@]} image(s):"
     for failed_url in "${failed_images[@]}"; do
         echo "  - $failed_url"
     done
     echo "=========================================="
-    echo "Cannot create PDF with missing images. Skipping this file."
-    rm -rf "$TEMP_DIR"
-    exit 1  # Fail this conversion but let workflow continue with other files
+    echo "Proceeding with missing images (will use placeholders)..."
+    # Do not exit, try to continue
+    # exit 1 
 fi
 
 echo "Copying images to Pandoc working directory..."
