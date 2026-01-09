@@ -325,13 +325,45 @@ done
 cat >> "$REPLACE_LUA" << 'EOF'
 }
 
+local filename_map = {
+EOF
+
+for url in "${!final_url_map[@]}"; do
+    pdf_path="${final_url_map[$url]}"
+    # Extract filename from URL (ignoring query params)
+    filename=$(echo "$url" | sed 's/[?#].*//' | awk -F/ '{print $NF}')
+    safe_filename=$(echo -n "$filename" | sed 's/\\/\\\\/g; s/"/\\"/g')
+    safe_path=$(echo -n "$pdf_path" | sed 's/\\/\\\\/g; s/"/\\"/g')
+    
+    # Only add if not empty
+    if [[ -n "$safe_filename" ]]; then
+        echo "  [\"$safe_filename\"] = \"$safe_path\"," >> "$REPLACE_LUA"
+    fi
+done
+
+cat >> "$REPLACE_LUA" << 'EOF'
+}
+
 function Image(el)
+  -- Try exact match
   if url_map[el.src] then
     el.src = url_map[el.src]
     return el
-  else
-    io.stderr:write("MOO LUA WARNING: No replacement found for: " .. el.src .. "\n")
   end
+  
+  -- Try filename match
+  -- Get filename from el.src
+  local src_filename = el.src:match("^.+/(.+)$") or el.src
+  -- Remove query params if any
+  src_filename = src_filename:match("([^?#]+)")
+  
+  if filename_map[src_filename] then
+     -- io.stderr:write("Fallback match: " .. el.src .. " -> " .. filename_map[src_filename] .. "\n")
+     el.src = filename_map[src_filename]
+     return el
+  end
+
+  io.stderr:write("MOO LUA WARNING: No replacement found for: " .. el.src .. "\n")
 end
 EOF
 
