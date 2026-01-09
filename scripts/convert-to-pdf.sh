@@ -104,7 +104,13 @@ while IFS= read -r url; do
                         file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
                     fi
                     if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
-                        download_success=true
+                        mime_type=$(file --mime-type -b "$downloaded_file" 2>/dev/null || echo "application/octet-stream")
+                        if [[ "$mime_type" == "text/html" ]]; then
+                             echo "  -> Error: Downloaded content is HTML (likely 403/404 page), not image"
+                             rm -f "$downloaded_file" 2>/dev/null || true
+                        else
+                             download_success=true
+                        fi
                     else
                         echo "  -> Retry $((retry + 1))/$max_retries (file_size=$file_size)"
                         rm -f "$downloaded_file" 2>/dev/null || true
@@ -117,7 +123,13 @@ while IFS= read -r url; do
                         file_size=$(wc -c < "$downloaded_file" 2>/dev/null || echo 0)
                     fi
                     if [[ -s "$downloaded_file" ]] && [[ $file_size -gt 100 ]]; then
-                        download_success=true
+                        mime_type=$(file --mime-type -b "$downloaded_file" 2>/dev/null || echo "application/octet-stream")
+                        if [[ "$mime_type" == "text/html" ]]; then
+                             echo "  -> Error: Downloaded content is HTML (likely 403/404 page), not image"
+                             rm -f "$downloaded_file" 2>/dev/null || true
+                        else
+                             download_success=true
+                        fi
                     else
                         echo "  -> Retry $((retry + 1))/$max_retries (file_size=$file_size)"
                         rm -f "$downloaded_file" 2>/dev/null || true
@@ -290,7 +302,7 @@ if [ ${#failed_images[@]} -gt 0 ]; then
     done
     echo "=========================================="
     echo "Cannot create PDF with missing images. Skipping this file."
-    rm -rf "$TEMP_DIR"
+    # rm -rf "$TEMP_DIR"
     exit 1
 fi
 
@@ -318,7 +330,7 @@ function Image(el)
     el.src = url_map[el.src]
     return el
   else
-    io.stderr:write("NO MATCH from Replace Lua: " .. el.src .. "\n")
+    io.stderr:write("MOO LUA WARNING: No replacement found for: " .. el.src .. "\n")
   end
 end
 EOF
@@ -445,10 +457,10 @@ if [[ -f "$OUTPUT_FILE" ]]; then
 else
     echo "ERROR: PDF creation failed. See /tmp/pandoc_output.log for details"
     # Clean up temporary directory
-    rm -rf "$TEMP_DIR"
+    # rm -rf "$TEMP_DIR"
     exit 1
 fi
 
 # Clean up temporary directory (but not the cache)
-rm -rf "$TEMP_DIR"
+ rm -rf "$TEMP_DIR"
 echo "Cleaned up temporary files"
