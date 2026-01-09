@@ -16,6 +16,14 @@ command -v pandoc >/dev/null 2>&1 || { echo "Error: pandoc is required but not i
 command -v inkscape >/dev/null 2>&1 || command -v rsvg-convert >/dev/null 2>&1 || { echo "Error: inkscape or rsvg-convert is required but not installed."; exit 1; }
 command -v curl >/dev/null 2>&1 || command -v wget >/dev/null 2>&1 || { echo "Error: curl or wget is required but not installed."; exit 1; }
 
+# Show tool versions
+echo "Pandoc version:"
+pandoc --version | head -n 3
+echo "Inkscape version:"
+inkscape --version 2>/dev/null || echo "Not found"
+echo "RSVG version:"
+rsvg-convert --version 2>/dev/null || echo "Not found"
+
 # Get input file (default: Programmieren - Folien.md)
 INPUT_FILE="${1:-Programmieren - Folien.md}"
 OUTPUT_FILE="${INPUT_FILE%.md}.pdf"
@@ -84,12 +92,28 @@ while IFS= read -r url; do
         cached_file="$IMAGES_DIR/${url_hash}.${ext}"
         
         # Check if file already exists in cache and is valid
-        if [[ -f "$cached_file" ]] && [[ -s "$cached_file" ]] && [[ $(stat -f%z "$cached_file" 2>/dev/null || stat -c%s "$cached_file" 2>/dev/null) -gt 100 ]]; then
+        is_valid_cache=false
+        if [[ -f "$cached_file" ]] && [[ -s "$cached_file" ]]; then
+             file_size=$(stat -f%z "$cached_file" 2>/dev/null || stat -c%s "$cached_file" 2>/dev/null)
+             if [[ $file_size -gt 100 ]]; then
+                 # Check mime type to ensure it's not an error page or empty file
+                 mime_type=$(file --mime-type -b "$cached_file" 2>/dev/null || echo "application/octet-stream")
+                 if [[ "$mime_type" != "text/html" ]]; then
+                    is_valid_cache=true
+                 else
+                    echo "  -> Found cached text/html (likely error page), invalidating: $cached_file"
+                 fi
+             fi
+        fi
+
+        if [[ "$is_valid_cache" == "true" ]]; then
             downloaded_file="$cached_file"
             download_success=true
             echo "  -> Using cached file: $cached_file"
         else
             # Download remote image with retries
+
+
             downloaded_file="$cached_file"
             max_retries=3
             retry=0
@@ -344,7 +368,24 @@ done
 cat >> "$REPLACE_LUA" << 'EOF'
 }
 
+-- DEBUG: Dump the map keys to stderr to verify they exist
+for k,v in pairs(url_map) do
+    if string.find(k, "Geomagnetic") or string.find(k, "Quadcopter") then
+        io.stderr:write("DEBUG_MAP_KEY_FOUND_URL: " .. k .. "\n")
+    end
+end
+for k,v in pairs(filename_map) do
+    if string.find(k, "Geomagnetic") or string.find(k, "Quadcopter") then
+        io.stderr:write("DEBUG_MAP_KEY_FOUND_FILE: " .. k .. "\n")
+    end
+end
+
 function Image(el)
+  -- Debug every image seen
+  if string.find(el.src, "Geomagnetic") or string.find(el.src, "Quadcopter") then
+      io.stderr:write("DEBUG_LUA_SEEN: " .. el.src .. "\n")
+  end
+
   -- Try exact match
   if url_map[el.src] then
     el.src = url_map[el.src]
